@@ -197,15 +197,24 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
         >
           {/* Price Summary Banner */}
           <div className="p-5 rounded-2xl bg-[#F7F5EE] border border-[#E0D8CA] flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <span className="text-xs font-mono text-[#8F6B2C] font-bold block uppercase">
-                The 48 Laws of Power (বাংলা ডিজিটাল PDF সংস্করণ)
-              </span>
-              <span className="text-xs text-stone-600">
-                ৪৫২ পৃষ্ঠা • সার্চেবল টেক্সট • লাইফটাইম অ্যাক্সেস
-              </span>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-16 shrink-0 flex items-center justify-center">
+                <img
+                  src="/images/book-mockup.png"
+                  alt="The 48 Laws of Power Book"
+                  className="h-16 w-auto object-contain drop-shadow-md transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div>
+                <span className="text-xs font-mono text-[#8F6B2C] font-bold block uppercase">
+                  The 48 Laws of Power (বাংলা ডিজিটাল PDF সংস্করণ)
+                </span>
+                <span className="text-xs text-stone-600">
+                  ৪৫২ পৃষ্ঠা • সার্চেবল টেক্সট • লাইফটাইম অ্যাক্সেস
+                </span>
+              </div>
             </div>
-            <div className="text-right">
+            <div className="text-right shrink-0">
               <span className="text-3xl font-display font-bold text-[#121316]">
                 {siteConfig.currencySymbol}{siteConfig.price}
               </span>

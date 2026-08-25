@@ -334,12 +334,19 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
       </div>
 
       {/* Pricing Summary */}
-      <div className="p-4 rounded-2xl bg-gradient-to-br from-[#FAF6EE] to-[#F5EFE4] border border-[#DFCFA8] flex items-center justify-between">
-        <div>
-          <span className="text-xs text-stone-600 font-medium block">মোট প্রদেয় মূল্য:</span>
-          <span className="text-[11px] text-emerald-700 font-semibold">ডিজিটাল সংস্করণ • লাইফটাইম অ্যাক্সেস</span>
+      <div className="p-4 rounded-2xl bg-gradient-to-br from-[#FAF6EE] to-[#F5EFE4] border border-[#DFCFA8] flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <img
+            src="/images/book-mockup.png"
+            alt="The 48 Laws of Power"
+            className="h-12 w-auto object-contain drop-shadow-sm"
+          />
+          <div>
+            <span className="text-xs text-stone-600 font-medium block">মোট প্রদেয় মূল্য:</span>
+            <span className="text-[11px] text-emerald-700 font-semibold">ডিজিটাল সংস্করণ • লাইফটাইম অ্যাক্সেস</span>
+          </div>
         </div>
-        <span className="text-2xl font-serif font-black text-[#7A5B22]">
+        <span className="text-2xl font-serif font-black text-[#7A5B22] shrink-0">
           {siteConfig.currencySymbol}{siteConfig.price}
         </span>
       </div>

@@ -12,7 +12,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-[#E6E0D4] overflow-hidden">
       {/* Subtle ambient gradient glow in background */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#8F6B2C]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#8F6B2C]/8 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-10 left-0 w-80 h-80 bg-[#121316]/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +32,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
           </div>
         </div>
 
-        {/* Hero Grid with Enlarged Image Showcase */}
+        {/* Hero Grid with Enlarged 3D Book Showcase */}
         <div className="py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           
           {/* Left Column: Typography & Story Hook */}
@@ -95,21 +95,28 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
 
           </div>
 
-          {/* Right Column: High-Impact Enlarged Digital Device Showcase */}
+          {/* Right Column: 3D Hardcover Book Mockup Showcase */}
           <div className="lg:col-span-5 flex flex-col items-center lg:items-end animate-scaleIn [animation-delay:300ms]">
-            <div className="relative max-w-[360px] sm:max-w-[440px] lg:max-w-[470px] w-full group">
-              <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#D8D0C3] bg-[#121316] transition-all duration-500 group-hover:shadow-[0_25px_60px_-15px_rgba(143,107,44,0.2)] group-hover:-translate-y-1">
+            <div className="relative max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] w-full group">
+              {/* Radial Backdrop Glow */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#8F6B2C]/25 via-[#DFC07A]/15 to-transparent rounded-full blur-3xl -z-10 transform group-hover:scale-115 transition-transform duration-700 pointer-events-none" />
+
+              {/* Floating 3D Book Graphic */}
+              <div className="relative flex justify-center items-center py-2">
                 <img
-                  src="/images/digital-mockup.jpg"
-                  alt="The 48 Laws of Power বাংলা ডিজিটাল PDF সংস্করণ - ট্যাবলেট ও স্মার্টফোন ভিউ"
-                  className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-102"
+                  src="/images/book-mockup.png"
+                  alt="The 48 Laws of Power বাংলা ডিজিটাল সংস্করণ — ৩D বুক কভার"
+                  className="w-full max-w-[320px] sm:max-w-[370px] h-auto object-contain drop-shadow-[0_25px_35px_rgba(18,19,22,0.28)] transition-all duration-700 group-hover:scale-105 group-hover:-translate-y-2 group-hover:drop-shadow-[0_35px_50px_rgba(143,107,44,0.35)] animate-floatSlow"
                 />
               </div>
 
-              {/* Minimalist Caption */}
-              <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-[#737680] px-2 transition-colors group-hover:text-[#121316]">
-                <span>DIGITAL PDF • 36 MB</span>
-                <span>452 PAGES • FULL BANGLA EDITION</span>
+              {/* Minimalist Publication Specs Bar */}
+              <div className="mt-4 flex items-center justify-between text-[11px] font-mono text-[#737680] px-4 py-2.5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#D8D0C3] shadow-sm transition-all duration-300 group-hover:border-[#8F6B2C]/40 group-hover:shadow-md">
+                <span className="font-semibold text-[#121316] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8F6B2C]" />
+                  <span>ডিজিটাল PDF সংস্করণ</span>
+                </span>
+                <span className="text-[#8F6B2C] font-bold">৪৫২ পৃষ্ঠা • ৩৬ MB</span>
               </div>
             </div>
           </div>
