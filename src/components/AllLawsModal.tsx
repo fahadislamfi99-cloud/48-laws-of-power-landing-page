@@ -49,7 +49,7 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
               <Crown className="w-5 h-5 text-[#C8A45C]" />
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-[#F0EBE0]">The 48 Laws of Power — সম্পূর্ণ সূচিপত্র</h3>
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-[#F0EBE0]">The 48 Laws of Power: সম্পূর্ণ সূচিপত্র</h3>
               <p className="text-xs sm:text-sm text-[#8A8278]">ডিজিটাল সংস্করণ • প্রতিটি নীতি গভীরভাবে বোঝার গাইড</p>
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
             THE 48 PRINCIPLES
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
-            একটি নীতি যদি দৃষ্টিভঙ্গি বদলে দিতে পারে— <br className="hidden sm:inline" />
+            একটি নীতি যদি দৃষ্টিভঙ্গি বদলে দিতে পারে, <br className="hidden sm:inline" />
             তবে পুরো ৪৮টি নীতি কী করতে পারে?
           </h2>
           <p className="text-base sm:text-lg text-[#B8B0A4] leading-relaxed">

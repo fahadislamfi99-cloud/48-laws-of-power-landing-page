@@ -86,7 +86,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full btn-gold text-xs font-bold tracking-wide cursor-pointer hover-lift btn-shimmer group"
           >
             <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
-            <span>ডিজিটাল কপি — {siteConfig.currencySymbol}{siteConfig.price}</span>
+            <span>ডিজিটাল কপি ({siteConfig.currencySymbol}{siteConfig.price})</span>
           </button>
 
           <button
@@ -121,7 +121,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
               className="w-full py-3 rounded-full btn-gold text-xs font-bold flex items-center justify-center gap-2 btn-shimmer"
             >
               <Download className="w-4 h-4" />
-              <span>পিডিএফ সংগ্রহ করুন — {siteConfig.currencySymbol}{siteConfig.price}</span>
+              <span>পিডিএফ সংগ্রহ করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
             </button>
           </div>
         </div>

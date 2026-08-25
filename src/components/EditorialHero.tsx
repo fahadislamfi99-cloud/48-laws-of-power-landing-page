@@ -184,7 +184,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
               >
                 <span className="absolute inset-0 rounded-full bg-[#C8A45C]/20 animate-ping opacity-0 group-hover:opacity-40" style={{ animationDuration: "2s" }} />
                 <Download className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:-translate-y-0.5" />
-                <span className="relative z-10">ডিজিটাল কপি কিনুন — {siteConfig.currencySymbol}{siteConfig.price}</span>
+                <span className="relative z-10">ডিজিটাল কপি কিনুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
               </button>
 
               <a
@@ -247,7 +247,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
                 <span className="text-[#C8A45C] font-bold">৪৫২ পৃষ্ঠা • ৩৬ MB</span>
               </div>
 
-              {/* Floating stat badges — desktop only */}
+              {/* Floating stat badges (desktop only) */}
               <div className="absolute -left-6 top-1/4 opacity-0 animate-[floatBadgeIn_0.8s_1.2s_forwards] hidden lg:block">
                 <div className="px-3 py-2 rounded-lg bg-[#111114] border border-[#2A2A2E] text-[11px] font-mono shadow-lg">
                   <span className="text-[#C8A45C] font-bold">৪৮টি</span> <span className="text-[#B8B0A4]">নীতি</span>

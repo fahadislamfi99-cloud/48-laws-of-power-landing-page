@@ -214,7 +214,7 @@ export default function DigitalCheckout() {
             {isSubmitting ? (
               <><Loader2 className="w-5 h-5 animate-spin" /><span>ভেরিফাই হচ্ছে...</span></>
             ) : (
-              <><Download className="w-5 h-5" /><span>পেমেন্ট সম্পন্ন করেছি — ডাউনলোড করুন ({siteConfig.currencySymbol}{siteConfig.price})</span></>
+              <><Download className="w-5 h-5" /><span>পেমেন্ট সম্পন্ন করেছি: ডাউনলোড করুন ({siteConfig.currencySymbol}{siteConfig.price})</span></>
             )}
           </button>
 

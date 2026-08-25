@@ -33,7 +33,7 @@ export default function DigitalProductShowcase({
             &ldquo;বিচারবুদ্ধি ও ক্ষমতার মূল রহস্য হলো ভারসাম্য। আপনার ওপরস্থ ব্যক্তিদের সর্বদা স্বাচ্ছন্দ্য ও শ্রেষ্ঠত্বের অনুভূতি দিন। তাদের খুশি করার অতি-উৎসাহে নিজের প্রতিভার অতিরিক্ত প্রদর্শন করবেন না...&rdquo;
           </div>
           <p>
-            ইতিহাস সাক্ষ্য দেয়, রাজা চতুর্দশ লুইয়ের অর্থমন্ত্রী নিকোলাস ফুকেট এক বর্ণাঢ্য ভোজের আয়োজন করে রাজাকে প্রভাবিত করতে চেয়েছিলেন। কিন্তু তিনি বুঝতে পারেননি—রাজাকে ছাপিয়ে নিজের প্রতিপত্তি প্রদর্শনের অর্থ হলো রাজার অহং ও নিরাপত্তাহীনতায় আঘাত করা।
+            ইতিহাস সাক্ষ্য দেয়, রাজা চতুর্দশ লুইয়ের অর্থমন্ত্রী নিকোলাস ফুকেট এক বর্ণাঢ্য ভোজের আয়োজন করে রাজাকে প্রভাবিত করতে চেয়েছিলেন। কিন্তু তিনি বুঝতে পারেননি যে, রাজাকে ছাপিয়ে নিজের প্রতিপত্তি প্রদর্শনের অর্থ হলো রাজার অহং ও নিরাপত্তাহীনতায় আঘাত করা।
           </p>
           <p>
             ফলাফল: ভোজসভা শেষ হওয়ার পরদিনই ফুকেটকে গ্রেপ্তার করে আজীবন নিঃসঙ্গ কারাবন্দী করা হয়।
@@ -218,7 +218,7 @@ export default function DigitalProductShowcase({
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full btn-gold text-xs font-bold cursor-pointer hover-lift btn-shimmer group"
                 >
                   <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
-                  <span>সম্পূর্ণ কপি ডাউনলোড করুন — {siteConfig.currencySymbol}{siteConfig.price}</span>
+                  <span>সম্পূর্ণ কপি ডাউনলোড করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
                 </button>
               </div>
             </div>

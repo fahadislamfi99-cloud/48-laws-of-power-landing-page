@@ -84,7 +84,7 @@ export default function HumanRecognition() {
               &ldquo;ক্ষমতার খেলায় ভালো বা খারাপ বলে কিছু নেই। যারা এই খেলার অদৃশ্য নিয়মগুলো বোঝেন, তারা নিয়ন্ত্রণ ধরে রাখেন। আর যারা অন্ধভাবে নিয়মের অপেক্ষা করেন, তারা অন্যের সিদ্ধান্তের শিকার হন।&rdquo;
             </p>
             <span className="text-[11px] font-mono text-[#C8A45C] font-bold block pt-1">
-              — রবার্ট গ্রিন (The 48 Laws of Power)
+              রবার্ট গ্রিন (The 48 Laws of Power)
             </span>
           </div>
         </div>

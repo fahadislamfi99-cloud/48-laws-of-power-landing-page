@@ -368,7 +368,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
             ) : (
               <>
                 <Download className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
-                <span>পেমেন্ট সম্পন্ন — ডাউনলোড করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
+                <span>পেমেন্ট সম্পন্ন: ডাউনলোড করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
               </>
             )}
           </button>
