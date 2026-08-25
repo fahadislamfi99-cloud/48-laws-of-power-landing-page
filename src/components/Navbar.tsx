@@ -36,10 +36,10 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 py-3.5 border-b transition-[background-color,border-color,backdrop-filter] duration-200 ease-out ${
         isScrolled
-          ? "bg-[#08080A]/90 backdrop-blur-xl border-b border-[#2A2A2E] py-3"
-          : "bg-transparent py-4"
+          ? "bg-[#08080A]/95 backdrop-blur-xl border-[#26262A] shadow-md"
+          : "bg-transparent backdrop-blur-none border-transparent"
       }`}
     >
       {/* Gold Progress Bar */}

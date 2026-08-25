@@ -421,23 +421,22 @@
 
 /* Input Styles */
 .input-dark {
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
-  color: var(--ink);
-  border-radius: 0.75rem;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  transition: all 0.25s ease;
+  background-color: #0E0E12;
+  border: 1px solid #2A2A2E;
+  color: #F0EBE0;
+  border-radius: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .input-dark:focus {
   outline: none;
-  border-color: var(--gold);
+  border-color: #C8A45C;
+  background-color: #121216;
   box-shadow: 0 0 0 3px rgba(200, 164, 92, 0.15);
 }
 
 .input-dark::placeholder {
-  color: var(--ink-muted);
+  color: #706B62;
 }
 
 /* Theme Transition */
