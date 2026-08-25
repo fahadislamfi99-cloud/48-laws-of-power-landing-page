@@ -34,11 +34,11 @@ export default function HumanRecognition() {
     <section
       id="thesis"
       ref={containerRef}
-      className="py-20 lg:py-28 bg-[#08080A]"
+      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl space-y-4 mb-16 reveal">
+        <div className="max-w-3xl space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
             HUMAN SOCIAL DYNAMICS
           </span>
@@ -73,7 +73,7 @@ export default function HumanRecognition() {
         </div>
 
         {/* Pull Quote */}
-        <div className="reveal reveal-stagger-5 mt-16 p-8 lg:p-10 rounded-2xl bg-[#111114] border border-[#2A2A2E] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover:border-[#C8A45C]/20 transition-all duration-500">
+        <div className="reveal reveal-stagger-5 mt-10 p-8 lg:p-10 rounded-2xl bg-[#111114] border border-[#2A2A2E] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover:border-[#C8A45C]/20 transition-all duration-500">
           <div className="lg:col-span-2 flex justify-start lg:justify-center">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center">
               <Quote className="w-5 h-5" />

@@ -20,9 +20,9 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
   ];
 
   return (
-    <section ref={containerRef} className="py-20 lg:py-28 bg-[#08080A]">
+    <section ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-4 mb-16 reveal">
+        <div className="max-w-3xl space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
             THE 48 PRINCIPLES
           </span>
@@ -40,7 +40,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`reveal reveal-left reveal-stagger-${Math.min(idx + 1, 5)} py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-baseline px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-[#111114] hover:translate-x-2 group cursor-default`}
+              className={`reveal reveal-left reveal-stagger-${Math.min(idx + 1, 5)} py-5 sm:py-6 grid grid-cols-1 sm:grid-cols-12 gap-4 items-baseline px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-[#111114] hover:translate-x-2 group cursor-default`}
             >
               <div className="sm:col-span-2 font-mono text-xs font-bold text-[#C8A45C] group-hover:text-[#D4AF6E] transition-colors">
                 {pillar.num}
@@ -56,7 +56,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
         </div>
 
         {/* Action */}
-        <div className="reveal reveal-stagger-5 mt-12 pt-8 border-t border-[#2A2A2E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="reveal reveal-stagger-5 mt-8 pt-6 border-t border-[#2A2A2E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <span className="text-sm font-semibold text-[#B8B0A4]">
             সম্পূর্ণ ৪৮টি নীতি ও বিস্তারিত ঐতিহাসিক বিশ্লেষণ ডিজিটাল PDF-এ সংরক্ষিত।
           </span>

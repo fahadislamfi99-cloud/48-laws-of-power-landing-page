@@ -20,9 +20,9 @@ export default function ProductFAQ() {
   const containerRef = useScrollReveal<HTMLElement>();
 
   return (
-    <section id="faq" ref={containerRef} className="py-20 lg:py-28 bg-[#0A0A0C]">
+    <section id="faq" ref={containerRef} className="py-14 lg:py-20 bg-[#0A0A0C] border-t border-[#26262A]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-3 mb-14 reveal">
+        <div className="text-center space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">FREQUENTLY ASKED QUESTIONS</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">সাধারণ প্রশ্ন ও উত্তর</h2>
           <p className="text-[#B8B0A4] text-base">ডিজিটাল সংস্করণ ও ডাউনলোড প্রক্রিয়া সম্পর্কে প্রয়োজনীয় তথ্য নিচে জেনে নিন</p>

@@ -12,7 +12,7 @@ export default function AuthorProfile() {
     <section
       id="author"
       ref={containerRef}
-      className="py-20 lg:py-28 bg-[#0A0A0C]"
+      className="py-14 lg:py-20 bg-[#0A0A0C] border-t border-[#26262A]"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">

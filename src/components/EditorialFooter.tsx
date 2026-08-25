@@ -8,7 +8,7 @@ export default function EditorialFooter() {
   const containerRef = useScrollReveal<HTMLElement>();
 
   return (
-    <footer ref={containerRef} className="bg-[#08080A] text-[#F0EBE0] py-14 border-t border-[#2A2A2E] text-xs">
+    <footer ref={containerRef} className="bg-[#08080A] text-[#F0EBE0] py-10 border-t border-[#26262A] text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#2A2A2E] reveal">
           <div className="flex items-center gap-3 group cursor-pointer">

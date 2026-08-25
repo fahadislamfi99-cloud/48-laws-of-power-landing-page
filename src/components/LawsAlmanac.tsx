@@ -37,10 +37,10 @@ export default function LawsAlmanac({
     <section
       id="laws-almanac"
       ref={containerRef}
-      className="py-20 lg:py-28 bg-[#08080A]"
+      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14 reveal">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
             THE 48 LAWS ALMANAC
           </span>
@@ -145,7 +145,7 @@ export default function LawsAlmanac({
         </div>
 
         {/* CTA */}
-        <div className="mt-12 text-center reveal reveal-stagger-3">
+        <div className="mt-8 text-center reveal reveal-stagger-3">
           <button
             onClick={onOpenAllLawsModal}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full btn-gold text-xs sm:text-sm cursor-pointer hover-lift btn-shimmer group"

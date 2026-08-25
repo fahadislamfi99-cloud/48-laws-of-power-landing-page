@@ -11,12 +11,12 @@ export default function DeepDiveLaw() {
     <section
       id="deep-dive"
       ref={containerRef}
-      className="py-20 lg:py-28 bg-[#0C0C0F] border-t border-[#26262A]"
+      className="py-14 lg:py-20 bg-[#0C0C0F] border-t border-[#26262A]"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 reveal">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
           <div className="flex items-center justify-center gap-3">
             <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#C8A45C] uppercase">

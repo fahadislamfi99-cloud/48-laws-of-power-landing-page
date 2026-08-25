@@ -112,9 +112,9 @@ export default function DigitalCheckout() {
   }
 
   return (
-    <section id="checkout" ref={containerRef} className="py-20 lg:py-28 bg-[#08080A]">
+    <section id="checkout" ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 reveal">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">SECURE DIGITAL ACCESS</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">ডিজিটাল কপি সংগ্রহ করুন</h2>
           <p className="text-[#B8B0A4] text-sm sm:text-base">নিচে তথ্য পূরণ করে পেমেন্ট সম্পন্ন করুন। সাথে সাথেই ডাউনলোড লিংক সক্রিয় হবে।</p>
