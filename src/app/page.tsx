@@ -20,73 +20,32 @@ export default function Home() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [isAllLawsModalOpen, setIsAllLawsModalOpen] = useState(false);
 
-  const handleOpenOrderModal = () => {
-    setIsOrderModalOpen(true);
-  };
-
-  const handleCloseOrderModal = () => {
-    setIsOrderModalOpen(false);
-  };
-
-  const handleOpenAllLawsModal = () => {
-    setIsAllLawsModalOpen(true);
-  };
-
-  const handleCloseAllLawsModal = () => {
-    setIsAllLawsModalOpen(false);
-  };
-
   return (
-    <main className="min-h-screen bg-[#FAF8F5] text-[#121316] selection:bg-[#121316] selection:text-[#FAF8F5]">
-      {/* 1. Minimalist Editorial Navigation */}
-      <Navbar onOpenOrderModal={handleOpenOrderModal} />
-
-      {/* 2. Editorial Hero (Curiosity + Digital PDF Showcase) */}
-      <EditorialHero onOpenOrderModal={handleOpenOrderModal} />
-
-      {/* 3. Recognition: Real Everyday Situations */}
+    <main className="min-h-screen bg-[#08080A] text-[#F0EBE0] selection:bg-[#C8A45C] selection:text-[#08080A]">
+      <Navbar onOpenOrderModal={() => setIsOrderModalOpen(true)} />
+      <EditorialHero onOpenOrderModal={() => setIsOrderModalOpen(true)} />
       <HumanRecognition />
-
-      {/* 4. Education: Deep Dive on Flagship Laws (Real Value Delivery) */}
       <DeepDiveLaw />
-
-      {/* 5. Curiosity Bridge: Transition from 1 Law to the Full 48 Laws */}
-      <CuriosityBridge onOpenOrderModal={handleOpenOrderModal} />
-
-      {/* 6. Digital Product & Interactive Reading Preview */}
-      <DigitalProductShowcase onOpenOrderModal={handleOpenOrderModal} />
-
-      {/* 7. The 48 Laws Almanac / Index */}
+      <CuriosityBridge onOpenOrderModal={() => setIsOrderModalOpen(true)} />
+      <DigitalProductShowcase onOpenOrderModal={() => setIsOrderModalOpen(true)} />
       <LawsAlmanac
-        onOpenAllLawsModal={handleOpenAllLawsModal}
-        onOpenOrderModal={handleOpenOrderModal}
+        onOpenAllLawsModal={() => setIsAllLawsModalOpen(true)}
+        onOpenOrderModal={() => setIsOrderModalOpen(true)}
       />
-
-      {/* 8. Meet the Author */}
       <AuthorProfile />
-
-      {/* 9. Frictionless Digital Purchase & Download Section */}
       <DigitalCheckout />
-
-      {/* 10. Frequently Asked Questions */}
       <ProductFAQ />
-
-      {/* 11. Minimalist Publishing Footer */}
       <EditorialFooter />
+      <MobileStickyBar onOpenOrderModal={() => setIsOrderModalOpen(true)} />
 
-      {/* Mobile Bottom Conversion Pill */}
-      <MobileStickyBar onOpenOrderModal={handleOpenOrderModal} />
-
-      {/* Modals */}
       <AllLawsModal
         isOpen={isAllLawsModalOpen}
-        onClose={handleCloseAllLawsModal}
-        onOpenOrderModal={handleOpenOrderModal}
+        onClose={() => setIsAllLawsModalOpen(false)}
+        onOpenOrderModal={() => setIsOrderModalOpen(true)}
       />
-
       <OrderModal
         isOpen={isOrderModalOpen}
-        onClose={handleCloseOrderModal}
+        onClose={() => setIsOrderModalOpen(false)}
       />
     </main>
   );

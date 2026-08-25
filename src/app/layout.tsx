@@ -3,7 +3,7 @@ import "./globals.css";
 import { siteConfig } from "@/data/siteConfig";
 
 export const viewport: Viewport = {
-  themeColor: "#FAF8F5",
+  themeColor: "#08080A",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "The 48 Laws of Power বাংলা PDF | Robert Greene | ডিজিটাল সংস্করণ",
   description:
-    "Robert Greene-এর বিখ্যাত The 48 Laws of Power বইয়ের বাংলা ডিজিটাল PDF সংস্করণ। তাৎক্ষণিক ডাউনলোড ও মোবাইল/ট্যাবলেটে লাইফটাইম অ্যাক্সেস।",
+    "Robert Greene-এর বিখ্যাত The 48 Laws of Power বইয়ের বাংলা ডিজিটাল PDF সংস্করণ। তাৎক্ষণিক ডাউনলোড ও মোবাইল/ট্যাবলেটে লাইফটাইম অ্যাক্সেস।",
   keywords: [
     "The 48 Laws of Power বাংলা PDF",
     "48 Laws of Power বাংলা বই ডাউনলোড",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The 48 Laws of Power বাংলা ডিজিটাল PDF সংস্করণ",
-    description: "মানুষের মনস্তত্ত্ব ও ক্ষমতার ৪৮টি নীতি — মোবাইল ও ট্যাবলেটে তাৎক্ষণিক পড়ুন।",
+    description: "মানুষের মনস্তত্ত্ব ও ক্ষমতার ৪৮টি নীতি — মোবাইল ও ট্যাবলেটে তাৎক্ষণিক পড়ুন।",
   },
 };
 
@@ -46,7 +46,6 @@ export default function RootLayout({
   return (
     <html lang="bn" className="scroll-smooth">
       <head>
-        {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -54,7 +53,6 @@ export default function RootLayout({
           rel="stylesheet"
         />
 
-        {/* Meta Pixel Code Placeholder */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -81,7 +79,7 @@ export default function RootLayout({
           />
         </noscript>
       </head>
-      <body className="min-h-screen flex flex-col antialiased selection:bg-[#C59B4B] selection:text-black bg-[#FAF8F5]">
+      <body className="min-h-screen flex flex-col antialiased selection:bg-[#C8A45C] selection:text-[#08080A] bg-[#08080A] grain">
         {children}
       </body>
     </html>

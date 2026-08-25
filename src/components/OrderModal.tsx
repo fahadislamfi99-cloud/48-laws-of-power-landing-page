@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import OrderForm from "./OrderForm";
-import { X, Crown, Sparkles } from "lucide-react";
+import { X } from "lucide-react";
 
 interface OrderModalProps {
   isOpen: boolean;
@@ -10,26 +10,62 @@ interface OrderModalProps {
 }
 
 export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    document.body.style.overflow = "hidden";
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKey);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
-      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-[#D5CDBE] overflow-hidden my-6 animate-scaleIn">
-        
-        {/* Modal Close Button */}
+    <div
+      ref={overlayRef}
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+      onClick={(e) => {
+        if (e.target === overlayRef.current) onClose();
+      }}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-md animate-fadeIn" />
+
+      {/* Gold accent glow at top */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#C8A45C]/8 rounded-full blur-[120px] pointer-events-none" />
+
+      {/* Panel */}
+      <div
+        ref={panelRef}
+        className="relative w-full sm:max-w-[520px] max-h-[95vh] sm:max-h-[90vh] overflow-y-auto bg-[#0C0C0E] sm:rounded-3xl rounded-t-3xl border border-[#2A2A2E] shadow-[0_0_80px_rgba(0,0,0,0.6)] my-0 sm:my-6 animate-fadeInUp sm:animate-scaleIn"
+        style={{ scrollbarWidth: "thin", scrollbarColor: "#2A2A2E transparent" }}
+      >
+        {/* Top gold line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-60" />
+
+        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition-all duration-200 hover:rotate-90 z-10 cursor-pointer"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full bg-[#1A1A1E]/80 hover:bg-[#2A2A2E] text-[#5C5750] hover:text-[#F0EBE0] transition-all duration-200 hover:rotate-90 z-20 cursor-pointer backdrop-blur-sm"
           aria-label="Close"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
-        {/* Modal Content */}
-        <div className="p-2 sm:p-4">
+        {/* Content */}
+        <div className="p-4 sm:p-6">
           <OrderForm onSuccess={() => {}} />
         </div>
-
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface CuriosityBridgeProps {
@@ -12,88 +12,62 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
   const containerRef = useScrollReveal<HTMLElement>();
 
   const pillars = [
-    {
-      num: "০১",
-      title: "ক্ষমতা ও আধিপত্য",
-      desc: "কীভাবে অন্যের ইচ্ছার ওপর নির্ভরশীল না হয়ে নিজের নিয়ন্ত্রণ প্রতিষ্ঠা করবেন।",
-    },
-    {
-      num: "০২",
-      title: "রণকৌশল ও দূরদর্শিতা",
-      desc: "কোনো সংঘাত বা প্রতিযোগিতায় কয়েক কদম আগে থেকে হিসেব করে সিদ্ধান্ত নেওয়ার নিয়ম।",
-    },
-    {
-      num: "০৩",
-      title: "সুনাম ও আত্মরক্ষা",
-      desc: "সুনামকে কীভাবে একটি দুর্ভেদ্য বর্মের মতো রক্ষা করবেন যাতে কেউ আঘাত করতে না পারে।",
-    },
-    {
-      num: "০৪",
-      title: "কৌশলী বার্তালাপ",
-      desc: "কখন কথা বলতে হবে, কখন নীরব থাকতে হবে এবং কীভাবে কথা দিয়ে নিয়ন্ত্রণ রাখবেন।",
-    },
-    {
-      num: "০৫",
-      title: "মানব মনস্তত্ত্ব ও ছদ্মবেশ",
-      desc: "মানুষের বাহ্যিক মিষ্টি হাসির আড়ালে থাকা প্রকৃত উদ্দেশ্য ও দুর্বলতা চিহ্নিত করার উপায়।",
-    },
+    { num: "০১", title: "ক্ষমতা ও আধিপত্য", desc: "কীভাবে অন্যের ইচ্ছার ওপর নির্ভরশীল না হয়ে নিজের নিয়ন্ত্রণ প্রতিষ্ঠা করবেন।" },
+    { num: "০২", title: "রণকৌশল ও দূরদর্শিতা", desc: "কোনো সংঘাত বা প্রতিযোগিতায় কয়েক কদম আগে থেকে হিসেব করে সিদ্ধান্ত নেওয়ার নিয়ম।" },
+    { num: "০৩", title: "সুনাম ও আত্মরক্ষা", desc: "সুনামকে কীভাবে একটি দুর্ভেদ্য বর্মের মতো রক্ষা করবেন যাতে কেউ আঘাত করতে না পারে।" },
+    { num: "০৪", title: "কৌশলী বার্তালাপ", desc: "কখন কথা বলতে হবে, কখন নীরব থাকতে হবে এবং কীভাবে কথা দিয়ে নিয়ন্ত্রণ রাখবেন।" },
+    { num: "০৫", title: "মানব মনস্তত্ত্ব ও ছদ্মবেশ", desc: "মানুষের বাহ্যিক মিষ্টি হাসির আড়ালে থাকা প্রকৃত উদ্দেশ্য ও দুর্বলতা চিহ্নিত করার উপায়।" },
   ];
 
   return (
-    <section
-      ref={containerRef}
-      className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#FAF8F5]"
-    >
+    <section ref={containerRef} className="py-20 lg:py-28 bg-[#08080A]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Editorial Heading */}
         <div className="max-w-3xl space-y-4 mb-16 reveal">
-          <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block">
+          <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
             THE 48 PRINCIPLES
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#121316] leading-[1.25]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
             একটি নীতি যদি দৃষ্টিভঙ্গি বদলে দিতে পারে— <br className="hidden sm:inline" />
             তবে পুরো ৪৮টি নীতি কী করতে পারে?
           </h2>
-          <p className="text-base sm:text-lg text-[#52555E] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#9C9488] leading-relaxed">
             রবার্ট গ্রিনের এই বইটিতে কোনো অলীক তত্ত্ব নেই। প্রতিটি নীতি বাস্তব মানব ইতিহাসের ৩,০০০ বছরের পরীক্ষা-নিরীক্ষা থেকে প্রমাণিত এবং ৫টি মূল স্তরে বিভক্ত:
           </p>
         </div>
 
-        {/* 5 Thematic Pillars (Editorial List format) */}
-        <div className="border-t border-[#E6E0D4] divide-y divide-[#E6E0D4]">
+        {/* Pillars List */}
+        <div className="border-t border-[#2A2A2E] divide-y divide-[#2A2A2E]">
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`reveal reveal-stagger-${Math.min(idx + 1, 5)} py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-baseline px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-[#F3EFE8]/50 hover:translate-x-1.5 group cursor-default`}
+              className={`reveal reveal-left reveal-stagger-${Math.min(idx + 1, 5)} py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-baseline px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-[#111114] hover:translate-x-2 group cursor-default`}
             >
-              <div className="sm:col-span-2 font-mono text-xs font-bold text-[#8F6B2C] group-hover:text-[#6E511D] transition-colors">
+              <div className="sm:col-span-2 font-mono text-xs font-bold text-[#C8A45C] group-hover:text-[#D4AF6E] transition-colors">
                 {pillar.num}
               </div>
-              <div className="sm:col-span-4 font-bengali-serif font-bold text-lg sm:text-xl text-[#121316] group-hover:text-[#8F6B2C] transition-colors">
+              <div className="sm:col-span-4 font-bengali-serif font-bold text-lg sm:text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors">
                 {pillar.title}
               </div>
-              <div className="sm:col-span-6 text-sm text-[#52555E] leading-relaxed">
+              <div className="sm:col-span-6 text-sm text-[#9C9488] leading-relaxed">
                 {pillar.desc}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Action Prompt */}
-        <div className="reveal reveal-stagger-4 mt-12 pt-8 border-t border-[#E6E0D4] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-[#121316]">
+        {/* Action */}
+        <div className="reveal reveal-stagger-5 mt-12 pt-8 border-t border-[#2A2A2E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <span className="text-sm font-semibold text-[#9C9488]">
             সম্পূর্ণ ৪৮টি নীতি ও বিস্তারিত ঐতিহাসিক বিশ্লেষণ ডিজিটাল PDF-এ সংরক্ষিত।
           </span>
           <a
             href="#digital-preview"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8F6B2C] hover:text-[#6E511D] transition-colors group cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C8A45C] hover:text-[#D4AF6E] transition-colors group cursor-pointer"
           >
             <span>ডিজিটাল প্রিভিউ দেখুন</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
-
       </div>
     </section>
   );

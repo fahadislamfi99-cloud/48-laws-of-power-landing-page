@@ -1,128 +1,171 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { siteConfig } from "@/data/siteConfig";
-import { Download, ArrowDown, Smartphone, Search, FileText, Sparkles } from "lucide-react";
+import { Download, ArrowDown, Smartphone, Search, FileText } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface EditorialHeroProps {
   onOpenOrderModal: () => void;
 }
 
 export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) {
-  return (
-    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 border-b border-[#E6E0D4] overflow-hidden">
-      {/* Subtle ambient gradient glow in background */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#8F6B2C]/8 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-0 w-80 h-80 bg-[#121316]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+  const containerRef = useScrollReveal<HTMLElement>();
+  const bookRef = useRef<HTMLDivElement>(null);
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Editorial Publication Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#E6E0D4] text-xs font-mono text-[#737680] animate-fadeIn">
+  // 3D tilt effect on book mockup
+  useEffect(() => {
+    const el = bookRef.current;
+    if (!el) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      el.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+    };
+
+    const handleMouseLeave = () => {
+      el.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+      el.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)";
+      setTimeout(() => { el.style.transition = ""; }, 600);
+    };
+
+    el.addEventListener("mousemove", handleMouseMove);
+    el.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      el.removeEventListener("mousemove", handleMouseMove);
+      el.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
+  return (
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
+    >
+      {/* Ambient gold glow */}
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#C8A45C]/6 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C8A45C]/4 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* Floating gold particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-[#C8A45C]/40"
+            style={{
+              left: `${20 + i * 20}%`,
+              top: `${30 + i * 10}%`,
+              animation: `particleFloat ${8 + i * 2}s ease-in-out infinite`,
+              animationDelay: `${i * 2}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Top bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#2A2A2E] text-xs font-mono text-[#5C5750] animate-fadeIn">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-            <span className="font-semibold text-[#121316]">সম্পূর্ণ বাংলা ডিজিটাল সংস্করণ • PDF ই-বুক</span>
+            <span className="w-2 h-2 rounded-full bg-[#C8A45C] animate-pulse" />
+            <span className="font-semibold text-[#9C9488]">সম্পূর্ণ বাংলা ডিজিটাল সংস্করণ • PDF ই-বুক</span>
           </div>
-          <div className="hidden sm:flex items-center gap-6">
-            <span>মূল রচয়িতা: রবার্ট গ্রিন</span>
-            <span>•</span>
+          <div className="hidden sm:flex items-center gap-6 text-[#5C5750]">
+            <span>মূল রচয়িতা: রবার্ট গ্রিন</span>
+            <span className="text-[#2A2A2E]">•</span>
             <span>৪৫২ পৃষ্ঠা</span>
-            <span>•</span>
+            <span className="text-[#2A2A2E]">•</span>
             <span>ইন্টারেক্টিভ সার্চেবল টেক্সট</span>
           </div>
         </div>
 
-        {/* Hero Grid with Enlarged 3D Book Showcase */}
-        <div className="py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          
-          {/* Left Column: Typography & Story Hook */}
-          <div className="lg:col-span-7 space-y-7">
-            
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block animate-fadeInUp [animation-delay:100ms]">
-                ROBERT GREENE’S DEFINITIVE MASTERWORK
+        {/* Hero Grid */}
+        <div className="py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left: Typography */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="space-y-4">
+              <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block animate-fadeInUp [animation-delay:100ms]">
+                ROBERT GREENE&apos;S DEFINITIVE MASTERWORK
               </span>
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold tracking-tight text-[#121316] leading-[1.05] animate-fadeInUp [animation-delay:200ms]">
-                The 48 Laws <br />
-                <span className="italic font-normal font-editorial-serif text-[#8F6B2C] transition-colors duration-300 hover:text-[#6E511D]">
+              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display font-bold tracking-tight text-[#F0EBE0] leading-[1.02]">
+                <span className="block animate-textReveal [animation-delay:200ms]">The 48 Laws</span>
+                <span className="block italic font-editorial-serif font-normal text-[#C8A45C] animate-textReveal [animation-delay:400ms]">
                   of Power
                 </span>
               </h1>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bengali-serif font-bold text-[#2C2D32] leading-snug pt-1 animate-fadeInUp [animation-delay:300ms]">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bengali-serif font-bold text-[#9C9488] leading-snug animate-fadeInUp [animation-delay:600ms]">
                 {siteConfig.bookSubtitle}
               </h2>
             </div>
 
-            {/* Editorial Lead Paragraph */}
-            <p className="text-[#42454D] text-base sm:text-lg leading-[1.8] font-normal animate-fadeInUp [animation-delay:400ms]">
-              সমাজ প্রকাশ্যে ন্যায় ও নিয়মের কথা বলে, কিন্তু বাস্তবে মানুষের সম্পর্ক ও পেশাদার জগৎ পরিচালিত হয় মনস্তত্ত্ব এবং ক্ষমতার এক অদৃশ্য খেলায়। ৩,০০০ বছরের ঐতিহাসিক অভিজ্ঞতা থেকে সংকলিত এই ৪৮টি নীতি আপনাকে শেখাবে কীভাবে অন্যের আসল উদ্দেশ্য বুঝবেন এবং নিজেকে নিরাপদ রেখে প্রভাবশালী হয়ে উঠবেন।
+            <p className="text-[#9C9488] text-base sm:text-lg leading-[1.9] max-w-xl animate-fadeInUp [animation-delay:700ms]">
+              সমাজ প্রকাশ্যে ন্যায় ও নিয়মের কথা বলে, কিন্তু বাস্তবে মানুষের সম্পর্ক ও পেশাদার জগৎ পরিচালিত হয় মনস্তত্ত্ব এবং ক্ষমতার এক অদৃশ্য খেলায়। ৩,০০০ বছরের ঐতিহাসিক অভিজ্ঞতা থেকে সংকলিত এই ৪৮টি নীতি আপনাকে শেখাবে কীভাবে অন্যের আসল উদ্দেশ্য বুঝবেন এবং নিজেকে নিরাপদ রেখে প্রভাবশালী হয়ে উঠবেন।
             </p>
 
             {/* CTAs */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 animate-fadeInUp [animation-delay:500ms]">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 animate-fadeInUp [animation-delay:800ms]">
               <button
                 onClick={onOpenOrderModal}
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#121316] hover:bg-[#25272F] text-[#FAF8F5] font-bold text-sm sm:text-base transition-all cursor-pointer shadow-md active-lift hover-lift btn-shimmer group"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full btn-gold text-sm sm:text-base cursor-pointer hover-lift btn-shimmer group"
               >
-                <Download className="w-4 h-4 text-[#DFC07A] transition-transform duration-300 group-hover:-translate-y-0.5" />
+                <Download className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
                 <span>ডিজিটাল কপি কিনুন — {siteConfig.currencySymbol}{siteConfig.price}</span>
               </button>
 
               <a
                 href="#deep-dive"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white hover:bg-[#FAF8F5] text-[#121316] font-semibold text-xs sm:text-sm border border-[#D8D0C3] transition-all hover-lift active-lift group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-transparent text-[#C8A45C] font-semibold text-xs sm:text-sm border border-[#C8A45C]/30 hover:border-[#C8A45C]/60 hover:bg-[#C8A45C]/5 transition-all hover-lift group"
               >
-                <span>একটি নীতি পড়ে দেখুন</span>
-                <ArrowDown className="w-3.5 h-3.5 text-[#8F6B2C] transition-transform duration-300 group-hover:translate-y-0.5" />
+                <span>একটি নীতি পড়ে দেখুন</span>
+                <ArrowDown className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
               </a>
             </div>
 
-            {/* Digital Specs Bar */}
-            <div className="pt-4 border-t border-[#E6E0D4] grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[#52555E] font-medium animate-fadeInUp [animation-delay:600ms]">
-              <div className="flex items-center gap-2 p-2 rounded-xl transition-colors hover:bg-white/60">
-                <Smartphone className="w-4 h-4 text-[#8F6B2C] shrink-0" />
-                <span>ফোন, ট্যাবলেট ও পিসিতে পড়ার উপযোগী</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 rounded-xl transition-colors hover:bg-white/60">
-                <Search className="w-4 h-4 text-[#8F6B2C] shrink-0" />
-                <span>সার্চেবল টেক্সট ও ক্লিকযোগ্য সূচি</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 rounded-xl transition-colors hover:bg-white/60">
-                <FileText className="w-4 h-4 text-[#8F6B2C] shrink-0" />
-                <span>তাৎক্ষণিক ডাউনলোড ও লাইফটাইম অ্যাক্সেস</span>
-              </div>
+            {/* Feature pills */}
+            <div className="pt-4 border-t border-[#2A2A2E] grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[#5C5750] font-medium animate-fadeInUp [animation-delay:900ms]">
+              {[
+                { icon: Smartphone, text: "ফোন, ট্যাবলেট ও পিসিতে পড়ার উপযোগী" },
+                { icon: Search, text: "সার্চেবল টেক্সট ও ক্লিকযোগ্য সূচি" },
+                { icon: FileText, text: "তাৎক্ষণিক ডাউনলোড ও লাইফটাইম অ্যাক্সেস" },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-2 p-2 rounded-xl transition-colors hover:bg-[#111114]">
+                  <Icon className="w-4 h-4 text-[#C8A45C] shrink-0" />
+                  <span>{text}</span>
+                </div>
+              ))}
             </div>
-
           </div>
 
-          {/* Right Column: 3D Hardcover Book Mockup Showcase */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-end animate-scaleIn [animation-delay:300ms]">
-            <div className="relative max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] w-full group">
-              {/* Radial Backdrop Glow */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#8F6B2C]/25 via-[#DFC07A]/15 to-transparent rounded-full blur-3xl -z-10 transform group-hover:scale-115 transition-transform duration-700 pointer-events-none" />
+          {/* Right: Book Mockup with 3D Tilt */}
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-end animate-scaleIn [animation-delay:400ms]">
+            <div className="relative max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] w-full">
+              {/* Radial glow */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#C8A45C]/20 via-[#C8A45C]/8 to-transparent rounded-full blur-[80px] -z-10 animate-pulseGlow" />
 
-              {/* Floating 3D Book Graphic */}
-              <div className="relative flex justify-center items-center py-2">
+              {/* Book with 3D tilt */}
+              <div ref={bookRef} className="relative flex justify-center items-center py-2" style={{ transformStyle: "preserve-3d" }}>
                 <img
                   src="/images/book-mockup.png"
-                  alt="The 48 Laws of Power বাংলা ডিজিটাল সংস্করণ — ৩D বুক কভার"
-                  className="w-full max-w-[320px] sm:max-w-[370px] h-auto object-contain drop-shadow-[0_25px_35px_rgba(18,19,22,0.28)] transition-all duration-700 group-hover:scale-105 group-hover:-translate-y-2 group-hover:drop-shadow-[0_35px_50px_rgba(143,107,44,0.35)] animate-floatSlow"
+                  alt="The 48 Laws of Power বাংলা ডিজিটাল সংস্করণ"
+                  className="w-full max-w-[320px] sm:max-w-[370px] h-auto object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] animate-floatSlow"
                 />
               </div>
 
-              {/* Minimalist Publication Specs Bar */}
-              <div className="mt-4 flex items-center justify-between text-[11px] font-mono text-[#737680] px-4 py-2.5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#D8D0C3] shadow-sm transition-all duration-300 group-hover:border-[#8F6B2C]/40 group-hover:shadow-md">
-                <span className="font-semibold text-[#121316] flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#8F6B2C]" />
+              {/* Specs badge */}
+              <div className="mt-4 flex items-center justify-between text-[11px] font-mono text-[#5C5750] px-4 py-2.5 rounded-2xl bg-[#111114] border border-[#2A2A2E] transition-all duration-300 hover:border-[#C8A45C]/30">
+                <span className="font-semibold text-[#9C9488] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C]" />
                   <span>ডিজিটাল PDF সংস্করণ</span>
                 </span>
-                <span className="text-[#8F6B2C] font-bold">৪৫২ পৃষ্ঠা • ৩৬ MB</span>
+                <span className="text-[#C8A45C] font-bold">৪৫২ পৃষ্ঠা • ৩৬ MB</span>
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
