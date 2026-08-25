@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { siteConfig } from "@/data/siteConfig";
-import { ShoppingCart } from "lucide-react";
+import { Download } from "lucide-react";
 
 interface StickyMobileCTAProps {
   onOpenOrderModal: () => void;
@@ -13,7 +13,7 @@ export default function StickyMobileCTA({ onOpenOrderModal }: StickyMobileCTAPro
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > 350) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -27,23 +27,23 @@ export default function StickyMobileCTA({ onOpenOrderModal }: StickyMobileCTAPro
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#FAF7F2]/95 backdrop-blur-md border-t border-amber-400/60 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] animate-slideUp">
+    <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#FAF8F5]/95 backdrop-blur-md border-t border-[#C59B4B]/60 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] animate-slideUp">
       <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col">
           <span className="text-xs font-serif font-bold text-stone-900 leading-tight">
-            The 48 Laws of Power
+            The 48 Laws of Power (PDF)
           </span>
-          <span className="text-xs font-bold text-amber-900">
-            {siteConfig.currencySymbol}{siteConfig.price} <span className="text-[10px] text-emerald-700 font-semibold">(ফ্রি ডেলিভারি)</span>
+          <span className="text-xs font-bold text-[#7A5B22]">
+            {siteConfig.currencySymbol}{siteConfig.price} <span className="text-[10px] text-emerald-700 font-semibold">(ইনস্ট্যান্ট ডাউনলোড)</span>
           </span>
         </div>
 
         <button
           onClick={onOpenOrderModal}
-          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold text-xs shadow-md cursor-pointer shrink-0"
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#18191D] hover:bg-[#282A33] text-[#E6C67E] font-bold text-xs shadow-md cursor-pointer shrink-0 border border-[#C59B4B]/50"
         >
-          <ShoppingCart className="w-3.5 h-3.5" />
-          <span>এখনই কিনুন</span>
+          <Download className="w-3.5 h-3.5" />
+          <span>ডাউনলোড করুন</span>
         </button>
       </div>
     </div>

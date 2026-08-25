@@ -10,32 +10,31 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "The 48 Laws of Power বাংলা | Robert Greene | বাংলা অনুবাদ বই",
+  title: "The 48 Laws of Power বাংলা PDF | Robert Greene | ডিজিটাল সংস্করণ",
   description:
-    "Robert Greene-এর বিখ্যাত The 48 Laws of Power বইয়ের বাংলা অনুবাদ। মানুষের আচরণ, ক্ষমতা, influence এবং social dynamics সম্পর্কে ৪৮টি গুরুত্বপূর্ণ principle জানুন।",
+    "Robert Greene-এর বিখ্যাত The 48 Laws of Power বইয়ের বাংলা ডিজিটাল PDF সংস্করণ। তাৎক্ষণিক ডাউনলোড ও মোবাইল/ট্যাবলেটে লাইফটাইম অ্যাক্সেস।",
   keywords: [
-    "The 48 Laws of Power বাংলা",
-    "48 Laws of Power বাংলা বই",
-    "Robert Greene বাংলা",
-    "The 48 Laws of Power Bangla",
-    "48 Laws of Power বই",
-    "Power বই বাংলা",
-    "Psychology বই বাংলা",
-    "বই অর্ডার",
+    "The 48 Laws of Power বাংলা PDF",
+    "48 Laws of Power বাংলা বই ডাউনলোড",
+    "Robert Greene বাংলা PDF",
+    "The 48 Laws of Power Bangla Ebook",
+    "48 Laws of Power বই পিডিএফ",
+    "Power বই বাংলা ডাউনলোড",
+    "Psychology বই বাংলা ই-বুক",
   ],
   authors: [{ name: "Robert Greene" }],
   openGraph: {
-    title: "The 48 Laws of Power — বাংলা অনুবাদ সংস্করণ (৳৯৯৯)",
+    title: "The 48 Laws of Power — বাংলা ডিজিটাল PDF সংস্করণ (৳৯৯৯)",
     description:
-      "ক্ষমতা, প্রভাব ও মানুষের মনস্তত্ত্ব বোঝার ৪৮টি নীতি। ক্যাশ অন ডেলিভারি ও ফ্রি হোম ডেলিভারি সুবিধায় আজই অর্ডার করুন।",
+      "ক্ষমতা, প্রভাব ও মানুষের মনস্তত্ত্ব বোঝার ৪৮টি নীতি। তাৎক্ষণিক ডাউনলোড ও লাইফটাইম অ্যাক্সেসে সংগ্রহ করুন।",
     type: "website",
     locale: "bn_BD",
-    siteName: "The 48 Laws of Power বাংলা",
+    siteName: "The 48 Laws of Power বাংলা PDF",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The 48 Laws of Power বাংলা সংস্করণ",
-    description: "মানুষের মনস্তত্ত্ব ও ক্ষমতার ৪৮টি নীতি — বাংলায় পড়ুন।",
+    title: "The 48 Laws of Power বাংলা ডিজিটাল PDF সংস্করণ",
+    description: "মানুষের মনস্তত্ত্ব ও ক্ষমতার ৪৮টি নীতি — মোবাইল ও ট্যাবলেটে তাৎক্ষণিক পড়ুন।",
   },
 };
 

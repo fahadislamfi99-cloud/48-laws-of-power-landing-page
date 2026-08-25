@@ -4,16 +4,15 @@ import React from "react";
 import { siteConfig } from "@/data/siteConfig";
 import {
   CheckCircle2,
-  BookOpen,
   FileText,
-  Type,
+  Smartphone,
+  Search,
   Bookmark,
-  Package,
-  Truck,
-  ShoppingBag,
+  Infinity as InfinityIcon,
+  Download,
   Clock,
   ShieldCheck,
-  Banknote,
+  Zap,
   Sparkles,
 } from "lucide-react";
 
@@ -27,40 +26,43 @@ export default function AudienceAndFeatures({
   const audiencePoints = [
     "যারা মানুষের আসল আচরণ ও মনস্তত্ত্ব বুঝতে চান",
     "যারা কর্মক্ষেত্রে কূটকৌশল ও ক্ষমতার রাজনীতি থেকে বাঁচতে চান",
-    "যারা ব্যবসা, ক্যারিয়ার বা ব্যক্তিগত জীবনে নেতৃত্ব গড়ে তুলতে চান",
+    "যারা যেকোনো সময় মোবাইল বা ট্যাবলেটে বই পড়তে ভালোবাসেন",
     "যারা বাস্তব পৃথিবীর ক্ষমতার খেলার নিয়ম ও কৌশল জানতে চান",
     "যারা নিজেকে আরও বুদ্ধিমান, দূরদর্শী ও কৌশলী করতে চান",
   ];
 
-  const bookFeatures = [
-    {
-      icon: <BookOpen className="w-4 h-4 text-[#8C6B2A]" />,
-      text: "বাংলা অনুবাদ (সহজ, প্রাঞ্জল ও সাবলীল ভাষা)",
-    },
+  const digitalFeatures = [
     {
       icon: <FileText className="w-4 h-4 text-[#8C6B2A]" />,
-      text: "প্রিমিয়াম কোয়ালিটি পেপার (80 GSM ক্রিম)",
+      text: "সম্পূর্ণ বাংলা অনুবাদ (৪৫২ পৃষ্ঠার সম্পূর্ণ কপি)",
     },
     {
-      icon: <Type className="w-4 h-4 text-[#8C6B2A]" />,
-      text: "বড়, স্পষ্ট ও চোখের জন্য আরামদায়ক টাইপোগ্রাফি",
+      icon: <Search className="w-4 h-4 text-[#8C6B2A]" />,
+      text: "স্মার্ট সার্চেবল টেক্সট (যেকোনো শব্দ সার্চ করার সুবিধা)",
     },
     {
       icon: <Bookmark className="w-4 h-4 text-[#8C6B2A]" />,
-      text: "মজবুত দীর্ঘস্থায়ী হার্ডকভার বাইন্ডিং",
+      text: "ইন্টারেক্টিভ ক্লিকযোগ্য সূচিপত্র ও বুকমার্ক",
     },
     {
-      icon: <Package className="w-4 h-4 text-[#8C6B2A]" />,
-      text: "সহজে বহনযোগ্য রয়্যাল সাইজ এডিশন",
+      icon: <Smartphone className="w-4 h-4 text-[#8C6B2A]" />,
+      text: "মোবাইল, ট্যাবলেট ও ল্যাপটপে পড়ার উপযোগী লেআউট",
     },
     {
-      icon: <Truck className="w-4 h-4 text-[#8C6B2A]" />,
-      text: "সারা দেশে দ্রুততম ক্যাশ অন ডেলিভারি",
+      icon: <Download className="w-4 h-4 text-[#8C6B2A]" />,
+      text: "পেমেন্টের সাথে সাথে তাৎক্ষণিক ডাউনলোড লিংক",
+    },
+    {
+      icon: <InfinityIcon className="w-4 h-4 text-[#8C6B2A]" />,
+      text: "লাইফটাইম অ্যাক্সেস ও ক্লাউড সেভ সুবিধা",
     },
   ];
 
   return (
-    <section className="relative bg-[#FAF8F5] text-stone-900 py-16 sm:py-24 border-b border-[#E8DFCF]/80">
+    <section
+      id="digital-features"
+      className="relative bg-[#FAF8F5] text-stone-900 py-16 sm:py-24 border-b border-[#E8DFCF]/80"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 3-Column Core Grid */}
@@ -117,19 +119,19 @@ export default function AudienceAndFeatures({
             </div>
           </div>
 
-          {/* Card 2: বইয়ের বৈশিষ্ট্য (Warm Cream Specs Card) */}
+          {/* Card 2: ডিজিটাল পিডিএফ-এর বৈশিষ্ট্য (Warm Cream Specs Card) */}
           <div className="rounded-3xl bg-white p-7 sm:p-8 flex flex-col justify-between border border-[#E5DCBE] shadow-sm">
             <div>
               <div className="inline-flex items-center gap-1.5 text-[10px] font-serif font-bold uppercase tracking-[0.2em] text-[#8C6B2A] mb-2">
                 <Sparkles className="w-3 h-3 text-[#C59B4B]" />
-                <span>BOOK SPECIFICATIONS</span>
+                <span>DIGITAL PDF FEATURES</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bengali-serif font-bold text-[#141518] mb-6">
-                বইয়ের বৈশিষ্ট্য
+                ডিজিটাল পিডিএফ-এর সুবিধা
               </h3>
 
               <div className="space-y-4">
-                {bookFeatures.map((feat, idx) => (
+                {digitalFeatures.map((feat, idx) => (
                   <div
                     key={idx}
                     className="flex items-center gap-3.5 p-2 rounded-xl hover:bg-[#FAF6EE] transition-colors"
@@ -148,22 +150,22 @@ export default function AudienceAndFeatures({
             {/* Bottom Guarantee Badge */}
             <div className="pt-6 mt-4 border-t border-[#EFE8DA] flex items-center gap-3 text-stone-600 text-xs font-medium">
               <ShieldCheck className="w-5 h-5 text-[#8C6B2A] shrink-0" />
-              <span>১০০% অরিজিনাল প্রিন্ট ও প্রিমিয়াম প্যাকিং নিশ্চয়তা</span>
+              <span>১০০% অরিজিনাল সম্পূর্ণ বাংলা ই-বুক ও লাইফটাইম অ্যাক্সেস</span>
             </div>
           </div>
 
-          {/* Card 3: বইটি কিনুন (Collector's Luxury Pricing Card) */}
+          {/* Card 3: ডিজিটাল কপি সংগ্রহ করুন (Collector's Luxury Pricing Card) */}
           <div className="rounded-3xl bg-gradient-to-b from-[#18191D] via-[#141518] to-[#0E0F11] text-white p-7 sm:p-8 flex flex-col justify-between border border-[#C59B4B]/60 shadow-2xl relative overflow-hidden">
             {/* Ambient gold glow */}
             <div className="absolute top-0 right-0 w-36 h-36 bg-[#C59B4B]/20 rounded-full blur-3xl pointer-events-none" />
 
             <div className="text-center space-y-4">
               <div className="inline-block px-3.5 py-1 rounded-full bg-[#C59B4B]/20 border border-[#C59B4B]/50 text-[#E6C67E] text-[10px] font-serif font-bold uppercase tracking-wider">
-                বিশেষ অফার
+                ডিজিটাল সংস্করণ অফার
               </div>
 
               <h3 className="text-xl font-serif font-bold text-[#F5EFE4]">
-                বইটি সংগ্রহ করুন
+                ডিজিটাল পিডিএফ কপি
               </h3>
 
               {/* Price */}
@@ -177,19 +179,19 @@ export default function AudienceAndFeatures({
                   </span>
                 </div>
                 <p className="text-xs text-[#E6C67E]/90 font-medium">
-                  (৩৩% সীমিত সময়ের বিশেষ মূল্যছাড়)
+                  (৩৩% বিশেষ মূল্যছাড় • লাইফটাইম অ্যাক্সেস)
                 </p>
               </div>
 
-              {/* Shipping & Payment Badges */}
+              {/* Instant Access Badges */}
               <div className="space-y-2 py-2 text-left bg-white/5 p-3 rounded-2xl border border-white/10">
                 <div className="flex items-center gap-2.5 text-stone-300 text-xs sm:text-sm font-light">
-                  <Truck className="w-4 h-4 text-[#E6C67E] shrink-0" />
-                  <span>ফ্রি হোম ডেলিভারি (সারা দেশে)</span>
+                  <Zap className="w-4 h-4 text-[#E6C67E] shrink-0" />
+                  <span>তাৎক্ষণিক ডাউনলোড (১ সেকেন্ডে ডেলিভারি)</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-stone-300 text-xs sm:text-sm font-light">
-                  <Banknote className="w-4 h-4 text-[#E6C67E] shrink-0" />
-                  <span>ক্যাশ অন ডেলিভারি (বই পেয়ে টাকা দিন)</span>
+                  <Smartphone className="w-4 h-4 text-[#E6C67E] shrink-0" />
+                  <span>মোবাইল, ট্যাবলেট ও পিসিতে পড়ার উপযোগী</span>
                 </div>
               </div>
             </div>
@@ -200,13 +202,13 @@ export default function AudienceAndFeatures({
                 onClick={onOpenOrderModal}
                 className="w-full py-4 rounded-full bg-gradient-to-r from-[#C59B4B] via-[#DFC07A] to-[#C59B4B] hover:from-[#DFC07A] hover:to-[#C59B4B] text-[#121316] font-bold text-sm sm:text-base shadow-[0_4px_20px_rgba(197,155,75,0.4)] flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
-                <ShoppingBag className="w-4 h-4 stroke-[2.4]" />
-                <span>বইটি কিনুন — {siteConfig.currencySymbol}{siteConfig.price}</span>
+                <Download className="w-4 h-4 stroke-[2.4]" />
+                <span>পিডিএফ ডাউনলোড করুন — {siteConfig.currencySymbol}{siteConfig.price}</span>
               </button>
 
               <div className="flex items-center justify-center gap-1.5 text-stone-400 text-[11px] font-medium">
                 <Clock className="w-3.5 h-3.5 text-[#E6C67E]" />
-                <span>সীমিত সময়ের অফার আজই অর্ডার করুন!</span>
+                <span>পেমেন্ট সফল হলেই সাথে সাথে ফাইল ডাউনলোড শুরু হবে</span>
               </div>
             </div>
 

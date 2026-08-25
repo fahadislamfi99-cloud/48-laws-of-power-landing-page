@@ -1,25 +1,25 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, RotateCcw, Lock, HeartHandshake } from "lucide-react";
+import { ShieldCheck, Download, Smartphone, Headphones } from "lucide-react";
 
 export default function TrustBadges() {
   const badges = [
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#8C6B2A]" />,
-      text: "১০০% অরিজিনাল বাংলা সংস্করণ",
+      text: "১০০% অরিজিনাল বাংলা ই-বুক",
     },
     {
-      icon: <RotateCcw className="w-5 h-5 text-[#8C6B2A]" />,
-      text: "৭ দিনের সহজ রিপ্লেসমেন্ট সুবিধা",
+      icon: <Download className="w-5 h-5 text-[#8C6B2A]" />,
+      text: "তাৎক্ষণিক ডাউনলোড ও ইমেইল ডেলিভারি",
     },
     {
-      icon: <Lock className="w-5 h-5 text-[#8C6B2A]" />,
-      text: "ক্যাশ অন ডেলিভারি (নিরাপদ পেমেন্ট)",
+      icon: <Smartphone className="w-5 h-5 text-[#8C6B2A]" />,
+      text: "সব ডিভাইসে লাইফটাইম অ্যাক্সেস",
     },
     {
-      icon: <HeartHandshake className="w-5 h-5 text-[#8C6B2A]" />,
-      text: "হাজারো সচেতন পাঠকের আস্থা",
+      icon: <Headphones className="w-5 h-5 text-[#8C6B2A]" />,
+      text: "২৪/৭ ডেডিকেটেড হোয়াটসঅ্যাপ সাপোর্ট",
     },
   ];
 

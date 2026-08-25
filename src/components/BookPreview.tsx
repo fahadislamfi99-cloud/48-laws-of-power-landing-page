@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { BookOpen, ZoomIn, X, ChevronRight, Sparkles } from "lucide-react";
+import { BookOpen, ZoomIn, X, ChevronRight, Sparkles, Smartphone, Tablet, Monitor, Download } from "lucide-react";
 
 interface BookPreviewProps {
   onOpenOrderModal: () => void;
@@ -14,14 +14,14 @@ export default function BookPreview({ onOpenOrderModal }: BookPreviewProps) {
   const previewPages = [
     {
       id: 0,
-      title: "নীতি ১: ভূমিকা ও বিশ্লেষণ",
+      title: "নীতি ১: সুপিরিয়রের মনস্তত্ত্ব",
       subtitle: "Never Outshine the Master",
       pageNumber: "পৃষ্ঠা ৩৩",
       content: (
         <div className="space-y-4 font-bengali-serif text-[#2C2D32] leading-[1.8] text-sm sm:text-base">
           <div className="text-center pb-3 border-b border-[#EFE8DA]">
             <span className="text-[10px] tracking-[0.2em] text-[#8C6B2A] font-mono font-bold uppercase">
-              LAW 01
+              LAW 01 • ডিজিটাল সংস্করণ
             </span>
             <h4 className="text-xl sm:text-2xl font-bold text-[#141518] mt-1">
               কখনও মাস্টার বা শীর্ষ ব্যক্তির চেয়ে বেশি উজ্জ্বল দেখাবেন না
@@ -44,14 +44,14 @@ export default function BookPreview({ onOpenOrderModal }: BookPreviewProps) {
     },
     {
       id: 1,
-      title: "নীতি ৪: নীরবতার শক্তি",
+      title: "নীতি ৪: নীরবতার ক্ষমতা",
       subtitle: "Always Say Less Than Necessary",
       pageNumber: "পৃষ্ঠা ৫৮",
       content: (
         <div className="space-y-4 font-bengali-serif text-[#2C2D32] leading-[1.8] text-sm sm:text-base">
           <div className="text-center pb-3 border-b border-[#EFE8DA]">
             <span className="text-[10px] tracking-[0.2em] text-[#8C6B2A] font-mono font-bold uppercase">
-              LAW 04
+              LAW 04 • ডিজিটাল সংস্করণ
             </span>
             <h4 className="text-xl sm:text-2xl font-bold text-[#141518] mt-1">
               প্রয়োজনের চেয়ে সর্বদা কম কথা বলুন
@@ -78,7 +78,7 @@ export default function BookPreview({ onOpenOrderModal }: BookPreviewProps) {
         <div className="space-y-4 font-bengali-serif text-[#2C2D32] leading-[1.8] text-sm sm:text-base">
           <div className="text-center pb-3 border-b border-[#EFE8DA]">
             <span className="text-[10px] tracking-[0.2em] text-[#8C6B2A] font-mono font-bold uppercase">
-              LAW 05
+              LAW 05 • ডিজিটাল সংস্করণ
             </span>
             <h4 className="text-xl sm:text-2xl font-bold text-[#141518] mt-1">
               সুনাম জীবনের চেয়েও মূল্যবান — সতর্ক থাকুন
@@ -103,13 +103,13 @@ export default function BookPreview({ onOpenOrderModal }: BookPreviewProps) {
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-serif font-bold uppercase tracking-[0.2em] text-[#8C6B2A]">
             <Sparkles className="w-3.5 h-3.5 text-[#C59B4B]" />
-            <span>বইয়ের ভেতরে এক নজর</span>
+            <span>ডিজিটাল রিডিং এক্সপেরিয়েন্স</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#16171A]">
-            সহজ, সাবলীল ও মননশীল বাংলা অনুবাদ
+            যেভাবে ডিজিটাল পিডিএফ-এ বইটি পড়বেন
           </h2>
           <p className="text-[#5A5C64] text-sm sm:text-base">
-            ইংরেজি মূল গ্রন্থের প্রতিটি ঐতিহাসিক অন্তর্নিহিত ভাবার্থ নির্ভুলভাবে অনুবাদ করা হয়েছে
+            মোবাইল, ট্যাবলেট কিংবা ল্যাপটপে পড়ার জন্য বিশেষভাবে ফরম্যাটকৃত ক্রিস্টাল ক্লিয়ার টাইপসেটিং
           </p>
         </div>
 
@@ -130,21 +130,26 @@ export default function BookPreview({ onOpenOrderModal }: BookPreviewProps) {
           ))}
         </div>
 
-        {/* 2-Column: Open Book Photography on left + Live reading page on right */}
+        {/* 2-Column: Digital Mockup on left + Live reading page on right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Left: Open Book Photo */}
+          {/* Left: Device Mockup */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#DFCFA8] group">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#DFCFA8] group max-w-[340px]">
               <img
-                src="/images/book-open.jpg"
-                alt="Open Book Inside Preview"
+                src="/images/digital-mockup.jpg"
+                alt="Digital Reading on Tablet and Phone"
                 className="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4 text-white">
-                <span className="text-xs font-serif text-[#E6C67E] italic">
-                  80 GSM প্রিমিয়াম ক্রিম পেপার ও পরিষ্কার টাইপসেটিং
-                </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4 text-white">
+                <div className="space-y-1">
+                  <span className="text-xs font-serif text-[#E6C67E] font-bold block">
+                    যেকোনো ডিভাইসে তাৎক্ষণিক পড়ার উপযোগী
+                  </span>
+                  <span className="text-[11px] text-stone-300 block">
+                    হাই-রেজোলিউশন ফন্ট ও জুম সাপোর্ট
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -152,10 +157,13 @@ export default function BookPreview({ onOpenOrderModal }: BookPreviewProps) {
           {/* Right: Live Reading Page Box */}
           <div className="lg:col-span-7">
             <div className="relative bg-white rounded-3xl p-7 sm:p-9 border border-[#E5DCBE] shadow-md">
-              {/* Page Header */}
+              {/* Page Header with PDF badges */}
               <div className="flex justify-between items-center text-xs font-mono text-[#8C6B2A] pb-4 mb-4 border-b border-[#EFE8DA]">
-                <span>The 48 Laws of Power (বাংলা অনুবাদ)</span>
-                <span>{previewPages[activeTab].pageNumber}</span>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span>The 48 Laws of Power (ডিজিটাল পিডিএফ)</span>
+                </div>
+                <span>{previewPages[activeTab].pageNumber} / ৪৫২</span>
               </div>
 
               {/* Page Content */}
@@ -173,9 +181,10 @@ export default function BookPreview({ onOpenOrderModal }: BookPreviewProps) {
 
                 <button
                   onClick={onOpenOrderModal}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#18191D] hover:bg-[#282A33] text-[#E6C67E] font-bold text-xs shadow-xs transition-all cursor-pointer border border-[#C59B4B]/40"
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#18191D] hover:bg-[#282A33] text-[#E6C67E] font-bold text-xs shadow-xs transition-all cursor-pointer border border-[#C59B4B]/40"
                 >
-                  <span>সম্পূর্ণ বইটি সংগ্রহ করুন</span>
+                  <Download className="w-3.5 h-3.5" />
+                  <span>সম্পূর্ণ পিডিএফ ডাউনলোড করুন</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
