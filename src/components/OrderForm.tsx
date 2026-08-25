@@ -21,6 +21,7 @@ import {
   Sparkles,
   Smartphone,
   ExternalLink,
+  Loader2,
 } from "lucide-react";
 
 interface OrderFormProps {
@@ -96,8 +97,8 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
 
   if (isSuccess) {
     return (
-      <div className="p-7 sm:p-10 text-center space-y-6 bg-white rounded-3xl border-2 border-emerald-400 shadow-xl animate-fadeIn">
-        <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto shadow-inner">
+      <div className="p-7 sm:p-10 text-center space-y-6 bg-white rounded-3xl border-2 border-emerald-400 shadow-xl animate-scaleIn">
+        <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto shadow-inner animate-fadeIn">
           <CheckCircle2 className="w-10 h-10" />
         </div>
 
@@ -121,7 +122,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
               e.preventDefault();
               alert("The 48 Laws of Power (বাংলা পিডিএফ) ডাউনলোড শুরু হয়েছে। আপনার ইমেইল ও হোয়াটসঅ্যাপেও ফাইল লিংক পাঠানো হয়েছে।");
             }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-base shadow-lg transition-all transform hover:scale-[1.02] cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base shadow-lg transition-all cursor-pointer hover-lift active-lift btn-shimmer"
           >
             <Download className="w-5 h-5 stroke-[2.5]" />
             <span>পিডিএফ ডাউনলোড করুন (৩৬ মেগাবাইট)</span>
@@ -171,7 +172,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-3xl p-6 sm:p-9 border border-[#E5DCBE] shadow-xl space-y-6 text-stone-900"
+      className="bg-white rounded-3xl p-6 sm:p-9 border border-[#E5DCBE] shadow-xl space-y-6 text-stone-900 animate-fadeIn"
     >
       {/* Form Header */}
       <div className="space-y-1.5 pb-4 border-b border-[#EFE8DA]">
@@ -207,7 +208,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
         </div>
       </div>
 
-      {/* Email Field (Crucial for Digital Delivery) */}
+      {/* Email Field */}
       <div className="space-y-1.5">
         <label className="block text-xs sm:text-sm font-bold text-[#2C2D32]">
           ইমেইল ঠিকানা (যেখানে PDF লিংক পাঠানো হবে) <span className="text-rose-500">*</span>
@@ -254,9 +255,9 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           <button
             type="button"
             onClick={() => setPaymentMethod("bkash")}
-            className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer ${
+            className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 cursor-pointer hover-lift active-lift ${
               paymentMethod === "bkash"
-                ? "border-[#E2136E] bg-[#E2136E]/5 text-[#E2136E] font-bold shadow-xs scale-102"
+                ? "border-[#E2136E] bg-[#E2136E]/8 text-[#E2136E] font-bold shadow-xs scale-102 ring-1 ring-[#E2136E]/30"
                 : "border-[#E5DCBE] bg-[#FFFDF9] text-stone-700 hover:bg-[#FAF6EE]"
             }`}
           >
@@ -268,9 +269,9 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           <button
             type="button"
             onClick={() => setPaymentMethod("nagad")}
-            className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer ${
+            className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 cursor-pointer hover-lift active-lift ${
               paymentMethod === "nagad"
-                ? "border-[#F7941D] bg-[#F7941D]/5 text-[#F7941D] font-bold shadow-xs scale-102"
+                ? "border-[#F7941D] bg-[#F7941D]/8 text-[#F7941D] font-bold shadow-xs scale-102 ring-1 ring-[#F7941D]/30"
                 : "border-[#E5DCBE] bg-[#FFFDF9] text-stone-700 hover:bg-[#FAF6EE]"
             }`}
           >
@@ -282,9 +283,9 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           <button
             type="button"
             onClick={() => setPaymentMethod("rocket")}
-            className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer ${
+            className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 cursor-pointer hover-lift active-lift ${
               paymentMethod === "rocket"
-                ? "border-[#8C3494] bg-[#8C3494]/5 text-[#8C3494] font-bold shadow-xs scale-102"
+                ? "border-[#8C3494] bg-[#8C3494]/8 text-[#8C3494] font-bold shadow-xs scale-102 ring-1 ring-[#8C3494]/30"
                 : "border-[#E5DCBE] bg-[#FFFDF9] text-stone-700 hover:bg-[#FAF6EE]"
             }`}
           >
@@ -304,9 +305,9 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
               <button
                 type="button"
                 onClick={handleCopyNumber}
-                className="px-2.5 py-1 rounded-md bg-white border border-[#D5C7A8] text-xs font-bold text-[#7A5B22] hover:bg-[#FAF8F5] cursor-pointer flex items-center gap-1 shadow-2xs"
+                className="px-2.5 py-1 rounded-md bg-white border border-[#D5C7A8] text-xs font-bold text-[#7A5B22] hover:bg-[#FAF8F5] cursor-pointer flex items-center gap-1 shadow-2xs hover-lift active-lift transition-all"
               >
-                {copiedNumber ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                {copiedNumber ? <Check className="w-3 h-3 text-emerald-600 animate-scaleIn" /> : <Copy className="w-3 h-3" />}
                 <span>{copiedNumber ? "কপি হয়েছে!" : "কপি"}</span>
               </button>
             </div>
@@ -327,7 +328,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
             placeholder="যেমন: 9J4K2L8M7"
             value={trxId}
             onChange={(e) => setTrxId(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-[#D5C7A8] bg-[#FFFDF9] text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#C59B4B] focus:border-transparent font-mono uppercase"
+            className="w-full px-4 py-3 rounded-xl border border-[#D5C7A8] bg-[#FFFDF9] text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#C59B4B] focus:border-transparent font-mono uppercase transition-all"
           />
         </div>
       </div>
@@ -347,14 +348,19 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-4 rounded-full bg-[#18191D] hover:bg-[#25272F] text-[#F3EDE2] font-bold text-base sm:text-lg shadow-lg border border-[#C59B4B]/60 flex items-center justify-center gap-2.5 transition-all transform hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-75"
+        className="w-full py-4 rounded-full bg-[#18191D] hover:bg-[#25272F] text-[#F3EDE2] font-bold text-base sm:text-lg shadow-lg border border-[#C59B4B]/60 flex items-center justify-center gap-2.5 transition-all cursor-pointer disabled:opacity-75 hover-lift btn-shimmer active-lift"
       >
-        <Download className="w-5 h-5 text-[#E6C67E]" />
-        <span>
-          {isSubmitting
-            ? "ভেরিফাই হচ্ছে..."
-            : `পেমেন্ট সম্পন্ন করেছি — ডাউনলোড করুন (${siteConfig.currencySymbol}${siteConfig.price})`}
-        </span>
+        {isSubmitting ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin text-[#E6C67E]" />
+            <span>ভেরিফাই হচ্ছে...</span>
+          </>
+        ) : (
+          <>
+            <Download className="w-5 h-5 text-[#E6C67E]" />
+            <span>পেমেন্ট সম্পন্ন করেছি — ডাউনলোড করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
+          </>
+        )}
       </button>
 
       {/* Guarantees */}

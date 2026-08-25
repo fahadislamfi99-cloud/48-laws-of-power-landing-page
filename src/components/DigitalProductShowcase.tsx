@@ -14,6 +14,7 @@ import {
   Moon,
   ChevronRight,
 } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface DigitalProductShowcaseProps {
   onOpenOrderModal: () => void;
@@ -25,6 +26,7 @@ export default function DigitalProductShowcase({
   const [activeTab, setActiveTab] = useState<number>(0);
   const [readerTheme, setReaderTheme] = useState<"sepia" | "light" | "dark">("sepia");
   const [isLightbox, setIsLightbox] = useState(false);
+  const containerRef = useScrollReveal<HTMLElement>();
 
   const samplePages = [
     {
@@ -96,11 +98,15 @@ export default function DigitalProductShowcase({
   };
 
   return (
-    <section id="digital-preview" className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#F7F5EE]">
+    <section
+      id="digital-preview"
+      ref={containerRef}
+      className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#F7F5EE]"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14 reveal">
           <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block">
             DIGITAL PDF PREVIEW
           </span>
@@ -113,14 +119,14 @@ export default function DigitalProductShowcase({
         </div>
 
         {/* Tab Selector */}
-        <div className="flex justify-center gap-2 sm:gap-3 mb-8 overflow-x-auto pb-1 scrollbar-none">
+        <div className="flex justify-center gap-2 sm:gap-3 mb-8 overflow-x-auto pb-1 scrollbar-none reveal reveal-stagger-1">
           {samplePages.map((page, idx) => (
             <button
               key={page.id}
               onClick={() => setActiveTab(idx)}
-              className={`px-4 sm:px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer whitespace-nowrap ${
+              className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap hover-lift active-lift ${
                 activeTab === idx
-                  ? "bg-[#121316] text-[#FAF8F5] shadow-xs"
+                  ? "bg-[#121316] text-[#FAF8F5] shadow-sm scale-102"
                   : "bg-white text-stone-600 border border-[#D8D0C3] hover:bg-[#FAF8F5]"
               }`}
             >
@@ -130,29 +136,29 @@ export default function DigitalProductShowcase({
         </div>
 
         {/* 2-Column: Left Book Photography, Right Interactive Reader Box */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Left Column: Authentic Book Photography */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-[#D8D0C3] bg-white max-w-[340px] group">
+          {/* Left Column: Enlarged Authentic Book Photography */}
+          <div className="lg:col-span-5 flex justify-center reveal reveal-stagger-2">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#D8D0C3] bg-white max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] w-full group transition-all duration-500 hover:shadow-[0_20px_50px_rgba(18,19,22,0.15)] hover:-translate-y-1">
               <img
                 src="/images/book-open.jpg"
                 alt="The 48 Laws of Power Bengali Edition Reading"
-                className="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-102"
+                className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-103"
               />
-              <div className="p-4 bg-[#121316] text-[#FAF8F5] text-xs font-mono flex items-center justify-between">
+              <div className="p-4 bg-[#121316] text-[#FAF8F5] text-xs font-mono flex items-center justify-between transition-colors duration-300 group-hover:bg-[#1d1f24]">
                 <span>সম্পূর্ণ ৪৫২ পৃষ্ঠা</span>
-                <span className="text-[#DFC07A]">সার্চেবল PDF</span>
+                <span className="text-[#DFC07A]">সার্চেবল PDF সংস্করণ</span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Live Reader Sandbox */}
-          <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl border border-[#D8D0C3] shadow-md overflow-hidden">
+          <div className="lg:col-span-7 reveal reveal-stagger-3">
+            <div className="bg-white rounded-3xl border border-[#D8D0C3] shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
               
               {/* Reader Controls Bar */}
-              <div className="p-4 bg-[#FAF8F5] border-b border-[#E6E0D4] flex items-center justify-between text-xs">
+              <div className="p-4 sm:p-5 bg-[#FAF8F5] border-b border-[#E6E0D4] flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2 font-mono text-stone-600">
                   <span className="font-bold text-[#121316]">{samplePages[activeTab].lawNum}</span>
                   <span>•</span>
@@ -160,12 +166,12 @@ export default function DigitalProductShowcase({
                 </div>
 
                 {/* Theme Toggles */}
-                <div className="flex items-center gap-1 bg-white p-1 rounded-full border border-[#D8D0C3]">
+                <div className="flex items-center gap-1.5 bg-white p-1 rounded-full border border-[#D8D0C3]">
                   <button
                     onClick={() => setReaderTheme("sepia")}
                     title="সেপিয়া থিম"
-                    className={`p-1 rounded-full cursor-pointer ${
-                      readerTheme === "sepia" ? "bg-[#F7F2E7] text-[#8F6B2C]" : "text-stone-400"
+                    className={`p-1.5 rounded-full cursor-pointer transition-all duration-200 hover:scale-110 ${
+                      readerTheme === "sepia" ? "bg-[#F7F2E7] text-[#8F6B2C] shadow-2xs font-bold" : "text-stone-400 hover:text-stone-700"
                     }`}
                   >
                     <Coffee className="w-3.5 h-3.5" />
@@ -173,8 +179,8 @@ export default function DigitalProductShowcase({
                   <button
                     onClick={() => setReaderTheme("light")}
                     title="লাইট থিম"
-                    className={`p-1 rounded-full cursor-pointer ${
-                      readerTheme === "light" ? "bg-stone-100 text-stone-900" : "text-stone-400"
+                    className={`p-1.5 rounded-full cursor-pointer transition-all duration-200 hover:scale-110 ${
+                      readerTheme === "light" ? "bg-stone-100 text-stone-900 shadow-2xs font-bold" : "text-stone-400 hover:text-stone-700"
                     }`}
                   >
                     <Sun className="w-3.5 h-3.5" />
@@ -182,8 +188,8 @@ export default function DigitalProductShowcase({
                   <button
                     onClick={() => setReaderTheme("dark")}
                     title="ডার্ক থিম"
-                    className={`p-1 rounded-full cursor-pointer ${
-                      readerTheme === "dark" ? "bg-[#141518] text-[#DFC07A]" : "text-stone-400"
+                    className={`p-1.5 rounded-full cursor-pointer transition-all duration-200 hover:scale-110 ${
+                      readerTheme === "dark" ? "bg-[#141518] text-[#DFC07A] shadow-2xs font-bold" : "text-stone-400 hover:text-stone-700"
                     }`}
                   >
                     <Moon className="w-3.5 h-3.5" />
@@ -191,10 +197,10 @@ export default function DigitalProductShowcase({
                 </div>
               </div>
 
-              {/* Reader Document View */}
-              <div className={`p-6 sm:p-8 transition-colors ${getThemeClass()}`}>
-                <div className="space-y-4">
-                  <div className="border-b pb-3">
+              {/* Reader Document View with Smooth Cross-Fade */}
+              <div className={`p-6 sm:p-8 theme-transition ${getThemeClass()}`}>
+                <div key={activeTab} className="space-y-4 animate-fadeIn">
+                  <div className="border-b pb-3 border-current/15">
                     <span className="text-xs font-mono font-bold text-[#8F6B2C] uppercase tracking-wider block">
                       {samplePages[activeTab].titleEn}
                     </span>
@@ -208,10 +214,10 @@ export default function DigitalProductShowcase({
               </div>
 
               {/* Action Bar */}
-              <div className="p-4 bg-[#FAF8F5] border-t border-[#E6E0D4] flex items-center justify-between">
+              <div className="p-4 sm:p-5 bg-[#FAF8F5] border-t border-[#E6E0D4] flex flex-col sm:flex-row items-center justify-between gap-3">
                 <button
                   onClick={() => setIsLightbox(true)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8F6B2C] hover:underline cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8F6B2C] hover:text-[#6E511D] hover:underline cursor-pointer transition-colors"
                 >
                   <ZoomIn className="w-3.5 h-3.5" />
                   <span>বড় করে পড়ুন</span>
@@ -219,10 +225,10 @@ export default function DigitalProductShowcase({
 
                 <button
                   onClick={onOpenOrderModal}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#121316] hover:bg-[#25272F] text-[#FAF8F5] font-bold text-xs shadow-xs transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#121316] hover:bg-[#25272F] text-[#FAF8F5] font-bold text-xs shadow-xs transition-all cursor-pointer hover-lift btn-shimmer active-lift group"
                 >
-                  <Download className="w-3.5 h-3.5 text-[#DFC07A]" />
-                  <span>সম্পূর্ণ কপি ডাউনলোড করুন</span>
+                  <Download className="w-3.5 h-3.5 text-[#DFC07A] transition-transform duration-300 group-hover:-translate-y-0.5" />
+                  <span>সম্পূর্ণ কপি ডাউনলোড করুন — {siteConfig.currencySymbol}{siteConfig.price}</span>
                 </button>
               </div>
 
@@ -235,11 +241,11 @@ export default function DigitalProductShowcase({
 
       {/* Lightbox Modal */}
       {isLightbox && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="relative bg-[#FAF8F5] max-w-2xl w-full rounded-3xl p-6 sm:p-10 max-h-[85vh] overflow-y-auto border border-[#8F6B2C]">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
+          <div className="relative bg-[#FAF8F5] max-w-2xl w-full rounded-3xl p-6 sm:p-10 max-h-[85vh] overflow-y-auto border border-[#8F6B2C] shadow-2xl animate-scaleIn">
             <button
               onClick={() => setIsLightbox(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 cursor-pointer"
+              className="absolute top-4 right-4 p-2 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>

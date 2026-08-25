@@ -19,7 +19,9 @@ import {
   User,
   ExternalLink,
   ShieldCheck,
+  Loader2,
 } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface DigitalCheckoutProps {
   onSuccess?: () => void;
@@ -35,6 +37,7 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [orderId, setOrderId] = useState("");
+  const containerRef = useScrollReveal<HTMLElement>();
 
   const activeNumber =
     method === "bkash"
@@ -94,8 +97,8 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
 
   if (isSuccess) {
     return (
-      <div className="bg-white rounded-3xl p-8 sm:p-12 border-2 border-emerald-400 shadow-xl text-center space-y-6 animate-fadeIn max-w-xl mx-auto">
-        <div className="w-16 h-16 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center mx-auto shadow-inner">
+      <div className="bg-white rounded-3xl p-8 sm:p-12 border-2 border-emerald-400 shadow-xl text-center space-y-6 animate-scaleIn max-w-xl mx-auto my-12">
+        <div className="w-16 h-16 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center mx-auto shadow-inner animate-fadeIn">
           <CheckCircle2 className="w-10 h-10" />
         </div>
 
@@ -119,7 +122,7 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
               e.preventDefault();
               alert("The 48 Laws of Power (বাংলা পিডিএফ) ডাউনলোড শুরু হয়েছে। আপনার ইমেইল (" + email + ") ঠিকানাতেও ব্যাকআপ লিংক পাঠানো হয়েছে।");
             }}
-            className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base shadow-md transition-all transform hover:scale-[1.01] cursor-pointer"
+            className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base shadow-md transition-all cursor-pointer hover-lift active-lift btn-shimmer"
           >
             <Download className="w-5 h-5 stroke-[2.5]" />
             <span>পিডিএফ ডাউনলোড করুন (৩৬ মেগাবাইট)</span>
@@ -167,11 +170,15 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
   }
 
   return (
-    <section id="checkout" className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#FAF8F5]">
+    <section
+      id="checkout"
+      ref={containerRef}
+      className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#FAF8F5]"
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 reveal">
           <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block">
             SECURE DIGITAL ACCESS
           </span>
@@ -186,7 +193,7 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
         {/* Checkout Form Container */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-3xl p-6 sm:p-10 border border-[#D8D0C3] shadow-md space-y-6 text-[#121316]"
+          className="bg-white rounded-3xl p-6 sm:p-10 border border-[#D8D0C3] shadow-md space-y-6 text-[#121316] reveal reveal-stagger-1 transition-all duration-300 hover:shadow-lg"
         >
           {/* Price Summary Banner */}
           <div className="p-5 rounded-2xl bg-[#F7F5EE] border border-[#E0D8CA] flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -215,14 +222,14 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
                 আপনার পুরো নাম <span className="text-rose-500">*</span>
               </label>
               <div className="relative">
-                <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+                <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 transition-colors peer-focus:text-[#8F6B2C]" />
                 <input
                   type="text"
                   required
                   placeholder="যেমন: মোঃ সাকিব হাসান"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C]"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C] focus:bg-white transition-all"
                 />
               </div>
             </div>
@@ -239,7 +246,7 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
                   placeholder="যেমন: yourname@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C]"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C] focus:bg-white transition-all"
                 />
               </div>
             </div>
@@ -257,7 +264,7 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
                 placeholder="যেমন: 017XXXXXXXX"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C]"
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C] focus:bg-white transition-all"
               />
             </div>
           </div>
@@ -272,10 +279,10 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
               <button
                 type="button"
                 onClick={() => setMethod("bkash")}
-                className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer ${
+                className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 cursor-pointer hover-lift active-lift ${
                   method === "bkash"
-                    ? "border-[#E2136E] bg-[#E2136E]/5 text-[#E2136E] font-bold shadow-2xs"
-                    : "border-[#D8D0C3] bg-[#FAF8F5] text-stone-700"
+                    ? "border-[#E2136E] bg-[#E2136E]/8 text-[#E2136E] font-bold shadow-xs scale-102 ring-1 ring-[#E2136E]/30"
+                    : "border-[#D8D0C3] bg-[#FAF8F5] text-stone-700 hover:bg-[#FAF8F5]/80"
                 }`}
               >
                 <span className="text-sm font-bold">বিকাশ (bKash)</span>
@@ -285,10 +292,10 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
               <button
                 type="button"
                 onClick={() => setMethod("nagad")}
-                className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer ${
+                className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 cursor-pointer hover-lift active-lift ${
                   method === "nagad"
-                    ? "border-[#F7941D] bg-[#F7941D]/5 text-[#F7941D] font-bold shadow-2xs"
-                    : "border-[#D8D0C3] bg-[#FAF8F5] text-stone-700"
+                    ? "border-[#F7941D] bg-[#F7941D]/8 text-[#F7941D] font-bold shadow-xs scale-102 ring-1 ring-[#F7941D]/30"
+                    : "border-[#D8D0C3] bg-[#FAF8F5] text-stone-700 hover:bg-[#FAF8F5]/80"
                 }`}
               >
                 <span className="text-sm font-bold">নগদ (Nagad)</span>
@@ -298,10 +305,10 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
               <button
                 type="button"
                 onClick={() => setMethod("rocket")}
-                className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all cursor-pointer ${
+                className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 cursor-pointer hover-lift active-lift ${
                   method === "rocket"
-                    ? "border-[#8C3494] bg-[#8C3494]/5 text-[#8C3494] font-bold shadow-2xs"
-                    : "border-[#D8D0C3] bg-[#FAF8F5] text-stone-700"
+                    ? "border-[#8C3494] bg-[#8C3494]/8 text-[#8C3494] font-bold shadow-xs scale-102 ring-1 ring-[#8C3494]/30"
+                    : "border-[#D8D0C3] bg-[#FAF8F5] text-stone-700 hover:bg-[#FAF8F5]/80"
                 }`}
               >
                 <span className="text-sm font-bold">রকেট (Rocket)</span>
@@ -310,7 +317,7 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
             </div>
 
             {/* Payment Number & Instructions */}
-            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D0C3] space-y-2 text-xs">
+            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D0C3] space-y-2 text-xs transition-all">
               <div className="flex items-center justify-between">
                 <span className="text-stone-600 font-medium">
                   {method === "bkash" ? "বিকাশ পার্সোনাল নম্বর" : method === "nagad" ? "নগদ পার্সোনাল নম্বর" : "রকেট পার্সোনাল নম্বর"}:
@@ -320,9 +327,9 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
                   <button
                     type="button"
                     onClick={handleCopy}
-                    className="px-2.5 py-1 rounded-md bg-white border border-[#D8D0C3] text-xs font-bold text-[#8F6B2C] hover:bg-[#FAF8F5] cursor-pointer flex items-center gap-1 shadow-2xs"
+                    className="px-2.5 py-1 rounded-md bg-white border border-[#D8D0C3] text-xs font-bold text-[#8F6B2C] hover:bg-[#FAF8F5] cursor-pointer flex items-center gap-1 shadow-2xs hover-lift active-lift transition-all"
                   >
-                    {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                    {copied ? <Check className="w-3 h-3 text-emerald-600 animate-scaleIn" /> : <Copy className="w-3 h-3" />}
                     <span>{copied ? "কপি হয়েছে" : "কপি"}</span>
                   </button>
                 </div>
@@ -343,7 +350,7 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
                 placeholder="যেমন: 9J4K2L8M7"
                 value={trxId}
                 onChange={(e) => setTrxId(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C] font-mono uppercase"
+                className="w-full px-4 py-3 rounded-xl border border-[#D8D0C3] bg-[#FAF8F5] text-sm focus:outline-none focus:ring-2 focus:ring-[#8F6B2C] focus:bg-white font-mono uppercase transition-all"
               />
             </div>
           </div>
@@ -352,14 +359,19 @@ export default function DigitalCheckout({ onSuccess }: DigitalCheckoutProps) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 rounded-full bg-[#121316] hover:bg-[#25272F] text-[#FAF8F5] font-bold text-base shadow-md flex items-center justify-center gap-2.5 transition-all transform hover:scale-[1.005] active:scale-[0.99] cursor-pointer disabled:opacity-75"
+            className="w-full py-4 rounded-full bg-[#121316] hover:bg-[#25272F] text-[#FAF8F5] font-bold text-base shadow-md flex items-center justify-center gap-2.5 transition-all cursor-pointer disabled:opacity-75 hover-lift btn-shimmer active-lift"
           >
-            <Download className="w-5 h-5 text-[#DFC07A]" />
-            <span>
-              {isSubmitting
-                ? "ভেরিফাই হচ্ছে..."
-                : `পেমেন্ট সম্পন্ন করেছি — ডাউনলোড করুন (${siteConfig.currencySymbol}${siteConfig.price})`}
-            </span>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin text-[#DFC07A]" />
+                <span>ভেরিফাই হচ্ছে...</span>
+              </>
+            ) : (
+              <>
+                <Download className="w-5 h-5 text-[#DFC07A]" />
+                <span>পেমেন্ট সম্পন্ন করেছি — ডাউনলোড করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
+              </>
+            )}
           </button>
 
           <div className="text-center text-xs text-stone-500 font-mono">

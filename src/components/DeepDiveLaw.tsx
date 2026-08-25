@@ -2,16 +2,22 @@
 
 import React, { useState } from "react";
 import { BookOpen, Sparkles, ArrowRight } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function DeepDiveLaw() {
   const [selectedLaw, setSelectedLaw] = useState<1 | 4>(4);
+  const containerRef = useScrollReveal<HTMLElement>();
 
   return (
-    <section id="deep-dive" className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#F7F5EE]">
+    <section
+      id="deep-dive"
+      ref={containerRef}
+      className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#F7F5EE]"
+    >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14 reveal">
           <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block">
             AN INSIGHT FROM THE BOOK
           </span>
@@ -24,12 +30,12 @@ export default function DeepDiveLaw() {
         </div>
 
         {/* Tab Switcher for 2 Deep Dive Lessons */}
-        <div className="flex justify-center gap-3 mb-8">
+        <div className="flex justify-center gap-3 mb-8 reveal reveal-stagger-1">
           <button
             onClick={() => setSelectedLaw(4)}
-            className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all duration-300 cursor-pointer hover-lift active-lift ${
               selectedLaw === 4
-                ? "bg-[#121316] text-[#FAF8F5] shadow-xs"
+                ? "bg-[#121316] text-[#FAF8F5] shadow-sm scale-102"
                 : "bg-white text-stone-600 border border-[#D8D0C3] hover:bg-[#FAF8F5]"
             }`}
           >
@@ -37,9 +43,9 @@ export default function DeepDiveLaw() {
           </button>
           <button
             onClick={() => setSelectedLaw(1)}
-            className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all duration-300 cursor-pointer hover-lift active-lift ${
               selectedLaw === 1
-                ? "bg-[#121316] text-[#FAF8F5] shadow-xs"
+                ? "bg-[#121316] text-[#FAF8F5] shadow-sm scale-102"
                 : "bg-white text-stone-600 border border-[#D8D0C3] hover:bg-[#FAF8F5]"
             }`}
           >
@@ -48,10 +54,10 @@ export default function DeepDiveLaw() {
         </div>
 
         {/* The Masterclass Editorial Document */}
-        <div className="bg-white rounded-3xl border border-[#D8D0C3] shadow-md p-8 sm:p-12 space-y-8">
+        <div className="bg-white rounded-3xl border border-[#D8D0C3] shadow-md p-8 sm:p-12 space-y-8 reveal reveal-stagger-2 transition-all duration-300 hover:shadow-lg">
           
           {selectedLaw === 4 ? (
-            <div className="space-y-8">
+            <div key="law-4" className="space-y-8 animate-fadeIn">
               {/* Header */}
               <div className="space-y-2 border-b border-[#E6E0D4] pb-6">
                 <span className="text-xs font-mono font-bold text-[#8F6B2C] tracking-widest uppercase">
@@ -66,13 +72,13 @@ export default function DeepDiveLaw() {
               </div>
 
               {/* Core Principle Quote */}
-              <div className="p-5 rounded-xl bg-[#FAF8F5] border-l-4 border-[#8F6B2C] text-[#2C2D32] italic text-base sm:text-lg leading-relaxed font-bengali-serif">
+              <div className="p-5 rounded-xl bg-[#FAF8F5] border-l-4 border-[#8F6B2C] text-[#2C2D32] italic text-base sm:text-lg leading-relaxed font-bengali-serif transition-colors duration-300 hover:bg-[#F3EFE8]">
                 &ldquo;যখন আপনি কথা দিয়ে কাউকে মুগ্ধ করার চেষ্টা করবেন, আপনি যত বেশি কথা বলবেন তত বেশি সাধারণ মনে হবে এবং নিজের নিয়ন্ত্রণ হারানোর সম্ভাবনা বাড়বে। ক্ষমতাবান মানুষ পরিমিত কথা বলে অন্যদের ওপর এক ধরণের অদৃশ্য মনস্তাত্ত্বিক চাপ সৃষ্টি করে।&rdquo;
               </div>
 
               {/* Detailed Breakdown in 2 Columns */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#42454D] leading-relaxed">
-                <div className="space-y-2">
+                <div className="space-y-2 p-3 -m-3 rounded-xl transition-colors hover:bg-[#FAF8F5]">
                   <h4 className="font-bold text-base text-[#121316] flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8F6B2C]" />
                     <span>মনস্তাত্ত্বিক কারণ:</span>
@@ -82,7 +88,7 @@ export default function DeepDiveLaw() {
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 p-3 -m-3 rounded-xl transition-colors hover:bg-[#FAF8F5]">
                   <h4 className="font-bold text-base text-[#121316] flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8F6B2C]" />
                     <span>বাস্তব জীবনের কৌশল:</span>
@@ -94,7 +100,7 @@ export default function DeepDiveLaw() {
               </div>
             </div>
           ) : (
-            <div className="space-y-8">
+            <div key="law-1" className="space-y-8 animate-fadeIn">
               {/* Header */}
               <div className="space-y-2 border-b border-[#E6E0D4] pb-6">
                 <span className="text-xs font-mono font-bold text-[#8F6B2C] tracking-widest uppercase">
@@ -109,13 +115,13 @@ export default function DeepDiveLaw() {
               </div>
 
               {/* Core Principle Quote */}
-              <div className="p-5 rounded-xl bg-[#FAF8F5] border-l-4 border-[#8F6B2C] text-[#2C2D32] italic text-base sm:text-lg leading-relaxed font-bengali-serif">
+              <div className="p-5 rounded-xl bg-[#FAF8F5] border-l-4 border-[#8F6B2C] text-[#2C2D32] italic text-base sm:text-lg leading-relaxed font-bengali-serif transition-colors duration-300 hover:bg-[#F3EFE8]">
                 &ldquo;সর্বদা আপনার ওপরের লোকদের স্বাচ্ছন্দ্য এবং শ্রেষ্ঠত্বের অনুভূতি দিন। তাদের সন্তুষ্ট করতে গিয়ে অতিরিক্ত নিজের প্রতিভা প্রদর্শন করবেন না, কারণ এতে তারা চরম নিরাপত্তাহীনতায় ভুগতে পারে।&rdquo;
               </div>
 
               {/* Detailed Breakdown in 2 Columns */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#42454D] leading-relaxed">
-                <div className="space-y-2">
+                <div className="space-y-2 p-3 -m-3 rounded-xl transition-colors hover:bg-[#FAF8F5]">
                   <h4 className="font-bold text-base text-[#121316] flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8F6B2C]" />
                     <span>ঐতিহাসিক শিক্ষা:</span>
@@ -125,7 +131,7 @@ export default function DeepDiveLaw() {
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 p-3 -m-3 rounded-xl transition-colors hover:bg-[#FAF8F5]">
                   <h4 className="font-bold text-base text-[#121316] flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8F6B2C]" />
                     <span>বাস্তব জীবনের কৌশল:</span>

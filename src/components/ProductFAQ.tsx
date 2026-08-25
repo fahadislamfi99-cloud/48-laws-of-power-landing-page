@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface FAQItem {
   q: string;
@@ -37,17 +38,22 @@ const faqs: FAQItem[] = [
 
 export default function ProductFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const containerRef = useScrollReveal<HTMLElement>();
 
   const toggle = (idx: number) => {
     setOpenIdx(openIdx === idx ? null : idx);
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#F7F5EE]">
+    <section
+      id="faq"
+      ref={containerRef}
+      className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#F7F5EE]"
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center space-y-3 mb-14">
+        <div className="text-center space-y-3 mb-14 reveal">
           <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block">
             FREQUENTLY ASKED QUESTIONS
           </span>
@@ -67,16 +73,18 @@ export default function ProductFAQ() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-[#D8D0C3] overflow-hidden transition-colors"
+                className={`reveal reveal-stagger-${Math.min(idx + 1, 5)} bg-white rounded-2xl border border-[#D8D0C3] overflow-hidden transition-all duration-300 hover:shadow-sm ${
+                  isOpen ? "ring-1 ring-[#8F6B2C]/20 shadow-xs" : "hover:border-[#C59B4B]/60"
+                }`}
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bengali-serif font-bold text-[#121316] text-base sm:text-lg cursor-pointer"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bengali-serif font-bold text-[#121316] text-base sm:text-lg cursor-pointer group"
                 >
-                  <span>{faq.q}</span>
+                  <span className="group-hover:text-[#8F6B2C] transition-colors">{faq.q}</span>
                   <div
-                    className={`w-7 h-7 rounded-full bg-[#FAF8F5] border border-[#D8D0C3] flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 bg-[#121316] text-[#FAF8F5]" : "text-stone-700"
+                    className={`w-7 h-7 rounded-full bg-[#FAF8F5] border border-[#D8D0C3] flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isOpen ? "rotate-180 bg-[#121316] text-[#FAF8F5] shadow-2xs" : "text-stone-700 group-hover:border-stone-400"
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />

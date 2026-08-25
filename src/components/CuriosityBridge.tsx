@@ -2,12 +2,15 @@
 
 import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface CuriosityBridgeProps {
   onOpenOrderModal: () => void;
 }
 
 export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgeProps) {
+  const containerRef = useScrollReveal<HTMLElement>();
+
   const pillars = [
     {
       num: "০১",
@@ -37,11 +40,14 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
   ];
 
   return (
-    <section className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#FAF8F5]">
+    <section
+      ref={containerRef}
+      className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#FAF8F5]"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Heading */}
-        <div className="max-w-3xl space-y-4 mb-16">
+        <div className="max-w-3xl space-y-4 mb-16 reveal">
           <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block">
             THE 48 PRINCIPLES
           </span>
@@ -54,17 +60,17 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
           </p>
         </div>
 
-        {/* 5 Thematic Pillars (Editorial List format, not generic cards) */}
+        {/* 5 Thematic Pillars (Editorial List format) */}
         <div className="border-t border-[#E6E0D4] divide-y divide-[#E6E0D4]">
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className="py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-baseline"
+              className={`reveal reveal-stagger-${Math.min(idx + 1, 5)} py-6 sm:py-8 grid grid-cols-1 sm:grid-cols-12 gap-4 items-baseline px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-[#F3EFE8]/50 hover:translate-x-1.5 group cursor-default`}
             >
-              <div className="sm:col-span-2 font-mono text-xs font-bold text-[#8F6B2C]">
+              <div className="sm:col-span-2 font-mono text-xs font-bold text-[#8F6B2C] group-hover:text-[#6E511D] transition-colors">
                 {pillar.num}
               </div>
-              <div className="sm:col-span-4 font-bengali-serif font-bold text-lg sm:text-xl text-[#121316]">
+              <div className="sm:col-span-4 font-bengali-serif font-bold text-lg sm:text-xl text-[#121316] group-hover:text-[#8F6B2C] transition-colors">
                 {pillar.title}
               </div>
               <div className="sm:col-span-6 text-sm text-[#52555E] leading-relaxed">
@@ -75,16 +81,16 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
         </div>
 
         {/* Action Prompt */}
-        <div className="mt-12 pt-8 border-t border-[#E6E0D4] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="reveal reveal-stagger-4 mt-12 pt-8 border-t border-[#E6E0D4] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <span className="text-sm font-semibold text-[#121316]">
             সম্পূর্ণ ৪৮টি নীতি ও বিস্তারিত ঐতিহাসিক বিশ্লেষণ ডিজিটাল PDF-এ সংরক্ষিত।
           </span>
           <a
             href="#digital-preview"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8F6B2C] hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8F6B2C] hover:text-[#6E511D] transition-colors group cursor-pointer"
           >
             <span>ডিজিটাল প্রিভিউ দেখুন</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
 

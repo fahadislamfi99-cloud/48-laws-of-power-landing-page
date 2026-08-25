@@ -4,6 +4,7 @@ export interface SiteConfig {
   bookSubtitle: string;
   author: string;
   authorEn: string;
+  translator: string;
   price: number;
   originalPrice: number;
   currency: string;
@@ -23,21 +24,22 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  bookTitle: "দ্য ৪৮ ল অব পাওয়ার (ডিজিটাল পিডিএফ সংস্করণ)",
-  bookTitleEn: "The 48 Laws of Power (Digital PDF Edition)",
+  bookTitle: "দ্য ৪৮ লজ অফ পাওয়ার (বাংলা অনুবাদ)",
+  bookTitleEn: "The 48 Laws of Power (Bengali Edition)",
   bookSubtitle: "ক্ষমতা, প্রভাব ও মানুষের মনস্তত্ত্ব বোঝার ৪৮টি নীতি",
   author: "রবার্ট গ্রিন",
   authorEn: "Robert Greene",
+  translator: "ফাহাদ ইসলাম",
   price: 999,
   originalPrice: 1500,
   currency: "BDT",
   currencySymbol: "৳",
-  fileFormat: "হাই-রেজোলিউশন ইন্টারেক্টিভ PDF (Searchable)",
-  fileSize: "৩৬ মেগাবাইট (আল্ট্রা ক্লিয়ার ফন্ট)",
-  pages: 452,
-  language: "বাংলা অনুবাদ (সম্পূর্ণ ও নির্ভুল)",
+  fileFormat: "হাই-রেজোলিউশন সার্চেবল ডিজিটাল PDF",
+  fileSize: "৩৬ মেগাবাইট (ক্রিস্টাল ক্লিয়ার টাইপসেটিং)",
+  pages: 509,
+  language: "সম্পূর্ণ ও নির্ভুল বাংলা অনুবাদ",
   deviceSupport: "স্মার্টফোন, ট্যাবলেট, আইপ্যাড, ল্যাপটপ ও কম্পিউটার",
-  deliveryMethod: "পেমেন্টের সাথে সাথে তাৎক্ষণিক ডাউনলোড + ইমেইল ও হোয়াটসঅ্যাপ ডেলিভারি",
+  deliveryMethod: "পেমেন্টের সাথে সাথে তাৎক্ষণিক ডাউনলোড + ইমেইল ও হোয়াটসঅ্যাপে কপি প্রদান",
   bkashNumber: "01700000000",
   nagadNumber: "01700000000",
   rocketNumber: "01700000000",

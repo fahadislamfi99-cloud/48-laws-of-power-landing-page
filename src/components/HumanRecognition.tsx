@@ -2,8 +2,11 @@
 
 import React from "react";
 import { Quote } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function HumanRecognition() {
+  const containerRef = useScrollReveal<HTMLElement>();
+
   const experiences = [
     {
       marker: "পরিস্থিতি ০১",
@@ -28,11 +31,15 @@ export default function HumanRecognition() {
   ];
 
   return (
-    <section id="thesis" className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#FAF8F5]">
+    <section
+      id="thesis"
+      ref={containerRef}
+      className="py-20 lg:py-28 border-b border-[#E6E0D4] bg-[#FAF8F5]"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Headline */}
-        <div className="max-w-3xl space-y-4 mb-16">
+        <div className="max-w-3xl space-y-4 mb-16 reveal">
           <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#8F6B2C] uppercase block">
             HUMAN SOCIAL DYNAMICS
           </span>
@@ -49,12 +56,14 @@ export default function HumanRecognition() {
           {experiences.map((item, idx) => (
             <div
               key={idx}
-              className="border-t-2 border-[#121316] pt-5 space-y-2.5"
+              className={`reveal reveal-stagger-${idx + 1} border-t-2 border-[#121316] hover:border-[#8F6B2C] pt-5 space-y-2.5 p-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-[#F3EFE8]/40 hover:-translate-y-0.5 group`}
             >
               <div className="flex items-center justify-between text-xs font-mono text-[#8F6B2C]">
-                <span className="font-bold uppercase tracking-wider">{item.marker}</span>
+                <span className="font-bold uppercase tracking-wider group-hover:text-[#6E511D] transition-colors">
+                  {item.marker}
+                </span>
               </div>
-              <h3 className="font-bengali-serif font-bold text-xl text-[#121316]">
+              <h3 className="font-bengali-serif font-bold text-xl text-[#121316] group-hover:text-[#8F6B2C] transition-colors">
                 {item.title}
               </h3>
               <p className="text-sm sm:text-base text-[#42454D] leading-relaxed">
@@ -65,9 +74,9 @@ export default function HumanRecognition() {
         </div>
 
         {/* Editorial Pull-Quote Callout */}
-        <div className="mt-16 p-8 lg:p-10 rounded-2xl bg-[#F3EFE8] border border-[#E0D8CA] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div className="reveal reveal-stagger-3 mt-16 p-8 lg:p-10 rounded-2xl bg-[#F3EFE8] border border-[#E0D8CA] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover-lift transition-all duration-300">
           <div className="lg:col-span-2 flex justify-start lg:justify-center">
-            <div className="w-12 h-12 rounded-full bg-[#121316] text-[#FAF8F5] flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-[#121316] text-[#FAF8F5] flex items-center justify-center transition-transform duration-300 hover:scale-110">
               <Quote className="w-5 h-5" />
             </div>
           </div>
