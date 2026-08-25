@@ -67,7 +67,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-7 text-[11px] font-medium text-[#B8B0A4] uppercase tracking-widest">
+        <nav className="hidden md:flex items-center space-x-8 text-[15px] font-semibold text-[#C4BCB0]">
           {navItems.map((item) => (
             <a
               key={item.label}
