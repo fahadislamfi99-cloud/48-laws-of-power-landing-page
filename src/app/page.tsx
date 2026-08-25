@@ -3,20 +3,17 @@
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import HookSection from "@/components/HookSection";
-import InteractiveLaws from "@/components/InteractiveLaws";
-import AllLawsModal from "@/components/AllLawsModal";
-import PowerLesson from "@/components/PowerLesson";
-import ValueProposition from "@/components/ValueProposition";
-import SocialSituations from "@/components/SocialSituations";
-import AudienceAndFeatures from "@/components/AudienceAndFeatures";
-import BookPreview from "@/components/BookPreview";
-import AuthorAndReviews from "@/components/AuthorAndReviews";
 import TrustBadges from "@/components/TrustBadges";
+import EditorialDissection from "@/components/EditorialDissection";
+import DigitalReaderPreview from "@/components/DigitalReaderPreview";
+import PsychologicalDiagnostic from "@/components/PsychologicalDiagnostic";
+import LawsCodex from "@/components/LawsCodex";
+import AuthorProfile from "@/components/AuthorProfile";
 import FAQSection from "@/components/FAQSection";
 import FinalCTA from "@/components/FinalCTA";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
 import Footer from "@/components/Footer";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
+import AllLawsModal from "@/components/AllLawsModal";
 import OrderModal from "@/components/OrderModal";
 
 export default function Home() {
@@ -40,66 +37,58 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2] text-stone-900 selection:bg-amber-400 selection:text-black">
-      {/* Top Fixed Header */}
+    <main className="min-h-screen bg-[#F7F5EE] text-[#121316] selection:bg-[#111215] selection:text-[#F7F5EE]">
+      {/* 1. Minimalist Editorial Header */}
       <Header onOpenOrderModal={handleOpenOrderModal} />
 
-      {/* Hero Section (Dark Luxury with 3D Book) */}
+      {/* 2. Hero Section with Editorial Thesis & Multi-Device Showcase */}
       <Hero onOpenOrderModal={handleOpenOrderModal} />
 
-      {/* Psychological Hook Section (Warm Cream with Chess King) */}
-      <HookSection />
+      {/* 3. Digital Trust Bar */}
+      <TrustBadges />
 
-      {/* Interactive 6 Laws Grid */}
-      <InteractiveLaws
+      {/* 4. Editorial Dissection: Why Power Dynamics Matter */}
+      <EditorialDissection onOpenOrderModal={handleOpenOrderModal} />
+
+      {/* 5. Live Interactive Digital PDF Reader */}
+      <DigitalReaderPreview onOpenOrderModal={handleOpenOrderModal} />
+
+      {/* 6. Strategic Power Diagnostic (Interactive 3 Dilemmas) */}
+      <PsychologicalDiagnostic onOpenOrderModal={handleOpenOrderModal} />
+
+      {/* 7. The 48 Laws Codex & Almanac */}
+      <LawsCodex
         onOpenAllLawsModal={handleOpenAllLawsModal}
         onOpenOrderModal={handleOpenOrderModal}
       />
 
-      {/* Interactive Power Lesson Scenario */}
-      <PowerLesson onOpenOrderModal={handleOpenOrderModal} />
+      {/* 8. Author Profile & Reader Notes */}
+      <AuthorProfile />
 
-      {/* Value Proposition / 6 Dimensions */}
-      <ValueProposition />
-
-      {/* Social Situation Realities */}
-      <SocialSituations />
-
-      {/* 3-Column Core Block: Audience / Specs / Pricing Card */}
-      <AudienceAndFeatures onOpenOrderModal={handleOpenOrderModal} />
-
-      {/* Book Inside Look & Preview */}
-      <BookPreview onOpenOrderModal={handleOpenOrderModal} />
-
-      {/* Author Biography & Reader Reviews */}
-      <AuthorAndReviews />
-
-      {/* 4 Trust Badges Strip */}
-      <TrustBadges />
-
-      {/* 10 FAQ Items Accordion */}
+      {/* 9. FAQ Section */}
       <FAQSection />
 
-      {/* Final Bottom CTA with Embedded Order Form */}
+      {/* 10. Final Conversion Section & Checkout */}
       <FinalCTA />
 
-      {/* Minimal Editorial Footer */}
+      {/* 11. Footer */}
       <Footer />
 
-      {/* Modals */}
+      {/* Sticky Mobile Download Bar */}
+      <StickyMobileCTA onOpenOrderModal={handleOpenOrderModal} />
+
+      {/* All Laws Modal */}
       <AllLawsModal
         isOpen={isAllLawsModalOpen}
         onClose={handleCloseAllLawsModal}
         onOpenOrderModal={handleOpenOrderModal}
       />
 
+      {/* Digital Order & Download Modal */}
       <OrderModal
         isOpen={isOrderModalOpen}
         onClose={handleCloseOrderModal}
       />
-
-      {/* Floating Sticky Mobile CTA */}
-      <StickyMobileCTA onOpenOrderModal={handleOpenOrderModal} />
     </main>
   );
 }

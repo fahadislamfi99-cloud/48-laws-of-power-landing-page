@@ -2,87 +2,76 @@
 
 @layer base {
   :root {
-    --background: #FAF8F5;
-    --foreground: #141518;
-    --font-serif: 'Cormorant Garamond', 'Playfair Display', 'Cinzel', Georgia, serif;
-    --font-bengali: 'Noto Serif Bengali', 'Noto Sans Bengali', 'SolaimanLipi', system-ui, sans-serif;
-    --gold-primary: #C59B4B;
-    --gold-dark: #9A7730;
-    --gold-light: #DFBF77;
+    --bg-main: #F7F5EE;
+    --text-primary: #121316;
+    --text-secondary: #4A4D55;
+    --text-muted: #7A7C85;
+    --accent-bronze: #8E6A2F;
+    --border-hairline: #E4DED3;
+    --card-surface: #FFFFFF;
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-bengali);
-    background-color: #FAF8F5;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
-    color: var(--foreground);
-    background-color: var(--background);
+    background-color: var(--bg-main);
     overflow-x: hidden;
-    letter-spacing: -0.01em;
   }
 
   ::selection {
-    background-color: #C59B4B;
-    color: #121214;
+    background-color: #121316;
+    color: #F7F5EE;
   }
 }
 
-.font-serif {
-  font-family: var(--font-serif);
+.font-editorial-serif {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
 }
 
-.font-bengali-serif {
-  font-family: 'Noto Serif Bengali', serif;
+.font-editorial-sans {
+  font-family: 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.font-editorial-bengali-serif {
+  font-family: 'Noto Serif Bengali', 'Cormorant Garamond', serif;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Subtle reading themes */
+.reader-theme-light {
+  background-color: #FFFFFF;
+  color: #141518;
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.reader-theme-sepia {
+  background-color: #F5EFE4;
+  color: #2D271D;
 }
 
-.animate-slideUp {
-  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.reader-theme-dark {
+  background-color: #16171B;
+  color: #E2DFD8;
 }
 
-/* Custom editorial scrollbar */
+/* Minimalist scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4EFE6;
+  background: #EFE9DE;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C59B4B;
-  border-radius: 3px;
+  background: #C4BAA7;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9A7730;
+  background: #8E6A2F;
 }
