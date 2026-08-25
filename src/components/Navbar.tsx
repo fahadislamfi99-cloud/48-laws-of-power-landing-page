@@ -60,7 +60,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             <span className="font-display text-[11px] font-bold tracking-[0.2em] text-[#F0EBE0] uppercase leading-none">
               THE 48 LAWS OF POWER
             </span>
-            <span className="text-[9px] tracking-[0.15em] text-[#C8A45C] uppercase font-mono mt-0.5">
+            <span className="text-[10px] font-semibold tracking-wider text-[#C8A45C] mt-0.5">
               বাংলা ডিজিটাল সংস্করণ
             </span>
           </div>

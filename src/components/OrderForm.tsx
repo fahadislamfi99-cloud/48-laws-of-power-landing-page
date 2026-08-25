@@ -89,7 +89,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
         </div>
 
         <div className="space-y-2">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-bold bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">
+          <span className="inline-flex items-center gap-1.5 text-xs tracking-wider text-emerald-400 font-bold bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">
             <Sparkles className="w-3 h-3" />
             অর্ডার সফল • ডাউনলোড প্রস্তুত
           </span>

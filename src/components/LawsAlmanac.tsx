@@ -107,7 +107,7 @@ export default function LawsAlmanac({
                   </div>
 
                   <div className="flex items-center gap-3 shrink-0 mt-1 sm:mt-0">
-                    <span className="hidden md:inline-block text-[11px] font-mono text-[#8A8278] bg-[#08080A] px-2.5 py-1 rounded border border-[#2A2A2E]">
+                    <span className="hidden md:inline-block text-xs font-semibold text-[#8A8278] bg-[#08080A] px-2.5 py-1 rounded-full border border-[#2A2A2E]">
                       {law.categoryBn}
                     </span>
                     <div
@@ -132,7 +132,7 @@ export default function LawsAlmanac({
                         {law.detailedDescBn || law.shortDescBn}
                       </div>
                       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-1">
-                        <span className="text-xs font-mono text-[#8A8278]">
+                        <span className="text-xs text-[#8A8278]">
                           সম্পূর্ণ ৪৫২ পৃষ্ঠার ডিজিটাল বইতে রয়েছে প্রতিটি সূত্রের বিস্তারিত কেস স্টাডি।
                         </span>
                         <button

@@ -41,7 +41,7 @@ export default function DeepDiveLaw() {
             <button
               key={tab.id}
               onClick={() => setSelectedLaw(tab.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold transition-all duration-300 cursor-pointer hover-lift ${
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer hover-lift ${
                 selectedLaw === tab.id
                   ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.3)]"
                   : "bg-[#111114] text-[#C4BCB0] border border-[#26262A] hover:border-[#C8A45C]/40 hover:text-[#C8A45C]"
@@ -57,13 +57,13 @@ export default function DeepDiveLaw() {
           {selectedLaw === 4 ? (
             <div key="law-4" className="space-y-8 animate-fadeIn">
               <div className="space-y-2 border-b border-[#26262A] pb-6">
-                <span className="text-xs font-mono font-bold text-[#C8A45C] tracking-[0.2em] uppercase">
+                <span className="text-xs font-semibold text-[#C8A45C] tracking-[0.2em] uppercase">
                   LAW 04 • The 48 Laws of Power (বাংলা সংস্করণ)
                 </span>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
                   প্রয়োজনের চেয়ে সর্বদা কম কথা বলুন
                 </h3>
-                <p className="text-xs sm:text-sm font-mono text-[#9E968B]">
+                <p className="text-xs sm:text-sm text-[#9E968B]">
                   Always Say Less Than Necessary
                 </p>
               </div>
@@ -83,9 +83,9 @@ export default function DeepDiveLaw() {
                   &ldquo;যখন আপনি কথা দিয়ে কাউকে মুগ্ধ করার চেষ্টা করবেন, আপনি যত বেশি কথা বলবেন তত বেশি সাধারণ মনে হবে এবং নিজের নিয়ন্ত্রণ হারানোর সম্ভাবনা বাড়বে। ক্ষমতাবান মানুষ পরিমিত কথা বলে অন্যদের ওপর এক ধরণের অদৃশ্য মনস্তাত্ত্বিক চাপ সৃষ্টি করে।&rdquo;
                 </p>
 
-                <div className="mt-4 pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs font-mono text-[#C8A45C]">
-                  <span className="text-[11px] text-[#9E968B] tracking-wide">মূল সূত্রের নির্যাস</span>
-                  <span className="font-bold tracking-wider uppercase">ROBERT GREENE</span>
+                <div className="mt-4 pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs text-[#C8A45C]">
+                  <span className="text-[11px] text-[#9E968B] font-medium tracking-wide">মূল সূত্রের নির্যাস</span>
+                  <span className="font-mono font-bold tracking-wider uppercase">ROBERT GREENE</span>
                 </div>
               </div>
 
@@ -114,13 +114,13 @@ export default function DeepDiveLaw() {
           ) : (
             <div key="law-1" className="space-y-8 animate-fadeIn">
               <div className="space-y-2 border-b border-[#26262A] pb-6">
-                <span className="text-xs font-mono font-bold text-[#C8A45C] tracking-[0.2em] uppercase">
+                <span className="text-xs font-semibold text-[#C8A45C] tracking-[0.2em] uppercase">
                   LAW 01 • The 48 Laws of Power (বাংলা সংস্করণ)
                 </span>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
                   মাস্টার বা শীর্ষ ব্যক্তিকে কখনো নিজের চেয়ে বেশি উজ্জ্বল দেখাবেন না
                 </h3>
-                <p className="text-xs sm:text-sm font-mono text-[#9E968B]">
+                <p className="text-xs sm:text-sm text-[#9E968B]">
                   Never Outshine the Master
                 </p>
               </div>
@@ -140,9 +140,9 @@ export default function DeepDiveLaw() {
                   &ldquo;সর্বদা আপনার ওপরের লোকদের স্বাচ্ছন্দ্য এবং শ্রেষ্ঠত্বের অনুভূতি দিন। তাদের সন্তুষ্ট করতে গিয়ে অতিরিক্ত নিজের প্রতিভা প্রদর্শন করবেন না, কারণ এতে তারা চরম নিরাপত্তাহীনতায় ভুগতে পারে।&rdquo;
                 </p>
 
-                <div className="mt-4 pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs font-mono text-[#C8A45C]">
-                  <span className="text-[11px] text-[#9E968B] tracking-wide">মূল সূত্রের নির্যাস</span>
-                  <span className="font-bold tracking-wider uppercase">ROBERT GREENE</span>
+                <div className="mt-4 pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs text-[#C8A45C]">
+                  <span className="text-[11px] text-[#9E968B] font-medium tracking-wide">মূল সূত্রের নির্যাস</span>
+                  <span className="font-mono font-bold tracking-wider uppercase">ROBERT GREENE</span>
                 </div>
               </div>
 

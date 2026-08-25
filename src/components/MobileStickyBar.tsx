@@ -26,8 +26,8 @@ export default function MobileStickyBar({ onOpenOrderModal }: MobileStickyBarPro
           <span className="font-display font-bold text-xs text-[#F0EBE0] leading-none">
             The 48 Laws of Power (PDF)
           </span>
-          <span className="text-xs font-mono font-bold text-[#C8A45C] mt-0.5">
-            {siteConfig.currencySymbol}{siteConfig.price} <span className="text-[10px] text-emerald-400">(তাৎক্ষণিক)</span>
+          <span className="text-xs font-bold text-[#C8A45C] mt-0.5">
+            {siteConfig.currencySymbol}{siteConfig.price} <span className="text-[10px] text-emerald-400 font-medium">(তাৎক্ষণিক)</span>
           </span>
         </div>
         <button

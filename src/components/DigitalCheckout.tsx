@@ -63,7 +63,7 @@ export default function DigitalCheckout() {
               <CheckCircle2 className="w-10 h-10" />
             </div>
             <div className="space-y-2">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-bold bg-emerald-500/10 px-3.5 py-1 rounded-full border border-emerald-500/20">
+              <span className="text-xs uppercase tracking-wider text-emerald-400 font-bold bg-emerald-500/10 px-3.5 py-1 rounded-full border border-emerald-500/20">
                 পেমেন্ট সফল • ডাউনলোড প্রস্তুত
               </span>
               <h3 className="text-2xl sm:text-3xl font-bengali-serif font-bold text-[#F0EBE0]">
@@ -132,7 +132,7 @@ export default function DigitalCheckout() {
             </div>
             <div className="text-right shrink-0">
               <span className="text-3xl font-display font-bold text-[#C8A45C]">{siteConfig.currencySymbol}{siteConfig.price}</span>
-              <span className="text-[11px] text-[#8A8278] block font-mono">এককালীন • নো ডেলিভারি ফি</span>
+              <span className="text-xs text-[#8A8278] block">এককালীন • নো ডেলিভারি ফি</span>
             </div>
           </div>
 

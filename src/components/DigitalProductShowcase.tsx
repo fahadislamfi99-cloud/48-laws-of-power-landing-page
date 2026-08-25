@@ -29,7 +29,7 @@ export default function DigitalProductShowcase({
       excerpt: (
         <div className="space-y-4 font-bengali-serif leading-[1.85] text-sm sm:text-base">
           <div className="italic bg-white/[0.04] p-5 rounded-2xl border border-[#2A2A30] text-[#F5F0E6] shadow-sm relative">
-            <span className="text-xs font-mono text-[#C8A45C] font-bold block mb-1 uppercase tracking-wider">মূল ভাব:</span>
+            <span className="text-xs font-semibold text-[#C8A45C] block mb-1 uppercase tracking-wider">মূল ভাব:</span>
             &ldquo;বিচারবুদ্ধি ও ক্ষমতার মূল রহস্য হলো ভারসাম্য। আপনার ওপরস্থ ব্যক্তিদের সর্বদা স্বাচ্ছন্দ্য ও শ্রেষ্ঠত্বের অনুভূতি দিন। তাদের খুশি করার অতি-উৎসাহে নিজের প্রতিভার অতিরিক্ত প্রদর্শন করবেন না...&rdquo;
           </div>
           <p>
@@ -50,7 +50,7 @@ export default function DigitalProductShowcase({
       excerpt: (
         <div className="space-y-4 font-bengali-serif leading-[1.85] text-sm sm:text-base">
           <div className="italic bg-white/[0.04] p-5 rounded-2xl border border-[#2A2A30] text-[#F5F0E6] shadow-sm relative">
-            <span className="text-xs font-mono text-[#C8A45C] font-bold block mb-1 uppercase tracking-wider">মূল ভাব:</span>
+            <span className="text-xs font-semibold text-[#C8A45C] block mb-1 uppercase tracking-wider">মূল ভাব:</span>
             &ldquo;মানুষকে কখনোই আগে থেকে বুঝতে দেবেন না আপনার আসল লক্ষ্য কী। তারা যদি আপনার গন্তব্য না জানে, তবে তারা কোনো প্রতিরক্ষাও গড়ে তুলতে পারবে না...&rdquo;
           </div>
           <p>
@@ -68,7 +68,7 @@ export default function DigitalProductShowcase({
       excerpt: (
         <div className="space-y-4 font-bengali-serif leading-[1.85] text-sm sm:text-base">
           <div className="italic bg-white/[0.04] p-5 rounded-2xl border border-[#2A2A30] text-[#F5F0E6] shadow-sm relative">
-            <span className="text-xs font-mono text-[#C8A45C] font-bold block mb-1 uppercase tracking-wider">মূল ভাব:</span>
+            <span className="text-xs font-semibold text-[#C8A45C] block mb-1 uppercase tracking-wider">মূল ভাব:</span>
             &ldquo;কোনো অনমনীয় বা চিরস্থায়ী আকার ধারণ করবেন না। পরিবেশ ও বাস্তবতার পরিবর্তনের সাথে সাথে নিজেকে নতুন আকারে রূপ দিন। যা অতিরিক্ত শক্ত, তা ঝড়ে ভেঙে পড়ে; যা পানির মতো নমনীয়, তা চিরকাল টিকে থাকে...&rdquo;
           </div>
           <p>
@@ -103,7 +103,7 @@ export default function DigitalProductShowcase({
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
           <div className="flex items-center justify-center gap-3">
             <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#C8A45C] uppercase">
+            <span className="text-xs font-semibold tracking-[0.2em] text-[#C8A45C] uppercase">
               DIGITAL PDF PREVIEW
             </span>
             <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
@@ -122,7 +122,7 @@ export default function DigitalProductShowcase({
             <button
               key={page.id}
               onClick={() => setActiveTab(idx)}
-              className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold transition-all duration-300 cursor-pointer whitespace-nowrap hover-lift ${
+              className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap hover-lift ${
                 activeTab === idx
                   ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.3)]"
                   : "bg-[#111114] text-[#C4BCB0] border border-[#26262A] hover:border-[#C8A45C]/40"
@@ -147,7 +147,7 @@ export default function DigitalProductShowcase({
                 alt="The 48 Laws of Power Bengali Edition Reading"
                 className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-103"
               />
-              <div className="p-4 bg-[#08080A] text-[#C4BCB0] text-xs font-mono flex items-center justify-between border-t border-[#26262A]">
+              <div className="p-4 bg-[#08080A] text-[#C4BCB0] text-xs flex items-center justify-between border-t border-[#26262A]">
                 <span>সম্পূর্ণ ৪৫২ পৃষ্ঠা</span>
                 <span className="text-[#C8A45C] font-bold">সার্চেবল PDF সংস্করণ</span>
               </div>
@@ -160,7 +160,7 @@ export default function DigitalProductShowcase({
               
               {/* Reader Controls Bar */}
               <div className="p-4 sm:p-5 bg-[#08080A] border-b border-[#26262A] flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 font-mono text-[#9E968B]">
+                <div className="flex items-center gap-2 text-[#9E968B]">
                   <span className="font-bold text-[#C8A45C]">{samplePages[activeTab].lawNum}</span>
                   <span className="text-[#26262A]">•</span>
                   <span>{samplePages[activeTab].page} / ৪৫২</span>

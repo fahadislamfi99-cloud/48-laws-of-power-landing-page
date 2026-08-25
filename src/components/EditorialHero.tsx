@@ -118,7 +118,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
       {/* ─── CONTENT ───────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full relative z-10">
         {/* Top bar */}
-        <div className={`flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#2A2A2E] text-xs font-mono transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
+        <div className={`flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#2A2A2E] text-xs transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C8A45C] opacity-75" />
@@ -239,7 +239,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
               </div>
 
               {/* Specs badge */}
-              <div className="mt-4 flex items-center justify-between text-[11px] font-mono px-4 py-3 rounded-2xl bg-[#111114] border border-[#2A2A2E] transition-all duration-500 hover:border-[#C8A45C]/30">
+              <div className="mt-4 flex items-center justify-between text-xs px-4 py-3 rounded-2xl bg-[#111114] border border-[#2A2A2E] transition-all duration-500 hover:border-[#C8A45C]/30">
                 <span className="font-semibold text-[#B8B0A4] flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C] animate-pulse" />
                   <span>ডিজিটাল PDF</span>
@@ -249,12 +249,12 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
 
               {/* Floating stat badges (desktop only) */}
               <div className="absolute -left-6 top-1/4 opacity-0 animate-[floatBadgeIn_0.8s_1.2s_forwards] hidden lg:block">
-                <div className="px-3 py-2 rounded-lg bg-[#111114] border border-[#2A2A2E] text-[11px] font-mono shadow-lg">
+                <div className="px-3 py-2 rounded-lg bg-[#111114] border border-[#2A2A2E] text-xs font-semibold shadow-lg">
                   <span className="text-[#C8A45C] font-bold">৪৮টি</span> <span className="text-[#B8B0A4]">নীতি</span>
                 </div>
               </div>
               <div className="absolute -right-4 bottom-1/3 opacity-0 animate-[floatBadgeIn_0.8s_1.5s_forwards] hidden lg:block">
-                <div className="px-3 py-2 rounded-lg bg-[#111114] border border-[#2A2A2E] text-[11px] font-mono shadow-lg">
+                <div className="px-3 py-2 rounded-lg bg-[#111114] border border-[#2A2A2E] text-xs font-semibold shadow-lg">
                   <span className="text-[#C8A45C] font-bold">৩,০০০+</span> <span className="text-[#B8B0A4]">বছরের জ্ঞান</span>
                 </div>
               </div>

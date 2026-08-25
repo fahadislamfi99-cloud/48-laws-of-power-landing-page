@@ -19,17 +19,17 @@ export default function EditorialFooter() {
               <span className="font-display font-bold tracking-widest uppercase block text-sm group-hover:text-[#C8A45C] transition-colors">
                 THE 48 LAWS OF POWER
               </span>
-              <span className="text-[10px] tracking-[0.2em] text-[#C8A45C] uppercase font-mono">
+              <span className="text-[10px] tracking-[0.15em] text-[#C8A45C] font-semibold uppercase">
                 বাংলা ডিজিটাল সংস্করণ • PDF
               </span>
             </div>
           </div>
-          <div className="text-[#8A8278] font-mono text-center md:text-right">
+          <div className="text-[#8A8278] text-xs text-center md:text-right">
             <span>৪৫২ পৃষ্ঠা • ক্রিস্টাল ক্লিয়ার টাইপসেটিং • লাইফটাইম অ্যাক্সেস</span>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[#8A8278] font-mono text-[11px] reveal reveal-stagger-1">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[#8A8278] text-xs reveal reveal-stagger-1">
           <p>&copy; 2024 The 48 Laws of Power (বাংলা সংস্করণ). All rights reserved.</p>
           <div className="flex items-center gap-4">
             <a href="#faq" className="hover:text-[#C8A45C] transition-colors">প্রশ্নোত্তর</a>
