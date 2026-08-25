@@ -120,25 +120,32 @@ export default function LawsAlmanac({
                   </div>
                 </button>
 
-                {isExpanded && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm leading-relaxed text-[#B8B0A4] space-y-3 animate-fadeIn border-t border-[#2A2A2E]/60 bg-[#111114]">
-                    <div className="p-4 rounded-xl bg-[#08080A] border border-[#2A2A2E] text-[#B8B0A4] font-medium">
-                      {law.detailedDescBn || law.shortDescBn}
-                    </div>
-                    <div className="flex items-center justify-between pt-1">
-                      <span className="text-xs font-mono text-[#8A8278]">
-                        সম্পূর্ণ ৪৫২ পৃষ্ঠার ডিজিটাল বইতে রয়েছে প্রতিটি সূত্রের বিস্তারিত কেস স্টাডি।
-                      </span>
-                      <button
-                        onClick={onOpenOrderModal}
-                        className="text-xs font-bold text-[#C8A45C] hover:text-[#D4AF6E] hover:underline inline-flex items-center gap-1 cursor-pointer transition-colors group"
-                      >
-                        <span>পিডিএফ ডাউনলোড করুন</span>
-                        <ChevronRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-                      </button>
+                {/* Smooth Expand/Collapse */}
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm leading-relaxed text-[#B8B0A4] space-y-3 border-t border-[#2A2A2E]/60 bg-[#111114]">
+                      <div className="p-4 rounded-xl bg-[#08080A] border border-[#2A2A2E] text-[#C4BCB0] font-medium leading-[1.75]">
+                        {law.detailedDescBn || law.shortDescBn}
+                      </div>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-1">
+                        <span className="text-xs font-mono text-[#8A8278]">
+                          সম্পূর্ণ ৪৫২ পৃষ্ঠার ডিজিটাল বইতে রয়েছে প্রতিটি সূত্রের বিস্তারিত কেস স্টাডি।
+                        </span>
+                        <button
+                          onClick={onOpenOrderModal}
+                          className="text-xs font-bold text-[#C8A45C] hover:text-[#D4AF6E] hover:underline inline-flex items-center gap-1 cursor-pointer transition-colors group shrink-0"
+                        >
+                          <span>পিডিএফ ডাউনলোড করুন</span>
+                          <ChevronRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
