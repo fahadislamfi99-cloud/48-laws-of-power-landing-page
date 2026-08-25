@@ -47,7 +47,7 @@ export default function LawsAlmanac({
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             ক্ষমতার ৪৮টি অমোঘ সূত্রের সূচিপত্র
           </h2>
-          <p className="text-[#9C9488] text-base sm:text-lg">
+          <p className="text-[#B8B0A4] text-base sm:text-lg">
             নিচে নির্বাচিত নীতিগুলোর সারসংক্ষেপ দেখুন। পুরো ডিজিটাল বইটিতে রয়েছে প্রতিটি সূত্রের পেছনের বিস্তারিত ঐতিহাসিক প্রেক্ষাপট ও বাস্তব বিশ্লেষণ।
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function LawsAlmanac({
                 className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                   selectedCat === cat.id
                     ? "bg-[#C8A45C] text-[#08080A] shadow-xs"
-                    : "text-[#9C9488] hover:bg-[#1A1A1E] hover:text-[#F0EBE0]"
+                    : "text-[#B8B0A4] hover:bg-[#1A1A1E] hover:text-[#F0EBE0]"
                 }`}
               >
                 {cat.label}
@@ -107,11 +107,11 @@ export default function LawsAlmanac({
                   </div>
 
                   <div className="flex items-center gap-3 shrink-0 mt-1 sm:mt-0">
-                    <span className="hidden md:inline-block text-[11px] font-mono text-[#5C5750] bg-[#08080A] px-2.5 py-1 rounded border border-[#2A2A2E]">
+                    <span className="hidden md:inline-block text-[11px] font-mono text-[#8A8278] bg-[#08080A] px-2.5 py-1 rounded border border-[#2A2A2E]">
                       {law.categoryBn}
                     </span>
                     <div
-                      className={`w-7 h-7 rounded-full bg-[#08080A] border border-[#2A2A2E] flex items-center justify-center text-[#5C5750] transition-all duration-300 ${
+                      className={`w-7 h-7 rounded-full bg-[#08080A] border border-[#2A2A2E] flex items-center justify-center text-[#8A8278] transition-all duration-300 ${
                         isExpanded ? "rotate-180 bg-[#C8A45C] text-[#08080A] border-[#C8A45C]" : "group-hover:border-[#C8A45C]/30 group-hover:text-[#C8A45C]"
                       }`}
                     >
@@ -121,12 +121,12 @@ export default function LawsAlmanac({
                 </button>
 
                 {isExpanded && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm leading-relaxed text-[#9C9488] space-y-3 animate-fadeIn border-t border-[#2A2A2E]/60 bg-[#111114]">
-                    <div className="p-4 rounded-xl bg-[#08080A] border border-[#2A2A2E] text-[#9C9488] font-medium">
+                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm leading-relaxed text-[#B8B0A4] space-y-3 animate-fadeIn border-t border-[#2A2A2E]/60 bg-[#111114]">
+                    <div className="p-4 rounded-xl bg-[#08080A] border border-[#2A2A2E] text-[#B8B0A4] font-medium">
                       {law.detailedDescBn || law.shortDescBn}
                     </div>
                     <div className="flex items-center justify-between pt-1">
-                      <span className="text-xs font-mono text-[#5C5750]">
+                      <span className="text-xs font-mono text-[#8A8278]">
                         সম্পূর্ণ ৪৫২ পৃষ্ঠার ডিজিটাল বইতে রয়েছে প্রতিটি সূত্রের বিস্তারিত কেস স্টাডি।
                       </span>
                       <button

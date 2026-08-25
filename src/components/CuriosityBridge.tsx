@@ -30,7 +30,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
             একটি নীতি যদি দৃষ্টিভঙ্গি বদলে দিতে পারে— <br className="hidden sm:inline" />
             তবে পুরো ৪৮টি নীতি কী করতে পারে?
           </h2>
-          <p className="text-base sm:text-lg text-[#9C9488] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#B8B0A4] leading-relaxed">
             রবার্ট গ্রিনের এই বইটিতে কোনো অলীক তত্ত্ব নেই। প্রতিটি নীতি বাস্তব মানব ইতিহাসের ৩,০০০ বছরের পরীক্ষা-নিরীক্ষা থেকে প্রমাণিত এবং ৫টি মূল স্তরে বিভক্ত:
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
               <div className="sm:col-span-4 font-bengali-serif font-bold text-lg sm:text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors">
                 {pillar.title}
               </div>
-              <div className="sm:col-span-6 text-sm text-[#9C9488] leading-relaxed">
+              <div className="sm:col-span-6 text-sm text-[#B8B0A4] leading-relaxed">
                 {pillar.desc}
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
 
         {/* Action */}
         <div className="reveal reveal-stagger-5 mt-12 pt-8 border-t border-[#2A2A2E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-[#9C9488]">
+          <span className="text-sm font-semibold text-[#B8B0A4]">
             সম্পূর্ণ ৪৮টি নীতি ও বিস্তারিত ঐতিহাসিক বিশ্লেষণ ডিজিটাল PDF-এ সংরক্ষিত।
           </span>
           <a

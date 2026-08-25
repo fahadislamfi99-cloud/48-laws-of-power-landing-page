@@ -69,7 +69,7 @@ export default function DigitalCheckout() {
               <h3 className="text-2xl sm:text-3xl font-bengali-serif font-bold text-[#F0EBE0]">
                 ধন্যবাদ, {name}!
               </h3>
-              <p className="text-[#9C9488] text-sm max-w-md mx-auto">
+              <p className="text-[#B8B0A4] text-sm max-w-md mx-auto">
                 আপনার ডিজিটাল কপি প্রস্তুত করা হয়েছে। নিচের বাটন থেকে এখনই সম্পূর্ণ PDF ডাউনলোড করে নিন।
               </p>
             </div>
@@ -89,7 +89,7 @@ export default function DigitalCheckout() {
                 ["হোয়াটসঅ্যাপ", phone],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between border-b border-[#2A2A2E] pb-2">
-                  <span className="text-[#5C5750]">{label}:</span>
+                  <span className="text-[#8A8278]">{label}:</span>
                   <span className="font-medium text-[#F0EBE0]">{value}</span>
                 </div>
               ))}
@@ -98,7 +98,7 @@ export default function DigitalCheckout() {
                 <span>{siteConfig.currencySymbol}{siteConfig.price} (লাইফটাইম)</span>
               </div>
             </div>
-            <div className="text-[#5C5750] text-xs flex items-center justify-center gap-2">
+            <div className="text-[#8A8278] text-xs flex items-center justify-center gap-2">
               <span>কোনো সমস্যা হলে:</span>
               <a href={`https://wa.me/${siteConfig.supportWhatsapp}?text=Hello,%20my%20Order%20ID%20is%20${orderId}`} target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-bold hover:underline inline-flex items-center gap-1">
                 <span>হোয়াটসঅ্যাপে মেসেজ দিন</span>
@@ -117,7 +117,7 @@ export default function DigitalCheckout() {
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">SECURE DIGITAL ACCESS</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">ডিজিটাল কপি সংগ্রহ করুন</h2>
-          <p className="text-[#9C9488] text-sm sm:text-base">নিচে তথ্য পূরণ করে পেমেন্ট সম্পন্ন করুন। সাথে সাথেই ডাউনলোড লিংক সক্রিয় হবে।</p>
+          <p className="text-[#B8B0A4] text-sm sm:text-base">নিচে তথ্য পূরণ করে পেমেন্ট সম্পন্ন করুন। সাথে সাথেই ডাউনলোড লিংক সক্রিয় হবে।</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-[#111114] rounded-3xl p-6 sm:p-10 border border-[#2A2A2E] space-y-6 reveal reveal-stagger-1">
@@ -127,12 +127,12 @@ export default function DigitalCheckout() {
               <img src="/images/book-mockup.png" alt="Book" className="h-16 w-auto object-contain drop-shadow-md" />
               <div>
                 <span className="text-xs font-mono text-[#C8A45C] font-bold block uppercase">The 48 Laws of Power (বাংলা PDF)</span>
-                <span className="text-xs text-[#5C5750]">৪৫২ পৃষ্ঠা • সার্চেবল • লাইফটাইম</span>
+                <span className="text-xs text-[#8A8278]">৪৫২ পৃষ্ঠা • সার্চেবল • লাইফটাইম</span>
               </div>
             </div>
             <div className="text-right shrink-0">
               <span className="text-3xl font-display font-bold text-[#C8A45C]">{siteConfig.currencySymbol}{siteConfig.price}</span>
-              <span className="text-[11px] text-[#5C5750] block font-mono">এককালীন • নো ডেলিভারি ফি</span>
+              <span className="text-[11px] text-[#8A8278] block font-mono">এককালীন • নো ডেলিভারি ফি</span>
             </div>
           </div>
 
@@ -143,9 +143,9 @@ export default function DigitalCheckout() {
               { label: "ইমেইল ঠিকানা", type: "email", placeholder: "yourname@gmail.com", value: email, onChange: setEmail, Icon: Mail },
             ].map(({ label, type, placeholder, value, onChange, Icon }) => (
               <div key={label} className="space-y-1.5">
-                <label className="block text-xs font-bold text-[#9C9488]">{label} <span className="text-[#E24848]">*</span></label>
+                <label className="block text-xs font-bold text-[#B8B0A4]">{label} <span className="text-[#E24848]">*</span></label>
                 <div className="relative">
-                  <Icon className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#5C5750]" />
+                  <Icon className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8A8278]" />
                   <input type={type} required placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} className="w-full pl-10 pr-4 py-3 input-dark" />
                 </div>
               </div>
@@ -153,16 +153,16 @@ export default function DigitalCheckout() {
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-[#9C9488]">মোবাইল / হোয়াটসঅ্যাপ নম্বর <span className="text-[#E24848]">*</span></label>
+            <label className="block text-xs font-bold text-[#B8B0A4]">মোবাইল / হোয়াটসঅ্যাপ নম্বর <span className="text-[#E24848]">*</span></label>
             <div className="relative">
-              <Phone className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#5C5750]" />
+              <Phone className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8A8278]" />
               <input type="tel" required placeholder="017XXXXXXXX" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pl-10 pr-4 py-3 input-dark" />
             </div>
           </div>
 
           {/* Payment Methods */}
           <div className="space-y-3 pt-2 border-t border-[#2A2A2E]">
-            <label className="block text-xs font-bold text-[#9C9488]">পেমেন্ট মাধ্যম বেছে নিন <span className="text-[#E24848]">*</span></label>
+            <label className="block text-xs font-bold text-[#B8B0A4]">পেমেন্ট মাধ্যম বেছে নিন <span className="text-[#E24848]">*</span></label>
             <div className="grid grid-cols-3 gap-3">
               {[
                 { id: "bkash" as const, label: "বিকাশ", color: "#E2136E" },
@@ -176,12 +176,12 @@ export default function DigitalCheckout() {
                   className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 cursor-pointer hover-lift ${
                     method === id
                       ? `border-[${color}] bg-[${color}]/10 font-bold shadow-xs ring-1`
-                      : "border-[#2A2A2E] bg-[#08080A] text-[#9C9488] hover:bg-[#0A0A0C]"
+                      : "border-[#2A2A2E] bg-[#08080A] text-[#B8B0A4] hover:bg-[#0A0A0C]"
                   }`}
                   style={method === id ? { borderColor: color, backgroundColor: `${color}15`, color: color, boxShadow: `0 0 0 1px ${color}40` } : {}}
                 >
                   <span className="text-sm font-bold">{label}</span>
-                  <span className="text-[10px] text-[#5C5750] mt-0.5">Send Money</span>
+                  <span className="text-[10px] text-[#8A8278] mt-0.5">Send Money</span>
                 </button>
               ))}
             </div>
@@ -189,7 +189,7 @@ export default function DigitalCheckout() {
             {/* Payment Number */}
             <div className="p-4 rounded-2xl bg-[#08080A] border border-[#2A2A2E] space-y-2 text-xs">
               <div className="flex items-center justify-between">
-                <span className="text-[#5C5750] font-medium">{method === "bkash" ? "বিকাশ পার্সোনাল" : method === "nagad" ? "নগদ পার্সোনাল" : "রকেট পার্সোনাল"}:</span>
+                <span className="text-[#8A8278] font-medium">{method === "bkash" ? "বিকাশ পার্সোনাল" : method === "nagad" ? "নগদ পার্সোনাল" : "রকেট পার্সোনাল"}:</span>
                 <div className="flex items-center gap-2">
                   <span className="font-mono font-bold text-base text-[#C8A45C]">{activeNumber}</span>
                   <button type="button" onClick={handleCopy} className="px-2.5 py-1 rounded-md bg-[#111114] border border-[#2A2A2E] text-xs font-bold text-[#C8A45C] hover:bg-[#1A1A1E] cursor-pointer flex items-center gap-1 transition-all">
@@ -198,13 +198,13 @@ export default function DigitalCheckout() {
                   </button>
                 </div>
               </div>
-              <p className="text-[11px] text-[#5C5750] leading-relaxed border-t border-[#2A2A2E] pt-2">
+              <p className="text-[11px] text-[#8A8278] leading-relaxed border-t border-[#2A2A2E] pt-2">
                 ★ উপরের নম্বরে <span className="font-bold text-[#F0EBE0]">{siteConfig.currencySymbol}{siteConfig.price}</span> টাকা সেন্ড মানি করুন। এরপর নিচে ট্রানজেকশন আইডি দিয়ে কনফার্ম করুন।
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-xs font-bold text-[#9C9488]">ট্রানজেকশন আইডি (TrxID) <span className="text-[#E24848]">*</span></label>
+              <label className="block text-xs font-bold text-[#B8B0A4]">ট্রানজেকশন আইডি (TrxID) <span className="text-[#E24848]">*</span></label>
               <input type="text" required placeholder="9J4K2L8M7" value={trxId} onChange={(e) => setTrxId(e.target.value)} className="w-full px-4 py-3 input-dark font-mono uppercase" />
             </div>
           </div>
@@ -218,7 +218,7 @@ export default function DigitalCheckout() {
             )}
           </button>
 
-          <div className="flex items-center justify-center gap-6 text-[11px] text-[#5C5750]">
+          <div className="flex items-center justify-center gap-6 text-[11px] text-[#8A8278]">
             <div className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-[#C8A45C]" /><span>তাৎক্ষণিক ডাউনলোড</span></div>
             <div className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[#C8A45C]" /><span>১০০% নিরাপদ</span></div>
           </div>

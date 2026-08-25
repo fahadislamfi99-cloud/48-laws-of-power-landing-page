@@ -22,7 +22,7 @@ export default function DeepDiveLaw() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             একটি নীতি, বাস্তব দৃষ্টিভঙ্গির পরিবর্তন
           </h2>
-          <p className="text-[#9C9488] text-base sm:text-lg">
+          <p className="text-[#B8B0A4] text-base sm:text-lg">
             বইটি থেকে একটি নীতি মনোযোগ দিয়ে পড়ুন। এটি বুঝলে আপনি বুঝতে পারবেন বাকি ৪৭টি নীতি কীভাবে আপনার চিন্তার পরিসীমা বদলে দেবে।
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function DeepDiveLaw() {
               className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all duration-300 cursor-pointer hover-lift ${
                 selectedLaw === tab.id
                   ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.2)]"
-                  : "bg-[#111114] text-[#9C9488] border border-[#2A2A2E] hover:border-[#C8A45C]/30 hover:text-[#C8A45C]"
+                  : "bg-[#111114] text-[#B8B0A4] border border-[#2A2A2E] hover:border-[#C8A45C]/30 hover:text-[#C8A45C]"
               }`}
             >
               {tab.label}
@@ -58,16 +58,16 @@ export default function DeepDiveLaw() {
                 <h3 className="text-2xl sm:text-3xl font-bengali-serif font-bold text-[#F0EBE0]">
                   প্রয়োজনের চেয়ে সর্বদা কম কথা বলুন
                 </h3>
-                <p className="text-sm font-mono text-[#5C5750]">
+                <p className="text-sm font-mono text-[#8A8278]">
                   Always Say Less Than Necessary
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl bg-[#08080A] border-l-4 border-[#C8A45C] text-[#9C9488] italic text-base sm:text-lg leading-relaxed font-bengali-serif">
+              <div className="p-5 rounded-xl bg-[#08080A] border-l-4 border-[#C8A45C] text-[#B8B0A4] italic text-base sm:text-lg leading-relaxed font-bengali-serif">
                 &ldquo;যখন আপনি কথা দিয়ে কাউকে মুগ্ধ করার চেষ্টা করবেন, আপনি যত বেশি কথা বলবেন তত বেশি সাধারণ মনে হবে এবং নিজের নিয়ন্ত্রণ হারানোর সম্ভাবনা বাড়বে। ক্ষমতাবান মানুষ পরিমিত কথা বলে অন্যদের ওপর এক ধরণের অদৃশ্য মনস্তাত্ত্বিক চাপ সৃষ্টি করে।&rdquo;
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#9C9488] leading-relaxed">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#B8B0A4] leading-relaxed">
                 <div className="space-y-2 p-4 -m-4 rounded-xl transition-colors hover:bg-[#0A0A0C]">
                   <h4 className="font-bold text-base text-[#F0EBE0] flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C]" />
@@ -98,16 +98,16 @@ export default function DeepDiveLaw() {
                 <h3 className="text-2xl sm:text-3xl font-bengali-serif font-bold text-[#F0EBE0]">
                   মাস্টার বা শীর্ষ ব্যক্তিকে কখনো নিজের চেয়ে বেশি উজ্জ্বল দেখাবেন না
                 </h3>
-                <p className="text-sm font-mono text-[#5C5750]">
+                <p className="text-sm font-mono text-[#8A8278]">
                   Never Outshine the Master
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl bg-[#08080A] border-l-4 border-[#C8A45C] text-[#9C9488] italic text-base sm:text-lg leading-relaxed font-bengali-serif">
+              <div className="p-5 rounded-xl bg-[#08080A] border-l-4 border-[#C8A45C] text-[#B8B0A4] italic text-base sm:text-lg leading-relaxed font-bengali-serif">
                 &ldquo;সর্বদা আপনার ওপরের লোকদের স্বাচ্ছন্দ্য এবং শ্রেষ্ঠত্বের অনুভূতি দিন। তাদের সন্তুষ্ট করতে গিয়ে অতিরিক্ত নিজের প্রতিভা প্রদর্শন করবেন না, কারণ এতে তারা চরম নিরাপত্তাহীনতায় ভুগতে পারে।&rdquo;
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#9C9488] leading-relaxed">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#B8B0A4] leading-relaxed">
                 <div className="space-y-2 p-4 -m-4 rounded-xl transition-colors hover:bg-[#0A0A0C]">
                   <h4 className="font-bold text-base text-[#F0EBE0] flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C]" />

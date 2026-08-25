@@ -45,7 +45,7 @@ export default function HumanRecognition() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
             আপনি কি কখনো এমন অভিজ্ঞতার মুখোমুখি হয়েছেন?
           </h2>
-          <p className="text-base sm:text-lg text-[#9C9488] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#B8B0A4] leading-relaxed">
             আমরা প্রায়ই ভাবি পৃথিবী নিখুঁত ন্যায়নীতিতে চলে। কিন্তু বাস্তব জীবনে আপনি নিশ্চয়ই এই পরিস্থিতিগুলো ঘটতে দেখেছেন:
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function HumanRecognition() {
               <h3 className="font-bengali-serif font-bold text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors">
                 {item.title}
               </h3>
-              <p className="text-sm sm:text-base text-[#9C9488] leading-relaxed">
+              <p className="text-sm sm:text-base text-[#B8B0A4] leading-relaxed">
                 {item.text}
               </p>
             </div>

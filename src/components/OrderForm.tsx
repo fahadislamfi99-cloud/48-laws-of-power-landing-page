@@ -96,7 +96,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           <h3 className="text-2xl sm:text-3xl font-bengali-serif font-bold text-[#F0EBE0]">
             ধন্যবাদ, {name}!
           </h3>
-          <p className="text-[#9C9488] text-sm max-w-sm mx-auto leading-relaxed">
+          <p className="text-[#B8B0A4] text-sm max-w-sm mx-auto leading-relaxed">
             আপনার ডিজিটাল কপি প্রস্তুত করা হয়েছে। নিচের বাটন থেকে এখনই PDF ডাউনলোড করুন।
           </p>
         </div>
@@ -120,18 +120,18 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
             ["হোয়াটসঅ্যাপ", phone],
           ].map(([label, value], i, arr) => (
             <div key={label} className={`flex justify-between py-2.5 ${i < arr.length - 1 ? "border-b border-[#2A2A2E]" : ""}`}>
-              <span className="text-[#5C5750]">{label}</span>
+              <span className="text-[#8A8278]">{label}</span>
               <span className="font-medium text-[#F0EBE0] text-right max-w-[60%] truncate">{value}</span>
             </div>
           ))}
           <div className="flex justify-between pt-3 mt-1 border-t border-[#C8A45C]/20">
-            <span className="font-bold text-[#9C9488]">পরিশোধিত</span>
+            <span className="font-bold text-[#B8B0A4]">পরিশোধিত</span>
             <span className="text-lg font-display font-bold text-[#C8A45C]">{siteConfig.currencySymbol}{siteConfig.price}</span>
           </div>
         </div>
 
         {/* Support link */}
-        <div className="text-[#5C5750] text-xs flex items-center justify-center gap-2">
+        <div className="text-[#8A8278] text-xs flex items-center justify-center gap-2">
           <span>কোনো সমস্যা?</span>
           <a
             href={`https://wa.me/${siteConfig.supportWhatsapp}?text=Hello,%20my%20Order%20ID%20is%20${orderId}`}
@@ -166,10 +166,10 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           <h3 className="text-lg sm:text-xl font-bengali-serif font-bold text-[#F0EBE0] leading-tight">
             ডিজিটাল কপি অর্ডার
           </h3>
-          <p className="text-xs text-[#5C5750] mt-0.5">The 48 Laws of Power (বাংলা PDF)</p>
+          <p className="text-xs text-[#8A8278] mt-0.5">The 48 Laws of Power (বাংলা PDF)</p>
           <div className="flex items-center gap-2 mt-2">
             <span className="text-2xl font-display font-bold text-[#C8A45C]">{siteConfig.currencySymbol}{siteConfig.price}</span>
-            <span className="text-[10px] text-[#5C5750] line-through">{siteConfig.currencySymbol}{siteConfig.originalPrice}</span>
+            <span className="text-[10px] text-[#8A8278] line-through">{siteConfig.currencySymbol}{siteConfig.originalPrice}</span>
             <span className="text-[10px] bg-[#C8A45C]/10 text-[#C8A45C] border border-[#C8A45C]/20 font-bold px-2 py-0.5 rounded-full">
               ৩৪% ছাড়
             </span>
@@ -195,11 +195,11 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
                   ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_15px_rgba(200,164,92,0.3)]"
                   : step > num
                   ? "bg-[#C8A45C]/20 text-[#C8A45C]"
-                  : "bg-[#1A1A1E] text-[#5C5750] border border-[#2A2A2E]"
+                  : "bg-[#1A1A1E] text-[#8A8278] border border-[#2A2A2E]"
               }`}>
                 {step > num ? <Check className="w-3.5 h-3.5" /> : num}
               </div>
-              <span className={`text-xs font-medium transition-colors ${step === num ? "text-[#C8A45C]" : "text-[#5C5750]"}`}>
+              <span className={`text-xs font-medium transition-colors ${step === num ? "text-[#C8A45C]" : "text-[#8A8278]"}`}>
                 {label}
               </span>
             </button>
@@ -216,11 +216,11 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
             { label: "মোবাইল / হোয়াটসঅ্যাপ", type: "tel", placeholder: "017XXXXXXXX", value: phone, onChange: setPhone, Icon: Phone },
           ].map(({ label, type, placeholder, value, onChange, Icon }) => (
             <div key={label} className="space-y-1.5">
-              <label className="block text-xs font-bold text-[#9C9488]">
+              <label className="block text-xs font-bold text-[#B8B0A4]">
                 {label} <span className="text-[#E24848]">*</span>
               </label>
               <div className="relative group">
-                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#5C5750] group-focus-within:text-[#C8A45C] transition-colors">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8A8278] group-focus-within:text-[#C8A45C] transition-colors">
                   <Icon className="w-4 h-4" />
                 </div>
                 <input
@@ -252,7 +252,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           <button
             type="button"
             onClick={() => setStep(1)}
-            className="flex items-center gap-1.5 text-xs text-[#5C5750] hover:text-[#C8A45C] transition-colors cursor-pointer group"
+            className="flex items-center gap-1.5 text-xs text-[#8A8278] hover:text-[#C8A45C] transition-colors cursor-pointer group"
           >
             <ArrowRight className="w-3 h-3 rotate-180 transition-transform group-hover:-translate-x-0.5" />
             <span>তথ্য পরিবর্তন করুন</span>
@@ -260,7 +260,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
 
           {/* Payment method cards */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-[#9C9488]">
+            <label className="block text-xs font-bold text-[#B8B0A4]">
               পেমেন্ট মাধ্যম <span className="text-[#E24848]">*</span>
             </label>
             <div className="grid grid-cols-3 gap-2.5">
@@ -283,10 +283,10 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
                     {active && (
                       <div className={`absolute inset-0 bg-gradient-to-b ${bg} pointer-events-none`} />
                     )}
-                    <span className="relative text-sm font-bold" style={active ? { color } : { color: "#9C9488" }}>
+                    <span className="relative text-sm font-bold" style={active ? { color } : { color: "#B8B0A4" }}>
                       {label}
                     </span>
-                    <span className="relative text-[10px] text-[#5C5750] mt-0.5">{sub}</span>
+                    <span className="relative text-[10px] text-[#8A8278] mt-0.5">{sub}</span>
                     {active && (
                       <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full flex items-center justify-center" style={{ backgroundColor: color }}>
                         <Check className="w-2.5 h-2.5 text-white" />
@@ -301,10 +301,10 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           {/* Payment number display */}
           <div className="p-4 rounded-xl bg-[#08080A] border border-[#2A2A2E] space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] text-[#5C5750] font-medium uppercase tracking-wider">
+              <span className="text-[11px] text-[#8A8278] font-medium uppercase tracking-wider">
                 {paymentMethod === "bkash" ? "বিকাশ" : paymentMethod === "nagad" ? "নগদ" : "রকেট"} পার্সোনাল
               </span>
-              <span className="text-[10px] text-[#5C5750]">Send Money করুন</span>
+              <span className="text-[10px] text-[#8A8278]">Send Money করুন</span>
             </div>
 
             <div className="flex items-center justify-between p-3 rounded-lg bg-[#111114] border border-[#2A2A2E]">
@@ -328,7 +328,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
               </button>
             </div>
 
-            <div className="flex items-start gap-2 text-[11px] text-[#5C5750] leading-relaxed">
+            <div className="flex items-start gap-2 text-[11px] text-[#8A8278] leading-relaxed">
               <span className="text-[#C8A45C] mt-0.5 shrink-0">★</span>
               <span>
                 উপরের নম্বরে <span className="font-bold text-[#F0EBE0]">{siteConfig.currencySymbol}{siteConfig.price}</span> টাকা সেন্ড মানি করুন। এরপর নিচে ট্রানজেকশন আইডি দিন।
@@ -338,11 +338,11 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
 
           {/* TrxID input */}
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-[#9C9488]">
+            <label className="block text-xs font-bold text-[#B8B0A4]">
               ট্রানজেকশন আইডি (TrxID) <span className="text-[#E24848]">*</span>
             </label>
             <div className="relative group">
-              <CreditCard className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#5C5750] group-focus-within:text-[#C8A45C] transition-colors" />
+              <CreditCard className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8A8278] group-focus-within:text-[#C8A45C] transition-colors" />
               <input
                 type="text"
                 required
@@ -374,7 +374,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           </button>
 
           {/* Trust badges */}
-          <div className="flex items-center justify-center gap-5 text-[11px] text-[#5C5750] pt-1">
+          <div className="flex items-center justify-center gap-5 text-[11px] text-[#8A8278] pt-1">
             <div className="flex items-center gap-1.5">
               <Zap className="w-3 h-3 text-[#C8A45C]" />
               <span>তাৎক্ষণিক ডাউনলোড</span>

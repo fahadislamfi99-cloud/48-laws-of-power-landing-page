@@ -67,7 +67,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-7 text-[11px] font-medium text-[#9C9488] uppercase tracking-widest">
+        <nav className="hidden md:flex items-center space-x-7 text-[11px] font-medium text-[#B8B0A4] uppercase tracking-widest">
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -91,7 +91,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#9C9488] hover:text-[#C8A45C] hover:bg-[#1A1A1E] rounded-lg transition-colors cursor-pointer"
+            className="md:hidden p-2 text-[#B8B0A4] hover:text-[#C8A45C] hover:bg-[#1A1A1E] rounded-lg transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

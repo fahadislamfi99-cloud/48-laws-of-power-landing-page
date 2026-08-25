@@ -50,10 +50,10 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
             </div>
             <div>
               <h3 className="text-lg sm:text-xl font-serif font-bold text-[#F0EBE0]">The 48 Laws of Power — সম্পূর্ণ সূচিপত্র</h3>
-              <p className="text-xs sm:text-sm text-[#5C5750]">ডিজিটাল সংস্করণ • প্রতিটি নীতি গভীরভাবে বোঝার গাইড</p>
+              <p className="text-xs sm:text-sm text-[#8A8278]">ডিজিটাল সংস্করণ • প্রতিটি নীতি গভীরভাবে বোঝার গাইড</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 rounded-full text-[#5C5750] hover:text-[#F0EBE0] hover:bg-[#1A1A1E] transition-all duration-200 hover:rotate-90 cursor-pointer">
+          <button onClick={onClose} className="p-2 rounded-full text-[#8A8278] hover:text-[#F0EBE0] hover:bg-[#1A1A1E] transition-all duration-200 hover:rotate-90 cursor-pointer">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -61,7 +61,7 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
         {/* Search & Filter */}
         <div className="p-4 sm:p-5 bg-[#08080A] border-b border-[#2A2A2E] space-y-3">
           <div className="relative">
-            <Search className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#5C5750]" />
+            <Search className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8A8278]" />
             <input
               type="text"
               placeholder="যেকোনো Law নম্বর বা বিষয় খুঁজুন..."
@@ -78,7 +78,7 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 cursor-pointer hover-lift ${
                   selectedCategory === cat.id
                     ? "bg-[#C8A45C] text-[#08080A] font-bold shadow-xs"
-                    : "bg-[#111114] border border-[#2A2A2E] text-[#9C9488] hover:bg-[#1A1A1E]"
+                    : "bg-[#111114] border border-[#2A2A2E] text-[#B8B0A4] hover:bg-[#1A1A1E]"
                 }`}
               >
                 {cat.label}
@@ -90,7 +90,7 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
         {/* Laws List */}
         <div className="p-4 sm:p-6 overflow-y-auto space-y-4 divide-y divide-[#2A2A2E] bg-[#111114]">
           {filteredLaws.length === 0 ? (
-            <div className="py-12 text-center text-[#5C5750] animate-fadeIn">কোনো নীতি খুঁজে পাওয়া যায়নি।</div>
+            <div className="py-12 text-center text-[#8A8278] animate-fadeIn">কোনো নীতি খুঁজে পাওয়া যায়নি।</div>
           ) : (
             filteredLaws.map((law) => (
               <div key={law.id} className="pt-4 first:pt-0 space-y-2 hover:bg-[#0A0A0C] p-3 -mx-3 rounded-xl transition-colors">
@@ -98,13 +98,13 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
                   <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/20 text-[#C8A45C] font-mono text-xs font-bold">
                     {law.numberStr}
                   </div>
-                  <span className="text-[11px] font-medium text-[#5C5750] bg-[#08080A] px-2 py-0.5 rounded border border-[#2A2A2E]">
+                  <span className="text-[11px] font-medium text-[#8A8278] bg-[#08080A] px-2 py-0.5 rounded border border-[#2A2A2E]">
                     {law.categoryBn}
                   </span>
                 </div>
                 <h4 className="text-base sm:text-lg font-serif font-bold text-[#F0EBE0]">{law.titleEn}</h4>
                 <p className="text-sm font-semibold text-[#C8A45C]/70">{law.titleBn}</p>
-                <p className="text-sm text-[#9C9488] leading-relaxed">{law.detailedDescBn || law.shortDescBn}</p>
+                <p className="text-sm text-[#B8B0A4] leading-relaxed">{law.detailedDescBn || law.shortDescBn}</p>
               </div>
             ))
           )}
@@ -113,7 +113,7 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
         {/* Footer CTA */}
         <div className="p-4 sm:p-5 bg-[#0A0A0C] border-t border-[#2A2A2E] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <p className="text-xs text-[#5C5750] font-semibold">সম্পূর্ণ বাংলা ডিজিটাল PDF সংস্করণে ৪৮টি নীতি আয়ত্ত করুন</p>
+            <p className="text-xs text-[#8A8278] font-semibold">সম্পূর্ণ বাংলা ডিজিটাল PDF সংস্করণে ৪৮টি নীতি আয়ত্ত করুন</p>
             <p className="text-base sm:text-lg font-black text-[#C8A45C]">মূল্য: {siteConfig.currencySymbol}{siteConfig.price} (তাৎক্ষণিক • লাইফটাইম)</p>
           </div>
           <button

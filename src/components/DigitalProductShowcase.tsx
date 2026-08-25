@@ -81,7 +81,7 @@ export default function DigitalProductShowcase({
       case "light":
         return "bg-[#1A1A1E] text-[#F0EBE0]";
       case "dark":
-        return "bg-[#08080A] text-[#9C9488]";
+        return "bg-[#08080A] text-[#B8B0A4]";
       case "sepia":
       default:
         return "bg-[#141210] text-[#D4C8B0]";
@@ -102,7 +102,7 @@ export default function DigitalProductShowcase({
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             বইটির ভেতর এক নজর দেখে নিন
           </h2>
-          <p className="text-[#9C9488] text-base sm:text-lg">
+          <p className="text-[#B8B0A4] text-base sm:text-lg">
             ৪৫২ পৃষ্ঠার সম্পূর্ণ বাংলা অনুবাদ। প্রতিটি পৃষ্ঠা যেকোনো ডিভাইসে পড়ার জন্য ক্রিস্টাল ক্লিয়ার টাইপসেটিংয়ে সাজানো।
           </p>
         </div>
@@ -116,7 +116,7 @@ export default function DigitalProductShowcase({
               className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap hover-lift ${
                 activeTab === idx
                   ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.2)]"
-                  : "bg-[#111114] text-[#9C9488] border border-[#2A2A2E] hover:border-[#C8A45C]/30"
+                  : "bg-[#111114] text-[#B8B0A4] border border-[#2A2A2E] hover:border-[#C8A45C]/30"
               }`}
             >
               {page.lawNum}
@@ -134,7 +134,7 @@ export default function DigitalProductShowcase({
                 alt="The 48 Laws of Power Bengali Edition Reading"
                 className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="p-4 bg-[#08080A] text-[#9C9488] text-xs font-mono flex items-center justify-between">
+              <div className="p-4 bg-[#08080A] text-[#B8B0A4] text-xs font-mono flex items-center justify-between">
                 <span>সম্পূর্ণ ৪৫২ পৃষ্ঠা</span>
                 <span className="text-[#C8A45C]">সার্চেবল PDF সংস্করণ</span>
               </div>
@@ -146,7 +146,7 @@ export default function DigitalProductShowcase({
             <div className="bg-[#111114] rounded-3xl border border-[#2A2A2E] overflow-hidden transition-all duration-300 hover:border-[#C8A45C]/15">
               {/* Reader Controls */}
               <div className="p-4 sm:p-5 bg-[#0A0A0C] border-b border-[#2A2A2E] flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 font-mono text-[#5C5750]">
+                <div className="flex items-center gap-2 font-mono text-[#8A8278]">
                   <span className="font-bold text-[#C8A45C]">{samplePages[activeTab].lawNum}</span>
                   <span className="text-[#2A2A2E]">•</span>
                   <span>{samplePages[activeTab].page} / ৪৫২</span>
@@ -164,7 +164,7 @@ export default function DigitalProductShowcase({
                       className={`p-1.5 rounded-full cursor-pointer transition-all duration-200 hover:scale-110 ${
                         readerTheme === theme
                           ? "bg-[#C8A45C]/20 text-[#C8A45C] shadow-2xs"
-                          : "text-[#5C5750] hover:text-[#9C9488]"
+                          : "text-[#8A8278] hover:text-[#B8B0A4]"
                       }`}
                     >
                       <Icon className="w-3.5 h-3.5" />
@@ -217,7 +217,7 @@ export default function DigitalProductShowcase({
           <div className="relative bg-[#111114] max-w-2xl w-full rounded-3xl p-6 sm:p-10 max-h-[85vh] overflow-y-auto border border-[#C8A45C]/30 shadow-2xl animate-scaleIn">
             <button
               onClick={() => setIsLightbox(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-[#1A1A1E] hover:bg-[#2A2A2E] text-[#9C9488] transition-colors cursor-pointer hover:rotate-90"
+              className="absolute top-4 right-4 p-2 rounded-full bg-[#1A1A1E] hover:bg-[#2A2A2E] text-[#B8B0A4] transition-colors cursor-pointer hover:rotate-90"
             >
               <X className="w-5 h-5" />
             </button>

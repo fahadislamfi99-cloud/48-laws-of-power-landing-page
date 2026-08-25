@@ -41,12 +41,12 @@ export default function AuthorProfile() {
               </h2>
             </div>
 
-            <p className="text-sm sm:text-base text-[#9C9488] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#B8B0A4] leading-relaxed">
               রবার্ট গ্রিন আন্তর্জাতিকভাবে প্রশংসিত মার্কিন লেখক ও গবেষক, যিনি মানুষের অন্ধকার মনস্তত্ত্ব, ক্ষমতা, কৌশল ও প্ররোচনা নিয়ে দীর্ঘ গবেষণার জন্য বিশ্বজুড়ে সমাদৃত। ক্লাসিক্যাল ইতিহাস ও দর্শনের ছাত্র হিসেবে গ্রিন বিশ্ব ইতিহাসের সেরা কূটনীতিক, সেনাপতি ও রাষ্ট্রনায়কদের জীবন পর্যবেক্ষণ করে এই ৪৮টি সূত্র প্রণয়ন করেছেন।
             </p>
 
-            <div className="pt-3 border-t border-[#2A2A2E] text-[11px] font-mono text-[#5C5750] flex flex-wrap items-center justify-center md:justify-start gap-4">
-              <span className="font-bold text-[#9C9488]">অন্যান্য আন্তর্জাতিক মাস্টারপিস:</span>
+            <div className="pt-3 border-t border-[#2A2A2E] text-[11px] font-mono text-[#8A8278] flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <span className="font-bold text-[#B8B0A4]">অন্যান্য আন্তর্জাতিক মাস্টারপিস:</span>
               <span className="hover:text-[#C8A45C] transition-colors cursor-pointer">Mastery</span>
               <span className="text-[#2A2A2E]">•</span>
               <span className="hover:text-[#C8A45C] transition-colors cursor-pointer">The Laws of Human Nature</span>

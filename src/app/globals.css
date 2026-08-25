@@ -6,8 +6,8 @@
     --canvas-raised: #111114;
     --canvas-subtle: #1A1A1E;
     --ink: #F0EBE0;
-    --ink-secondary: #9C9488;
-    --ink-muted: #5C5750;
+    --ink-secondary: #B8B0A4; /* brightened for WCAG AA on dark */
+    --ink-muted: #8A8278; /* brightened for WCAG AA on dark */
     --gold: #C8A45C;
     --gold-dark: #8B6914;
     --gold-glow: rgba(200, 164, 92, 0.12);
@@ -28,7 +28,7 @@
   body {
     background-color: var(--canvas);
     color: var(--ink);
-    font-family: 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Google Sans Flex', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.7;
     overflow-x: hidden;
   }
@@ -54,6 +54,10 @@
 
 .font-bengali-sans {
   font-family: 'Noto Sans Bengali', -apple-system, sans-serif;
+}
+
+.font-sans {
+  font-family: 'Google Sans Flex', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Grain Texture Overlay */
@@ -205,6 +209,39 @@
 @keyframes borderGlow {
   0%, 100% { border-color: rgba(200, 164, 92, 0.15); }
   50% { border-color: rgba(200, 164, 92, 0.4); }
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, 30px) scale(1.05); }
+  66% { transform: translate(20px, -20px) scale(0.95); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.08); }
+  66% { transform: translate(-20px, 20px) scale(0.92); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 30px); }
+}
+
+@keyframes cornerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes floatBadgeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Animation Utility Classes */

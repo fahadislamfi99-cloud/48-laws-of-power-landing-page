@@ -25,7 +25,7 @@ export default function ProductFAQ() {
         <div className="text-center space-y-3 mb-14 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">FREQUENTLY ASKED QUESTIONS</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">সাধারণ প্রশ্ন ও উত্তর</h2>
-          <p className="text-[#9C9488] text-base">ডিজিটাল সংস্করণ ও ডাউনলোড প্রক্রিয়া সম্পর্কে প্রয়োজনীয় তথ্য নিচে জেনে নিন</p>
+          <p className="text-[#B8B0A4] text-base">ডিজিটাল সংস্করণ ও ডাউনলোড প্রক্রিয়া সম্পর্কে প্রয়োজনীয় তথ্য নিচে জেনে নিন</p>
         </div>
 
         <div className="space-y-3">
@@ -43,12 +43,12 @@ export default function ProductFAQ() {
                   className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bengali-serif font-bold text-[#F0EBE0] text-base sm:text-lg cursor-pointer group"
                 >
                   <span className="group-hover:text-[#C8A45C] transition-colors">{faq.q}</span>
-                  <div className={`w-7 h-7 rounded-full bg-[#08080A] border border-[#2A2A2E] flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? "rotate-180 bg-[#C8A45C] text-[#08080A] border-[#C8A45C]" : "text-[#5C5750] group-hover:border-[#C8A45C]/30 group-hover:text-[#C8A45C]"}`}>
+                  <div className={`w-7 h-7 rounded-full bg-[#08080A] border border-[#2A2A2E] flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? "rotate-180 bg-[#C8A45C] text-[#08080A] border-[#C8A45C]" : "text-[#8A8278] group-hover:border-[#C8A45C]/30 group-hover:text-[#C8A45C]"}`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-sm text-[#9C9488] leading-relaxed border-t border-[#2A2A2E]/60 animate-fadeIn">
+                  <div className="px-5 sm:px-6 pb-6 pt-1 text-sm text-[#B8B0A4] leading-relaxed border-t border-[#2A2A2E]/60 animate-fadeIn">
                     {faq.a}
                   </div>
                 )}
