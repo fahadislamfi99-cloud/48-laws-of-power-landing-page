@@ -105,29 +105,29 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] uppercase font-bold text-[#C8A45C] bg-[#C8A45C]/10 px-2 py-0.5 rounded-md border border-[#C8A45C]/20">
+            <span className="text-[11px] uppercase font-bold text-[#C8A45C] bg-[#C8A45C]/10 px-2.5 py-0.5 rounded-md border border-[#C8A45C]/20">
               ডিজিটাল PDF
             </span>
-            <span className="text-[10px] text-emerald-400 font-bold">
+            <span className="text-xs text-emerald-400 font-bold">
               ইনস্ট্যান্ট অ্যাক্সেস
             </span>
           </div>
-          <h3 className="text-base sm:text-lg font-bengali-serif font-bold text-[#F0EBE0] leading-tight mt-1 truncate">
+          <h3 className="text-base sm:text-lg font-bengali-serif font-bold text-[#F0EBE0] leading-tight mt-1.5 truncate">
             The 48 Laws of Power (বাংলা সংস্করণ)
           </h3>
-          <div className="flex items-center gap-2 mt-1.5">
+          <div className="flex items-center gap-2.5 mt-1.5">
             <span className="text-xl font-display font-bold text-[#C8A45C]">
               {siteConfig.currencySymbol}{currentPrice}
             </span>
-            <span className="text-xs text-[#8A8278] line-through">
+            <span className="text-xs text-[#A8A095] line-through">
               {siteConfig.currencySymbol}{siteConfig.originalPrice}
             </span>
             {discountAmount > 0 ? (
-              <span className="text-[10px] text-emerald-400 font-bold">
+              <span className="text-xs text-emerald-400 font-bold">
                 (৳{discountAmount} কুপন ছাড়)
               </span>
             ) : (
-              <span className="text-[10px] text-[#C8A45C] font-semibold">
+              <span className="text-xs text-[#C8A45C] font-semibold">
                 (৩৪% ছাড়)
               </span>
             )}
@@ -143,12 +143,12 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
 
       {/* Gmail Input Field */}
       <div className="space-y-1.5">
-        <label className="block text-xs font-bold text-[#F0EBE0] flex items-center justify-between">
+        <label className="block text-xs sm:text-sm font-bold text-[#F0EBE0] flex items-center justify-between">
           <span>আপনার জিমেইল (Gmail) ঠিকানা <span className="text-[#E24848]">*</span></span>
-          <span className="text-[11px] text-[#8A8278] font-normal">ডাউনলোড কপি পৌঁছাবে</span>
+          <span className="text-xs text-[#A8A095] font-normal">ডাউনলোড কপি পৌঁছাবে</span>
         </label>
         <div className="relative group flex items-center">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#8A8278] group-focus-within:text-[#C8A45C] transition-colors">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#A8A095] group-focus-within:text-[#C8A45C] transition-colors">
             <Mail className="w-4 h-4" />
           </div>
           <input
@@ -157,10 +157,10 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
             placeholder="example@gmail.com"
             value={gmail}
             onChange={(e) => setGmail(e.target.value)}
-            className="w-full pl-11 pr-4 py-3.5 input-dark text-sm placeholder:text-[#666056] text-[#F0EBE0]"
+            className="w-full pl-11 pr-4 py-3.5 input-dark text-sm placeholder:text-[#8A8278] text-[#F0EBE0]"
           />
         </div>
-        <p className="text-[11px] text-[#8A8278] pl-1">
+        <p className="text-xs text-[#A8A095] pl-1">
           পেমেন্ট নিশ্চিত হওয়ার সাথে সাথে এই জিমেইলে লাইফটাইম ডাউনলোড লিংক সংরক্ষিত থাকবে।
         </p>
       </div>
@@ -169,7 +169,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
       <div className="space-y-1.5">
         <div className="flex gap-2">
           <div className="relative flex-1 group flex items-center">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#8A8278]">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#A8A095]">
               <Tag className="w-3.5 h-3.5" />
             </div>
             <input
@@ -190,19 +190,19 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
           </button>
         </div>
         {couponMessage && (
-          <p className={`text-[11px] ${couponMessage.error ? "text-rose-400" : "text-emerald-400"} font-semibold pl-1`}>
+          <p className={`text-xs ${couponMessage.error ? "text-rose-400" : "text-emerald-400"} font-semibold pl-1`}>
             {couponMessage.text}
           </p>
         )}
       </div>
 
       {/* Gateway Notice Box */}
-      <div className="p-4 rounded-2xl bg-[#09090C] border border-[#E2136E]/30 space-y-1.5 text-xs text-[#B8B0A4]">
-        <div className="flex items-center gap-2 text-white font-bold">
-          <span className="w-2 h-2 rounded-full bg-[#E2136E]" />
+      <div className="p-4 sm:p-4.5 rounded-2xl bg-[#0F0F14] border border-[#E2136E]/40 space-y-2 text-xs">
+        <div className="flex items-center gap-2 text-[#F0EBE0] font-bold text-xs sm:text-sm">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#E2136E]" />
           <span>বিকাশ অফিশিয়াল অটো পেমেন্ট</span>
         </div>
-        <p className="text-[11px] text-[#8A8278] leading-relaxed">
+        <p className="text-xs sm:text-[13px] text-[#D1C9BC] leading-relaxed">
           নিচের বাটনে ক্লিক করলে বিকাশ সিকিউর পেমেন্ট পেজে নিয়ে যাওয়া হবে। পেমেন্ট সম্পন্ন হওয়ামাত্র স্বয়ংক্রিয়ভাবে ডাউনলোড পেজ খুলবে।
         </p>
       </div>
@@ -228,7 +228,7 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
       </button>
 
       {/* Trust Badges */}
-      <div className="flex items-center justify-center gap-4 text-[11px] text-[#8A8278] pt-1">
+      <div className="flex items-center justify-center gap-5 text-xs text-[#A8A095] pt-1">
         <div className="flex items-center gap-1.5">
           <Zap className="w-3.5 h-3.5 text-[#C8A45C]" />
           <span>তাৎক্ষণিক ডাউনলোড</span>
