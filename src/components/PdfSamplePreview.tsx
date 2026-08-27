@@ -9,6 +9,7 @@ import {
   Maximize2, X, FileText, Type, Coffee, Moon, Sun,
   Quote, Compass
 } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface PdfSamplePreviewProps {
   onOpenOrderModal: () => void;
@@ -508,176 +509,183 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
       </div>
 
       {/* ─── 5. FULLSCREEN / LIGHTBOX MODAL (NO TOP-CROPPING & FULL SCROLL) ───────────────────── */}
-      {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col animate-fadeIn">
-          
-          {/* Lightbox Sticky Header */}
-          <div className="sticky top-0 z-30 p-3.5 sm:p-4 bg-[#0A0A0D]/95 backdrop-blur-md border-b border-[#26262A] flex items-center justify-between text-xs px-4 sm:px-6">
-            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-              <span className="text-xs font-mono font-bold text-[#C8A45C] bg-[#C8A45C]/10 px-2.5 py-1 rounded-md border border-[#C8A45C]/20 shrink-0">
-                {activeChapter.lawNumberStr}
-              </span>
-              <span className="font-bengali-serif font-bold text-[#F0EBE0] text-xs sm:text-sm truncate">
-                {activeChapter.titleBn}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0 ml-3">
-              <span className="text-xs font-semibold text-[#A8A095] hidden sm:inline">
-                {currentPage.pdfPageStr} ({toBengaliNumber(currentPageIndex + 1)}/{toBengaliNumber(totalPages)})
-              </span>
-
-              {/* Close Button */}
-              <button
-                type="button"
-                onClick={() => setIsFullscreen(false)}
-                className="p-2 sm:p-2.5 rounded-full bg-[#16161B] hover:bg-[#202026] text-[#D1C9BC] hover:text-[#F0EBE0] border border-[#26262A] hover:border-[#C8A45C]/50 transition-all duration-300 cursor-pointer group"
-                aria-label="Close fullscreen"
-                title="বন্ধ করুন (ESC)"
-              >
-                <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
-              </button>
-            </div>
-          </div>
-
-          {/* Lightbox Scrollable Reader Body (Independent Full Scrolling, Zero Top-Cropping) */}
-          <div
-            ref={modalScrollRef}
-            data-lenis-prevent
-            className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-8 lg:p-10 custom-reader-scroll relative"
+      <AnimatePresence>
+        {isFullscreen && (
+          <motion.div
+            key="pdf-fullscreen-lightbox"
+            initial={{ opacity: 0, scale: 0.98, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, scale: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, scale: 0.98, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-50 bg-black/95 flex flex-col will-change-[transform,opacity,backdrop-filter]"
           >
-            {/* Floating Left/Right Navigation Buttons */}
-            <button
-              type="button"
-              onClick={handlePrevPage}
-              disabled={currentPageIndex === 0}
-              className="fixed left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#111114]/90 border border-[#26262A] text-[#F0EBE0] hover:text-[#C8A45C] hover:border-[#C8A45C] flex items-center justify-center shadow-2xl transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
-              aria-label="Previous Page"
-              title="আগের পৃষ্ঠা"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-
-            <button
-              type="button"
-              onClick={handleNextPage}
-              disabled={currentPageIndex === totalPages - 1}
-              className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#111114]/90 border border-[#26262A] text-[#F0EBE0] hover:text-[#C8A45C] hover:border-[#C8A45C] flex items-center justify-center shadow-2xl transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
-              aria-label="Next Page"
-              title="পরের পৃষ্ঠা"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
-            {/* Document Sheet */}
-            <div
-              className={`w-full max-w-3xl mx-auto rounded-3xl border p-6 sm:p-10 lg:p-12 shadow-2xl ${getThemeClasses()} ${
-                fontStyle === "serif" ? "font-bengali-serif" : "font-bengali-sans"
-              } text-base sm:text-lg`}
-            >
-              <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-white/10 text-xs text-[#8A8278]">
-                <span className="font-mono font-bold text-[#C8A45C] uppercase tracking-wider">
-                  {activeChapter.lawNumberStr} • {activeChapter.titleEn}
+            {/* Lightbox Sticky Header */}
+            <div className="sticky top-0 z-30 p-3.5 sm:p-4 bg-[#0A0A0D]/95 backdrop-blur-md border-b border-[#26262A] flex items-center justify-between text-xs px-4 sm:px-6">
+              <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                <span className="text-xs font-mono font-bold text-[#C8A45C] bg-[#C8A45C]/10 px-2.5 py-1 rounded-md border border-[#C8A45C]/20 shrink-0">
+                  {activeChapter.lawNumberStr}
                 </span>
-                <span className="font-semibold text-[#A8A095]">
-                  {currentPage.pdfPageStr}
+                <span className="font-bengali-serif font-bold text-[#F0EBE0] text-xs sm:text-sm truncate">
+                  {activeChapter.titleBn}
                 </span>
               </div>
 
-              {currentPage.sectionBadge && (
-                <span className="inline-block text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8A45C] bg-[#C8A45C]/10 px-2.5 py-0.5 rounded border border-[#C8A45C]/20 mb-3">
-                  {currentPage.sectionBadge}
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0 ml-3">
+                <span className="text-xs font-semibold text-[#A8A095] hidden sm:inline">
+                  {currentPage.pdfPageStr} ({toBengaliNumber(currentPageIndex + 1)}/{toBengaliNumber(totalPages)})
                 </span>
-              )}
 
-              {currentPage.pageTitle && (
-                <h3 className="text-2xl sm:text-3xl font-bengali-serif font-bold text-[#F0EBE0] mb-5 leading-snug">
-                  {currentPage.pageTitle}
-                </h3>
-              )}
-
-              {currentPage.calloutBox && (
-                <div className="p-6 sm:p-8 rounded-2xl bg-[#141419] border border-[#C8A45C]/40 text-[#F5F0E6] shadow-md my-4 space-y-3">
-                  <div className="flex items-center gap-2 text-[#C8A45C]">
-                    <Compass className="w-4 h-4" />
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider">
-                      {currentPage.calloutBox.title}
-                    </span>
-                  </div>
-                  <p className="font-bengali-serif text-base sm:text-lg italic leading-[2.0] text-[#F7F3EB]">
-                    &ldquo;{currentPage.calloutBox.text}&rdquo;
-                  </p>
-                </div>
-              )}
-
-              {currentPage.sidebarQuote && (
-                <div className="my-5 p-5 rounded-xl bg-[#131217] border-l-4 border-[#C8A45C] border-y border-r border-white/5 space-y-2">
-                  <div className="flex items-start gap-2.5">
-                    <Quote className="w-4 h-4 text-[#C8A45C] shrink-0 mt-0.5" />
-                    <p className="text-sm italic text-[#E8DFD0] leading-relaxed">
-                      &ldquo;{currentPage.sidebarQuote.quote}&rdquo;
-                    </p>
-                  </div>
-                  <div className="text-xs font-semibold text-[#A8A095] text-right">
-                    — <span className="text-[#C8A45C] font-bold">{currentPage.sidebarQuote.author}</span>
-                    {currentPage.sidebarQuote.sourceOrDates && ` (${currentPage.sidebarQuote.sourceOrDates})`}
-                  </div>
-                </div>
-              )}
-
-              {currentPage.bodyParagraphs.length > 0 && (
-                <div className="space-y-4 leading-[1.9] text-justify text-[#DCD6CA]">
-                  {currentPage.bodyParagraphs.map((para, pIdx) => (
-                    <p key={pIdx}>
-                      {para}
-                    </p>
-                  ))}
-                </div>
-              )}
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsFullscreen(false)}
+                  className="p-2 sm:p-2.5 rounded-full bg-[#16161B] hover:bg-[#202026] text-[#D1C9BC] hover:text-[#F0EBE0] border border-[#26262A] hover:border-[#C8A45C]/50 transition-all duration-300 cursor-pointer group"
+                  aria-label="Close fullscreen"
+                  title="বন্ধ করুন (ESC)"
+                >
+                  <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
+                </button>
+              </div>
             </div>
-          </div>
 
-          {/* Lightbox Sticky Footer Actions */}
-          <div className="sticky bottom-0 z-30 p-3.5 sm:p-4 bg-[#0A0A0D]/95 backdrop-blur-md border-t border-[#26262A] flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6">
-            <div className="flex items-center gap-2">
+            {/* Lightbox Scrollable Reader Body (Independent Full Scrolling, Zero Top-Cropping) */}
+            <div
+              ref={modalScrollRef}
+              data-lenis-prevent
+              className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-8 lg:p-10 custom-reader-scroll relative"
+            >
+              {/* Floating Left/Right Navigation Buttons */}
               <button
                 type="button"
                 onClick={handlePrevPage}
                 disabled={currentPageIndex === 0}
-                className="px-3 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                className="fixed left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#111114]/90 border border-[#26262A] text-[#F0EBE0] hover:text-[#C8A45C] hover:border-[#C8A45C] flex items-center justify-center shadow-2xl transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                aria-label="Previous Page"
+                title="আগের পৃষ্ঠা"
               >
-                ← আগের পৃষ্ঠা
+                <ChevronLeft className="w-6 h-6" />
               </button>
-              <span className="text-xs font-semibold text-[#F0EBE0] px-2.5 py-1 bg-[#111114] rounded-lg border border-[#26262A]">
-                {toBengaliNumber(currentPageIndex + 1)} / {toBengaliNumber(totalPages)}
-              </span>
+
               <button
                 type="button"
                 onClick={handleNextPage}
                 disabled={currentPageIndex === totalPages - 1}
-                className="px-3 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#111114]/90 border border-[#26262A] text-[#F0EBE0] hover:text-[#C8A45C] hover:border-[#C8A45C] flex items-center justify-center shadow-2xl transition-all disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                aria-label="Next Page"
+                title="পরের পৃষ্ঠা"
               >
-                পরের পৃষ্ঠা →
+                <ChevronRight className="w-6 h-6" />
               </button>
+
+              {/* Document Sheet */}
+              <div
+                className={`w-full max-w-3xl mx-auto rounded-3xl border p-6 sm:p-10 lg:p-12 shadow-2xl ${getThemeClasses()} ${
+                  fontStyle === "serif" ? "font-bengali-serif" : "font-bengali-sans"
+                } text-base sm:text-lg`}
+              >
+                <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-white/10 text-xs text-[#8A8278]">
+                  <span className="font-mono font-bold text-[#C8A45C] uppercase tracking-wider">
+                    {activeChapter.lawNumberStr} • {activeChapter.titleEn}
+                  </span>
+                  <span className="font-semibold text-[#A8A095]">
+                    {currentPage.pdfPageStr}
+                  </span>
+                </div>
+
+                {currentPage.sectionBadge && (
+                  <span className="inline-block text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8A45C] bg-[#C8A45C]/10 px-2.5 py-0.5 rounded border border-[#C8A45C]/20 mb-3">
+                    {currentPage.sectionBadge}
+                  </span>
+                )}
+
+                {currentPage.pageTitle && (
+                  <h3 className="text-2xl sm:text-3xl font-bengali-serif font-bold text-[#F0EBE0] mb-5 leading-snug">
+                    {currentPage.pageTitle}
+                  </h3>
+                )}
+
+                {currentPage.calloutBox && (
+                  <div className="p-6 sm:p-8 rounded-2xl bg-[#141419] border border-[#C8A45C]/40 text-[#F5F0E6] shadow-md my-4 space-y-3">
+                    <div className="flex items-center gap-2 text-[#C8A45C]">
+                      <Compass className="w-4 h-4" />
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider">
+                        {currentPage.calloutBox.title}
+                      </span>
+                    </div>
+                    <p className="font-bengali-serif text-base sm:text-lg italic leading-[2.0] text-[#F7F3EB]">
+                      &ldquo;{currentPage.calloutBox.text}&rdquo;
+                    </p>
+                  </div>
+                )}
+
+                {currentPage.sidebarQuote && (
+                  <div className="my-5 p-5 rounded-xl bg-[#131217] border-l-4 border-[#C8A45C] border-y border-r border-white/5 space-y-2">
+                    <div className="flex items-start gap-2.5">
+                      <Quote className="w-4 h-4 text-[#C8A45C] shrink-0 mt-0.5" />
+                      <p className="text-sm italic text-[#E8DFD0] leading-relaxed">
+                        &ldquo;{currentPage.sidebarQuote.quote}&rdquo;
+                      </p>
+                    </div>
+                    <div className="text-xs font-semibold text-[#A8A095] text-right">
+                      — <span className="text-[#C8A45C] font-bold">{currentPage.sidebarQuote.author}</span>
+                      {currentPage.sidebarQuote.sourceOrDates && ` (${currentPage.sidebarQuote.sourceOrDates})`}
+                    </div>
+                  </div>
+                )}
+
+                {currentPage.bodyParagraphs.length > 0 && (
+                  <div className="space-y-4 leading-[1.9] text-justify text-[#DCD6CA]">
+                    {currentPage.bodyParagraphs.map((para, pIdx) => (
+                      <p key={pIdx}>
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="flex items-center gap-3 ml-auto">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsFullscreen(false);
-                  onOpenOrderModal();
-                }}
-                className="px-6 py-2.5 rounded-full btn-gold text-xs font-bold flex items-center gap-2 cursor-pointer hover-lift shadow-lg"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>সম্পূর্ণ বইটি কিনুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
-              </button>
-            </div>
-          </div>
+            {/* Lightbox Sticky Footer Actions */}
+            <div className="sticky bottom-0 z-30 p-3.5 sm:p-4 bg-[#0A0A0D]/95 backdrop-blur-md border-t border-[#26262A] flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handlePrevPage}
+                  disabled={currentPageIndex === 0}
+                  className="px-3 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  ← আগের পৃষ্ঠা
+                </button>
+                <span className="text-xs font-semibold text-[#F0EBE0] px-2.5 py-1 bg-[#111114] rounded-lg border border-[#26262A]">
+                  {toBengaliNumber(currentPageIndex + 1)} / {toBengaliNumber(totalPages)}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleNextPage}
+                  disabled={currentPageIndex === totalPages - 1}
+                  className="px-3 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  পরের পৃষ্ঠা →
+                </button>
+              </div>
 
-        </div>
-      )}
+              <div className="flex items-center gap-3 ml-auto">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsFullscreen(false);
+                    onOpenOrderModal();
+                  }}
+                  className="px-6 py-2.5 rounded-full btn-gold text-xs font-bold flex items-center gap-2 cursor-pointer hover-lift shadow-lg"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>সম্পূর্ণ বইটি কিনুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
