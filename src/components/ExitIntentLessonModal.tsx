@@ -82,13 +82,23 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
     const pageLoadTime = Date.now();
     let maxScrollY = 0;
 
-    // Desktop Mouse Exit Intent (Cursor leaves top viewport)
+    // Desktop Mouse Exit Intent (Cursor leaves document towards top tabs/close button)
     const handleMouseLeave = (e: MouseEvent) => {
-      // Must engage on page for at least 7 seconds and move towards browser tabs
-      if (Date.now() - pageLoadTime < 7000) return;
+      if (Date.now() - pageLoadTime < 6000) return;
       if (hasTriggeredRef.current) return;
 
-      if (e.clientY <= 15 || e.clientY <= 0) {
+      if (e.clientY <= 25 || e.clientY <= 0) {
+        hasTriggeredRef.current = true;
+        setIsOpen(true);
+      }
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (Date.now() - pageLoadTime < 6000) return;
+      if (hasTriggeredRef.current) return;
+
+      // Moving swiftly towards browser tabs / close button
+      if (e.clientY <= 15) {
         hasTriggeredRef.current = true;
         setIsOpen(true);
       }
@@ -101,11 +111,11 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
         maxScrollY = currentScroll;
       }
 
-      // If user scrolled deeply (> 600px) and then rapidly scrolls back up after 20s
+      // If user scrolled deeply (> 600px) and then rapidly scrolls back up after 15s
       if (
         !hasTriggeredRef.current &&
-        Date.now() - pageLoadTime > 18000 &&
-        maxScrollY > 700 &&
+        Date.now() - pageLoadTime > 15000 &&
+        maxScrollY > 600 &&
         currentScroll < maxScrollY * 0.4
       ) {
         hasTriggeredRef.current = true;
@@ -114,10 +124,12 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
     };
 
     document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);

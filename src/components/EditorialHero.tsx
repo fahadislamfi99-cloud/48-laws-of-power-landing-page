@@ -73,7 +73,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
   }, []);
 
   return (
-    <section className="relative pt-20 sm:pt-24 pb-10 md:pt-28 md:pb-16 overflow-hidden">
+    <section className="relative pt-24 sm:pt-28 pb-10 md:pt-32 md:pb-16 overflow-hidden">
       {/* ─── ANIMATED BACKGROUND ──────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 right-0 w-[320px] sm:w-[600px] h-[320px] sm:h-[600px] bg-[#C8A45C]/[0.06] rounded-full blur-[120px] sm:blur-[150px] animate-[orbFloat1_12s_ease-in-out_infinite]" />
