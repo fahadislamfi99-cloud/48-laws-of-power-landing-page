@@ -277,8 +277,8 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
               </span>
             </div>
 
-            {/* Live 2-Day Countdown Timer */}
-            <CountdownTimer variant="compact-pill" label="অফারের মেয়াদ" />
+            {/* Live 2-Day Continuous Loop Luxury Countdown Timer */}
+            <CountdownTimer variant="luxury-box" label="অফার শেষ হতে বাকি" />
 
             {/* Coupon Code Pill */}
             <div className="p-2.5 rounded-xl bg-[#0A0A0E] border border-[#C8A45C]/25 flex items-center justify-between gap-2">
