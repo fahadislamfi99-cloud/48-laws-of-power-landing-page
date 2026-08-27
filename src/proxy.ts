@@ -5,7 +5,7 @@ const ADMIN_COOKIE_NAME = "laws48_admin_session";
 const JWT_SECRET_STRING = process.env.JWT_SECRET || "48-laws-of-power-secure-jwt-secret-2026";
 const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_STRING);
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // 1. Edge-Level Admin Route Protection
