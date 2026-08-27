@@ -24,10 +24,24 @@ interface PromotionalPopupProps {
   onClaimOffer: (couponCode: string) => void;
 }
 
-const STORAGE_KEY = "laws48_promo_dismissed_at";
+const STORAGE_KEY = "laws48_promo_dismissed_session_v1";
 
 export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps) {
-  const [promoData, setPromoData] = useState<PromoBannerData | null>(null);
+  const [promoData, setPromoData] = useState<PromoBannerData | null>({
+    isEnabled: true,
+    badgeText: "বিশেষ অফার 🎁",
+    title: "আজই পাচ্ছেন ৳৫০ ছাড়",
+    subtitle: "The 48 Laws of Power (বাংলা অনুবাদ)",
+    description: "৩,০০০ বছরের মানব মনস্তত্ত্ব ও ক্ষমতার রণকৌশল শিখুন বিশেষ ডিসকাউন্টে। সম্পূর্ণ ৫০৯ পৃষ্ঠার বাংলা ডিজিটাল বইতে তাৎক্ষণিক অ্যাক্সেস পান।",
+    couponCode: "POWER50",
+    discountAmount: 50,
+    discountType: "fixed",
+    ctaText: "অফারটি ব্যবহার করুন",
+    offerTag: "৳৫০ OFF",
+    imageUrl: "/images/promo-power-strategy.jpg",
+    displayDelaySeconds: 3,
+    cooldownHours: 24,
+  });
   const [isOpen, setIsOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -45,21 +59,25 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
         const res = await fetch("/api/public/promo-banner");
         const data = await res.json();
 
-        if (isMounted && data.success && data.banner && data.banner.isEnabled) {
+        if (isMounted && data.success && data.banner) {
+          if (!data.banner.isEnabled) {
+            setPromoData(null);
+            return;
+          }
           setPromoData(data.banner);
 
-          // Check dismissal cooldown in localStorage
-          const dismissedAt = localStorage.getItem(STORAGE_KEY);
-          if (dismissedAt) {
-            const cooldownMs = (data.banner.cooldownHours || 24) * 60 * 60 * 1000;
-            const timeSinceDismiss = Date.now() - Number(dismissedAt);
-            if (timeSinceDismiss < cooldownMs) {
-              return; // Still in cooldown
+          // Check if already dismissed in current session
+          try {
+            const dismissedInSession = sessionStorage.getItem(STORAGE_KEY);
+            if (dismissedInSession) {
+              return; // Already dismissed in this session
             }
+          } catch {
+            // ignore
           }
 
-          // Trigger popup after configured delay (e.g. 4 seconds)
-          const delayMs = Math.max(1, data.banner.displayDelaySeconds ?? 4) * 1000;
+          // Trigger popup after configured delay (e.g. 2.5-3 seconds)
+          const delayMs = Math.max(1, data.banner.displayDelaySeconds ?? 3) * 1000;
           const timer = setTimeout(() => {
             if (isMounted) {
               setIsOpen(true);
@@ -108,7 +126,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
   const handleDismiss = () => {
     setIsOpen(false);
     try {
-      localStorage.setItem(STORAGE_KEY, String(Date.now()));
+      sessionStorage.setItem(STORAGE_KEY, "true");
     } catch {
       // ignore storage write errors
     }
