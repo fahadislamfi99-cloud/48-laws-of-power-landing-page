@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { Download, ArrowDown, Smartphone, Search, FileText, ChevronDown } from "lucide-react";
+import SideRays from "@/components/SideRays";
 
 interface EditorialHeroProps {
   onOpenOrderModal: () => void;
@@ -74,6 +75,27 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
 
   return (
     <section className="relative pt-24 sm:pt-28 pb-10 md:pt-32 md:pb-16 overflow-hidden">
+      {/* ─── NATURAL WINDOW LIGHT CASCADE (SideRays) ─────────── */}
+      <div
+        className={`absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${
+          isVisible ? "opacity-85" : "opacity-0"
+        }`}
+      >
+        <SideRays
+          origin="top-right"
+          rayColor1="#EAB308"
+          rayColor2="#96c8ff"
+          intensity={1.8}
+          spread={2.0}
+          speed={1.8}
+          saturation={1.3}
+          blend={0.75}
+          falloff={1.6}
+          opacity={0.85}
+          tilt={-4}
+        />
+      </div>
+
       {/* ─── ANIMATED BACKGROUND ──────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 right-0 w-[320px] sm:w-[600px] h-[320px] sm:h-[600px] bg-[#C8A45C]/[0.06] rounded-full blur-[120px] sm:blur-[150px] animate-[orbFloat1_12s_ease-in-out_infinite]" />
