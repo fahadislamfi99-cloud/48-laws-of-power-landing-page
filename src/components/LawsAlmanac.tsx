@@ -37,9 +37,12 @@ export default function LawsAlmanac({
     <section
       id="laws-almanac"
       ref={containerRef}
-      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]"
+      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background ambient gold orb */}
+      <div className="absolute top-1/4 -right-32 w-[460px] h-[460px] bg-[#C8A45C]/[0.035] rounded-full blur-[140px] pointer-events-none animate-[orbFloat1_15s_ease-in-out_infinite]" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
             THE 48 LAWS ALMANAC

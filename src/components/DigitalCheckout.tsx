@@ -9,8 +9,11 @@ export default function DigitalCheckout() {
   const containerRef = useScrollReveal<HTMLElement>();
 
   return (
-    <section id="checkout" ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]">
-      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="checkout" ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden">
+      {/* Background ambient gold orb */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#C8A45C]/[0.045] rounded-full blur-[150px] pointer-events-none animate-[orbFloat1_12s_ease-in-out_infinite]" />
+
+      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-8 reveal">
@@ -26,8 +29,8 @@ export default function DigitalCheckout() {
         </div>
 
         {/* Checkout Card */}
-        <div className="bg-[#111114] rounded-3xl p-6 sm:p-8 border border-[#2A2A2E] reveal reveal-stagger-1 shadow-2xl relative space-y-6">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-80" />
+        <div className="bg-[#111114] rounded-3xl p-6 sm:p-8 border border-[#2A2A2E] reveal-scale reveal-stagger-1 shadow-2xl relative space-y-6 hover:border-[#C8A45C]/35 transition-all duration-300">
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-90" />
           
           {/* Limited-Time Offer Status Bar */}
           <div className="pb-5 border-b border-[#26262A] flex flex-col sm:flex-row items-center justify-between gap-3">

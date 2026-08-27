@@ -176,11 +176,11 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         {/* ─── 1. SECTION HEADER ───────────────────────────────── */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
           <div className="flex items-center justify-center gap-3">
-            <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
+            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase">
               READ A SAMPLE • একটু পড়ে দেখুন
             </span>
-            <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
+            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
@@ -193,7 +193,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         </div>
 
         {/* ─── 2. SAMPLE TABS (3 REAL CHAPTERS) ────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-8 reveal reveal-stagger-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-8">
           {sampleChapters.map((chapter, idx) => {
             const isActive = activeChapterIndex === idx;
             return (
@@ -201,9 +201,9 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
                 key={chapter.id}
                 type="button"
                 onClick={() => handleSelectChapter(idx)}
-                className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${
+                className={`reveal-card reveal-stagger-${idx + 1} p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${
                   isActive
-                    ? "bg-[#141419] border-[#C8A45C] shadow-[0_4px_30px_rgba(200,164,92,0.12)] scale-[1.01]"
+                    ? "bg-[#141419] border-[#C8A45C] shadow-[0_4px_30px_rgba(200,164,92,0.18)] scale-[1.01]"
                     : "bg-[#0D0D10] border-[#26262A] hover:border-[#3A3A3E] hover:bg-[#121216]"
                 }`}
               >
@@ -245,7 +245,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         </div>
 
         {/* ─── 3. IN-PAGE COMPACT DIGITAL BOOK READER ──────────── */}
-        <div className="bg-[#111114] rounded-3xl border border-[#26262A] overflow-hidden shadow-2xl reveal reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/30">
+        <div className="bg-[#111114] rounded-3xl border border-[#26262A] overflow-hidden shadow-2xl reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/35">
           
           {/* Reader Top Toolbar */}
           <div className="p-3.5 sm:p-4 bg-[#0A0A0D] border-b border-[#26262A] flex flex-wrap items-center justify-between gap-3 text-xs">

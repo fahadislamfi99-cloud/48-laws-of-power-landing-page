@@ -11,18 +11,21 @@ export default function DeepDiveLaw() {
     <section
       id="deep-dive"
       ref={containerRef}
-      className="py-14 lg:py-20 bg-[#0C0C0F] border-t border-[#26262A]"
+      className="py-14 lg:py-20 bg-[#0C0C0F] border-t border-[#26262A] relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Subtle Gold Background Orb */}
+      <div className="absolute top-1/2 -right-32 w-[420px] h-[420px] bg-[#C8A45C]/[0.035] rounded-full blur-[140px] pointer-events-none animate-[orbFloat2_16s_ease-in-out_infinite]" />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
           <div className="flex items-center justify-center gap-3">
-            <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
+            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#C8A45C] uppercase">
               AN INSIGHT FROM THE BOOK
             </span>
-            <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
+            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F5F0E6] leading-[1.25]">
             একটি নীতি, বাস্তব দৃষ্টিভঙ্গির পরিবর্তন
@@ -43,7 +46,7 @@ export default function DeepDiveLaw() {
               onClick={() => setSelectedLaw(tab.id)}
               className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer hover-lift ${
                 selectedLaw === tab.id
-                  ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.3)]"
+                  ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.35)]"
                   : "bg-[#111114] text-[#C4BCB0] border border-[#26262A] hover:border-[#C8A45C]/40 hover:text-[#C8A45C]"
               }`}
             >
@@ -53,7 +56,7 @@ export default function DeepDiveLaw() {
         </div>
 
         {/* Content Card */}
-        <div className="bg-[#111114] rounded-3xl border border-[#26262A] p-6 sm:p-10 lg:p-12 space-y-8 reveal reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/25 shadow-xl">
+        <div className="bg-[#111114] rounded-3xl border border-[#26262A] p-6 sm:p-10 lg:p-12 space-y-8 reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/30 shadow-2xl">
           {selectedLaw === 4 ? (
             <div key="law-4" className="space-y-8 animate-fadeIn">
               <div className="space-y-2 border-b border-[#26262A] pb-6">

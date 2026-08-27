@@ -2,36 +2,40 @@
 
 import React from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useParallax } from "@/hooks/useParallax";
 
 export default function AuthorProfile() {
   const containerRef = useScrollReveal<HTMLElement>();
-  const photoRef = useParallax<HTMLDivElement>(0.1);
 
   return (
     <section
       id="author"
       ref={containerRef}
-      className="py-14 lg:py-20 bg-[#0A0A0C] border-t border-[#26262A]"
+      className="py-14 lg:py-20 bg-[#0A0A0C] border-t border-[#26262A] relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background ambient gold orb */}
+      <div className="absolute top-1/2 -left-28 w-[400px] h-[400px] bg-[#C8A45C]/[0.035] rounded-full blur-[140px] pointer-events-none animate-[orbFloat1_16s_ease-in-out_infinite]" />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Photo with Parallax */}
-          <div className="md:col-span-5 flex justify-center reveal reveal-left">
-            <div
-              ref={photoRef}
-              className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden border border-[#2A2A2E] bg-[#111114] group transition-all duration-500 hover:border-[#C8A45C]/30 hover:shadow-[0_0_40px_rgba(200,164,92,0.1)]"
-            >
-              <img
-                src="/images/author.jpg"
-                alt="Robert Greene - Author Portrait"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+          
+          {/* Author Portrait with Clean Instant Reveal */}
+          <div className="md:col-span-5 flex justify-center reveal-scale">
+            <div className="relative group">
+              {/* Luxury ambient glow behind portrait */}
+              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-br from-[#C8A45C]/25 to-transparent blur-md opacity-50 group-hover:opacity-85 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden border border-[#2A2A2E] bg-[#111114] group-hover:border-[#C8A45C]/45 transition-colors duration-300 shadow-2xl">
+                <img
+                  src="/images/author.jpg"
+                  alt="Robert Greene - Author Portrait"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
             </div>
           </div>
 
           {/* Bio */}
-          <div className="md:col-span-7 space-y-4 text-center md:text-left reveal reveal-right reveal-stagger-1">
+          <div className="md:col-span-7 space-y-4 text-center md:text-left reveal reveal-stagger-1">
             <div className="space-y-1">
               <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
                 ABOUT THE AUTHOR

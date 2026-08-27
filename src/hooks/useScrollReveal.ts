@@ -19,10 +19,12 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
     const el = elementRef.current;
     if (!el) return;
 
+    const revealSelector = ".reveal, .reveal-card, .reveal-scale, .reveal-left, .reveal-right, .reveal-line";
+
     // Check if user prefers reduced motion
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       el.classList.add("reveal-visible");
-      const children = el.querySelectorAll(".reveal");
+      const children = el.querySelectorAll(revealSelector);
       children.forEach((child) => child.classList.add("reveal-visible"));
       return;
     }
@@ -30,7 +32,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
     // If IntersectionObserver is not supported, reveal immediately
     if (typeof IntersectionObserver === "undefined") {
       el.classList.add("reveal-visible");
-      const children = el.querySelectorAll(".reveal");
+      const children = el.querySelectorAll(revealSelector);
       children.forEach((child) => child.classList.add("reveal-visible"));
       return;
     }
@@ -40,9 +42,6 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("reveal-visible");
-            // Also reveal child .reveal elements if observing container
-            const childReveals = entry.target.querySelectorAll(".reveal");
-            childReveals.forEach((child) => child.classList.add("reveal-visible"));
 
             if (once) {
               observer.unobserve(entry.target);
@@ -55,10 +54,13 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
       { threshold, rootMargin }
     );
 
-    observer.observe(el);
+    // If container itself has a reveal class, observe it
+    if (el.matches(revealSelector)) {
+      observer.observe(el);
+    }
 
-    // Also observe all explicit child elements with .reveal class
-    const childReveals = el.querySelectorAll(".reveal");
+    // Observe each individual child element so each card animates right as it enters viewport
+    const childReveals = el.querySelectorAll(revealSelector);
     childReveals.forEach((child) => observer.observe(child));
 
     return () => {

@@ -34,9 +34,12 @@ export default function HumanRecognition() {
     <section
       id="thesis"
       ref={containerRef}
-      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]"
+      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background ambient gold orb */}
+      <div className="absolute top-1/3 -left-32 w-[380px] h-[380px] bg-[#C8A45C]/[0.035] rounded-full blur-[130px] pointer-events-none animate-[orbFloat1_14s_ease-in-out_infinite]" />
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
@@ -55,14 +58,15 @@ export default function HumanRecognition() {
           {experiences.map((item, idx) => (
             <div
               key={idx}
-              className={`reveal ${idx % 2 === 0 ? "reveal-left" : "reveal-right"} reveal-stagger-${idx + 1} card-dark p-6 space-y-3 group`}
+              className={`reveal-card reveal-stagger-${idx + 1} card-luxury rounded-2xl p-6 sm:p-7 space-y-3 group`}
             >
               <div className="flex items-center justify-between text-xs font-mono text-[#C8A45C]">
                 <span className="font-bold uppercase tracking-wider group-hover:text-[#D4AF6E] transition-colors">
                   {item.marker}
                 </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C]/40 group-hover:bg-[#C8A45C] transition-colors" />
               </div>
-              <h3 className="font-bengali-serif font-bold text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors">
+              <h3 className="font-bengali-serif font-bold text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors leading-snug">
                 {item.title}
               </h3>
               <p className="text-sm sm:text-base text-[#B8B0A4] leading-relaxed">
@@ -73,17 +77,17 @@ export default function HumanRecognition() {
         </div>
 
         {/* Pull Quote */}
-        <div className="reveal reveal-stagger-5 mt-10 p-8 lg:p-10 rounded-2xl bg-[#111114] border border-[#2A2A2E] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center hover:border-[#C8A45C]/20 transition-all duration-500">
+        <div className="reveal-scale reveal-stagger-5 mt-10 p-7 sm:p-8 lg:p-10 rounded-2xl bg-[#111114] border border-[#2A2A2E] hover:border-[#C8A45C]/35 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center transition-all duration-500 shadow-xl">
           <div className="lg:col-span-2 flex justify-start lg:justify-center">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center shadow-[0_0_20px_rgba(200,164,92,0.25)]">
               <Quote className="w-5 h-5" />
             </div>
           </div>
-          <div className="lg:col-span-10 space-y-3">
+          <div className="lg:col-span-10 space-y-2.5">
             <p className="font-bengali-serif text-lg sm:text-xl text-[#F0EBE0] leading-relaxed italic">
               &ldquo;ক্ষমতার খেলায় ভালো বা খারাপ বলে কিছু নেই। যারা এই খেলার অদৃশ্য নিয়মগুলো বোঝেন, তারা নিয়ন্ত্রণ ধরে রাখেন। আর যারা অন্ধভাবে নিয়মের অপেক্ষা করেন, তারা অন্যের সিদ্ধান্তের শিকার হন।&rdquo;
             </p>
-            <span className="text-xs font-semibold text-[#C8A45C] block pt-1">
+            <span className="text-xs font-semibold text-[#C8A45C] block pt-1 tracking-wide">
               রবার্ট গ্রিন (The 48 Laws of Power)
             </span>
           </div>
