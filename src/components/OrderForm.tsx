@@ -19,6 +19,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [validatingCoupon, setValidatingCoupon] = useState(false);
   const [couponMessage, setCouponMessage] = useState<{ text: string; error?: boolean } | null>(null);
+  const [activeOffer, setActiveOffer] = useState<{ couponCode: string; discountAmount: number; offerTag?: string } | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -29,6 +30,26 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   useEffect(() => {
     trackInitiateCheckout(currentPrice);
   }, [currentPrice]);
+
+  // Fetch active promotional offer for checkout suggestion
+  useEffect(() => {
+    async function fetchOffer() {
+      try {
+        const res = await fetch("/api/public/promo-banner");
+        const data = await res.json();
+        if (data.success && data.banner && data.banner.isEnabled && data.banner.couponCode) {
+          setActiveOffer({
+            couponCode: data.banner.couponCode,
+            discountAmount: data.banner.discountAmount,
+            offerTag: data.banner.offerTag,
+          });
+        }
+      } catch {
+        // ignore
+      }
+    }
+    fetchOffer();
+  }, []);
 
   // Auto-apply initial coupon if passed
   useEffect(() => {
@@ -231,6 +252,27 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
           <p className={`text-xs ${couponMessage.error ? "text-rose-400" : "text-emerald-400"} font-semibold pl-1`}>
             {couponMessage.text}
           </p>
+        )}
+
+        {activeOffer && !appliedCoupon && (
+          <div className="pt-1">
+            <button
+              type="button"
+              onClick={() => {
+                setCouponCode(activeOffer.couponCode);
+                applySpecificCoupon(activeOffer.couponCode);
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#C8A45C]/10 hover:bg-[#C8A45C]/20 border border-[#C8A45C]/30 text-xs text-[#F0EBE0] cursor-pointer transition-all hover:scale-102 group text-left"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#C8A45C] shrink-0" />
+              <span>
+                উপলব্ধ অফার: <strong className="text-[#C8A45C] font-mono">{activeOffer.couponCode}</strong> ({activeOffer.offerTag || `৳${activeOffer.discountAmount} ছাড়`})
+              </span>
+              <span className="text-[#C8A45C] underline font-bold ml-1 text-[11px] group-hover:text-[#D4AF6E]">
+                প্রয়োগ করুন
+              </span>
+            </button>
+          </div>
         )}
       </div>
 
