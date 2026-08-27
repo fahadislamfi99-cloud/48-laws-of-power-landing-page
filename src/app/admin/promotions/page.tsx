@@ -6,6 +6,7 @@ import {
   Sliders, Image as ImageIcon, Clock, Check, Copy, ArrowRight, ShieldCheck, X
 } from "lucide-react";
 import ToastNotification, { ToastState } from "@/components/admin/ToastNotification";
+import CountdownTimer from "@/components/CountdownTimer";
 
 export default function AdminPromotionsPage() {
   const [formData, setFormData] = useState({
@@ -442,6 +443,11 @@ export default function AdminPromotionsPage() {
                 <p className="text-xs text-[#C4BCB0] leading-relaxed">
                   {formData.description}
                 </p>
+              </div>
+
+              {/* 2-Day Continuous Loop Luxury Countdown Timer Preview */}
+              <div className="pt-1">
+                <CountdownTimer variant="luxury-box" label="অফার শেষ হতে বাকি" />
               </div>
 
               {/* Coupon Box with Copy interaction */}

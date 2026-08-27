@@ -2,6 +2,7 @@
 
 import React from "react";
 import OrderForm from "@/components/OrderForm";
+import CountdownTimer from "@/components/CountdownTimer";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function DigitalCheckout() {
@@ -25,8 +26,20 @@ export default function DigitalCheckout() {
         </div>
 
         {/* Checkout Card */}
-        <div className="bg-[#111114] rounded-3xl p-6 sm:p-8 border border-[#2A2A2E] reveal reveal-stagger-1 shadow-2xl relative">
+        <div className="bg-[#111114] rounded-3xl p-6 sm:p-8 border border-[#2A2A2E] reveal reveal-stagger-1 shadow-2xl relative space-y-6">
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-80" />
+          
+          {/* Limited-Time Offer Status Bar */}
+          <div className="pb-5 border-b border-[#26262A] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-bold text-[#F0EBE0]">
+                ৩৪% বিশেষ অফার সক্রিয়
+              </span>
+            </div>
+            <CountdownTimer variant="compact-pill" label="বাকি আছে" />
+          </div>
+
           <OrderForm />
         </div>
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { X, Copy, Check, Sparkles, ArrowRight, ShieldCheck, Tag } from "lucide-react";
+import CountdownTimer from "./CountdownTimer";
 
 export interface PromoBannerData {
   isEnabled: boolean;
@@ -235,6 +236,11 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                 {promoData.description ||
                   "৩,০০০ বছরের মানব মনস্তত্ত্ব ও ক্ষমতার রণকৌশল শিখুন বিশেষ ডিসকাউন্টে। সম্পূর্ণ ৫০৯ পৃষ্ঠার বাংলা ডিজিটাল বইতে তাৎক্ষণিক অ্যাক্সেস পান।"}
               </p>
+            </div>
+
+            {/* 2-Day Continuous Loop Luxury Countdown Timer */}
+            <div className="pt-1">
+              <CountdownTimer variant="luxury-box" label="অফার শেষ হতে বাকি" />
             </div>
 
             {/* Coupon Code Pill with 1-Click Copy Interaction */}
