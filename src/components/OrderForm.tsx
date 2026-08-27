@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { trackInitiateCheckout } from "@/lib/pixel";
 import {
-  ShieldCheck, Mail, Zap, Loader2, Sparkles, Tag, ArrowRight,
+  ShieldCheck, Mail, Zap, Loader2, Sparkles, Tag, ArrowRight, CheckCircle2, AlertCircle,
 } from "lucide-react";
 
 interface OrderFormProps {
@@ -62,13 +62,17 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   // Auto-apply initial coupon if passed
   useEffect(() => {
     if (initialCouponCode && initialCouponCode.trim()) {
-      setCouponCode(initialCouponCode.trim().toUpperCase());
-      applySpecificCoupon(initialCouponCode.trim().toUpperCase());
+      const code = initialCouponCode.trim().toUpperCase();
+      setCouponCode(code);
+      applyCoupon(code);
     }
   }, [initialCouponCode]);
 
-  const applySpecificCoupon = async (codeToApply: string) => {
+  const applyCoupon = async (rawCode?: string) => {
+    const codeToApply = (rawCode !== undefined ? rawCode : couponCode).trim().toUpperCase();
     if (!codeToApply) return;
+    if (validatingCoupon) return; // Prevent duplicate concurrent requests
+
     setValidatingCoupon(true);
     setCouponMessage(null);
 
@@ -83,46 +87,31 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
       if (res.ok && data.success) {
         setDiscountAmount(data.discountAmount);
         setAppliedCoupon(data.code);
-        setCouponMessage({ text: data.message });
+        setCouponCode(data.code);
+        setCouponMessage({
+          text: data.message ? `${data.message} (৳${data.discountAmount} ছাড় যুক্ত হয়েছে)` : `কুপন সফলভাবে প্রয়োগ হয়েছে (৳${data.discountAmount} ছাড়)`,
+          error: false,
+        });
       } else {
-        setCouponMessage({ text: data.message || "অবৈধ কুপন কোড", error: true });
+        setCouponMessage({
+          text: data.message || "অবৈধ বা মেয়াদোত্তীর্ণ কুপন কোড",
+          error: true,
+        });
         setDiscountAmount(0);
         setAppliedCoupon(null);
       }
     } catch {
-      setCouponMessage({ text: "কুপন যাচাইকরণে ত্রুটি", error: true });
+      setCouponMessage({ text: "কুপন যাচাইকরণে ত্রুটি হয়েছে। আবার চেষ্টা করুন।", error: true });
     } finally {
       setValidatingCoupon(false);
     }
   };
 
-  const handleApplyCoupon = async () => {
-    if (!couponCode.trim()) return;
-    setValidatingCoupon(true);
+  const handleRemoveCoupon = () => {
+    setCouponCode("");
+    setDiscountAmount(0);
+    setAppliedCoupon(null);
     setCouponMessage(null);
-
-    try {
-      const res = await fetch("/api/public/coupon/validate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: couponCode.trim(), amount: originalPrice }),
-      });
-
-      const data = await res.json();
-      if (res.ok && data.success) {
-        setDiscountAmount(data.discountAmount);
-        setAppliedCoupon(data.code);
-        setCouponMessage({ text: data.message });
-      } else {
-        setCouponMessage({ text: data.message || "অবৈধ কুপন কোড", error: true });
-        setDiscountAmount(0);
-        setAppliedCoupon(null);
-      }
-    } catch {
-      setCouponMessage({ text: "কুপন যাচাইকরণে ত্রুটি", error: true });
-    } finally {
-      setValidatingCoupon(false);
-    }
   };
 
   const handlePayment = async (e: React.FormEvent) => {
@@ -243,12 +232,21 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
               type="button"
               onClick={() => {
                 setCouponCode(activeOffer.couponCode);
-                applySpecificCoupon(activeOffer.couponCode);
+                applyCoupon(activeOffer.couponCode);
               }}
-              className="inline-flex items-center gap-1 text-[11px] text-[#C8A45C] hover:text-[#E5C378] font-bold transition-colors cursor-pointer"
+              disabled={validatingCoupon}
+              className="inline-flex items-center gap-1 text-[11px] text-[#C8A45C] hover:text-[#E5C378] font-bold transition-colors cursor-pointer disabled:opacity-50"
             >
               <Sparkles className="w-3 h-3 text-[#C8A45C]" />
               <span>অফার: <strong>{activeOffer.couponCode}</strong> ({activeOffer.offerTag || `৳${activeOffer.discountAmount} ছাড়`}) প্রয়োগ</span>
+            </button>
+          ) : appliedCoupon ? (
+            <button
+              type="button"
+              onClick={handleRemoveCoupon}
+              className="text-[11px] text-[#A8A095] hover:text-rose-400 font-medium transition-colors cursor-pointer"
+            >
+              কুপন মুছুন
             </button>
           ) : null}
         </div>
@@ -262,24 +260,52 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
               type="text"
               placeholder={activeOffer && !appliedCoupon ? `যেমন: ${activeOffer.couponCode}` : "কুপন কোড"}
               value={couponCode}
-              onChange={(e) => setCouponCode(e.target.value)}
-              className="w-full pl-10 pr-3 py-2.5 bg-[#09090C] border border-[#26262A] rounded-xl text-xs font-mono uppercase text-[#F0EBE0] outline-none focus:border-[#C8A45C] placeholder:text-[#666]"
+              onChange={(e) => {
+                setCouponCode(e.target.value.toUpperCase());
+                if (couponMessage) setCouponMessage(null);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (!validatingCoupon && couponCode.trim()) {
+                    applyCoupon();
+                  }
+                }
+              }}
+              disabled={validatingCoupon}
+              enterKeyHint="go"
+              autoCapitalize="characters"
+              autoComplete="off"
+              spellCheck="false"
+              className="w-full pl-10 pr-3 py-2.5 bg-[#09090C] border border-[#26262A] rounded-xl text-xs font-mono uppercase text-[#F0EBE0] outline-none focus:border-[#C8A45C] placeholder:text-[#666] disabled:opacity-60 transition-colors"
             />
           </div>
           <button
             type="button"
-            onClick={handleApplyCoupon}
+            onClick={() => applyCoupon()}
             disabled={validatingCoupon || !couponCode.trim()}
-            className="px-4 py-2.5 rounded-xl bg-[#1A1A1F] hover:bg-[#25252D] text-xs font-bold text-[#C8A45C] border border-[#33333A] cursor-pointer disabled:opacity-50 transition-colors"
+            className="px-4 py-2.5 rounded-xl bg-[#1A1A1F] hover:bg-[#25252D] text-xs font-bold text-[#C8A45C] border border-[#33333A] cursor-pointer disabled:opacity-50 transition-all flex items-center justify-center gap-1.5 shrink-0 min-w-[76px]"
           >
-            {validatingCoupon ? "..." : "প্রয়োগ"}
+            {validatingCoupon ? (
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#C8A45C]" />
+            ) : (
+              <span>প্রয়োগ</span>
+            )}
           </button>
         </div>
 
         {couponMessage && (
-          <p className={`text-xs ${couponMessage.error ? "text-rose-400" : "text-emerald-400"} font-semibold pl-1`}>
-            {couponMessage.text}
-          </p>
+          <div className={`text-xs font-medium pl-1 flex items-center gap-1.5 ${
+            couponMessage.error ? "text-rose-400" : "text-emerald-400"
+          }`}>
+            {couponMessage.error ? (
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+            ) : (
+              <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+            )}
+            <span>{couponMessage.text}</span>
+          </div>
         )}
       </div>
 
