@@ -2,18 +2,34 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCollection, Order } from "@/lib/mongodb";
 import { getOrGenerateWatermarkedPdf } from "@/lib/watermarkPdf";
 import { sendPersonalizedBookEmail } from "@/lib/emailDelivery";
+import { validateDownloadToken } from "@/lib/validation";
+import { checkRateLimit, RATE_LIMIT_CONFIGS, getClientIp } from "@/lib/rateLimit";
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const token = searchParams.get("token");
 
-    if (!token || token.length < 8) {
-      return NextResponse.json({ success: false, error: "Invalid token" }, { status: 400 });
+    // 1. Rate Limiting Check (40 requests per minute per IP)
+    const clientIp = getClientIp(req);
+    const rateLimit = checkRateLimit("order_status_poll", clientIp, RATE_LIMIT_CONFIGS.STATUS_POLL);
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { success: false, message: "Too many status requests. Please wait a moment." },
+        { status: 429 }
+      );
     }
 
+    // 2. Strict Token Validation
+    const tokenValidation = validateDownloadToken(token);
+    if (!tokenValidation.isValid) {
+      return NextResponse.json({ success: false, error: "Invalid token" }, { status: 400 });
+    }
+    const cleanToken = tokenValidation.token;
+
     const ordersCol = await getCollection<Order>("orders");
-    const order = await ordersCol.findOne({ downloadToken: token });
+    const order = await ordersCol.findOne({ downloadToken: cleanToken });
 
     if (!order) {
       return NextResponse.json({ success: false, error: "Order not found" }, { status: 404 });
@@ -113,6 +129,6 @@ export async function GET(req: NextRequest) {
     });
   } catch (error: any) {
     console.error("[Order Status API Error]:", error);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
   }
 }

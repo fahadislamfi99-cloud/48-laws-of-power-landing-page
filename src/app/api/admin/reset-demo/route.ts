@@ -9,6 +9,14 @@ export async function POST() {
       return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
     }
 
+    // Role-based Access Control: Only super_admin can trigger destructive demo resets
+    if (session.role !== "super_admin") {
+      return NextResponse.json(
+        { success: false, message: "Forbidden: Only super_admin can perform full database resets." },
+        { status: 403 }
+      );
+    }
+
     const ordersCol = await getCollection<Order>("orders");
     const customersCol = await getCollection<Customer>("customers");
     const txCol = await getCollection<BKashTransaction>("bkash_transactions");
@@ -26,7 +34,7 @@ export async function POST() {
   } catch (error: any) {
     console.error("[Admin Reset Demo Error]:", error);
     return NextResponse.json(
-      { success: false, message: error.message || "Failed to reset demo data" },
+      { success: false, message: "Failed to reset demo data" },
       { status: 500 }
     );
   }

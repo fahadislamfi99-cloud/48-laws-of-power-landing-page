@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private storage
+/storage/generated_pdfs/
+/storage/master_pdf/
+*.pdf
+!public/Demo/*.pdf
+

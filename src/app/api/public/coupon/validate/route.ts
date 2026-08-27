@@ -1,15 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCollection, Coupon } from "@/lib/mongodb";
+import { getCollection, Coupon, Product } from "@/lib/mongodb";
+import { sanitizeString } from "@/lib/validation";
+import { checkRateLimit, RATE_LIMIT_CONFIGS, getClientIp } from "@/lib/rateLimit";
 
 export async function POST(req: NextRequest) {
   try {
-    const { code, amount } = await req.json();
+    // 1. Rate Limiting Check (20 requests per minute per IP)
+    const clientIp = getClientIp(req);
+    const rateLimit = checkRateLimit("coupon_validate", clientIp, RATE_LIMIT_CONFIGS.COUPON_CHECK);
 
-    if (!code) {
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { success: false, message: "Too many coupon attempts. Please wait a moment." },
+        { status: 429 }
+      );
+    }
+
+    const body = await req.json();
+    const { code } = body;
+
+    if (!code || typeof code !== "string") {
       return NextResponse.json({ success: false, message: "Coupon code is required" }, { status: 400 });
     }
 
-    const cleanCode = code.trim().toUpperCase();
+    const cleanCode = sanitizeString(code, 25).toUpperCase();
     const couponsCol = await getCollection<Coupon>("coupons");
     const coupon = await couponsCol.findOne({ code: cleanCode, isActive: true });
 
@@ -25,15 +39,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: "এই কুপনের ব্যবহারের সীমা শেষ" }, { status: 400 });
     }
 
-    const currentAmount = Number(amount) || 999;
+    // Determine current base price securely from server product database
+    const productsCol = await getCollection<Product>("products");
+    const product = await productsCol.findOne({ isActive: true });
+    const baseAmount = product ? Math.max(1, Number(product.price)) : 999;
+
     let discount = 0;
     if (coupon.discountType === "percentage") {
-      discount = Math.round((currentAmount * coupon.discountValue) / 100);
+      discount = Math.round((baseAmount * Math.min(100, Math.max(1, coupon.discountValue))) / 100);
     } else {
-      discount = coupon.discountValue;
+      discount = Math.max(0, coupon.discountValue);
     }
 
-    const finalAmount = Math.max(1, currentAmount - discount);
+    const finalAmount = Math.max(1, baseAmount - discount);
 
     return NextResponse.json({
       success: true,
