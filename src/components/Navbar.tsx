@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { Download, Menu, X, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface NavbarProps {
   onOpenOrderModal: (couponCode?: string) => void;
@@ -26,15 +27,28 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent background scroll when mobile menu is open
+  // Prevent background scroll when mobile menu is open with scrollbar shift compensation
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (!mobileMenuOpen) return;
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKey);
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
+      window.removeEventListener("keydown", handleKey);
     };
   }, [mobileMenuOpen]);
 
@@ -47,10 +61,21 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
     { label: "প্রশ্নোত্তর", href: "#faq" },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    // Smooth scroll to target section
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 py-3 sm:py-3.5 border-b transition-[background-color,border-color,backdrop-filter] duration-200 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 py-3 sm:py-3.5 border-b transition-colors duration-200 ease-out ${
           isScrolled || mobileMenuOpen
             ? "bg-[#08080A]/95 backdrop-blur-xl border-[#26262A] shadow-md"
             : "bg-[#08080A]/80 backdrop-blur-md border-transparent"
@@ -109,12 +134,13 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             {/* Mobile / Tablet Hamburger Toggle (Visible < lg / < 1024px) */}
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
               className="lg:hidden p-2 rounded-xl text-[#D1C9BC] hover:text-[#C8A45C] hover:bg-[#1A1A1E] transition-colors cursor-pointer group"
               aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
-                <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
+                <X className="w-5 h-5 transition-transform duration-200 ease-out group-hover:rotate-90" />
               ) : (
                 <Menu className="w-5 h-5" />
               )}
@@ -123,47 +149,66 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
 
         </div>
 
-        {/* Mobile & Tablet Full Screen Overlay Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#0D0D10] border-b border-[#26262A] px-5 sm:px-8 py-6 space-y-4 animate-fadeInDown shadow-2xl">
-            <nav className="space-y-1 divide-y divide-[#1A1A1E]">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between text-sm font-semibold text-[#F0EBE0] py-3 hover:text-[#C8A45C] transition-colors"
-                >
-                  <span>{item.label}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#8A8278]" />
-                </a>
-              ))}
-            </nav>
+        {/* Mobile & Tablet Dropdown Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              key="mobile-nav-panel"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{
+                duration: 0.15,
+                ease: "easeOut",
+              }}
+              className="lg:hidden bg-[#0D0D10] border-b border-[#26262A] px-5 sm:px-8 py-6 space-y-4 shadow-2xl overflow-hidden will-change-[transform,opacity]"
+            >
+              <nav className="space-y-1 divide-y divide-[#1A1A1E]">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="flex items-center justify-between text-sm font-semibold text-[#F0EBE0] py-3 hover:text-[#C8A45C] transition-colors cursor-pointer"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#8A8278]" />
+                  </a>
+                ))}
+              </nav>
 
-            <div className="pt-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenOrderModal();
-                }}
-                className="w-full py-3.5 rounded-2xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer"
-              >
-                <Download className="w-4 h-4" />
-                <span>পিডিএফ সংগ্রহ করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
-              </button>
-            </div>
-          </div>
-        )}
+              <div className="pt-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenOrderModal();
+                  }}
+                  className="w-full py-3.5 rounded-2xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer hover-lift"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>পিডিএফ সংগ্রহ করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Mobile Menu Backdrop */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 lg:hidden"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            key="mobile-nav-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="fixed inset-0 bg-black/75 backdrop-blur-md z-40 lg:hidden cursor-pointer will-change-[opacity]"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
