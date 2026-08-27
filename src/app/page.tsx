@@ -16,6 +16,7 @@ import MobileStickyBar from "@/components/MobileStickyBar";
 import AllLawsModal from "@/components/AllLawsModal";
 import OrderModal from "@/components/OrderModal";
 import PromotionalPopup from "@/components/PromotionalPopup";
+import ExitIntentLessonModal from "@/components/ExitIntentLessonModal";
 
 export default function Home() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -58,6 +59,10 @@ export default function Home() {
       />
 
       <PromotionalPopup
+        onClaimOffer={(couponCode) => handleOpenOrderModal(couponCode)}
+      />
+
+      <ExitIntentLessonModal
         onClaimOffer={(couponCode) => handleOpenOrderModal(couponCode)}
       />
     </main>
