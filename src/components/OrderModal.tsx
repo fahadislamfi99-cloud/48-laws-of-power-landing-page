@@ -7,9 +7,10 @@ import { X } from "lucide-react";
 interface OrderModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialCouponCode?: string;
 }
 
-export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
+export default function OrderModal({ isOpen, onClose, initialCouponCode }: OrderModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -64,7 +65,7 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
 
         {/* Content */}
         <div className="p-4 sm:p-6 pt-5">
-          <OrderForm onSuccess={() => {}} />
+          <OrderForm onSuccess={() => {}} initialCouponCode={initialCouponCode} />
         </div>
       </div>
     </div>

@@ -149,6 +149,23 @@ export interface SiteSettings extends Document {
   updatedAt: Date;
 }
 
+export interface PromotionalBanner extends Document {
+  isEnabled: boolean;
+  badgeText: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  couponCode: string;
+  discountAmount: number;
+  discountType: "fixed" | "percentage";
+  ctaText: string;
+  offerTag?: string;
+  imageUrl?: string;
+  displayDelaySeconds: number;
+  cooldownHours: number;
+  updatedAt: Date;
+}
+
 export interface AdminLog extends Document {
   adminId: string;
   adminName: string;
@@ -159,3 +176,4 @@ export interface AdminLog extends Document {
   ipAddress?: string;
   createdAt: Date;
 }
+

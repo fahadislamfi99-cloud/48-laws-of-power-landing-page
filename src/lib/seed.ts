@@ -80,6 +80,44 @@ export async function ensureDatabaseSeeded() {
       });
       console.log("[DB Seed] Created default site settings");
     }
+
+    // Seed POWER50 Coupon
+    const couponsCol = await getCollection("coupons");
+    const power50Coupon = await couponsCol.findOne({ code: "POWER50" });
+    if (!power50Coupon) {
+      await couponsCol.insertOne({
+        code: "POWER50",
+        discountType: "fixed",
+        discountValue: 50,
+        usedCount: 0,
+        isActive: true,
+        createdAt: new Date(),
+      });
+      console.log("[DB Seed] Created default POWER50 coupon (৳50 OFF)");
+    }
+
+    // Seed Promotional Banner
+    const promoCol = await getCollection("promo_banners");
+    const promoCount = await promoCol.countDocuments();
+    if (promoCount === 0) {
+      await promoCol.insertOne({
+        isEnabled: true,
+        badgeText: "বিশেষ অফার 🎁",
+        title: "আজই পাচ্ছেন ৳৫০ ছাড়",
+        subtitle: "The 48 Laws of Power (বাংলা অনুবাদ)",
+        description: "৩,০০০ বছরের মানব মনস্তত্ত্ব ও ক্ষমতার রণকৌশল শিখুন বিশেষ ডিসকাউন্টে। সীমিত সময়ের জন্য অফারটি সক্রিয় রয়েছে।",
+        couponCode: "POWER50",
+        discountAmount: 50,
+        discountType: "fixed",
+        ctaText: "অফারটি ব্যবহার করুন",
+        offerTag: "৳৫০ OFF",
+        imageUrl: "/images/promo-power-strategy.jpg",
+        displayDelaySeconds: 4,
+        cooldownHours: 24,
+        updatedAt: new Date(),
+      });
+      console.log("[DB Seed] Created default promotional banner");
+    }
   } catch (error) {
     console.error("[DB Seed Error]:", error);
   }

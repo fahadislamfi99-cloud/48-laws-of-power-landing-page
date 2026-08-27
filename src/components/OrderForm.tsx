@@ -9,11 +9,12 @@ import {
 
 interface OrderFormProps {
   onSuccess?: () => void;
+  initialCouponCode?: string;
 }
 
-export default function OrderForm({ onSuccess }: OrderFormProps) {
+export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormProps) {
   const [gmail, setGmail] = useState("");
-  const [couponCode, setCouponCode] = useState("");
+  const [couponCode, setCouponCode] = useState(initialCouponCode || "");
   const [discountAmount, setDiscountAmount] = useState(0);
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [validatingCoupon, setValidatingCoupon] = useState(false);
@@ -28,6 +29,43 @@ export default function OrderForm({ onSuccess }: OrderFormProps) {
   useEffect(() => {
     trackInitiateCheckout(currentPrice);
   }, [currentPrice]);
+
+  // Auto-apply initial coupon if passed
+  useEffect(() => {
+    if (initialCouponCode && initialCouponCode.trim()) {
+      setCouponCode(initialCouponCode.trim().toUpperCase());
+      applySpecificCoupon(initialCouponCode.trim().toUpperCase());
+    }
+  }, [initialCouponCode]);
+
+  const applySpecificCoupon = async (codeToApply: string) => {
+    if (!codeToApply) return;
+    setValidatingCoupon(true);
+    setCouponMessage(null);
+
+    try {
+      const res = await fetch("/api/public/coupon/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: codeToApply, amount: originalPrice }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setDiscountAmount(data.discountAmount);
+        setAppliedCoupon(data.code);
+        setCouponMessage({ text: data.message });
+      } else {
+        setCouponMessage({ text: data.message || "অবৈধ কুপন কোড", error: true });
+        setDiscountAmount(0);
+        setAppliedCoupon(null);
+      }
+    } catch {
+      setCouponMessage({ text: "কুপন যাচাইকরণে ত্রুটি", error: true });
+    } finally {
+      setValidatingCoupon(false);
+    }
+  };
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) return;

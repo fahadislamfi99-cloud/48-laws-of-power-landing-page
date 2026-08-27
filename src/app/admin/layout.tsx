@@ -91,6 +91,12 @@ export default function AdminLayout({
         subtitle: "Create promo codes and track redemptions",
       };
     }
+    if (pathname.startsWith("/admin/promotions")) {
+      return {
+        title: "Promo Popup & Banner",
+        subtitle: "Manage conversion popup, discount amount, and promotional artwork",
+      };
+    }
     if (pathname.startsWith("/admin/faq")) {
       return {
         title: "FAQ Management",

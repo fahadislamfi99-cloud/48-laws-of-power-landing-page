@@ -15,37 +15,50 @@ import EditorialFooter from "@/components/EditorialFooter";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import AllLawsModal from "@/components/AllLawsModal";
 import OrderModal from "@/components/OrderModal";
+import PromotionalPopup from "@/components/PromotionalPopup";
 
 export default function Home() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [isAllLawsModalOpen, setIsAllLawsModalOpen] = useState(false);
+  const [initialCouponCode, setInitialCouponCode] = useState<string | undefined>(undefined);
+
+  const handleOpenOrderModal = (coupon?: string) => {
+    setInitialCouponCode(coupon);
+    setIsOrderModalOpen(true);
+  };
 
   return (
     <main className="min-h-screen bg-[#08080A] text-[#F0EBE0] selection:bg-[#C8A45C] selection:text-[#08080A]">
-      <Navbar onOpenOrderModal={() => setIsOrderModalOpen(true)} />
-      <EditorialHero onOpenOrderModal={() => setIsOrderModalOpen(true)} />
+      <Navbar onOpenOrderModal={() => handleOpenOrderModal()} />
+      <EditorialHero onOpenOrderModal={() => handleOpenOrderModal()} />
       <HumanRecognition />
       <DeepDiveLaw />
-      <CuriosityBridge onOpenOrderModal={() => setIsOrderModalOpen(true)} />
-      <PdfSamplePreview onOpenOrderModal={() => setIsOrderModalOpen(true)} />
+      <CuriosityBridge onOpenOrderModal={() => handleOpenOrderModal()} />
+      <PdfSamplePreview onOpenOrderModal={() => handleOpenOrderModal()} />
       <LawsAlmanac
         onOpenAllLawsModal={() => setIsAllLawsModalOpen(true)}
-        onOpenOrderModal={() => setIsOrderModalOpen(true)}
+        onOpenOrderModal={() => handleOpenOrderModal()}
       />
       <AuthorProfile />
       <DigitalCheckout />
       <ProductFAQ />
       <EditorialFooter />
-      <MobileStickyBar onOpenOrderModal={() => setIsOrderModalOpen(true)} />
+      <MobileStickyBar onOpenOrderModal={() => handleOpenOrderModal()} />
 
       <AllLawsModal
         isOpen={isAllLawsModalOpen}
         onClose={() => setIsAllLawsModalOpen(false)}
-        onOpenOrderModal={() => setIsOrderModalOpen(true)}
+        onOpenOrderModal={() => handleOpenOrderModal()}
       />
+      
       <OrderModal
         isOpen={isOrderModalOpen}
         onClose={() => setIsOrderModalOpen(false)}
+        initialCouponCode={initialCouponCode}
+      />
+
+      <PromotionalPopup
+        onClaimOffer={(couponCode) => handleOpenOrderModal(couponCode)}
       />
     </main>
   );

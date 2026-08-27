@@ -42,6 +42,7 @@ export default function AdminSidebar({
     { name: "Digital PDF & Book", href: "/admin/product", icon: BookOpen },
     { name: "bKash Gateway Logs", href: "/admin/payments", icon: Receipt },
     { name: "Coupons & Discounts", href: "/admin/coupons", icon: Tag },
+    { name: "Promo Popup & Banner", href: "/admin/promotions", icon: Sparkles },
     { name: "FAQ Management", href: "/admin/faq", icon: HelpCircle },
     { name: "Settings & Security", href: "/admin/settings", icon: Settings },
   ];
