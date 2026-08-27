@@ -327,6 +327,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
           {/* Reader Body (Fixed-Height Viewport with Internal Scroll) */}
           <div
             ref={readerScrollRef}
+            data-lenis-prevent
             className="relative bg-[#070709] h-[380px] sm:h-[440px] lg:h-[480px] overflow-y-auto overflow-x-hidden p-3 sm:p-6 lg:p-8 select-text custom-reader-scroll"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -542,6 +543,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
           {/* Lightbox Scrollable Reader Body (Independent Full Scrolling, Zero Top-Cropping) */}
           <div
             ref={modalScrollRef}
+            data-lenis-prevent
             className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-8 lg:p-10 custom-reader-scroll relative"
           >
             {/* Floating Left/Right Navigation Buttons */}

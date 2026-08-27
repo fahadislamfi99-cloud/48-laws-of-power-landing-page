@@ -216,6 +216,7 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
       {/* Modal Shell */}
       <div
         ref={panelRef}
+        data-lenis-prevent
         className="relative w-full max-w-[460px] md:max-w-[620px] max-h-[90dvh] overflow-y-auto bg-[#0D0D10] rounded-3xl border border-[#2A2A2E] shadow-[0_25px_80px_rgba(0,0,0,0.9)] animate-scaleIn p-5 sm:p-7 md:p-8 text-left space-y-5 my-auto"
         style={{ scrollbarWidth: "none" }}
       >

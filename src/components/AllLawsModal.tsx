@@ -40,8 +40,8 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
-      <div className="relative w-full max-w-4xl bg-[#111114] rounded-3xl shadow-2xl border border-[#2A2A2E] flex flex-col max-h-[90dvh] overflow-hidden animate-scaleIn">
+    <div data-lenis-prevent className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
+      <div data-lenis-prevent className="relative w-full max-w-4xl bg-[#111114] rounded-3xl shadow-2xl border border-[#2A2A2E] flex flex-col max-h-[90dvh] overflow-hidden animate-scaleIn">
         
         {/* Header */}
         <div className="p-4 sm:p-6 bg-[#0A0A0C] border-b border-[#2A2A2E] flex items-center justify-between gap-3">

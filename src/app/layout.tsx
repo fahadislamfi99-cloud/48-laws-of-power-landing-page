@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteConfig } from "@/data/siteConfig";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 export const viewport: Viewport = {
   themeColor: "#08080A",
@@ -81,7 +82,9 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="min-h-screen flex flex-col antialiased selection:bg-[#C8A45C] selection:text-[#08080A] bg-[#08080A]" suppressHydrationWarning>
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );
