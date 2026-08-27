@@ -35,7 +35,7 @@ export const siteConfig: SiteConfig = {
   currency: "BDT",
   currencySymbol: "৳",
   fileFormat: "হাই-রেজোলিউশন সার্চেবল ডিজিটাল PDF",
-  fileSize: "৩৬ মেগাবাইট (ক্রিস্টাল ক্লিয়ার টাইপসেটিং)",
+  fileSize: "৬ মেগাবাইট (ক্রিস্টাল ক্লিয়ার টাইপসেটিং)",
   pages: 509,
   language: "সম্পূর্ণ ও নির্ভুল বাংলা অনুবাদ",
   deviceSupport: "স্মার্টফোন, ট্যাবলেট, আইপ্যাড, ল্যাপটপ ও কম্পিউটার",

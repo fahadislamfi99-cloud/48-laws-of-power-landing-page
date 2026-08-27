@@ -58,7 +58,7 @@ export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Pr
           success: true,
           filePath: cachedFilePath,
           fileBuffer: existingBuffer,
-          pageCount: 452, // Standard page count
+          pageCount: 509, // Standard page count
           fileSize: existingBuffer.length,
           fromCache: true,
         };

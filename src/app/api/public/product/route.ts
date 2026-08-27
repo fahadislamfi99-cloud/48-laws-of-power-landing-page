@@ -22,8 +22,8 @@ export async function GET() {
         price: 999,
         originalPrice: 1500,
         discountPercent: 34,
-        pages: 452,
-        fileSize: "৩৬ মেগাবাইট",
+        pages: 509,
+        fileSize: "৬ মেগাবাইট",
       },
       settings: {
         supportWhatsapp: settings?.supportWhatsapp || "8801700000000",

@@ -23,9 +23,9 @@ export default function AdminProductPage() {
     originalPrice: 1500,
     discountPercent: 34,
     fileName: "the-48-laws-of-power-bangla.pdf",
-    fileSize: "36 MB",
+    fileSize: "6 MB",
     fileUrl: "/downloads/the-48-laws-of-power-bangla.pdf",
-    pages: 452,
+    pages: 509,
     isActive: true,
   });
 
@@ -201,7 +201,7 @@ export default function AdminProductPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block font-bold text-slate-700">File Size (e.g. 36 MB)</label>
+                  <label className="block font-bold text-slate-700">File Size (e.g. 6 MB)</label>
                   <input
                     type="text"
                     value={product.fileSize}

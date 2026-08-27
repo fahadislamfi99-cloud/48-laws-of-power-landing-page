@@ -112,7 +112,7 @@ export default function DigitalProductShowcase({
             বইটির ভেতর এক নজর দেখে নিন
           </h2>
           <p className="text-[#C4BCB0] text-base sm:text-lg leading-[1.8]">
-            ৪৫২ পৃষ্ঠার সম্পূর্ণ বাংলা অনুবাদ। প্রতিটি পৃষ্ঠা যেকোনো ডিভাইসে পড়ার জন্য ক্রিস্টাল ক্লিয়ার টাইপসেটিংয়ে সাজানো।
+            ৫০৯ পৃষ্ঠার সম্পূর্ণ বাংলা অনুবাদ। প্রতিটি পৃষ্ঠা যেকোনো ডিভাইসে পড়ার জন্য ক্রিস্টাল ক্লিয়ার টাইপসেটিংয়ে সাজানো।
           </p>
         </div>
 
@@ -148,7 +148,7 @@ export default function DigitalProductShowcase({
                 className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-103"
               />
               <div className="p-4 bg-[#08080A] text-[#C4BCB0] text-xs flex items-center justify-between border-t border-[#26262A]">
-                <span>সম্পূর্ণ ৪৫২ পৃষ্ঠা</span>
+                <span>সম্পূর্ণ ৫০৯ পৃষ্ঠা</span>
                 <span className="text-[#C8A45C] font-bold">সার্চেবল PDF সংস্করণ</span>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function DigitalProductShowcase({
                 <div className="flex items-center gap-2 text-[#9E968B]">
                   <span className="font-bold text-[#C8A45C]">{samplePages[activeTab].lawNum}</span>
                   <span className="text-[#26262A]">•</span>
-                  <span>{samplePages[activeTab].page} / ৪৫২</span>
+                  <span>{samplePages[activeTab].page} / ৫০৯</span>
                 </div>
 
                 <div className="flex items-center gap-1.5 bg-[#111114] p-1 rounded-full border border-[#26262A]">

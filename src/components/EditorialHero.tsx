@@ -104,7 +104,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
           <div className="hidden sm:flex items-center gap-4 lg:gap-6 text-[#A8A095] text-xs">
             <span>রবার্ট গ্রিন</span>
             <span className="text-[#2A2A2E]">•</span>
-            <span>৪৫২ পৃষ্ঠা</span>
+            <span>৫০৯ পৃষ্ঠা</span>
             <span className="text-[#2A2A2E]">•</span>
             <span>সার্চেবল টেক্সট</span>
           </div>
@@ -217,7 +217,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C] animate-pulse" />
                   <span>ডিজিটাল PDF</span>
                 </span>
-                <span className="text-[#C8A45C] font-bold">৪৫২ পৃষ্ঠা • ৩৬ MB</span>
+                <span className="text-[#C8A45C] font-bold">৫০৯ পৃষ্ঠা • ৬ MB</span>
               </div>
 
               {/* Floating stat badges (Large desktop only) */}

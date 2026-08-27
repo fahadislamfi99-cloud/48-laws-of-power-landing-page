@@ -145,7 +145,7 @@ function PaymentSuccessContent() {
             </h1>
             
             <p className="text-xs sm:text-sm text-[#B8B0A4] max-w-md mx-auto leading-relaxed">
-              &ldquo;The 48 Laws of Power (বাংলা অনুবাদ)&rdquo; এর সম্পূর্ণ ৪৫২ পৃষ্ঠার ডিজিটাল সংস্করণ।
+              &ldquo;The 48 Laws of Power (বাংলা অনুবাদ)&rdquo; এর সম্পূর্ণ ৫০৯ পৃষ্ঠার ডিজিটাল সংস্করণ।
             </p>
           </div>
 

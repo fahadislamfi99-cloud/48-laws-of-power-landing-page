@@ -25,7 +25,7 @@ export default function EditorialFooter() {
             </div>
           </div>
           <div className="text-[#8A8278] text-xs text-center md:text-right">
-            <span>৪৫২ পৃষ্ঠা • ক্রিস্টাল ক্লিয়ার টাইপসেটিং • লাইফটাইম অ্যাক্সেস</span>
+            <span>৫০৯ পৃষ্ঠা • ক্রিস্টাল ক্লিয়ার টাইপসেটিং • লাইফটাইম অ্যাক্সেস</span>
           </div>
         </div>
 

@@ -133,7 +133,7 @@ export default function LawsAlmanac({
                       </div>
                       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-1">
                         <span className="text-xs text-[#8A8278]">
-                          সম্পূর্ণ ৪৫২ পৃষ্ঠার ডিজিটাল বইতে রয়েছে প্রতিটি সূত্রের বিস্তারিত কেস স্টাডি।
+                          সম্পূর্ণ ৫০৯ পৃষ্ঠার ডিজিটাল বইতে রয়েছে প্রতিটি সূত্রের বিস্তারিত কেস স্টাডি।
                         </span>
                         <button
                           onClick={onOpenOrderModal}

@@ -485,7 +485,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
               </span>
             </div>
             <h4 className="text-lg sm:text-xl font-bengali-serif font-bold text-[#F0EBE0]">
-              অনুবাদ ও বিষয়বস্তু পছন্দ হয়েছে? সম্পূর্ণ ৪৫২ পৃষ্ঠার বইটি এখনই সংগ্রহ করুন
+              অনুবাদ ও বিষয়বস্তু পছন্দ হয়েছে? সম্পূর্ণ ৫০৯ পৃষ্ঠার বইটি এখনই সংগ্রহ করুন
             </h4>
             <p className="text-xs sm:text-sm text-[#D1C9BC] max-w-xl">
               বইটিতে রয়েছে পুরো ৪৮টি নীতি, মানব মনস্তত্ত্বের খুঁটিনাটি এবং সার্চেবল ক্লিকযোগ্য সূচিপত্র। কোনো ফিজিক্যাল কপি বা কুরিয়ার ঝামেলা নেই।
