@@ -530,11 +530,11 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
               <button
                 type="button"
                 onClick={() => setIsFullscreen(false)}
-                className="p-2 sm:p-2.5 rounded-full bg-[#16161B] hover:bg-[#202026] text-[#D1C9BC] hover:text-[#F0EBE0] border border-[#26262A] hover:border-[#C8A45C]/50 transition-colors cursor-pointer"
+                className="p-2 sm:p-2.5 rounded-full bg-[#16161B] hover:bg-[#202026] text-[#D1C9BC] hover:text-[#F0EBE0] border border-[#26262A] hover:border-[#C8A45C]/50 transition-all duration-300 cursor-pointer group"
                 aria-label="Close fullscreen"
                 title="বন্ধ করুন (ESC)"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
               </button>
             </div>
           </div>

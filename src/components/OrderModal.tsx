@@ -56,10 +56,10 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full bg-[#1A1A1E]/90 hover:bg-[#2A2A2E] text-[#D1C9BC] hover:text-[#F0EBE0] transition-all duration-200 hover:rotate-90 z-20 cursor-pointer backdrop-blur-sm"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full bg-[#1A1A1E]/90 hover:bg-[#2A2A2E] text-[#D1C9BC] hover:text-[#F0EBE0] transition-all duration-300 z-20 cursor-pointer backdrop-blur-sm group"
           aria-label="Close checkout modal"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4 transition-transform duration-300 ease-out group-hover:rotate-90" />
         </button>
 
         {/* Content */}

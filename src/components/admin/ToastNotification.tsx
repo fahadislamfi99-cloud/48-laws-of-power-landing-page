@@ -34,9 +34,9 @@ export default function ToastNotification({ toast, onClose }: ToastNotificationP
         <button
           type="button"
           onClick={onClose}
-          className="ml-2 text-slate-400 hover:text-white p-0.5 rounded transition-colors"
+          className="ml-2 text-slate-400 hover:text-white p-0.5 rounded transition-colors cursor-pointer group"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="w-3.5 h-3.5 transition-transform duration-300 ease-out group-hover:rotate-90" />
         </button>
       </div>
     </div>

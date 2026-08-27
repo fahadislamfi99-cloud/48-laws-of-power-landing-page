@@ -60,10 +60,10 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full text-[#A8A095] hover:text-[#F0EBE0] hover:bg-[#1A1A1E] transition-all duration-200 hover:rotate-90 cursor-pointer shrink-0"
+            className="p-2 rounded-full text-[#A8A095] hover:text-[#F0EBE0] hover:bg-[#1A1A1E] transition-all duration-300 cursor-pointer shrink-0 group"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5 sm:w-6 sm:h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 ease-out group-hover:rotate-90" />
           </button>
         </div>
 

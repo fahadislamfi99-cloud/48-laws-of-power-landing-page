@@ -487,9 +487,9 @@ export default function AdminOrdersPage() {
               <button
                 type="button"
                 onClick={() => setSelectedOrder(null)}
-                className="p-1.5 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 cursor-pointer"
+                className="p-1.5 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer group"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
               </button>
             </div>
 
@@ -645,9 +645,9 @@ export default function AdminOrdersPage() {
               <button
                 type="button"
                 onClick={() => setCreateModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-slate-600"
+                className="p-1 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100 transition-colors cursor-pointer group"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
               </button>
             </div>
 

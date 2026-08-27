@@ -110,10 +110,14 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-[#D1C9BC] hover:text-[#C8A45C] hover:bg-[#1A1A1E] transition-colors cursor-pointer"
+              className="lg:hidden p-2 rounded-xl text-[#D1C9BC] hover:text-[#C8A45C] hover:bg-[#1A1A1E] transition-colors cursor-pointer group"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
 

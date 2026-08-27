@@ -83,10 +83,10 @@ export default function AdminSidebar({
             <button
               type="button"
               onClick={onClose}
-              className="lg:hidden text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+              className="lg:hidden text-slate-400 hover:text-slate-600 p-1 cursor-pointer group"
               aria-label="Close sidebar"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 transition-transform duration-300 ease-out group-hover:rotate-90" />
             </button>
           </div>
 
