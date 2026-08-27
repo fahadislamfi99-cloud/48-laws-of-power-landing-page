@@ -243,7 +243,16 @@ void main() {
         }
       };
 
+      // Handle dynamic mobile resize & orientation change (address bar collapsing/expanding)
       window.addEventListener("resize", updateSize);
+      window.addEventListener("orientationchange", updateSize);
+
+      let resizeObserver: ResizeObserver | null = null;
+      if (typeof ResizeObserver !== "undefined" && containerRef.current) {
+        resizeObserver = new ResizeObserver(() => updateSize());
+        resizeObserver.observe(containerRef.current);
+      }
+
       updateSize();
       animationIdRef.current = requestAnimationFrame(loop);
 
@@ -253,6 +262,10 @@ void main() {
           animationIdRef.current = null;
         }
         window.removeEventListener("resize", updateSize);
+        window.removeEventListener("orientationchange", updateSize);
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
         if (renderer) {
           try {
             const loseCtx = renderer.gl.getExtension("WEBGL_lose_context");
