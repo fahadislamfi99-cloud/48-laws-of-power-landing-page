@@ -19,7 +19,11 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [validatingCoupon, setValidatingCoupon] = useState(false);
   const [couponMessage, setCouponMessage] = useState<{ text: string; error?: boolean } | null>(null);
-  const [activeOffer, setActiveOffer] = useState<{ couponCode: string; discountAmount: number; offerTag?: string } | null>(null);
+  const [activeOffer, setActiveOffer] = useState<{ couponCode: string; discountAmount: number; offerTag?: string } | null>({
+    couponCode: "POWER50",
+    discountAmount: 50,
+    offerTag: "৳৫০ OFF",
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -37,15 +41,19 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
       try {
         const res = await fetch("/api/public/promo-banner");
         const data = await res.json();
-        if (data.success && data.banner && data.banner.isEnabled && data.banner.couponCode) {
-          setActiveOffer({
-            couponCode: data.banner.couponCode,
-            discountAmount: data.banner.discountAmount,
-            offerTag: data.banner.offerTag,
-          });
+        if (data.success && data.banner) {
+          if (data.banner.isEnabled && data.banner.couponCode) {
+            setActiveOffer({
+              couponCode: data.banner.couponCode,
+              discountAmount: data.banner.discountAmount || 50,
+              offerTag: data.banner.offerTag || "৳৫০ OFF",
+            });
+          } else {
+            setActiveOffer(null);
+          }
         }
       } catch {
-        // ignore
+        // keep fallback default
       }
     }
     fetchOffer();
@@ -226,6 +234,25 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
 
       {/* Coupon Code Input */}
       <div className="space-y-1.5">
+        <div className="flex items-center justify-between text-xs">
+          <label className="text-[#F0EBE0] font-semibold flex items-center gap-1.5">
+            <span>কুপন কোড (যদি থাকে)</span>
+          </label>
+          {activeOffer && !appliedCoupon ? (
+            <button
+              type="button"
+              onClick={() => {
+                setCouponCode(activeOffer.couponCode);
+                applySpecificCoupon(activeOffer.couponCode);
+              }}
+              className="inline-flex items-center gap-1 text-[11px] text-[#C8A45C] hover:text-[#E5C378] font-bold transition-colors cursor-pointer"
+            >
+              <Sparkles className="w-3 h-3 text-[#C8A45C]" />
+              <span>অফার: <strong>{activeOffer.couponCode}</strong> ({activeOffer.offerTag || `৳${activeOffer.discountAmount} ছাড়`}) প্রয়োগ</span>
+            </button>
+          ) : null}
+        </div>
+
         <div className="flex gap-2">
           <div className="relative flex-1 group flex items-center">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#A8A095]">
@@ -233,10 +260,10 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
             </div>
             <input
               type="text"
-              placeholder="কুপন কোড (যদি থাকে)"
+              placeholder={activeOffer && !appliedCoupon ? `যেমন: ${activeOffer.couponCode}` : "কুপন কোড"}
               value={couponCode}
               onChange={(e) => setCouponCode(e.target.value)}
-              className="w-full pl-10 pr-3 py-2.5 bg-[#09090C] border border-[#26262A] rounded-xl text-xs font-mono uppercase text-[#F0EBE0] outline-none focus:border-[#C8A45C]"
+              className="w-full pl-10 pr-3 py-2.5 bg-[#09090C] border border-[#26262A] rounded-xl text-xs font-mono uppercase text-[#F0EBE0] outline-none focus:border-[#C8A45C] placeholder:text-[#666]"
             />
           </div>
           <button
@@ -248,31 +275,11 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
             {validatingCoupon ? "..." : "প্রয়োগ"}
           </button>
         </div>
+
         {couponMessage && (
           <p className={`text-xs ${couponMessage.error ? "text-rose-400" : "text-emerald-400"} font-semibold pl-1`}>
             {couponMessage.text}
           </p>
-        )}
-
-        {activeOffer && !appliedCoupon && (
-          <div className="pt-1">
-            <button
-              type="button"
-              onClick={() => {
-                setCouponCode(activeOffer.couponCode);
-                applySpecificCoupon(activeOffer.couponCode);
-              }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#C8A45C]/10 hover:bg-[#C8A45C]/20 border border-[#C8A45C]/30 text-xs text-[#F0EBE0] cursor-pointer transition-all hover:scale-102 group text-left"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#C8A45C] shrink-0" />
-              <span>
-                উপলব্ধ অফার: <strong className="text-[#C8A45C] font-mono">{activeOffer.couponCode}</strong> ({activeOffer.offerTag || `৳${activeOffer.discountAmount} ছাড়`})
-              </span>
-              <span className="text-[#C8A45C] underline font-bold ml-1 text-[11px] group-hover:text-[#D4AF6E]">
-                প্রয়োগ করুন
-              </span>
-            </button>
-          </div>
         )}
       </div>
 
