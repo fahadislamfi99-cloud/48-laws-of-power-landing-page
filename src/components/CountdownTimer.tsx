@@ -89,10 +89,10 @@ export default function CountdownTimer({
   // ─── Compact Pill Variant ────────────────────────────────────────────────
   if (variant === "compact-pill") {
     return (
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#141418] border border-[#C8A45C]/30 text-xs text-[#F0EBE0] shadow-sm">
-        <Clock className="w-3.5 h-3.5 text-[#C8A45C] animate-pulse" />
-        <span className="text-[#A8A095] text-[11px] font-medium">{label}:</span>
-        <span className="font-mono font-bold text-[#C8A45C]">
+      <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-[#141418] border border-[#C8A45C]/30 text-xs text-[#F0EBE0] shadow-sm max-w-full">
+        <Clock className="w-3.5 h-3.5 text-[#C8A45C] animate-pulse shrink-0" />
+        <span className="text-[#A8A095] text-[11px] font-medium shrink-0">{label}:</span>
+        <span className="font-mono font-bold text-[#C8A45C] tracking-wide text-xs">
           {toBengaliDigit(timeLeft.days)}দিন {toBengaliDigit(timeLeft.hours)}ঘণ্টা {toBengaliDigit(timeLeft.minutes)}মি. {toBengaliDigit(timeLeft.seconds)}সে.
         </span>
       </div>

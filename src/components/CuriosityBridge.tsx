@@ -20,7 +20,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
   ];
 
   return (
-    <section ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A]">
+    <section ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl space-y-3 mb-10 reveal">
           <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
@@ -40,7 +40,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`reveal reveal-left reveal-stagger-${Math.min(idx + 1, 5)} py-5 sm:py-6 grid grid-cols-1 sm:grid-cols-12 gap-4 items-baseline px-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-[#111114] hover:translate-x-2 group cursor-default`}
+              className={`reveal reveal-left reveal-stagger-${Math.min(idx + 1, 5)} py-5 sm:py-6 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline px-3 sm:px-4 rounded-xl transition-all duration-300 hover:bg-[#111114] md:hover:translate-x-1 group cursor-default`}
             >
               <div className="sm:col-span-2 font-mono text-xs font-bold text-[#C8A45C] group-hover:text-[#D4AF6E] transition-colors">
                 {pillar.num}

@@ -41,7 +41,7 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
-      <div className="relative w-full max-w-4xl bg-[#111114] rounded-3xl shadow-2xl border border-[#2A2A2E] flex flex-col max-h-[92vh] sm:max-h-[90vh] overflow-hidden animate-scaleIn">
+      <div className="relative w-full max-w-4xl bg-[#111114] rounded-3xl shadow-2xl border border-[#2A2A2E] flex flex-col max-h-[90dvh] overflow-hidden animate-scaleIn">
         
         {/* Header */}
         <div className="p-4 sm:p-6 bg-[#0A0A0C] border-b border-[#2A2A2E] flex items-center justify-between gap-3">
@@ -104,7 +104,7 @@ export default function AllLawsModal({ isOpen, onClose, onOpenOrderModal }: AllL
             </div>
           ) : (
             filteredLaws.map((law) => (
-              <div key={law.id} className="pt-3 sm:pt-4 first:pt-0 space-y-2 hover:bg-[#0A0A0C] p-3 -mx-2 sm:-mx-3 rounded-xl transition-colors">
+              <div key={law.id} className="pt-3 sm:pt-4 first:pt-0 space-y-2 hover:bg-[#0A0A0C] p-3 rounded-xl transition-colors">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/20 text-[#C8A45C] font-mono text-xs font-bold">
                     {law.numberStr}

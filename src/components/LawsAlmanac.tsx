@@ -59,7 +59,7 @@ export default function LawsAlmanac({
               <button
                 key={cat.id}
                 onClick={() => setSelectedCat(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-200 cursor-pointer ${
                   selectedCat === cat.id
                     ? "bg-[#C8A45C] text-[#08080A] shadow-xs"
                     : "text-[#B8B0A4] hover:bg-[#1A1A1E] hover:text-[#F0EBE0]"

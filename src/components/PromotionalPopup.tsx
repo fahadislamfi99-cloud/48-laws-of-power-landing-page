@@ -168,7 +168,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
       {/* Main Luxury Popup Shell */}
       <div
         ref={panelRef}
-        className="relative w-full max-w-[440px] md:max-w-[760px] lg:max-w-[820px] max-h-[92vh] overflow-y-auto bg-[#0D0D10] rounded-3xl border border-[#2A2A2E] shadow-[0_20px_70px_rgba(0,0,0,0.85)] animate-scaleIn my-auto"
+        className="relative w-full max-w-[440px] md:max-w-[760px] lg:max-w-[820px] max-h-[90dvh] overflow-y-auto bg-[#0D0D10] rounded-3xl border border-[#2A2A2E] shadow-[0_20px_70px_rgba(0,0,0,0.85)] animate-scaleIn my-auto"
         style={{ scrollbarWidth: "none" }}
       >
         {/* Top Gold Shimmer Border Accent */}

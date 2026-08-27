@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { Download, Menu, X, ArrowRight } from "lucide-react";
-import TopAnnouncementBar from "./TopAnnouncementBar";
 
 interface NavbarProps {
   onOpenOrderModal: (couponCode?: string) => void;
@@ -50,27 +49,22 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50">
-        {/* Top Offer Countdown Bar */}
-        <TopAnnouncementBar onOpenOrderModal={onOpenOrderModal} />
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 py-3 sm:py-3.5 border-b transition-[background-color,border-color,backdrop-filter] duration-200 ease-out ${
+          isScrolled || mobileMenuOpen
+            ? "bg-[#08080A]/95 backdrop-blur-xl border-[#26262A] shadow-md"
+            : "bg-[#08080A]/80 backdrop-blur-md border-transparent"
+        }`}
+      >
+        {/* Top Gold Scroll Progress Bar */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent">
+          <div
+            className="h-full bg-gradient-to-r from-[#8B6914] via-[#C8A45C] to-[#8B6914] transition-all duration-150 ease-out"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
 
-        {/* Main Navbar Bar */}
-        <div
-          className={`py-3 sm:py-3.5 border-b transition-[background-color,border-color,backdrop-filter] duration-200 ease-out relative ${
-            isScrolled || mobileMenuOpen
-              ? "bg-[#08080A]/95 backdrop-blur-xl border-[#26262A] shadow-md"
-              : "bg-[#08080A]/80 backdrop-blur-md border-transparent"
-          }`}
-        >
-          {/* Top Gold Scroll Progress Bar */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent">
-            <div
-              className="h-full bg-gradient-to-r from-[#8B6914] via-[#C8A45C] to-[#8B6914] transition-all duration-150 ease-out"
-              style={{ width: `${scrollProgress}%` }}
-            />
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Brand Logo */}
           <a href="#" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
@@ -161,7 +155,6 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             </div>
           </div>
         )}
-        </div>
       </header>
 
       {/* Mobile Menu Backdrop */}

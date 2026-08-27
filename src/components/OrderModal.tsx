@@ -48,7 +48,7 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
       {/* Panel */}
       <div
         ref={panelRef}
-        className="relative w-full sm:max-w-[500px] max-h-[92vh] sm:max-h-[90vh] overflow-y-auto bg-[#0D0D10] sm:rounded-3xl rounded-t-3xl border border-[#2A2A2E] shadow-[0_0_80px_rgba(0,0,0,0.7)] my-0 sm:my-6 animate-fadeInUp sm:animate-scaleIn"
+        className="relative w-full sm:max-w-[500px] max-h-[90dvh] overflow-y-auto bg-[#0D0D10] sm:rounded-3xl rounded-t-3xl border border-[#2A2A2E] shadow-[0_0_80px_rgba(0,0,0,0.7)] my-0 sm:my-6 animate-fadeInUp sm:animate-scaleIn"
         style={{ scrollbarWidth: "thin", scrollbarColor: "#2A2A2E transparent" }}
       >
         {/* Top gold line */}
