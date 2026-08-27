@@ -61,10 +61,10 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
             সম্পূর্ণ ৪৮টি নীতি ও বিস্তারিত ঐতিহাসিক বিশ্লেষণ ডিজিটাল PDF-এ সংরক্ষিত।
           </span>
           <a
-            href="#digital-preview"
+            href="#sample-preview"
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C8A45C] hover:text-[#D4AF6E] transition-colors group cursor-pointer"
           >
-            <span>ডিজিটাল প্রিভিউ দেখুন</span>
+            <span>স্যাম্পল পৃষ্ঠা পড়ে দেখুন</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>

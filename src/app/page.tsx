@@ -6,7 +6,7 @@ import EditorialHero from "@/components/EditorialHero";
 import HumanRecognition from "@/components/HumanRecognition";
 import DeepDiveLaw from "@/components/DeepDiveLaw";
 import CuriosityBridge from "@/components/CuriosityBridge";
-import DigitalProductShowcase from "@/components/DigitalProductShowcase";
+import PdfSamplePreview from "@/components/PdfSamplePreview";
 import LawsAlmanac from "@/components/LawsAlmanac";
 import AuthorProfile from "@/components/AuthorProfile";
 import DigitalCheckout from "@/components/DigitalCheckout";
@@ -27,7 +27,7 @@ export default function Home() {
       <HumanRecognition />
       <DeepDiveLaw />
       <CuriosityBridge onOpenOrderModal={() => setIsOrderModalOpen(true)} />
-      <DigitalProductShowcase onOpenOrderModal={() => setIsOrderModalOpen(true)} />
+      <PdfSamplePreview onOpenOrderModal={() => setIsOrderModalOpen(true)} />
       <LawsAlmanac
         onOpenAllLawsModal={() => setIsAllLawsModalOpen(true)}
         onOpenOrderModal={() => setIsOrderModalOpen(true)}
