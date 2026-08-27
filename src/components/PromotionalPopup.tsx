@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { X, Copy, Check, Sparkles, ArrowRight, ShieldCheck, Tag } from "lucide-react";
+import { X, Copy, Check, Gift, ArrowRight, ShieldCheck, Tag } from "lucide-react";
 import CountdownTimer from "./CountdownTimer";
 
 export interface PromoBannerData {
@@ -206,24 +206,24 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
         <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
           
           {/* ─── LEFT / TOP: High-End Cinematic Artwork ──────────────── */}
-          <div className="md:col-span-5 relative overflow-hidden bg-black min-h-[160px] sm:min-h-[200px] md:min-h-full">
+          <div className="md:col-span-5 relative overflow-hidden bg-[#070709] min-h-[200px] sm:min-h-[240px] md:min-h-[460px] flex items-center justify-center">
             <img
               src={displayImage}
               alt="The 48 Laws of Power strategy artwork"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
-              className={`w-full h-full object-cover object-center transition-all duration-700 ${
+              className={`w-full h-full object-cover object-[28%_38%] sm:object-[28%_38%] md:object-[28%_42%] transition-all duration-700 ${
                 imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
               }`}
             />
             {/* Dark Vignette Overlay for Luxury Contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0D0D10] via-[#0D0D10]/40 to-transparent" />
-            <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0D0D10]/90 via-transparent to-transparent md:from-transparent md:via-transparent md:to-[#0D0D10]/80 pointer-events-none" />
+            <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/50 pointer-events-none" />
 
             {/* Float Ribbon Tag */}
             <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A45C] text-[#08080A] font-display font-extrabold text-[11px] sm:text-xs shadow-lg uppercase tracking-wider">
-                <Sparkles className="w-3 h-3 text-[#08080A]" />
+                <Gift className="w-3 h-3 text-[#08080A]" />
                 <span>{promoData.offerTag || "৳৫০ OFF"}</span>
               </div>
             </div>
