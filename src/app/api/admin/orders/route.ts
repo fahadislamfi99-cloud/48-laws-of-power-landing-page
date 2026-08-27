@@ -102,6 +102,50 @@ export async function POST(req: NextRequest) {
     const downloadToken = crypto.randomBytes(24).toString("hex");
 
     const ordersCol = await getCollection<Order>("orders");
+    
+    let pdfStatus: "pending" | "generated" | "failed" = "pending";
+    let emailStatus: "pending" | "sent" | "failed" = "pending";
+    let pdfBuffer: Buffer | undefined;
+
+    const phoneForWatermark = customerPhone ? customerPhone.trim() : "01700000000";
+
+    if (paymentStatus === "paid") {
+      try {
+        const { getOrGenerateWatermarkedPdf } = await import("@/lib/watermarkPdf");
+        const wm = await getOrGenerateWatermarkedPdf({
+          orderNumber,
+          customerPhone: phoneForWatermark,
+          customerEmail: targetEmail.trim().toLowerCase(),
+        });
+        pdfStatus = "generated";
+        pdfBuffer = wm.fileBuffer;
+      } catch (err) {
+        console.error("[Manual Order PDF Gen Error]:", err);
+        pdfStatus = "failed";
+      }
+
+      if (pdfStatus === "generated" && pdfBuffer) {
+        try {
+          const { sendPersonalizedBookEmail } = await import("@/lib/emailDelivery");
+          const emailRes = await sendPersonalizedBookEmail({
+            orderNumber,
+            customerName: customerName || targetEmail.split("@")[0],
+            customerEmail: targetEmail.trim().toLowerCase(),
+            customerPhone: phoneForWatermark,
+            trxId: trxId || "MANUAL-PAID",
+            amount: Number(amount),
+            downloadToken,
+            watermarkedPdfBuffer: pdfBuffer,
+          });
+          if (emailRes.success) {
+            emailStatus = "sent";
+          }
+        } catch (err) {
+          console.error("[Manual Order Email Send Error]:", err);
+        }
+      }
+    }
+
     const newOrder: Order = {
       orderNumber,
       productTitle: "The 48 Laws of Power (বাংলা অনুবাদ)",
@@ -115,6 +159,10 @@ export async function POST(req: NextRequest) {
       customerPhone: customerPhone ? customerPhone.trim() : undefined,
       downloadToken,
       downloadCount: 0,
+      pdfStatus,
+      pdfGeneratedAt: pdfStatus === "generated" ? new Date() : undefined,
+      emailStatus,
+      emailSentAt: emailStatus === "sent" ? new Date() : undefined,
       notes,
       createdAt: new Date(),
       updatedAt: new Date(),

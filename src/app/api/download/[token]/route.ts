@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCollection, Order, Product } from "@/lib/mongodb";
-import path from "path";
-import fs from "fs";
+import { getCollection, Order } from "@/lib/mongodb";
+import { getOrGenerateWatermarkedPdf } from "@/lib/watermarkPdf";
 
 export async function GET(
   req: NextRequest,
@@ -10,63 +9,59 @@ export async function GET(
   try {
     const { token } = await params;
 
-    if (!token || token.length < 10) {
-      return new NextResponse("Invalid download token", { status: 400 });
+    if (!token || token.length < 8) {
+      return new NextResponse("Invalid or missing download token", { status: 400 });
     }
 
     const ordersCol = await getCollection<Order>("orders");
     const order = await ordersCol.findOne({ downloadToken: token });
 
     if (!order) {
-      return new NextResponse("Order not found or invalid token", { status: 404 });
+      return new NextResponse("Order record not found or invalid token", { status: 404 });
     }
 
+    // Security Check: Only verified paid orders can download
     if (order.paymentStatus !== "paid") {
-      return new NextResponse("Access denied: Payment is pending verification", { status: 403 });
+      return new NextResponse("Access denied: Payment verification is pending or failed.", { status: 403 });
     }
 
-    // Update download statistics
+    const customerPhone = order.customerPhone || order.payerPhone || "01700000000";
+
+    // Retrieve or dynamically generate the personalized watermarked PDF
+    const watermarkResult = await getOrGenerateWatermarkedPdf({
+      orderNumber: order.orderNumber,
+      customerPhone,
+      customerEmail: order.targetEmail,
+    });
+
+    // Update download statistics and state in DB
     await ordersCol.updateOne(
       { _id: order._id },
       {
         $inc: { downloadCount: 1 },
-        $set: { lastDownloadAt: new Date() },
+        $set: {
+          lastDownloadAt: new Date(),
+          pdfStatus: "generated",
+          pdfGeneratedAt: order.pdfGeneratedAt || new Date(),
+        },
       }
     );
 
-    // Get product file metadata
-    const productsCol = await getCollection<Product>("products");
-    const product = await productsCol.findOne({ isActive: true });
+    const safeOrderNum = order.orderNumber.replace(/[^a-zA-Z0-9_-]/g, "");
+    const safeFilename = `The-48-Laws-of-Power-Bangla-${safeOrderNum}.pdf`;
 
-    // Check if custom cloud fileUrl is configured
-    if (product?.fileUrl && product.fileUrl.startsWith("http")) {
-      return NextResponse.redirect(product.fileUrl);
-    }
-
-    // Otherwise check for local file in public/downloads
-    const localFilePath = path.join(process.cwd(), "public", "downloads", "the-48-laws-of-power-bangla.pdf");
-    
-    if (fs.existsSync(localFilePath)) {
-      const fileBuffer = fs.readFileSync(localFilePath);
-      return new NextResponse(fileBuffer, {
-        headers: {
-          "Content-Type": "application/pdf",
-          "Content-Disposition": 'attachment; filename="The-48-Laws-of-Power-Bangla-Edition.pdf"',
-          "Content-Length": String(fileBuffer.length),
-        },
-      });
-    }
-
-    // Fallback: Return a sample digital PDF book buffer if sample file not yet uploaded
-    const samplePdfHeader = `%PDF-1.4\n1 0 obj\n<< /Title (The 48 Laws of Power Bangla Edition) /Author (Robert Greene) >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF`;
-    return new NextResponse(samplePdfHeader, {
+    return new NextResponse(new Uint8Array(watermarkResult.fileBuffer), {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="The-48-Laws-of-Power-Bangla.pdf"',
+        "Content-Disposition": `attachment; filename="${safeFilename}"`,
+        "Content-Length": String(watermarkResult.fileSize),
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
       },
     });
   } catch (error: any) {
-    console.error("[Secure Download Error]:", error);
-    return new NextResponse("Server error processing download", { status: 500 });
+    console.error("[Secure Watermarked Download Error]:", error);
+    return new NextResponse(`Server error delivering personalized book: ${error.message}`, { status: 500 });
   }
 }

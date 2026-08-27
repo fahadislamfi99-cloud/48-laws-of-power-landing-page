@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { executeBKashPayment } from "@/lib/bkash";
 import { getCollection, Order, Customer, BKashTransaction } from "@/lib/mongodb";
 import { sendTelegramOrderNotification } from "@/lib/telegram";
+import { getOrGenerateWatermarkedPdf } from "@/lib/watermarkPdf";
+import { sendPersonalizedBookEmail } from "@/lib/emailDelivery";
 
 export async function GET(req: NextRequest) {
   const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "";
@@ -54,22 +56,7 @@ export async function GET(req: NextRequest) {
         createdAt: new Date(),
       });
 
-      // 5. Anti-Fraud duplicate check
-      if (trxID) {
-        const duplicateOrder = await ordersCol.findOne({
-          trxId: trxID,
-          paymentStatus: "paid",
-        });
-
-        if (duplicateOrder) {
-          console.warn("[Duplicate bKash Payment Blocked]:", { trxID, order: duplicateOrder.orderNumber });
-          return NextResponse.redirect(
-            `${origin}/?payment=failed&reason=${encodeURIComponent("Duplicate transaction ID detected.")}`
-          );
-        }
-      }
-
-      // 6. Match pending order
+      // 5. Match pending order
       const existingOrder = await ordersCol.findOne({
         $or: [
           { "metadata.paymentID": paymentID },
@@ -85,9 +72,22 @@ export async function GET(req: NextRequest) {
         );
       }
 
+      // Idempotency: If order is already paid, redirect straight to success
+      if (existingOrder.paymentStatus === "paid") {
+        return NextResponse.redirect(
+          `${origin}/payment-success?trxID=${encodeURIComponent(existingOrder.trxId || trxID)}&paymentID=${encodeURIComponent(
+            paymentID
+          )}&amount=${encodeURIComponent(existingOrder.amount)}&orderNumber=${encodeURIComponent(
+            existingOrder.orderNumber
+          )}&token=${encodeURIComponent(existingOrder.downloadToken)}&email=${encodeURIComponent(
+            existingOrder.targetEmail
+          )}&phone=${encodeURIComponent(existingOrder.customerPhone || payer)}&emailStatus=${existingOrder.emailStatus || "sent"}`
+        );
+      }
+
       const expectedAmount = Number(existingOrder.amount || 0);
 
-      // 7. Verify Amount
+      // 6. Verify Amount
       if (paidAmount < expectedAmount && paidAmount > 0) {
         console.error("[Paid Amount Mismatch]:", { paidAmount, expected: expectedAmount });
         return NextResponse.redirect(
@@ -97,7 +97,9 @@ export async function GET(req: NextRequest) {
         );
       }
 
-      // 8. Upsert Customer CRM Record
+      const finalPhone = payer || existingOrder.customerPhone || "01700000000";
+
+      // 7. Upsert Customer CRM Record
       const customersCol = await getCollection<Customer>("customers");
       const customerEmail = existingOrder.targetEmail.trim().toLowerCase();
       const existingCustomer = await customersCol.findOne({ email: customerEmail });
@@ -108,7 +110,7 @@ export async function GET(req: NextRequest) {
           {
             $inc: { totalOrders: 1, totalSpent: paidAmount || expectedAmount },
             $set: {
-              phone: payer || existingCustomer.phone,
+              phone: finalPhone || existingCustomer.phone,
               updatedAt: new Date(),
             },
           }
@@ -117,7 +119,7 @@ export async function GET(req: NextRequest) {
         await customersCol.insertOne({
           name: existingOrder.customerName || customerEmail.split("@")[0],
           email: customerEmail,
-          phone: payer,
+          phone: finalPhone,
           totalOrders: 1,
           totalSpent: paidAmount || expectedAmount,
           status: "active",
@@ -126,35 +128,87 @@ export async function GET(req: NextRequest) {
         });
       }
 
-      // 9. Update Order to Paid & Active
+      // 8. Generate Personalized Watermarked PDF with Customer's Phone Number
+      let pdfStatus: "generated" | "failed" = "failed";
+      let pdfBuffer: Buffer | undefined;
+      let pdfError: string | undefined;
+      let emailStatus: "sent" | "failed" = "failed";
+      let emailError: string | undefined;
+
+      try {
+        const wmResult = await getOrGenerateWatermarkedPdf({
+          orderNumber: existingOrder.orderNumber,
+          customerPhone: finalPhone,
+          customerEmail: existingOrder.targetEmail,
+        });
+        pdfStatus = "generated";
+        pdfBuffer = wmResult.fileBuffer;
+      } catch (err: any) {
+        console.error("[Callback PDF Generation Error]:", err);
+        pdfError = err.message || "Failed to generate personalized PDF";
+      }
+
+      // 9. Automated Email Delivery via Gmail SMTP
+      if (pdfStatus === "generated" && pdfBuffer) {
+        try {
+          const emailResult = await sendPersonalizedBookEmail({
+            orderNumber: existingOrder.orderNumber,
+            customerName: existingOrder.customerName,
+            customerEmail: existingOrder.targetEmail,
+            customerPhone: finalPhone,
+            trxId: trxID,
+            amount: paidAmount || expectedAmount,
+            downloadToken: existingOrder.downloadToken,
+            watermarkedPdfBuffer: pdfBuffer,
+          });
+
+          if (emailResult.success) {
+            emailStatus = "sent";
+          } else {
+            emailError = emailResult.error;
+          }
+        } catch (err: any) {
+          console.error("[Callback Email Delivery Error]:", err);
+          emailError = err.message || "Failed to send Gmail";
+        }
+      }
+
+      // 10. Update Order in DB with Payment & Delivery State
       await ordersCol.updateOne(
         { _id: existingOrder._id },
         {
           $set: {
             trxId: trxID,
-            payerPhone: payer,
+            payerPhone: finalPhone,
+            customerPhone: finalPhone,
             paymentStatus: "paid",
             orderStatus: "active",
             amount: paidAmount || expectedAmount,
-            notes: `Official bKash Gateway Payment Completed. TrxID: ${trxID}, PaymentID: ${paymentID}`,
+            pdfStatus,
+            pdfGeneratedAt: pdfStatus === "generated" ? new Date() : undefined,
+            pdfError: pdfError || undefined,
+            emailStatus,
+            emailSentAt: emailStatus === "sent" ? new Date() : undefined,
+            emailError: emailError || undefined,
+            notes: `bKash Gateway Payment Verified. TrxID: ${trxID}, Phone: ${finalPhone}, PDF: ${pdfStatus}, Email: ${emailStatus}`,
             updatedAt: new Date(),
           },
         }
       );
 
-      // 10. Send Telegram Alert
+      // 11. Send Telegram Alert
       sendTelegramOrderNotification({
         orderNumber: existingOrder.orderNumber,
         customerName: existingOrder.customerName,
         customerEmail: existingOrder.targetEmail,
-        customerPhone: payer,
+        customerPhone: finalPhone,
         amount: paidAmount || expectedAmount,
-        paymentMethod: "bKash (অটো পেমেন্ট গেটওয়ে)",
+        paymentMethod: "bKash (অটো গেটওয়ে)",
         trxId: trxID,
-        status: "সফল (Gateway Paid)",
+        status: `সফল (PDF: ${pdfStatus}, Email: ${emailStatus})`,
       }).catch((err) => console.error("[Telegram Error]:", err));
 
-      // 11. Redirect to payment success page
+      // 12. Redirect to payment success page with real statuses
       return NextResponse.redirect(
         `${origin}/payment-success?trxID=${encodeURIComponent(trxID)}&paymentID=${encodeURIComponent(
           paymentID
@@ -162,7 +216,7 @@ export async function GET(req: NextRequest) {
           existingOrder.orderNumber
         )}&token=${encodeURIComponent(existingOrder.downloadToken)}&email=${encodeURIComponent(
           existingOrder.targetEmail
-        )}`
+        )}&phone=${encodeURIComponent(finalPhone)}&pdfStatus=${pdfStatus}&emailStatus=${emailStatus}`
       );
     } else {
       console.error("[bKash Execute Failed]:", executeResponse);

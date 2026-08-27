@@ -90,6 +90,13 @@ export interface Order extends Document {
   downloadToken: string;
   downloadCount: number;
   lastDownloadAt?: Date;
+  pdfStatus?: "pending" | "generated" | "failed";
+  pdfGeneratedAt?: Date;
+  pdfFilePath?: string;
+  pdfError?: string;
+  emailStatus?: "pending" | "sent" | "failed";
+  emailSentAt?: Date;
+  emailError?: string;
   notes?: string;
   metadata?: any;
   createdAt: Date;
