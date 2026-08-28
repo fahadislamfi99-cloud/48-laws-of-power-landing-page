@@ -42,6 +42,17 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("reveal-visible");
+            if (entry.target instanceof HTMLElement) {
+              entry.target.setAttribute("data-revealed", "true");
+            }
+            // Also reveal the root container and all its descendants permanently
+            el.classList.add("reveal-visible");
+            el.setAttribute("data-revealed", "true");
+            const children = el.querySelectorAll(revealSelector);
+            children.forEach((child) => {
+              child.classList.add("reveal-visible");
+              if (child instanceof HTMLElement) child.setAttribute("data-revealed", "true");
+            });
 
             if (once) {
               observer.unobserve(entry.target);
@@ -54,12 +65,10 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
       { threshold, rootMargin }
     );
 
-    // If container itself has a reveal class, observe it
-    if (el.matches(revealSelector)) {
-      observer.observe(el);
-    }
+    // Observe the main container
+    observer.observe(el);
 
-    // Observe each individual child element so each card animates right as it enters viewport
+    // Also observe individual child elements
     const childReveals = el.querySelectorAll(revealSelector);
     childReveals.forEach((child) => observer.observe(child));
 

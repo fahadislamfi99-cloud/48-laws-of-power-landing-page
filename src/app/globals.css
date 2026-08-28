@@ -394,7 +394,13 @@
 .reveal-visible .reveal-card,
 .reveal-visible .reveal-left,
 .reveal-visible .reveal-right,
-.reveal-visible .reveal-scale {
+.reveal-visible .reveal-scale,
+[data-revealed="true"],
+[data-revealed="true"] .reveal,
+[data-revealed="true"] .reveal-card,
+[data-revealed="true"] .reveal-left,
+[data-revealed="true"] .reveal-right,
+[data-revealed="true"] .reveal-scale {
   opacity: 1 !important;
   transform: none !important;
   filter: none !important;
@@ -402,7 +408,8 @@
 }
 
 .reveal-line.reveal-visible,
-.reveal-visible .reveal-line {
+.reveal-visible .reveal-line,
+[data-revealed="true"] .reveal-line {
   transform: scaleX(1) !important;
 }
 

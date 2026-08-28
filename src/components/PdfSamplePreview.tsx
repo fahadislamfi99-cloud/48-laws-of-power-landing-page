@@ -245,7 +245,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         </div>
 
         {/* ─── 3. IN-PAGE COMPACT DIGITAL BOOK READER ──────────── */}
-        <div className="bg-[#111114] rounded-3xl border border-[#26262A] overflow-hidden shadow-2xl reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/35">
+        <div className="bg-[#111114] rounded-3xl border border-[#26262A] overflow-hidden shadow-2xl transition-all duration-300 hover:border-[#C8A45C]/35">
 
           {/* Reader Top Toolbar */}
           <div className="p-3.5 sm:p-4 bg-[#0A0A0D] border-b border-[#26262A] flex flex-wrap items-center justify-between gap-3 text-xs">

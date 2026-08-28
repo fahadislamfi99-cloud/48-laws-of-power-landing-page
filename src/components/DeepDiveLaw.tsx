@@ -55,7 +55,7 @@ export default function DeepDiveLaw() {
         </div>
 
         {/* Content Card */}
-        <div className="bg-[#111114] rounded-3xl border border-[#26262A] p-6 sm:p-10 lg:p-12 space-y-8 reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/30 shadow-2xl">
+        <div className="bg-[#111114] rounded-3xl border border-[#26262A] p-6 sm:p-10 lg:p-12 space-y-8 transition-all duration-300 hover:border-[#C8A45C]/30 shadow-2xl">
           {selectedLaw === 4 ? (
             <div key="law-4" className="space-y-8 animate-fadeIn">
               <div className="space-y-2 border-b border-[#26262A] pb-6">
