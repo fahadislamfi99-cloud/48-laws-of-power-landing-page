@@ -245,14 +245,14 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
                 <span className="text-[#C8A45C] font-bold">৫০৯ পৃষ্ঠা • ৬ MB</span>
               </div>
 
-              {/* Floating stat badges (Large desktop only) */}
-              <div className="absolute -left-4 top-1/4 opacity-0 animate-[floatBadgeIn_0.8s_1.2s_forwards] hidden xl:block">
-                <div className="px-3 py-2 rounded-xl bg-[#111114] border border-[#2A2A2E] text-xs font-semibold shadow-xl">
+              {/* Floating stat badges (Positioned at annotated book target coordinates) */}
+              <div className="absolute left-[3%] xs:left-[5%] sm:left-[6%] lg:left-[6%] xl:left-[8%] top-[24%] sm:top-[22%] z-20 opacity-0 animate-[floatBadgeIn_0.8s_1.2s_forwards] pointer-events-none">
+                <div className="px-2 py-1 xs:px-2.5 xs:py-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-[#111114]/95 backdrop-blur-md border border-[#2A2A2E] text-[10px] xs:text-[11px] sm:text-xs font-semibold shadow-xl whitespace-nowrap">
                   <span className="text-[#C8A45C] font-bold">৪৮টি</span> <span className="text-[#D1C9BC]">নীতি</span>
                 </div>
               </div>
-              <div className="absolute -right-3 bottom-1/3 opacity-0 animate-[floatBadgeIn_0.8s_1.5s_forwards] hidden xl:block">
-                <div className="px-3 py-2 rounded-xl bg-[#111114] border border-[#2A2A2E] text-xs font-semibold shadow-xl">
+              <div className="absolute -right-[46px] xs:-right-[40px] sm:-right-8 lg:-right-3.5 xl:-right-3 bottom-[32%] sm:bottom-[30%] z-20 opacity-0 animate-[floatBadgeIn_0.8s_1.5s_forwards] pointer-events-none">
+                <div className="px-2 py-1 xs:px-2.5 xs:py-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-[#111114]/95 backdrop-blur-md border border-[#2A2A2E] text-[10px] xs:text-[11px] sm:text-xs font-semibold shadow-xl whitespace-nowrap">
                   <span className="text-[#C8A45C] font-bold">৩,০০০+</span> <span className="text-[#D1C9BC]">বছরের জ্ঞান</span>
                 </div>
               </div>
