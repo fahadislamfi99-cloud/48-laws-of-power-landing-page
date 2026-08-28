@@ -4,6 +4,7 @@ import { getCollection, Order, Customer, BKashTransaction } from "@/lib/mongodb"
 import { sendTelegramOrderNotification } from "@/lib/telegram";
 import { getOrGenerateWatermarkedPdf } from "@/lib/watermarkPdf";
 import { sendPersonalizedBookEmail } from "@/lib/emailDelivery";
+import { sendMetaServerEvent } from "@/lib/metaConversionsApi";
 
 export async function GET(req: NextRequest) {
   const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "";
@@ -208,7 +209,23 @@ export async function GET(req: NextRequest) {
         status: `সফল (PDF: ${pdfStatus}, Email: ${emailStatus})`,
       }).catch((err) => console.error("[Telegram Error]:", err));
 
-      // 12. Redirect to payment success page with real statuses
+      // 12. Send Server-Side Meta Conversions API (CAPI) Purchase Event
+      sendMetaServerEvent({
+        eventName: "Purchase",
+        eventSourceUrl: `${origin}/payment-success`,
+        user: {
+          email: existingOrder.targetEmail,
+          phone: finalPhone,
+        },
+        customData: {
+          value: paidAmount || expectedAmount,
+          currency: "BDT",
+          orderId: existingOrder.orderNumber,
+          contentName: "The 48 Laws of Power (বাংলা সংস্করণ)",
+        },
+      }).catch((err) => console.error("[Meta CAPI Error]:", err));
+
+      // 13. Redirect to payment success page with real statuses
       return NextResponse.redirect(
         `${origin}/payment-success?trxID=${encodeURIComponent(trxID)}&paymentID=${encodeURIComponent(
           paymentID

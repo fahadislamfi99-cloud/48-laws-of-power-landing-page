@@ -31,10 +31,6 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   const originalPrice = siteConfig.price || 149;
   const currentPrice = Math.max(1, originalPrice - discountAmount);
 
-  useEffect(() => {
-    trackInitiateCheckout(currentPrice);
-  }, [currentPrice]);
-
   // Fetch active promotional offer for checkout suggestion
   useEffect(() => {
     async function fetchOffer() {
@@ -123,6 +119,9 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
 
     setIsSubmitting(true);
     setErrorMessage("");
+
+    // Track Meta Pixel InitiateCheckout event ONLY when user clicks checkout submit
+    trackInitiateCheckout(currentPrice);
 
     try {
       const res = await fetch("/api/bkash/create", {

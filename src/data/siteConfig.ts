@@ -45,5 +45,5 @@ export const siteConfig: SiteConfig = {
   rocketNumber: "01700000000",
   supportPhone: "+8801700000000",
   supportWhatsapp: "8801700000000",
-  metaPixelId: "YOUR_PIXEL_ID",
+  metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID || "4300801780063322",
 };

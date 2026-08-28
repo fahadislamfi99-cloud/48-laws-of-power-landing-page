@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { siteConfig } from "@/data/siteConfig";
+import { trackPurchase } from "@/lib/pixel";
 
 function PaymentSuccessContent() {
   const searchParams = useSearchParams();
@@ -50,7 +51,7 @@ function PaymentSuccessContent() {
     downloadCount: 0,
   });
 
-  // Confetti on mount
+  // Confetti & Meta Pixel Purchase event on mount
   useEffect(() => {
     try {
       confetti({
@@ -60,7 +61,12 @@ function PaymentSuccessContent() {
         colors: ["#C8A45C", "#E2136E", "#F0EBE0", "#D4AF6E", "#10B981"],
       });
     } catch {}
-  }, []);
+
+    // Track Meta Pixel Purchase event
+    const finalAmount = Number(initialAmount) || siteConfig.price;
+    const finalOrderId = initialOrderNumber || initialTrxID || "ORDER-" + Date.now();
+    trackPurchase(finalAmount, finalOrderId);
+  }, [initialAmount, initialOrderNumber, initialTrxID]);
 
   // Poll order status if token present
   useEffect(() => {
