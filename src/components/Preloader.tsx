@@ -60,7 +60,7 @@ export default function Preloader() {
             filter: "blur(6px)",
             transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
           }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#08080A] text-[#F0EBE0] select-none cursor-wait overflow-hidden"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#08080A] text-[#F0EBE0] select-none cursor-wait overflow-hidden pointer-events-auto"
         >
           {/* Ambient Glow Orbs */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] bg-[#C8A45C]/[0.08] rounded-full blur-[140px] pointer-events-none" />
