@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { Download, Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -12,17 +12,36 @@ interface NavbarProps {
 export default function Navbar({ onOpenOrderModal }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const isScrolledRef = useRef(false);
 
   useEffect(() => {
+    let ticking = false;
+
+    const updateScroll = () => {
+      const scrollY = window.scrollY;
+      const scrolled = scrollY > 15;
+      if (scrolled !== isScrolledRef.current) {
+        isScrolledRef.current = scrolled;
+        setIsScrolled(scrolled);
+      }
+
+      if (progressBarRef.current) {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = totalHeight > 0 ? Math.min(1, Math.max(0, scrollY / totalHeight)) : 0;
+        progressBarRef.current.style.transform = `scaleX(${progress})`;
+      }
+      ticking = false;
+    };
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress(Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100)));
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateScroll);
       }
     };
 
+    updateScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -75,17 +94,18 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 py-2.5 sm:py-3.5 border-b transition-colors duration-200 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 py-2.5 sm:py-3.5 border-b transition-colors duration-200 ease-out transform-gpu ${
           isScrolled || mobileMenuOpen
             ? "bg-[#08080A]/95 backdrop-blur-xl border-[#26262A] shadow-md"
             : "bg-[#08080A]/80 backdrop-blur-md border-transparent"
         }`}
       >
-        {/* Top Gold Scroll Progress Bar */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent">
+        {/* Top Gold Scroll Progress Bar (GPU Composited ScaleX) */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-[#8B6914] via-[#C8A45C] to-[#8B6914] transition-all duration-150 ease-out"
-            style={{ width: `${scrollProgress}%` }}
+            ref={progressBarRef}
+            className="h-full w-full bg-gradient-to-r from-[#8B6914] via-[#C8A45C] to-[#8B6914] origin-left will-change-transform"
+            style={{ transform: "scaleX(0)" }}
           />
         </div>
 

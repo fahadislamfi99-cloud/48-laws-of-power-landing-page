@@ -229,6 +229,10 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
                 <img
                   src="/images/book-mockup.png"
                   alt="The 48 Laws of Power বাংলা ডিজিটাল সংস্করণ"
+                  loading="eager"
+                  decoding="async"
+                  // @ts-expect-error - fetchPriority attribute support
+                  fetchpriority="high"
                   className="w-full max-w-[190px] xs:max-w-[220px] sm:max-w-[300px] lg:max-w-[340px] h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)] animate-floatSlow relative z-10"
                 />
               </div>

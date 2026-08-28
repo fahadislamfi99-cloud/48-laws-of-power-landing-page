@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { Download } from "lucide-react";
 
@@ -10,12 +10,28 @@ interface MobileStickyBarProps {
 
 export default function MobileStickyBar({ onOpenOrderModal }: MobileStickyBarProps) {
   const [visible, setVisible] = useState(false);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY > 280);
+    let ticking = false;
+
+    const checkScroll = () => {
+      const shouldBeVisible = window.scrollY > 280;
+      if (shouldBeVisible !== visibleRef.current) {
+        visibleRef.current = shouldBeVisible;
+        setVisible(shouldBeVisible);
+      }
+      ticking = false;
     };
-    handleScroll();
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(checkScroll);
+      }
+    };
+
+    checkScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

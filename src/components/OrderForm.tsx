@@ -156,6 +156,8 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
           <img
             src="/images/book-mockup.png"
             alt="The 48 Laws of Power"
+            loading="lazy"
+            decoding="async"
             className="h-12 xs:h-14 sm:h-16 w-auto object-contain drop-shadow-md"
           />
         </div>

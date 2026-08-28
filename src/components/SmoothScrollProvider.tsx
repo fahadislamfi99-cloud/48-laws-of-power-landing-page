@@ -63,12 +63,13 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
 
     // 3. Desktop / Laptop / Trackpad: Initialize Lenis with exact momentum inertia
     const lenis = new Lenis({
-      duration: 1.15, // Subtle, controlled inertia - preserved exactly for desktop
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential decel curve
+      duration: 0.9, // Snappy initial response with buttery exponential tail
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.95, // Balanced, natural momentum
+      wheelMultiplier: 1.0, // Instant 1:1 wheel reaction without heavy float delay
+      touchMultiplier: 1.5,
       infinite: false,
     });
 
@@ -98,7 +99,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
           e.preventDefault();
           lenis.scrollTo(targetElement as HTMLElement, {
             offset: -75, // Offset for fixed navbar height
-            duration: 1.2,
+            duration: 1.0,
           });
         }
       }

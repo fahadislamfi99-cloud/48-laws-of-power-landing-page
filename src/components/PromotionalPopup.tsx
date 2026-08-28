@@ -228,6 +228,8 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                 <img
                   src={displayImage}
                   alt="The 48 Laws of Power strategy artwork"
+                  loading="lazy"
+                  decoding="async"
                   onLoad={() => setImageLoaded(true)}
                   onError={() => setImageError(true)}
                   className={`w-full h-full object-cover object-[28%_38%] sm:object-[28%_38%] md:object-[28%_42%] transition-all duration-700 ${

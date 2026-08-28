@@ -105,7 +105,13 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
     };
 
     // Mobile Exit Intent / Deep Scroll Engagement Trigger
-    const handleScroll = () => {
+    let scrollTicking = false;
+    const checkScrollExit = () => {
+      if (hasTriggeredRef.current) {
+        window.removeEventListener("scroll", handleScroll);
+        return;
+      }
+
       const currentScroll = window.scrollY;
       if (currentScroll > maxScrollY) {
         maxScrollY = currentScroll;
@@ -113,13 +119,21 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
 
       // If user scrolled deeply (> 600px) and then rapidly scrolls back up after 15s
       if (
-        !hasTriggeredRef.current &&
         Date.now() - pageLoadTime > 15000 &&
         maxScrollY > 600 &&
         currentScroll < maxScrollY * 0.4
       ) {
         hasTriggeredRef.current = true;
         setIsOpen(true);
+        window.removeEventListener("scroll", handleScroll);
+      }
+      scrollTicking = false;
+    };
+
+    const handleScroll = () => {
+      if (!scrollTicking && !hasTriggeredRef.current) {
+        scrollTicking = true;
+        requestAnimationFrame(checkScrollExit);
       }
     };
 
