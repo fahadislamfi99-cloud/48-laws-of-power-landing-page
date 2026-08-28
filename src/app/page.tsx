@@ -18,6 +18,7 @@ import AllLawsModal from "@/components/AllLawsModal";
 import OrderModal from "@/components/OrderModal";
 import PromotionalPopup from "@/components/PromotionalPopup";
 import ExitIntentLessonModal from "@/components/ExitIntentLessonModal";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -47,6 +48,7 @@ export default function Home() {
       <ProductFAQ />
       <EditorialFooter />
       <MobileStickyBar onOpenOrderModal={() => handleOpenOrderModal()} />
+      <BackToTop />
 
       <AllLawsModal
         isOpen={isAllLawsModalOpen}
