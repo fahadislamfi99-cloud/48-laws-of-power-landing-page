@@ -20,12 +20,18 @@ export interface WatermarkResult {
 }
 
 const MASTER_PDF_PATH = path.join(process.cwd(), "storage", "master_pdf", "the_48_laws_of_power_bangla.pdf");
-const GENERATED_DIR = path.join(process.cwd(), "storage", "generated_pdfs");
+const GENERATED_DIR = process.env.VERCEL || process.env.NODE_ENV === "production"
+  ? path.join("/tmp", "generated_pdfs")
+  : path.join(process.cwd(), "storage", "generated_pdfs");
 
 // Helper to ensure generated directory exists
 function ensureGeneratedDir() {
-  if (!fs.existsSync(GENERATED_DIR)) {
-    fs.mkdirSync(GENERATED_DIR, { recursive: true });
+  try {
+    if (!fs.existsSync(GENERATED_DIR)) {
+      fs.mkdirSync(GENERATED_DIR, { recursive: true });
+    }
+  } catch (err) {
+    console.warn("[Watermark Dir Creation Warning]:", err);
   }
 }
 
