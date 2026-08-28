@@ -9,18 +9,18 @@ export default function DigitalCheckout() {
   const containerRef = useScrollReveal<HTMLElement>();
 
   return (
-    <section id="checkout" ref={containerRef} className="py-10 sm:py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden">
+    <section id="checkout" ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden">
       {/* Background ambient gold orb */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#C8A45C]/[0.045] rounded-full blur-[150px] pointer-events-none animate-[orbFloat1_12s_ease-in-out_infinite]" />
 
-      <div className="max-w-xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
-        
+      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 reveal">
-          <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase block">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-8 reveal">
+          <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
             SECURE DIGITAL ACCESS
           </span>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             ডিজিটাল কপি সংগ্রহ করুন
           </h2>
           <p className="text-[#B8B0A4] text-xs sm:text-sm">
@@ -29,11 +29,11 @@ export default function DigitalCheckout() {
         </div>
 
         {/* Checkout Card */}
-        <div className="bg-[#111114] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#2A2A2E] reveal-scale reveal-stagger-1 shadow-2xl relative space-y-4 sm:space-y-6 hover:border-[#C8A45C]/35 transition-all duration-300">
+        <div className="bg-[#111114] rounded-3xl p-6 sm:p-8 border border-[#2A2A2E] reveal-scale reveal-stagger-1 shadow-2xl relative space-y-6 hover:border-[#C8A45C]/35 transition-all duration-300">
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-90" />
-          
+
           {/* Limited-Time Offer Status Bar */}
-          <div className="pb-3.5 sm:pb-5 border-b border-[#26262A] flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3">
+          <div className="pb-5 border-b border-[#26262A] flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-bold text-[#F0EBE0]">

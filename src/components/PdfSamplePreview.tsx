@@ -154,12 +154,12 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
   const getThemeClasses = () => {
     switch (readerTheme) {
       case "sepia":
-        return "bg-[#211B14] border-[#4A3B28] text-[#F3E7D3]";
+        return "bg-[#181512] border-[#3D352B] text-[#EFE5D8]";
       case "dark":
-        return "bg-[#040405] border-[#1C1C22] text-[#E2DCD0]";
+        return "bg-[#060608] border-[#1E1E24] text-[#D8D2C7]";
       case "charcoal":
       default:
-        return "bg-[#101015] border-[#2A2A32] text-[#F5F0E6]";
+        return "bg-[#0F0F14] border-[#2A2A30] text-[#F3EFE6]";
     }
   };
 
@@ -167,34 +167,34 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
     <section
       id="sample-preview"
       ref={containerRef}
-      className="py-10 sm:py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
+      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Subtle Warm Background Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#C8A45C]/[0.04] rounded-full blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8">
-        
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* ─── 1. SECTION HEADER ───────────────────────────────── */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-3 mb-6 sm:mb-10 reveal">
-          <div className="flex items-center justify-center gap-2 sm:gap-3">
-            <div className="h-[1.5px] w-8 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
-            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
+            <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase">
               READ A SAMPLE • একটু পড়ে দেখুন
             </span>
-            <div className="h-[1.5px] w-8 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
+            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
           </div>
 
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
             কেনার আগে বইটির কিছু পৃষ্ঠা পড়ে দেখুন
           </h2>
 
-          <p className="text-[#D1C9BC] text-xs sm:text-base lg:text-lg leading-[1.75] sm:leading-[1.8]">
+          <p className="text-[#D1C9BC] text-sm sm:text-base lg:text-lg leading-[1.8]">
             বইটির অনুবাদ, typography এবং reading experience সম্পর্কে ধারণা নিতে নিচের ৩টি নমুনা অধ্যায় সরাসরি এখানে পড়ে দেখুন।
           </p>
         </div>
 
         {/* ─── 2. SAMPLE TABS (3 REAL CHAPTERS) ────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-3.5 mb-5 sm:mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-8">
           {sampleChapters.map((chapter, idx) => {
             const isActive = activeChapterIndex === idx;
             return (
@@ -202,41 +202,40 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
                 key={chapter.id}
                 type="button"
                 onClick={() => handleSelectChapter(idx)}
-                className={`reveal-card reveal-stagger-${idx + 1} p-3.5 sm:p-5 rounded-xl sm:rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${
-                  isActive
+                className={`reveal-card reveal-stagger-${idx + 1} p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${isActive
                     ? "bg-[#141419] border-[#C8A45C] shadow-[0_4px_30px_rgba(200,164,92,0.18)] scale-[1.01]"
                     : "bg-[#0D0D10] border-[#26262A] hover:border-[#3A3A3E] hover:bg-[#121216]"
-                }`}
+                  }`}
               >
                 {isActive && (
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
                 )}
 
-                <div className="space-y-1.5 sm:space-y-2">
+                <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[11px] sm:text-xs font-bold text-[#C8A45C] uppercase tracking-wider">
+                    <span className="font-mono text-xs font-bold text-[#C8A45C] uppercase tracking-wider">
                       {chapter.lawNumberStr}
                     </span>
-                    <span className="text-[10px] sm:text-[11px] font-semibold text-[#A8A095] bg-[#08080A] px-2 py-0.5 rounded-full border border-[#26262A]">
+                    <span className="text-[11px] font-semibold text-[#A8A095] bg-[#08080A] px-2.5 py-0.5 rounded-full border border-[#26262A]">
                       {chapter.pageRange}
                     </span>
                   </div>
 
-                  <h3 className="font-bengali-serif font-bold text-xs sm:text-base text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors line-clamp-2 leading-snug">
+                  <h3 className="font-bengali-serif font-bold text-sm sm:text-base text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors line-clamp-2 leading-snug">
                     {chapter.titleBn}
                   </h3>
 
-                  <p className="text-[10px] sm:text-[11px] font-mono text-[#8A8278] truncate">
+                  <p className="text-[11px] font-mono text-[#8A8278] truncate">
                     {chapter.titleEn}
                   </p>
                 </div>
 
-                <div className="pt-2.5 sm:pt-3 mt-2.5 sm:mt-3 border-t border-[#26262A] flex items-center justify-between text-[11px] sm:text-xs">
+                <div className="pt-3 mt-3 border-t border-[#26262A] flex items-center justify-between text-xs">
                   <span className={`font-semibold flex items-center gap-1.5 ${isActive ? "text-[#C8A45C]" : "text-[#8A8278]"}`}>
-                    <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                    <FileText className="w-3.5 h-3.5" />
                     <span>{toBengaliNumber(chapter.totalPages)} পৃষ্ঠার সম্পূর্ণ পাঠ</span>
                   </span>
-                  <span className={`text-[10px] sm:text-[11px] font-bold ${isActive ? "text-emerald-400" : "text-[#8A8278]"}`}>
+                  <span className={`text-[11px] font-bold ${isActive ? "text-emerald-400" : "text-[#8A8278]"}`}>
                     {isActive ? "পড়ছেন ✓" : "পড়ুন →"}
                   </span>
                 </div>
@@ -246,11 +245,11 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         </div>
 
         {/* ─── 3. IN-PAGE COMPACT DIGITAL BOOK READER ──────────── */}
-        <div className="bg-[#111114] rounded-2xl sm:rounded-3xl border border-[#26262A] overflow-hidden shadow-2xl reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/35">
-          
+        <div className="bg-[#111114] rounded-3xl border border-[#26262A] overflow-hidden shadow-2xl reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/35">
+
           {/* Reader Top Toolbar */}
-          <div className="p-2.5 sm:p-4 bg-[#0A0A0D] border-b border-[#26262A] flex flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs">
-            
+          <div className="p-3.5 sm:p-4 bg-[#0A0A0D] border-b border-[#26262A] flex flex-wrap items-center justify-between gap-3 text-xs">
+
             {/* Title & Page count */}
             <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#C8A45C]/10 text-[#C8A45C] font-mono font-bold text-xs shrink-0 border border-[#C8A45C]/20">
@@ -265,7 +264,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
 
             {/* Customization Controls Bar */}
             <div className="flex items-center gap-2 sm:gap-3 ml-auto shrink-0">
-              
+
               {/* Font Style Toggle (Serif vs Sans) */}
               <button
                 type="button"
@@ -298,11 +297,10 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
                     key={id}
                     type="button"
                     onClick={() => setReaderTheme(id)}
-                    className={`p-1.5 rounded-lg cursor-pointer transition-all ${
-                      readerTheme === id
+                    className={`p-1.5 rounded-lg cursor-pointer transition-all ${readerTheme === id
                         ? "bg-[#C8A45C]/20 text-[#C8A45C]"
                         : "text-[#8A8278] hover:text-[#D1C9BC]"
-                    }`}
+                      }`}
                     title={label}
                     aria-label={label}
                   >
@@ -329,20 +327,18 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
           <div
             ref={readerScrollRef}
             data-lenis-prevent
-            className="relative bg-[#070709] h-[340px] sm:h-[440px] lg:h-[480px] overflow-y-auto overflow-x-hidden p-2.5 sm:p-6 lg:p-8 select-text custom-reader-scroll"
+            className="relative bg-[#070709] h-[380px] sm:h-[440px] lg:h-[480px] overflow-y-auto overflow-x-hidden p-3 sm:p-6 lg:p-8 select-text custom-reader-scroll"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
             {/* Main Book Page Content Sheet */}
             <div
-              className={`w-full max-w-3xl mx-auto rounded-xl sm:rounded-2xl border p-3.5 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.6)] transition-all duration-200 relative ${getThemeClasses()} ${
-                fontStyle === "serif" ? "font-bengali-serif" : "font-bengali-sans"
-              } ${fontSize === "large" ? "text-sm sm:text-lg" : "text-xs sm:text-base"} ${
-                isPageFlipping ? "opacity-30 scale-[0.99] translate-y-1" : "opacity-100 scale-100 translate-y-0"
-              }`}
+              className={`w-full max-w-3xl mx-auto rounded-2xl border p-5 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.6)] transition-all duration-200 relative ${getThemeClasses()} ${fontStyle === "serif" ? "font-bengali-serif" : "font-bengali-sans"
+                } ${fontSize === "large" ? "text-base sm:text-lg" : "text-sm sm:text-base"} ${isPageFlipping ? "opacity-30 scale-[0.99] translate-y-1" : "opacity-100 scale-100 translate-y-0"
+                }`}
             >
               {/* Top Header of Page */}
-              <div className="flex items-center justify-between pb-2.5 sm:pb-3.5 mb-3.5 sm:mb-5 border-b border-white/10 text-[11px] sm:text-xs text-[#8A8278]">
+              <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-white/10 text-xs text-[#8A8278]">
                 <span className="font-mono font-bold text-[#C8A45C] uppercase tracking-wider">
                   {activeChapter.lawNumberStr} • {activeChapter.titleEn}
                 </span>
@@ -352,14 +348,14 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
               </div>
 
               {/* Section Badge & Title */}
-              <div className="mb-3.5 sm:mb-5 space-y-1.5 sm:space-y-2">
+              <div className="mb-5 space-y-2">
                 {currentPage.sectionBadge && (
-                  <span className="inline-block text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8A45C] bg-[#C8A45C]/10 px-2 py-0.5 rounded border border-[#C8A45C]/20">
+                  <span className="inline-block text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8A45C] bg-[#C8A45C]/10 px-2.5 py-0.5 rounded border border-[#C8A45C]/20">
                     {currentPage.sectionBadge}
                   </span>
                 )}
                 {currentPage.pageTitle && (
-                  <h3 className="text-lg sm:text-2xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
                     {currentPage.pageTitle}
                   </h3>
                 )}
@@ -367,14 +363,14 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
 
               {/* Judgement / Callout Box */}
               {currentPage.calloutBox && (
-                <div className="p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-[#141419] border border-[#C8A45C]/40 text-[#F5F0E6] shadow-md my-3 sm:my-4 space-y-2">
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-[#C8A45C]">
-                    <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider">
+                <div className="p-5 sm:p-7 rounded-2xl bg-[#141419] border border-[#C8A45C]/40 text-[#F5F0E6] shadow-md my-4 space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#C8A45C]">
+                    <Compass className="w-4 h-4" />
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider">
                       {currentPage.calloutBox.title}
                     </span>
                   </div>
-                  <p className="font-bengali-serif text-sm sm:text-lg italic leading-[1.85] sm:leading-[2.0] text-[#F7F3EB]">
+                  <p className="font-bengali-serif text-base sm:text-lg italic leading-[2.0] text-[#F7F3EB]">
                     &ldquo;{currentPage.calloutBox.text}&rdquo;
                   </p>
                 </div>
@@ -382,14 +378,14 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
 
               {/* Historical Sidebar Quote */}
               {currentPage.sidebarQuote && (
-                <div className="my-3.5 sm:my-5 p-3 sm:p-5 rounded-xl bg-[#131217] border-l-4 border-[#C8A45C] border-y border-r border-white/5 space-y-1.5 sm:space-y-2">
-                  <div className="flex items-start gap-2 sm:gap-2.5">
-                    <Quote className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C8A45C] shrink-0 mt-0.5" />
-                    <p className="text-[11px] sm:text-sm italic text-[#E8DFD0] leading-relaxed">
+                <div className="my-5 p-4 sm:p-5 rounded-xl bg-[#131217] border-l-4 border-[#C8A45C] border-y border-r border-white/5 space-y-2">
+                  <div className="flex items-start gap-2.5">
+                    <Quote className="w-4 h-4 text-[#C8A45C] shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm italic text-[#E8DFD0] leading-relaxed">
                       &ldquo;{currentPage.sidebarQuote.quote}&rdquo;
                     </p>
                   </div>
-                  <div className="text-[10px] sm:text-[11px] font-semibold text-[#A8A095] text-right">
+                  <div className="text-[11px] font-semibold text-[#A8A095] text-right">
                     — <span className="text-[#C8A45C] font-bold">{currentPage.sidebarQuote.author}</span>
                     {currentPage.sidebarQuote.sourceOrDates && ` (${currentPage.sidebarQuote.sourceOrDates})`}
                   </div>
@@ -398,7 +394,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
 
               {/* Unabridged Paragraphs */}
               {currentPage.bodyParagraphs.length > 0 && (
-                <div className="space-y-3 sm:space-y-4 leading-[1.8] sm:leading-[1.9] text-justify text-[#DCD6CA]">
+                <div className="space-y-4 leading-[1.9] text-justify text-[#DCD6CA]">
                   {currentPage.bodyParagraphs.map((para, pIdx) => (
                     <p key={pIdx}>
                       {para}
@@ -408,11 +404,11 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
               )}
 
               {/* Page Footer Watermark */}
-              <div className="mt-6 sm:mt-8 pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#8A8278]">
-                <span className="text-[10px] sm:text-[11px] text-[#A8A095]">
+              <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#8A8278]">
+                <span className="text-[11px] text-[#A8A095]">
                   The 48 Laws of Power (বাংলা সংস্করণ) • {currentPage.pdfPageStr}
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-mono text-[#C8A45C] font-semibold bg-[#C8A45C]/10 px-2 py-0.5 rounded border border-[#C8A45C]/20">
+                <span className="text-[10px] font-mono text-[#C8A45C] font-semibold bg-[#C8A45C]/10 px-2 py-0.5 rounded border border-[#C8A45C]/20">
                   নমুনা প্রিভিউ
                 </span>
               </div>
@@ -421,20 +417,20 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
           </div>
 
           {/* Reader Bottom Navigation & Thumbnail Scrubber */}
-          <div className="p-2.5 sm:p-5 bg-[#0A0A0D] border-t border-[#26262A] flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4">
-            
+          <div className="p-3.5 sm:p-5 bg-[#0A0A0D] border-t border-[#26262A] flex flex-col sm:flex-row items-center justify-between gap-4">
+
             {/* Page Count Navigation Buttons */}
-            <div className="flex items-center justify-between w-full sm:w-auto gap-2 sm:gap-3">
+            <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={handlePrevPage}
                 disabled={currentPageIndex === 0}
-                className="px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-[11px] sm:text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                className="px-3.5 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               >
                 ← আগের পৃষ্ঠা
               </button>
 
-              <div className="text-[11px] sm:text-xs font-semibold text-[#F0EBE0] px-2.5 sm:px-3 py-1 bg-[#111114] rounded-lg border border-[#26262A] whitespace-nowrap">
+              <div className="text-xs font-semibold text-[#F0EBE0] px-3 py-1 bg-[#111114] rounded-lg border border-[#26262A]">
                 পৃষ্ঠা <span className="text-[#C8A45C] font-bold">{toBengaliNumber(currentPageIndex + 1)}</span> / {toBengaliNumber(totalPages)}
               </div>
 
@@ -442,7 +438,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
                 type="button"
                 onClick={handleNextPage}
                 disabled={currentPageIndex === totalPages - 1}
-                className="px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-[11px] sm:text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                className="px-3.5 py-1.5 rounded-xl bg-[#16161B] border border-[#26262A] text-xs font-semibold text-[#D1C9BC] hover:text-[#C8A45C] hover:border-[#C8A45C]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               >
                 পরের পৃষ্ঠা →
               </button>
@@ -458,11 +454,10 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
                     key={pIdx}
                     type="button"
                     onClick={() => handleJumpPage(pIdx)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer flex items-center justify-center gap-1 ${
-                      isSelected
+                    className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer flex items-center justify-center gap-1 ${isSelected
                         ? "bg-[#C8A45C] text-[#08080A] shadow-xs scale-105"
                         : "bg-[#16161B] text-[#8A8278] hover:text-[#F0EBE0] hover:bg-[#202026] border border-[#26262A]"
-                    }`}
+                      }`}
                     title={pageItem.pdfPageStr}
                   >
                     <span>{pageItem.pdfPageStr.replace("পৃষ্ঠা ", "পৃ. ")}</span>
@@ -579,9 +574,8 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
 
               {/* Document Sheet */}
               <div
-                className={`w-full max-w-3xl mx-auto rounded-3xl border p-6 sm:p-10 lg:p-12 shadow-2xl ${getThemeClasses()} ${
-                  fontStyle === "serif" ? "font-bengali-serif" : "font-bengali-sans"
-                } text-base sm:text-lg`}
+                className={`w-full max-w-3xl mx-auto rounded-3xl border p-6 sm:p-10 lg:p-12 shadow-2xl ${getThemeClasses()} ${fontStyle === "serif" ? "font-bengali-serif" : "font-bengali-sans"
+                  } text-base sm:text-lg`}
               >
                 <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-white/10 text-xs text-[#8A8278]">
                   <span className="font-mono font-bold text-[#C8A45C] uppercase tracking-wider">

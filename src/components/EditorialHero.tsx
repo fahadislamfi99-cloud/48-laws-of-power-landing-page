@@ -77,9 +77,8 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
     <section className="relative pt-20 sm:pt-28 pb-8 sm:pb-10 md:pt-32 md:pb-16 overflow-hidden">
       {/* ─── NATURAL WINDOW LIGHT CASCADE (SideRays) ─────────── */}
       <div
-        className={`absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${
-          isVisible ? "opacity-85" : "opacity-0"
-        }`}
+        className={`absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${isVisible ? "opacity-85" : "opacity-0"
+          }`}
       >
         <SideRays
           origin="top-right"
@@ -113,7 +112,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
 
       {/* ─── CONTENT ───────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 w-full relative z-10">
-        
+
         {/* Top bar */}
         <div className={`flex flex-wrap items-center justify-between gap-2 sm:gap-3 pb-3 sm:pb-6 border-b border-[#2A2A2E] text-xs transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
           <div className="flex items-center gap-2">
@@ -134,7 +133,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
 
         {/* Hero Grid */}
         <div className="py-4 sm:py-8 lg:py-12 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 xl:gap-14 items-center">
-          
+
           {/* ─── LEFT: Editorial Copy ───────────────────────────── */}
           <div className="lg:col-span-7 space-y-3.5 sm:space-y-5 text-left">
             <div className="space-y-2 sm:space-y-3">
@@ -216,7 +215,7 @@ export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) 
           {/* ─── RIGHT: Book Mockup ────────────────────────────── */}
           <div className={`lg:col-span-5 flex flex-col items-center lg:items-end transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}>
             <div className="relative max-w-[210px] xs:max-w-[240px] sm:max-w-[320px] lg:max-w-[360px] xl:max-w-[400px] w-full">
-              
+
               {/* Radial glow */}
               <div className="absolute inset-[-20%] bg-gradient-to-tr from-[#C8A45C]/[0.12] via-[#C8A45C]/[0.04] to-transparent rounded-full blur-[60px] sm:blur-[90px] -z-10 animate-pulseGlow" />
 
