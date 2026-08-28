@@ -56,13 +56,13 @@ export default function LawsAlmanac({
         </div>
 
         {/* Filter Bar */}
-        <div className="bg-[#111114] p-3 sm:p-4 rounded-2xl border border-[#2A2A2E] flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 reveal reveal-stagger-1">
-          <div className="flex gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
+        <div className="bg-[#111114] p-2.5 sm:p-4 rounded-2xl border border-[#2A2A2E] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 reveal reveal-stagger-1">
+          <div className="flex gap-1.5 sm:gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCat(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-200 cursor-pointer ${selectedCat === cat.id
+                className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-200 cursor-pointer ${selectedCat === cat.id
                     ? "bg-[#C8A45C] text-[#08080A] shadow-xs"
                     : "text-[#B8B0A4] hover:bg-[#1A1A1E] hover:text-[#F0EBE0]"
                   }`}
@@ -74,7 +74,7 @@ export default function LawsAlmanac({
 
           <button
             onClick={onOpenAllLawsModal}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#1A1A1E] hover:bg-[#2A2A2E] text-[#C8A45C] text-xs font-bold border border-[#2A2A2E] cursor-pointer transition-all hover-lift"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#1A1A1E] hover:bg-[#2A2A2E] text-[#C8A45C] text-xs font-bold border border-[#2A2A2E] cursor-pointer transition-all hover-lift min-h-[38px]"
           >
             <BookOpen className="w-3.5 h-3.5" />
             <span>সম্পূর্ণ ৪৮টি নীতি একনজরে দেখুন</span>
@@ -82,7 +82,7 @@ export default function LawsAlmanac({
         </div>
 
         {/* Laws List */}
-        <div className="bg-[#111114] rounded-3xl border border-[#2A2A2E] divide-y divide-[#2A2A2E] overflow-hidden reveal reveal-stagger-2">
+        <div className="bg-[#111114] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] divide-y divide-[#2A2A2E] overflow-hidden reveal reveal-stagger-2">
           {filteredLaws.map((law) => {
             const isExpanded = expandedId === law.id;
             return (
@@ -92,7 +92,7 @@ export default function LawsAlmanac({
               >
                 <button
                   onClick={() => setExpandedId(isExpanded ? null : law.id)}
-                  className="w-full p-5 sm:p-6 text-left flex items-start sm:items-center justify-between gap-4 cursor-pointer group"
+                  className="w-full p-4 sm:p-6 text-left flex items-start sm:items-center justify-between gap-3 sm:gap-4 cursor-pointer group"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
                     <span className="font-mono text-xs font-bold text-[#C8A45C] uppercase shrink-0 transition-transform duration-200 group-hover:scale-105">

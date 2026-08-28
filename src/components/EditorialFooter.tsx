@@ -12,7 +12,7 @@ export default function EditorialFooter() {
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-[#2A2A2E] reveal">
           <div className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center font-display text-xs sm:text-sm font-bold transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(200,164,92,0.3)] shrink-0">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center font-display text-xs sm:text-sm font-bold rounded transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(200,164,92,0.3)] shrink-0">
               48
             </div>
             <div>

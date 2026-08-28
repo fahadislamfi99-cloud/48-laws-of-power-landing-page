@@ -44,8 +44,8 @@ export default function DeepDiveLaw() {
             <button
               key={tab.id}
               onClick={() => setSelectedLaw(tab.id)}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer hover-lift ${selectedLaw === tab.id
-                  ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.35)]"
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A45C] ${selectedLaw === tab.id
+                  ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.35)] btn-shimmer"
                   : "bg-[#111114] text-[#C4BCB0] border border-[#26262A] hover:border-[#C8A45C]/40 hover:text-[#C8A45C]"
                 }`}
             >
