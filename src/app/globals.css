@@ -389,14 +389,20 @@
 }
 
 /* Once revealed, clear transforms to guarantee pixel-sharp native font rasterization & 0 GPU overhead */
-.reveal-visible {
+.reveal-visible,
+.reveal-visible .reveal,
+.reveal-visible .reveal-card,
+.reveal-visible .reveal-left,
+.reveal-visible .reveal-right,
+.reveal-visible .reveal-scale {
   opacity: 1 !important;
   transform: none !important;
   filter: none !important;
   will-change: auto !important;
 }
 
-.reveal-line.reveal-visible {
+.reveal-line.reveal-visible,
+.reveal-visible .reveal-line {
   transform: scaleX(1) !important;
 }
 

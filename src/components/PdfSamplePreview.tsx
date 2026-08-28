@@ -194,7 +194,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         </div>
 
         {/* ─── 2. SAMPLE TABS (3 REAL CHAPTERS) ────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-8 reveal reveal-stagger-1">
           {sampleChapters.map((chapter, idx) => {
             const isActive = activeChapterIndex === idx;
             return (
@@ -202,7 +202,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
                 key={chapter.id}
                 type="button"
                 onClick={() => handleSelectChapter(idx)}
-                className={`reveal-card reveal-stagger-${idx + 1} p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${isActive
+                className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${isActive
                     ? "bg-[#141419] border-[#C8A45C] shadow-[0_4px_30px_rgba(200,164,92,0.18)] scale-[1.01]"
                     : "bg-[#0D0D10] border-[#26262A] hover:border-[#3A3A3E] hover:bg-[#121216]"
                   }`}
