@@ -22,11 +22,11 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
   return (
     <section ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-3 mb-10 reveal">
-          <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
-            THE 48 PRINCIPLES
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
+        <div className="max-w-3xl space-y-2.5 sm:space-y-3 mb-8 sm:mb-10 reveal">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-xs">
+            <span>THE 48 PRINCIPLES</span>
+          </div>
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
             একটি নীতি যদি দৃষ্টিভঙ্গি বদলে দিতে পারে, <br className="hidden sm:inline" />
             তবে পুরো ৪৮টি নীতি কী করতে পারে?
           </h2>

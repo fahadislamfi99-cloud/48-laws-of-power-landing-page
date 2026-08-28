@@ -42,9 +42,9 @@ export default function HumanRecognition() {
       <div className="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl space-y-2.5 sm:space-y-3 mb-8 sm:mb-10 reveal">
-          <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase block">
-            HUMAN SOCIAL DYNAMICS
-          </span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-xs">
+            <span>HUMAN SOCIAL DYNAMICS</span>
+          </div>
           <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
             আপনি কি কখনো এমন অভিজ্ঞতার মুখোমুখি হয়েছেন?
           </h2>

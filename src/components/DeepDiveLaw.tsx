@@ -20,12 +20,12 @@ export default function DeepDiveLaw() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#C8A45C] uppercase">
-              AN INSIGHT FROM THE BOOK
-            </span>
-            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3">
+            <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase">
+              <span>AN INSIGHT FROM THE BOOK</span>
+            </div>
+            <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F5F0E6] leading-[1.25]">
             একটি নীতি, বাস্তব দৃষ্টিভঙ্গির পরিবর্তন

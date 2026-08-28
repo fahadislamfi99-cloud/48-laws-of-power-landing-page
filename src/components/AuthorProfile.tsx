@@ -38,10 +38,10 @@ export default function AuthorProfile() {
 
           {/* Bio */}
           <div className="md:col-span-7 space-y-3 sm:space-y-4 text-center md:text-left reveal reveal-stagger-1">
-            <div className="space-y-1">
-              <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase block">
-                ABOUT THE AUTHOR
-              </span>
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-xs">
+                <span>ABOUT THE AUTHOR</span>
+              </div>
               <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#F0EBE0]">
                 রবার্ট গ্রিন (Robert Greene)
               </h2>

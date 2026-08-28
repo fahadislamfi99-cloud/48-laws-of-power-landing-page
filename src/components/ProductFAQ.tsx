@@ -50,9 +50,13 @@ export default function ProductFAQ() {
       <div className="max-w-4xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center space-y-2.5 sm:space-y-3 mb-6 sm:mb-10 reveal">
-          <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase block">
-            FREQUENTLY ASKED QUESTIONS
-          </span>
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3">
+            <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase">
+              <span>FREQUENTLY ASKED QUESTIONS</span>
+            </div>
+            <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
+          </div>
           <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             সাধারণ প্রশ্ন ও উত্তর
           </h2>
