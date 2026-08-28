@@ -30,8 +30,21 @@ export default function EditorialFooter() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[#8A8278] text-[11px] sm:text-xs reveal reveal-stagger-1 text-center sm:text-left">
-          <p>&copy; {new Date().getFullYear()} The 48 Laws of Power (বাংলা সংস্করণ). All rights reserved.</p>
-          <div className="flex items-center justify-center gap-3 sm:gap-4">
+          <div className="space-y-1">
+            <p>&copy; {new Date().getFullYear()} The 48 Laws of Power (বাংলা সংস্করণ). All rights reserved.</p>
+            <p className="text-[10px] sm:text-[11px]">
+              Designed & Developed by{" "}
+              <a
+                href="https://fahadislam.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#D1C9BC] hover:text-[#C8A45C] font-semibold transition-colors underline decoration-[#C8A45C]/40 hover:decoration-[#C8A45C]"
+              >
+                Fahad Islam
+              </a>
+            </p>
+          </div>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 shrink-0">
             <a href="#faq" className="hover:text-[#C8A45C] transition-colors">প্রশ্নোত্তর</a>
             <span className="text-[#2A2A2E]">•</span>
             <a href={`https://wa.me/${siteConfig.supportWhatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#C8A45C] transition-colors">
