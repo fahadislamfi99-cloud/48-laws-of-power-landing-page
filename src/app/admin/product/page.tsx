@@ -13,19 +13,20 @@ import {
   Layers,
 } from "lucide-react";
 import ToastNotification, { ToastState } from "@/components/admin/ToastNotification";
+import { siteConfig } from "@/data/siteConfig";
 
 export default function AdminProductPage() {
   const [product, setProduct] = useState<any>({
-    title: "দ্য ৪৮ লজ অফ পাওয়ার (বাংলা অনুবাদ)",
-    titleEn: "The 48 Laws of Power (Bengali Edition)",
-    subtitle: "ক্ষমতা, প্রভাব ও মানুষের মনস্তত্ত্ব বোঝার ৪৮টি নীতি",
-    price: 999,
-    originalPrice: 1500,
-    discountPercent: 34,
+    title: siteConfig.bookTitle,
+    titleEn: siteConfig.bookTitleEn,
+    subtitle: siteConfig.bookSubtitle,
+    price: siteConfig.price,
+    originalPrice: siteConfig.originalPrice,
+    discountPercent: Math.round(((siteConfig.originalPrice - siteConfig.price) / siteConfig.originalPrice) * 100),
     fileName: "the-48-laws-of-power-bangla.pdf",
     fileSize: "6 MB",
     fileUrl: "/downloads/the-48-laws-of-power-bangla.pdf",
-    pages: 509,
+    pages: siteConfig.pages,
     isActive: true,
   });
 

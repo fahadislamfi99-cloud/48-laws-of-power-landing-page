@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCollection, Coupon, Product } from "@/lib/mongodb";
 import { sanitizeString } from "@/lib/validation";
 import { checkRateLimit, RATE_LIMIT_CONFIGS, getClientIp } from "@/lib/rateLimit";
+import { siteConfig } from "@/data/siteConfig";
 
 export async function POST(req: NextRequest) {
   try {
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest) {
     // Determine current base price securely from server product database
     const productsCol = await getCollection<Product>("products");
     const product = await productsCol.findOne({ isActive: true });
-    const baseAmount = product ? Math.max(1, Number(product.price)) : 999;
+    const baseAmount = product ? Math.max(1, Number(product.price)) : siteConfig.price;
 
     let discount = 0;
     if (coupon.discountType === "percentage") {

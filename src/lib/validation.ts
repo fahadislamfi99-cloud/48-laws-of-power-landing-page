@@ -109,7 +109,7 @@ export function validateDownloadToken(token: unknown): { isValid: boolean; token
 /**
  * Sanitizes and bounds positive monetary amounts
  */
-export function sanitizeAmount(amount: unknown, defaultVal = 999): number {
+export function sanitizeAmount(amount: unknown, defaultVal = 149): number {
   const num = Number(amount);
   if (isNaN(num) || num <= 0 || !isFinite(num)) {
     return defaultVal;

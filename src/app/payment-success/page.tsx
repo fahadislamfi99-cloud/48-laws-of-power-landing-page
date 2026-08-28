@@ -15,7 +15,7 @@ function PaymentSuccessContent() {
 
   const initialTrxID = searchParams.get("trxID") || "";
   const initialPaymentID = searchParams.get("paymentID") || "";
-  const initialAmount = searchParams.get("amount") || "999";
+  const initialAmount = searchParams.get("amount") || String(siteConfig.price);
   const initialOrderNumber = searchParams.get("orderNumber") || "";
   const token = searchParams.get("token") || "";
   const initialEmail = searchParams.get("email") || "";
@@ -42,7 +42,7 @@ function PaymentSuccessContent() {
     customerName: "সম্মানিত পাঠক",
     customerEmail: initialEmail,
     customerPhone: initialPhone || "017XXXXXXXX",
-    amount: Number(initialAmount) || 999,
+    amount: Number(initialAmount) || siteConfig.price,
     paymentStatus: "paid",
     trxId: initialTrxID || "BKASH-PAID",
     pdfStatus: "pending",

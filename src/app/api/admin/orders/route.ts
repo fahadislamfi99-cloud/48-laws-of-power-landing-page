@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCollection, Order, Customer } from "@/lib/mongodb";
 import { getAdminSession } from "@/lib/auth";
+import { siteConfig } from "@/data/siteConfig";
 import crypto from "crypto";
 
 export async function GET(req: NextRequest) {
@@ -83,7 +84,7 @@ export async function POST(req: NextRequest) {
       customerName,
       targetEmail,
       customerPhone = "",
-      amount = 999,
+      amount = siteConfig.price,
       paymentMethod = "bkash_manual",
       paymentStatus = "paid",
       orderStatus = "active",

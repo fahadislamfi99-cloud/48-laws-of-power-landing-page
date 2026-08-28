@@ -3,6 +3,7 @@ import { getCollection, Product, Order } from "@/lib/mongodb";
 import { createBKashPayment } from "@/lib/bkash";
 import { validateEmail, validatePhone, sanitizeString } from "@/lib/validation";
 import { checkRateLimit, RATE_LIMIT_CONFIGS, getClientIp } from "@/lib/rateLimit";
+import { siteConfig } from "@/data/siteConfig";
 import crypto from "crypto";
 
 export async function POST(req: NextRequest) {
@@ -51,7 +52,7 @@ export async function POST(req: NextRequest) {
     const productsCol = await getCollection<Product>("products");
     const product = await productsCol.findOne({ isActive: true });
 
-    let amount = product ? Math.max(1, Number(product.price)) : 999;
+    let amount = product ? Math.max(1, Number(product.price)) : siteConfig.price;
     const productTitle = product ? product.title : "The 48 Laws of Power (বাংলা অনুবাদ)";
 
     // 4. Server-Side Coupon Validation

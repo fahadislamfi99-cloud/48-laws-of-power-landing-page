@@ -3,6 +3,7 @@
 import React from "react";
 import OrderForm from "@/components/OrderForm";
 import CountdownTimer from "@/components/CountdownTimer";
+import { siteConfig } from "@/data/siteConfig";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function DigitalCheckout() {
@@ -23,7 +24,7 @@ export default function DigitalCheckout() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             ডিজিটাল কপি সংগ্রহ করুন
           </h2>
-          <p className="text-[#B8B0A4] text-xs sm:text-sm">
+          <p className="text-[#B8B0A4] text-sm">
             নিচে আপনার জিমেইল প্রদান করে বিকাশ পেমেন্ট সম্পন্ন করুন। সাথে সাথেই ডাউনলোড লিংক সক্রিয় হবে।
           </p>
         </div>
@@ -37,7 +38,7 @@ export default function DigitalCheckout() {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-bold text-[#F0EBE0]">
-                ৩৪% বিশেষ অফার সক্রিয়
+                {Math.round(((siteConfig.originalPrice - siteConfig.price) / siteConfig.originalPrice) * 100)}% বিশেষ অফার সক্রিয়
               </span>
             </div>
             <CountdownTimer variant="compact-pill" label="বাকি আছে" />

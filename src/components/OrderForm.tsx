@@ -28,7 +28,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const originalPrice = siteConfig.price || 999;
+  const originalPrice = siteConfig.price || 149;
   const currentPrice = Math.max(1, originalPrice - discountAmount);
 
   useEffect(() => {
@@ -186,7 +186,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
               </span>
             ) : (
               <span className="text-[10px] sm:text-xs text-[#C8A45C] font-semibold">
-                (৩৪% ছাড়)
+                ({Math.round(((siteConfig.originalPrice - currentPrice) / siteConfig.originalPrice) * 100)}% ছাড়)
               </span>
             )}
           </div>

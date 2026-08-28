@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { siteConfig } from "@/data/siteConfig";
 
 interface FAQItem {
   q: string;
@@ -28,7 +29,7 @@ const faqs: FAQItem[] = [
   },
   {
     q: "একবার কিনলে কি আজীবন অ্যাক্সেস থাকবে?",
-    a: "হ্যাঁ। একবার ৯৯৯ টাকা পরিশোধ করলে সম্পূর্ণ লাইফটাইম অ্যাক্সেস পাবেন। ফাইলটি নিজের ফোন, কম্পিউটার বা ক্লাউড ড্রাইভে আজীবনের জন্য সংরক্ষণ করে রাখতে পারবেন।",
+    a: `হ্যাঁ। একবার ${siteConfig.currencySymbol}${siteConfig.price} পরিশোধ করলে সম্পূর্ণ লাইফটাইম অ্যাক্সেস পাবেন। ফাইলটি নিজের ফোন, কম্পিউটার বা ক্লাউড ড্রাইভে আজীবনের জন্য সংরক্ষণ করে রাখতে পারবেন।`,
   },
   {
     q: "ডাউনলোডে কোনো সমস্যা হলে কীভাবে সাহায্য পাব?",

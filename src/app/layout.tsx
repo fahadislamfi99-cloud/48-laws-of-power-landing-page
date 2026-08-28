@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Robert Greene" }],
   openGraph: {
-    title: "The 48 Laws of Power: বাংলা ডিজিটাল PDF সংস্করণ (৳৯৯৯)",
+    title: "The 48 Laws of Power: বাংলা ডিজিটাল PDF সংস্করণ (৳১৪৯)",
     description:
       "ক্ষমতা, প্রভাব ও মানুষের মনস্তত্ত্ব বোঝার ৪৮টি নীতি। তাৎক্ষণিক ডাউনলোড ও লাইফটাইম অ্যাক্সেসে সংগ্রহ করুন।",
     type: "website",

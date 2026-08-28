@@ -8,6 +8,7 @@ import {
   AlertCircle, CheckCircle2, Phone
 } from "lucide-react";
 import ToastNotification, { ToastState } from "@/components/admin/ToastNotification";
+import { siteConfig } from "@/data/siteConfig";
 
 export default function AdminOrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -25,7 +26,7 @@ export default function AdminOrdersPage() {
     customerName: "",
     targetEmail: "",
     customerPhone: "",
-    amount: 999,
+    amount: siteConfig.price,
     paymentMethod: "bkash_gateway",
     paymentStatus: "paid",
     orderStatus: "active",
@@ -215,7 +216,7 @@ export default function AdminOrdersPage() {
           customerName: "",
           targetEmail: "",
           customerPhone: "",
-          amount: 999,
+          amount: siteConfig.price,
           paymentMethod: "bkash_gateway",
           paymentStatus: "paid",
           orderStatus: "active",

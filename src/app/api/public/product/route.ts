@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCollection, Product, SiteSettings } from "@/lib/mongodb";
 import { ensureDatabaseSeeded } from "@/lib/seed";
+import { siteConfig } from "@/data/siteConfig";
 
 export async function GET() {
   try {
@@ -16,14 +17,14 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       product: product || {
-        title: "দ্য ৪৮ লজ অফ পাওয়ার (বাংলা অনুবাদ)",
-        titleEn: "The 48 Laws of Power (Bengali Edition)",
-        subtitle: "ক্ষমতা, প্রভাব ও মানুষের মনস্তত্ত্ব বোঝার ৪৮টি নীতি",
-        price: 999,
-        originalPrice: 1500,
-        discountPercent: 34,
-        pages: 509,
-        fileSize: "৬ মেগাবাইট",
+        title: siteConfig.bookTitle,
+        titleEn: siteConfig.bookTitleEn,
+        subtitle: siteConfig.bookSubtitle,
+        price: siteConfig.price,
+        originalPrice: siteConfig.originalPrice,
+        discountPercent: Math.round(((siteConfig.originalPrice - siteConfig.price) / siteConfig.originalPrice) * 100),
+        pages: siteConfig.pages,
+        fileSize: siteConfig.fileSize,
       },
       settings: {
         supportWhatsapp: settings?.supportWhatsapp || "8801700000000",

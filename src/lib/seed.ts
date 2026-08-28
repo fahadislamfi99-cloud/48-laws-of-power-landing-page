@@ -33,7 +33,7 @@ export async function ensureDatabaseSeeded() {
         subtitle: siteConfig.bookSubtitle,
         price: siteConfig.price,
         originalPrice: siteConfig.originalPrice,
-        discountPercent: 34,
+        discountPercent: Math.round(((siteConfig.originalPrice - siteConfig.price) / siteConfig.originalPrice) * 100),
         fileName: "the-48-laws-of-power-bangla.pdf",
         fileSize: "6 MB",
         fileUrl: "/downloads/the-48-laws-of-power-bangla.pdf",
@@ -43,6 +43,18 @@ export async function ensureDatabaseSeeded() {
         updatedAt: new Date(),
       });
       console.log("[DB Seed] Created default digital product");
+    } else {
+      await productsCol.updateMany(
+        { price: { $gt: 500 } },
+        {
+          $set: {
+            price: siteConfig.price,
+            originalPrice: siteConfig.originalPrice,
+            discountPercent: Math.round(((siteConfig.originalPrice - siteConfig.price) / siteConfig.originalPrice) * 100),
+            updatedAt: new Date(),
+          },
+        }
+      );
     }
 
     const faqsCol = await getCollection<FAQItem>("faqs");
