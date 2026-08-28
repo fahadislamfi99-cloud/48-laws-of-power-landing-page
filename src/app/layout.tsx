@@ -38,6 +38,15 @@ export const metadata: Metadata = {
     title: "The 48 Laws of Power বাংলা ডিজিটাল PDF সংস্করণ",
     description: "মানুষের মনস্তত্ত্ব ও ক্ষমতার ৪৮টি নীতি, যা মোবাইল ও ট্যাবলেটে তাৎক্ষণিক পড়া যায়।",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
