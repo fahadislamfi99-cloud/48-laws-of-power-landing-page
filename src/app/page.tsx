@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import EditorialHero from "@/components/EditorialHero";
 import HumanRecognition from "@/components/HumanRecognition";
 import DeepDiveLaw from "@/components/DeepDiveLaw";
+import VideoLessonSection from "@/components/VideoLessonSection";
 import CuriosityBridge from "@/components/CuriosityBridge";
 import PdfSamplePreview from "@/components/PdfSamplePreview";
 import LawsAlmanac from "@/components/LawsAlmanac";
@@ -34,6 +35,7 @@ export default function Home() {
       <EditorialHero onOpenOrderModal={() => handleOpenOrderModal()} />
       <HumanRecognition />
       <DeepDiveLaw />
+      <VideoLessonSection onOpenOrderModal={() => handleOpenOrderModal()} />
       <CuriosityBridge onOpenOrderModal={() => handleOpenOrderModal()} />
       <PdfSamplePreview onOpenOrderModal={() => handleOpenOrderModal()} />
       <LawsAlmanac

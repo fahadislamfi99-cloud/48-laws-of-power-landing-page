@@ -74,6 +74,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
   const navItems = [
     { label: "মূল ভাবনা", href: "#thesis" },
     { label: "একটি পাঠ", href: "#deep-dive" },
+    { label: "ভিডিও লেসন", href: "#video-lesson" },
     { label: "একটু পড়ে দেখুন", href: "#sample-preview" },
     { label: "৪৮টি নীতি", href: "#laws-almanac" },
     { label: "লেখক পরিচিতি", href: "#author" },
