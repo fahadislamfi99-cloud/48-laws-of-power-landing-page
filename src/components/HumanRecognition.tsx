@@ -34,42 +34,42 @@ export default function HumanRecognition() {
     <section
       id="thesis"
       ref={containerRef}
-      className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
+      className="py-10 sm:py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Background ambient gold orb */}
       <div className="absolute top-1/3 -left-32 w-[380px] h-[380px] bg-[#C8A45C]/[0.035] rounded-full blur-[130px] pointer-events-none animate-[orbFloat1_14s_ease-in-out_infinite]" />
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl space-y-3 mb-10 reveal">
-          <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
+        <div className="max-w-3xl space-y-2.5 sm:space-y-3 mb-6 sm:mb-10 reveal">
+          <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase block">
             HUMAN SOCIAL DYNAMICS
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
             আপনি কি কখনো এমন অভিজ্ঞতার মুখোমুখি হয়েছেন?
           </h2>
-          <p className="text-base sm:text-lg text-[#B8B0A4] leading-relaxed">
+          <p className="text-xs sm:text-base lg:text-lg text-[#B8B0A4] leading-relaxed">
             আমরা প্রায়ই ভাবি পৃথিবী নিখুঁত ন্যায়নীতিতে চলে। কিন্তু বাস্তব জীবনে আপনি নিশ্চয়ই এই পরিস্থিতিগুলো ঘটতে দেখেছেন:
           </p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6 lg:gap-8">
           {experiences.map((item, idx) => (
             <div
               key={idx}
-              className={`reveal-card reveal-stagger-${idx + 1} card-luxury rounded-2xl p-6 sm:p-7 space-y-3 group`}
+              className={`reveal-card reveal-stagger-${idx + 1} card-luxury rounded-2xl p-4 sm:p-7 space-y-2 sm:space-y-3 group`}
             >
-              <div className="flex items-center justify-between text-xs font-mono text-[#C8A45C]">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono text-[#C8A45C]">
                 <span className="font-bold uppercase tracking-wider group-hover:text-[#D4AF6E] transition-colors">
                   {item.marker}
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C]/40 group-hover:bg-[#C8A45C] transition-colors" />
               </div>
-              <h3 className="font-bengali-serif font-bold text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors leading-snug">
+              <h3 className="font-bengali-serif font-bold text-base sm:text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors leading-snug">
                 {item.title}
               </h3>
-              <p className="text-sm sm:text-base text-[#B8B0A4] leading-relaxed">
+              <p className="text-xs sm:text-base text-[#B8B0A4] leading-relaxed">
                 {item.text}
               </p>
             </div>
@@ -77,17 +77,17 @@ export default function HumanRecognition() {
         </div>
 
         {/* Pull Quote */}
-        <div className="reveal-scale reveal-stagger-5 mt-10 p-7 sm:p-8 lg:p-10 rounded-2xl bg-[#111114] border border-[#2A2A2E] hover:border-[#C8A45C]/35 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center transition-all duration-500 shadow-xl">
+        <div className="reveal-scale reveal-stagger-5 mt-6 sm:mt-10 p-4 sm:p-8 lg:p-10 rounded-2xl bg-[#111114] border border-[#2A2A2E] hover:border-[#C8A45C]/35 grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-6 items-center transition-all duration-500 shadow-xl">
           <div className="lg:col-span-2 flex justify-start lg:justify-center">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center shadow-[0_0_20px_rgba(200,164,92,0.25)]">
-              <Quote className="w-5 h-5" />
+            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center shadow-[0_0_20px_rgba(200,164,92,0.25)] shrink-0">
+              <Quote className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
           </div>
-          <div className="lg:col-span-10 space-y-2.5">
-            <p className="font-bengali-serif text-lg sm:text-xl text-[#F0EBE0] leading-relaxed italic">
+          <div className="lg:col-span-10 space-y-2 sm:space-y-2.5">
+            <p className="font-bengali-serif text-sm sm:text-xl text-[#F0EBE0] leading-relaxed italic">
               &ldquo;ক্ষমতার খেলায় ভালো বা খারাপ বলে কিছু নেই। যারা এই খেলার অদৃশ্য নিয়মগুলো বোঝেন, তারা নিয়ন্ত্রণ ধরে রাখেন। আর যারা অন্ধভাবে নিয়মের অপেক্ষা করেন, তারা অন্যের সিদ্ধান্তের শিকার হন।&rdquo;
             </p>
-            <span className="text-xs font-semibold text-[#C8A45C] block pt-1 tracking-wide">
+            <span className="text-[11px] sm:text-xs font-semibold text-[#C8A45C] block pt-0.5 tracking-wide">
               রবার্ট গ্রিন (The 48 Laws of Power)
             </span>
           </div>

@@ -20,17 +20,17 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
   ];
 
   return (
-    <section ref={containerRef} className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-3 mb-10 reveal">
-          <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
+    <section ref={containerRef} className="py-10 sm:py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] overflow-hidden">
+      <div className="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8">
+        <div className="max-w-3xl space-y-2.5 sm:space-y-3 mb-6 sm:mb-10 reveal">
+          <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase block">
             THE 48 PRINCIPLES
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.2]">
             একটি নীতি যদি দৃষ্টিভঙ্গি বদলে দিতে পারে, <br className="hidden sm:inline" />
             তবে পুরো ৪৮টি নীতি কী করতে পারে?
           </h2>
-          <p className="text-base sm:text-lg text-[#B8B0A4] leading-relaxed">
+          <p className="text-xs sm:text-base lg:text-lg text-[#B8B0A4] leading-relaxed">
             রবার্ট গ্রিনের এই বইটিতে কোনো অলীক তত্ত্ব নেই। প্রতিটি নীতি বাস্তব মানব ইতিহাসের ৩,০০০ বছরের পরীক্ষা-নিরীক্ষা থেকে প্রমাণিত এবং ৫টি মূল স্তরে বিভক্ত:
           </p>
         </div>
@@ -40,15 +40,15 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`reveal reveal-left reveal-stagger-${Math.min(idx + 1, 5)} py-5 sm:py-6 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline px-3 sm:px-4 rounded-xl transition-all duration-300 hover:bg-[#111114] md:hover:translate-x-1 group cursor-default`}
+              className={`reveal reveal-left reveal-stagger-${Math.min(idx + 1, 5)} py-3.5 sm:py-6 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-4 items-baseline px-2.5 sm:px-4 rounded-xl transition-all duration-300 hover:bg-[#111114] md:hover:translate-x-1 group cursor-default`}
             >
-              <div className="sm:col-span-2 font-mono text-xs font-bold text-[#C8A45C] group-hover:text-[#D4AF6E] transition-colors">
+              <div className="sm:col-span-2 font-mono text-[11px] sm:text-xs font-bold text-[#C8A45C] group-hover:text-[#D4AF6E] transition-colors">
                 {pillar.num}
               </div>
-              <div className="sm:col-span-4 font-bengali-serif font-bold text-lg sm:text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors">
+              <div className="sm:col-span-4 font-bengali-serif font-bold text-base sm:text-xl text-[#F0EBE0] group-hover:text-[#C8A45C] transition-colors">
                 {pillar.title}
               </div>
-              <div className="sm:col-span-6 text-sm text-[#B8B0A4] leading-relaxed">
+              <div className="sm:col-span-6 text-xs sm:text-sm text-[#B8B0A4] leading-relaxed">
                 {pillar.desc}
               </div>
             </div>
@@ -56,8 +56,8 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
         </div>
 
         {/* Action */}
-        <div className="reveal reveal-stagger-5 mt-8 pt-6 border-t border-[#2A2A2E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <span className="text-sm font-semibold text-[#B8B0A4]">
+        <div className="reveal reveal-stagger-5 mt-6 pt-4 sm:mt-8 sm:pt-6 border-t border-[#2A2A2E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+          <span className="text-xs sm:text-sm font-semibold text-[#B8B0A4]">
             সম্পূর্ণ ৪৮টি নীতি ও বিস্তারিত ঐতিহাসিক বিশ্লেষণ ডিজিটাল PDF-এ সংরক্ষিত।
           </span>
           <a
@@ -65,7 +65,7 @@ export default function CuriosityBridge({ onOpenOrderModal }: CuriosityBridgePro
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C8A45C] hover:text-[#D4AF6E] transition-colors group cursor-pointer"
           >
             <span>স্যাম্পল পৃষ্ঠা পড়ে দেখুন</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
       </div>

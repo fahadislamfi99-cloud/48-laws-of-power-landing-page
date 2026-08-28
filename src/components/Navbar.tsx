@@ -75,7 +75,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 py-3 sm:py-3.5 border-b transition-colors duration-200 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 py-2.5 sm:py-3.5 border-b transition-colors duration-200 ease-out ${
           isScrolled || mobileMenuOpen
             ? "bg-[#08080A]/95 backdrop-blur-xl border-[#26262A] shadow-md"
             : "bg-[#08080A]/80 backdrop-blur-md border-transparent"
@@ -89,18 +89,18 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center font-display text-[11px] sm:text-xs font-bold tracking-wider rounded transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(200,164,92,0.35)]">
+          <a href="#" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center font-display text-[10px] sm:text-xs font-bold tracking-wider rounded transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(200,164,92,0.35)]">
               48
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-[10px] sm:text-[11px] font-bold tracking-[0.15em] sm:tracking-[0.2em] text-[#F0EBE0] uppercase leading-none">
+              <span className="font-display text-[9px] sm:text-[11px] font-bold tracking-[0.15em] sm:tracking-[0.2em] text-[#F0EBE0] uppercase leading-none">
                 THE 48 LAWS OF POWER
               </span>
-              <span className="text-[9px] sm:text-[10px] font-semibold tracking-wider text-[#C8A45C] mt-0.5">
+              <span className="text-[8px] sm:text-[10px] font-semibold tracking-wider text-[#C8A45C] mt-0.5">
                 বাংলা ডিজিটাল সংস্করণ
               </span>
             </div>
@@ -135,7 +135,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="lg:hidden p-2 rounded-xl text-[#D1C9BC] hover:text-[#C8A45C] hover:bg-[#1A1A1E] transition-colors cursor-pointer group"
+              className="lg:hidden p-1.5 sm:p-2 rounded-xl text-[#D1C9BC] hover:text-[#C8A45C] hover:bg-[#1A1A1E] transition-colors cursor-pointer group"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -161,32 +161,32 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
                 duration: 0.15,
                 ease: "easeOut",
               }}
-              className="lg:hidden bg-[#0D0D10] border-b border-[#26262A] px-5 sm:px-8 py-6 space-y-4 shadow-2xl overflow-hidden will-change-[transform,opacity]"
+              className="lg:hidden bg-[#0D0D10] border-b border-[#26262A] px-4 sm:px-8 py-4 sm:py-6 space-y-3 sm:space-y-4 shadow-2xl overflow-hidden will-change-[transform,opacity]"
             >
-              <nav className="space-y-1 divide-y divide-[#1A1A1E]">
+              <nav className="space-y-0.5 sm:space-y-1 divide-y divide-[#1A1A1E]">
                 {navItems.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="flex items-center justify-between text-sm font-semibold text-[#F0EBE0] py-3 hover:text-[#C8A45C] transition-colors cursor-pointer"
+                    className="flex items-center justify-between text-xs sm:text-sm font-semibold text-[#F0EBE0] py-2.5 sm:py-3 hover:text-[#C8A45C] transition-colors cursor-pointer"
                   >
                     <span>{item.label}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#8A8278]" />
+                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8A8278]" />
                   </a>
                 ))}
               </nav>
 
-              <div className="pt-3">
+              <div className="pt-2 sm:pt-3">
                 <button
                   type="button"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onOpenOrderModal();
                   }}
-                  className="w-full py-3.5 rounded-2xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer hover-lift"
+                  className="w-full py-3 sm:py-3.5 rounded-xl sm:rounded-2xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer hover-lift min-h-[42px]"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   <span>পিডিএফ সংগ্রহ করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
                 </button>
               </div>

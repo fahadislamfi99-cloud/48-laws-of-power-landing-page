@@ -44,30 +44,30 @@ export default function ProductFAQ() {
     <section
       id="faq"
       ref={containerRef}
-      className="py-14 lg:py-20 bg-[#0A0A0C] border-t border-[#26262A]"
+      className="py-10 sm:py-14 lg:py-20 bg-[#0A0A0C] border-t border-[#26262A]"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center space-y-3 mb-10 reveal">
-          <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C8A45C] uppercase block">
+        <div className="text-center space-y-2.5 sm:space-y-3 mb-6 sm:mb-10 reveal">
+          <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.25em] text-[#C8A45C] uppercase block">
             FREQUENTLY ASKED QUESTIONS
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             সাধারণ প্রশ্ন ও উত্তর
           </h2>
-          <p className="text-[#B8B0A4] text-base">
+          <p className="text-[#B8B0A4] text-xs sm:text-base">
             ডিজিটাল সংস্করণ ও ডাউনলোড প্রক্রিয়া সম্পর্কে প্রয়োজনীয় তথ্য নিচে জেনে নিন
           </p>
         </div>
 
         {/* FAQ Accordion List - Single reveal wrapper on parent */}
-        <div className="space-y-3 reveal reveal-stagger-1">
+        <div className="space-y-2.5 sm:space-y-3 reveal reveal-stagger-1">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div
                 key={idx}
-                className={`bg-[#111114] rounded-2xl border transition-all duration-300 ${
+                className={`bg-[#111114] rounded-xl sm:rounded-2xl border transition-all duration-300 ${
                   isOpen
                     ? "border-[#C8A45C]/40 shadow-[0_4px_25px_rgba(200,164,92,0.06)] bg-[#131317]"
                     : "border-[#26262A] hover:border-[#3A3A3E] hover:bg-[#131316]"
@@ -77,19 +77,19 @@ export default function ProductFAQ() {
                   type="button"
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
                   aria-expanded={isOpen}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bengali-serif font-bold text-[#F0EBE0] text-base sm:text-lg cursor-pointer group select-none"
+                  className="w-full p-3.5 sm:p-6 text-left flex items-center justify-between gap-3 sm:gap-4 font-bengali-serif font-bold text-[#F0EBE0] text-sm sm:text-lg cursor-pointer group select-none"
                 >
                   <span className="group-hover:text-[#C8A45C] transition-colors leading-snug">
                     {faq.q}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
                       isOpen
                         ? "rotate-180 bg-[#C8A45C] text-[#08080A] shadow-[0_0_15px_rgba(200,164,92,0.3)]"
                         : "bg-[#08080A] border border-[#26262A] text-[#8A8278] group-hover:border-[#C8A45C]/40 group-hover:text-[#C8A45C]"
                     }`}
                   >
-                    <ChevronDown className="w-4 h-4 transition-transform duration-300" />
+                    <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300" />
                   </div>
                 </button>
 
@@ -100,7 +100,7 @@ export default function ProductFAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-[#C4BCB0] leading-[1.8] border-t border-[#26262A]/60">
+                    <div className="px-3.5 sm:px-6 pb-4 sm:pb-6 pt-1 text-xs sm:text-base text-[#C4BCB0] leading-[1.75] sm:leading-[1.8] border-t border-[#26262A]/60">
                       {faq.a}
                     </div>
                   </div>

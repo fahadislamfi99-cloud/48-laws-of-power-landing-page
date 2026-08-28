@@ -11,32 +11,32 @@ export default function DeepDiveLaw() {
     <section
       id="deep-dive"
       ref={containerRef}
-      className="py-14 lg:py-20 bg-[#0C0C0F] border-t border-[#26262A] relative overflow-hidden"
+      className="py-10 sm:py-14 lg:py-20 bg-[#0C0C0F] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Subtle Gold Background Orb */}
       <div className="absolute top-1/2 -right-32 w-[420px] h-[420px] bg-[#C8A45C]/[0.035] rounded-full blur-[140px] pointer-events-none animate-[orbFloat2_16s_ease-in-out_infinite]" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
-            <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#C8A45C] uppercase">
+        <div className="text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-3 mb-6 sm:mb-10 reveal">
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <div className="h-[1.5px] w-8 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
+            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] text-[#C8A45C] uppercase">
               AN INSIGHT FROM THE BOOK
             </span>
-            <div className="h-[1.5px] w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
+            <div className="h-[1.5px] w-8 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent reveal-line" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F5F0E6] leading-[1.25]">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F5F0E6] leading-[1.25]">
             একটি নীতি, বাস্তব দৃষ্টিভঙ্গির পরিবর্তন
           </h2>
-          <p className="text-[#C4BCB0] text-base sm:text-lg leading-[1.8]">
+          <p className="text-[#C4BCB0] text-xs sm:text-base lg:text-lg leading-[1.75] sm:leading-[1.8]">
             বইটি থেকে একটি নীতি মনোযোগ দিয়ে পড়ুন। এটি বুঝলে আপনি বুঝতে পারবেন বাকি ৪৭টি নীতি কীভাবে আপনার চিন্তার পরিসীমা বদলে দেবে।
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex justify-center gap-3 mb-8 reveal reveal-stagger-1">
+        <div className="flex justify-center gap-2 sm:gap-3 mb-5 sm:mb-8 reveal reveal-stagger-1">
           {[
             { id: 4 as const, label: "LAW 04: নীরবতার শক্তি" },
             { id: 1 as const, label: "LAW 01: সুপিরিয়রের অহং" },
@@ -44,7 +44,7 @@ export default function DeepDiveLaw() {
             <button
               key={tab.id}
               onClick={() => setSelectedLaw(tab.id)}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer hover-lift ${
+              className={`px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer hover-lift ${
                 selectedLaw === tab.id
                   ? "bg-[#C8A45C] text-[#08080A] shadow-[0_0_20px_rgba(200,164,92,0.35)]"
                   : "bg-[#111114] text-[#C4BCB0] border border-[#26262A] hover:border-[#C8A45C]/40 hover:text-[#C8A45C]"
@@ -56,14 +56,14 @@ export default function DeepDiveLaw() {
         </div>
 
         {/* Content Card */}
-        <div className="bg-[#111114] rounded-3xl border border-[#26262A] p-6 sm:p-10 lg:p-12 space-y-8 reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/30 shadow-2xl">
+        <div className="bg-[#111114] rounded-2xl sm:rounded-3xl border border-[#26262A] p-4 sm:p-10 lg:p-12 space-y-5 sm:space-y-8 reveal-scale reveal-stagger-2 transition-all duration-300 hover:border-[#C8A45C]/30 shadow-2xl">
           {selectedLaw === 4 ? (
-            <div key="law-4" className="space-y-8 animate-fadeIn">
-              <div className="space-y-2 border-b border-[#26262A] pb-6">
-                <span className="text-xs font-semibold text-[#C8A45C] tracking-[0.2em] uppercase">
+            <div key="law-4" className="space-y-5 sm:space-y-8 animate-fadeIn">
+              <div className="space-y-1.5 sm:space-y-2 border-b border-[#26262A] pb-4 sm:pb-6">
+                <span className="text-[11px] sm:text-xs font-semibold text-[#C8A45C] tracking-[0.18em] sm:tracking-[0.2em] uppercase">
                   LAW 04 • The 48 Laws of Power (বাংলা সংস্করণ)
                 </span>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
+                <h3 className="text-xl sm:text-3xl lg:text-4xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
                   প্রয়োজনের চেয়ে সর্বদা কম কথা বলুন
                 </h3>
                 <p className="text-xs sm:text-sm text-[#9E968B]">
@@ -72,30 +72,30 @@ export default function DeepDiveLaw() {
               </div>
 
               {/* Bespoke Editorial Quote Card */}
-              <div className="relative py-7 px-6 sm:px-10 rounded-2xl bg-gradient-to-b from-[#18181C] via-[#121215] to-[#18181C] border border-[#2A2A30] shadow-md overflow-hidden">
+              <div className="relative py-4 px-4 sm:py-7 sm:px-10 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#18181C] via-[#121215] to-[#18181C] border border-[#2A2A30] shadow-md overflow-hidden">
                 {/* Subtle gold corner accent line */}
-                <div className="absolute top-0 left-0 w-24 h-[2px] bg-gradient-to-r from-[#C8A45C] to-transparent" />
-                <div className="absolute bottom-0 right-0 w-24 h-[2px] bg-gradient-to-l from-[#C8A45C] to-transparent" />
+                <div className="absolute top-0 left-0 w-16 sm:w-24 h-[2px] bg-gradient-to-r from-[#C8A45C] to-transparent" />
+                <div className="absolute bottom-0 right-0 w-16 sm:w-24 h-[2px] bg-gradient-to-l from-[#C8A45C] to-transparent" />
 
                 {/* Decorative Quotation Glyph */}
-                <span className="absolute -top-1 left-4 font-display text-6xl text-[#C8A45C]/15 select-none pointer-events-none leading-none">
+                <span className="absolute -top-1 left-2 sm:left-4 font-display text-4xl sm:text-6xl text-[#C8A45C]/15 select-none pointer-events-none leading-none">
                   “
                 </span>
 
-                <p className="relative z-10 font-bengali-serif text-lg sm:text-xl text-[#F5F0E6] leading-[1.85] italic pl-2 sm:pl-6">
+                <p className="relative z-10 font-bengali-serif text-sm sm:text-xl text-[#F5F0E6] leading-[1.8] sm:leading-[1.85] italic pl-1 sm:pl-6">
                   &ldquo;যখন আপনি কথা দিয়ে কাউকে মুগ্ধ করার চেষ্টা করবেন, আপনি যত বেশি কথা বলবেন তত বেশি সাধারণ মনে হবে এবং নিজের নিয়ন্ত্রণ হারানোর সম্ভাবনা বাড়বে। ক্ষমতাবান মানুষ পরিমিত কথা বলে অন্যদের ওপর এক ধরণের অদৃশ্য মনস্তাত্ত্বিক চাপ সৃষ্টি করে।&rdquo;
                 </p>
 
-                <div className="mt-4 pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs text-[#C8A45C]">
-                  <span className="text-[11px] text-[#9E968B] font-medium tracking-wide">মূল সূত্রের নির্যাস</span>
-                  <span className="font-mono font-bold tracking-wider uppercase">ROBERT GREENE</span>
+                <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs text-[#C8A45C]">
+                  <span className="text-[10px] sm:text-[11px] text-[#9E968B] font-medium tracking-wide">মূল সূত্রের নির্যাস</span>
+                  <span className="font-mono font-bold tracking-wider uppercase text-[10px] sm:text-xs">ROBERT GREENE</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#C4BCB0] leading-[1.8]">
-                <div className="space-y-2.5 p-5 rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
-                  <h4 className="font-bold text-base text-[#F5F0E6] flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C8A45C]" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6 text-xs sm:text-sm text-[#C4BCB0] leading-[1.75] sm:leading-[1.8]">
+                <div className="space-y-2 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
+                  <h4 className="font-bold text-sm sm:text-base text-[#F5F0E6] flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#C8A45C]" />
                     <span>মনস্তাত্ত্বিক কারণ:</span>
                   </h4>
                   <p>
@@ -103,9 +103,9 @@ export default function DeepDiveLaw() {
                   </p>
                 </div>
 
-                <div className="space-y-2.5 p-5 rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
-                  <h4 className="font-bold text-base text-[#F5F0E6] flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C8A45C]" />
+                <div className="space-y-2 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
+                  <h4 className="font-bold text-sm sm:text-base text-[#F5F0E6] flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#C8A45C]" />
                     <span>বাস্তব জীবনের কৌশল:</span>
                   </h4>
                   <p>
@@ -115,12 +115,12 @@ export default function DeepDiveLaw() {
               </div>
             </div>
           ) : (
-            <div key="law-1" className="space-y-8 animate-fadeIn">
-              <div className="space-y-2 border-b border-[#26262A] pb-6">
-                <span className="text-xs font-semibold text-[#C8A45C] tracking-[0.2em] uppercase">
+            <div key="law-1" className="space-y-5 sm:space-y-8 animate-fadeIn">
+              <div className="space-y-1.5 sm:space-y-2 border-b border-[#26262A] pb-4 sm:pb-6">
+                <span className="text-[11px] sm:text-xs font-semibold text-[#C8A45C] tracking-[0.18em] sm:tracking-[0.2em] uppercase">
                   LAW 01 • The 48 Laws of Power (বাংলা সংস্করণ)
                 </span>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
+                <h3 className="text-xl sm:text-3xl lg:text-4xl font-bengali-serif font-bold text-[#F5F0E6] leading-snug">
                   মাস্টার বা শীর্ষ ব্যক্তিকে কখনো নিজের চেয়ে বেশি উজ্জ্বল দেখাবেন না
                 </h3>
                 <p className="text-xs sm:text-sm text-[#9E968B]">
@@ -129,30 +129,30 @@ export default function DeepDiveLaw() {
               </div>
 
               {/* Bespoke Editorial Quote Card */}
-              <div className="relative py-7 px-6 sm:px-10 rounded-2xl bg-gradient-to-b from-[#18181C] via-[#121215] to-[#18181C] border border-[#2A2A30] shadow-md overflow-hidden">
+              <div className="relative py-4 px-4 sm:py-7 sm:px-10 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#18181C] via-[#121215] to-[#18181C] border border-[#2A2A30] shadow-md overflow-hidden">
                 {/* Subtle gold corner accent line */}
-                <div className="absolute top-0 left-0 w-24 h-[2px] bg-gradient-to-r from-[#C8A45C] to-transparent" />
-                <div className="absolute bottom-0 right-0 w-24 h-[2px] bg-gradient-to-l from-[#C8A45C] to-transparent" />
+                <div className="absolute top-0 left-0 w-16 sm:w-24 h-[2px] bg-gradient-to-r from-[#C8A45C] to-transparent" />
+                <div className="absolute bottom-0 right-0 w-16 sm:w-24 h-[2px] bg-gradient-to-l from-[#C8A45C] to-transparent" />
 
                 {/* Decorative Quotation Glyph */}
-                <span className="absolute -top-1 left-4 font-display text-6xl text-[#C8A45C]/15 select-none pointer-events-none leading-none">
+                <span className="absolute -top-1 left-2 sm:left-4 font-display text-4xl sm:text-6xl text-[#C8A45C]/15 select-none pointer-events-none leading-none">
                   “
                 </span>
 
-                <p className="relative z-10 font-bengali-serif text-lg sm:text-xl text-[#F5F0E6] leading-[1.85] italic pl-2 sm:pl-6">
+                <p className="relative z-10 font-bengali-serif text-sm sm:text-xl text-[#F5F0E6] leading-[1.8] sm:leading-[1.85] italic pl-1 sm:pl-6">
                   &ldquo;সর্বদা আপনার ওপরের লোকদের স্বাচ্ছন্দ্য এবং শ্রেষ্ঠত্বের অনুভূতি দিন। তাদের সন্তুষ্ট করতে গিয়ে অতিরিক্ত নিজের প্রতিভা প্রদর্শন করবেন না, কারণ এতে তারা চরম নিরাপত্তাহীনতায় ভুগতে পারে।&rdquo;
                 </p>
 
-                <div className="mt-4 pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs text-[#C8A45C]">
-                  <span className="text-[11px] text-[#9E968B] font-medium tracking-wide">মূল সূত্রের নির্যাস</span>
-                  <span className="font-mono font-bold tracking-wider uppercase">ROBERT GREENE</span>
+                <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-[#26262A]/60 flex items-center justify-between text-xs text-[#C8A45C]">
+                  <span className="text-[10px] sm:text-[11px] text-[#9E968B] font-medium tracking-wide">মূল সূত্রের নির্যাস</span>
+                  <span className="font-mono font-bold tracking-wider uppercase text-[10px] sm:text-xs">ROBERT GREENE</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#C4BCB0] leading-[1.8]">
-                <div className="space-y-2.5 p-5 rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
-                  <h4 className="font-bold text-base text-[#F5F0E6] flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C8A45C]" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6 text-xs sm:text-sm text-[#C4BCB0] leading-[1.75] sm:leading-[1.8]">
+                <div className="space-y-2 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
+                  <h4 className="font-bold text-sm sm:text-base text-[#F5F0E6] flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#C8A45C]" />
                     <span>ঐতিহাসিক শিক্ষা:</span>
                   </h4>
                   <p>
@@ -160,9 +160,9 @@ export default function DeepDiveLaw() {
                   </p>
                 </div>
 
-                <div className="space-y-2.5 p-5 rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
-                  <h4 className="font-bold text-base text-[#F5F0E6] flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C8A45C]" />
+                <div className="space-y-2 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#08080A]/60 border border-[#26262A]">
+                  <h4 className="font-bold text-sm sm:text-base text-[#F5F0E6] flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#C8A45C]" />
                     <span>বাস্তব জীবনের কৌশল:</span>
                   </h4>
                   <p>

@@ -205,7 +205,7 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 overflow-x-hidden overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-5 md:p-6 overflow-x-hidden overflow-y-auto">
           {/* Backdrop: Gradual Darken + Subtle Background Blur */}
           <motion.div
             key="exit-backdrop"
@@ -235,7 +235,7 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent
-            className="relative w-full max-w-[460px] md:max-w-[620px] max-h-[90dvh] overflow-y-auto bg-[#0D0D10] rounded-3xl border border-[#2A2A2E] shadow-[0_25px_80px_rgba(0,0,0,0.9)] p-5 sm:p-7 md:p-8 text-left space-y-5 my-auto z-10 will-change-[transform,opacity]"
+            className="relative w-full max-w-[460px] md:max-w-[620px] max-h-[92dvh] overflow-y-auto bg-[#0D0D10] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] shadow-[0_25px_80px_rgba(0,0,0,0.9)] p-3.5 sm:p-7 md:p-8 text-left space-y-3.5 sm:space-y-5 my-auto z-10 will-change-[transform,opacity]"
             style={{ scrollbarWidth: "none" }}
           >
             {/* Top Gold Shimmer Border Accent */}
@@ -245,48 +245,48 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
             <button
               type="button"
               onClick={handleClose}
-              className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 p-2 rounded-full bg-[#1A1A1E]/90 hover:bg-[#2A2A2E] text-[#D1C9BC] hover:text-[#F0EBE0] border border-[#26262A] hover:border-[#C8A45C]/40 transition-all duration-300 z-30 cursor-pointer backdrop-blur-sm group"
+              className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-full bg-[#1A1A1E]/90 hover:bg-[#2A2A2E] text-[#D1C9BC] hover:text-[#F0EBE0] border border-[#26262A] hover:border-[#C8A45C]/40 transition-all duration-300 z-30 cursor-pointer backdrop-blur-sm group"
               aria-label="Close lesson popup"
             >
               <X className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 ease-out group-hover:rotate-90" />
             </button>
 
             {/* ─── 1. Header Badges & Tag ──────────────────────────────── */}
-            <div className="flex flex-wrap items-center gap-2 pt-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A45C]/15 border border-[#C8A45C]/30 text-[#C8A45C] font-semibold text-xs shadow-xs">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-0.5 sm:pt-1">
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#C8A45C]/15 border border-[#C8A45C]/30 text-[#C8A45C] font-semibold text-[11px] sm:text-xs shadow-xs">
                 <span>{currentLesson.themeIcon}</span>
                 <span>এক মিনিটের Power Lesson</span>
               </div>
 
               {currentLesson.lawNumber && (
-                <span className="text-[11px] font-mono font-bold text-[#A8A095] bg-[#141418] px-2.5 py-1 rounded-md border border-[#26262A]">
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold text-[#A8A095] bg-[#141418] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md border border-[#26262A]">
                   {currentLesson.lawNumber} • {currentLesson.tag}
                 </span>
               )}
             </div>
 
             {/* ─── 2. Main Lesson Insight ──────────────────────────────── */}
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               <h3
                 id="exit-lesson-title"
-                className="text-lg sm:text-xl md:text-[22px] font-bengali-serif font-bold text-[#F0EBE0] leading-snug tracking-tight"
+                className="text-base xs:text-lg sm:text-xl md:text-[22px] font-bengali-serif font-bold text-[#F0EBE0] leading-snug tracking-tight"
               >
                 &ldquo;{currentLesson.headlineBn}&rdquo;
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#C4BCB0] leading-[1.8] font-normal">
+              <p className="text-xs sm:text-sm text-[#C4BCB0] leading-[1.75] sm:leading-[1.8] font-normal">
                 {currentLesson.explanationBn}
               </p>
             </div>
 
             {/* ─── 3. Editorial Transition Strip ──────────────────────── */}
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-[#141418] border border-[#26262A] flex items-start gap-3">
-              <BookOpen className="w-4 h-4 text-[#C8A45C] shrink-0 mt-0.5" />
+            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#141418] border border-[#26262A] flex items-start gap-2.5 sm:gap-3">
+              <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C8A45C] shrink-0 mt-0.5" />
               <div className="space-y-0.5 text-xs text-[#D1C9BC] leading-relaxed">
-                <span className="font-bold text-[#F0EBE0] block">
+                <span className="font-bold text-[#F0EBE0] block text-xs sm:text-sm">
                   এটি মানব মনস্তত্ত্বের মাত্র ১টি মূলনীতি।
                 </span>
-                <span className="text-[#A8A095] text-[11px] block">
+                <span className="text-[#A8A095] text-[10px] sm:text-[11px] block">
                   The 48 Laws of Power (বাংলা অনুবাদ)-এ রয়েছে এমন পুরো ৪৮টি নীতি, ঐতিহাসিক কেস স্টাডি ও বাস্তব প্রয়োগের ব্যাখ্যা।
                 </span>
               </div>
@@ -294,16 +294,16 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
 
             {/* ─── 4. Dynamic Promotional Offer & Countdown ───────────── */}
             {promoOffer && promoOffer.isEnabled && (
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-[#16161C] to-[#0F0F14] border border-[#C8A45C]/35 space-y-3.5 shadow-inner">
+              <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#16161C] to-[#0F0F14] border border-[#C8A45C]/35 space-y-2.5 sm:space-y-3.5 shadow-inner">
                 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#C8A45C]" />
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C8A45C]" />
                     <span className="text-xs font-bold text-[#F0EBE0]">
-                      যাওয়ার আগে আপনার জন্য বিশেষ ছাড়
+                      যাওয়ার আগে বিশেষ ছাড়
                     </span>
                   </div>
-                  <span className="text-xs font-extrabold text-[#08080A] bg-[#C8A45C] px-2.5 py-0.5 rounded-full shadow-xs">
+                  <span className="text-[11px] sm:text-xs font-extrabold text-[#08080A] bg-[#C8A45C] px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full shadow-xs">
                     {promoOffer.offerTag || "৳৫০ OFF"}
                   </span>
                 </div>
@@ -312,11 +312,11 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
                 <CountdownTimer variant="luxury-box" label="অফার শেষ হতে বাকি" />
 
                 {/* Coupon Code Pill */}
-                <div className="p-2.5 rounded-xl bg-[#0A0A0E] border border-[#C8A45C]/25 flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <Tag className="w-3.5 h-3.5 text-[#C8A45C] shrink-0" />
-                    <span className="text-[11px] text-[#A8A095]">Coupon:</span>
-                    <span className="font-mono font-black text-sm text-[#C8A45C] tracking-wider truncate">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-[#0A0A0E] border border-[#C8A45C]/25 flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                    <Tag className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#C8A45C] shrink-0" />
+                    <span className="text-[10px] sm:text-[11px] text-[#A8A095]">কুপন:</span>
+                    <span className="font-mono font-black text-xs sm:text-sm text-[#C8A45C] tracking-wider truncate">
                       {promoOffer.couponCode}
                     </span>
                   </div>
@@ -324,49 +324,48 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
                   <button
                     type="button"
                     onClick={handleCopyCode}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#C8A45C]/15 hover:bg-[#C8A45C]/25 text-[#C8A45C] text-xs font-bold transition-all border border-[#C8A45C]/30 cursor-pointer shrink-0"
+                    className="px-2.5 py-1 rounded-lg bg-[#181820] hover:bg-[#22222E] border border-[#2E2E38] text-[11px] text-[#D1C9BC] hover:text-[#C8A45C] transition-colors flex items-center gap-1 cursor-pointer shrink-0"
                   >
                     {isCopied ? (
                       <>
                         <Check className="w-3 h-3 text-emerald-400" />
-                        <span className="text-emerald-400 text-[11px] font-bold">✓ Copied</span>
+                        <span className="text-emerald-400 font-semibold">কপি</span>
                       </>
                     ) : (
                       <>
                         <Copy className="w-3 h-3" />
-                        <span className="text-[11px]">কপি</span>
+                        <span>কপি</span>
                       </>
                     )}
                   </button>
                 </div>
 
+                {/* CTA Claim Button */}
+                <button
+                  type="button"
+                  onClick={handleClaim}
+                  className="w-full py-3 sm:py-3.5 rounded-xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer hover-lift btn-shimmer shadow-lg group"
+                >
+                  <span>{promoOffer?.offerTag ? `${promoOffer.offerTag} ছাড়ে সম্পূর্ণ ডিজিটাল কপি নিন` : "ডিজিটাল কপি কিনুন"}</span>
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
+
               </div>
             )}
 
-            {/* ─── 5. CTAs & Dismissal ─────────────────────────────────── */}
-            <div className="space-y-2 pt-1">
+            {/* Footer Assurance & Dismissal */}
+            <div className="flex items-center justify-between pt-1 px-1">
               <button
                 type="button"
-                onClick={handleClaim}
-                className="w-full py-3.5 sm:py-4 rounded-2xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer hover-lift btn-shimmer shadow-lg group"
+                onClick={handleClose}
+                className="text-[11px] sm:text-xs text-[#8A8278] hover:text-[#D1C9BC] transition-colors cursor-pointer"
               >
-                <span>{promoOffer?.offerTag ? `${promoOffer.offerTag} ছাড়ে সম্পূর্ণ ডিজিটাল কপি নিন` : "ডিজিটাল কপি কিনুন"}</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                না, পরে দেখব
               </button>
 
-              <div className="flex items-center justify-between pt-1 px-1">
-                <button
-                  type="button"
-                  onClick={handleClose}
-                  className="text-xs text-[#8A8278] hover:text-[#D1C9BC] transition-colors cursor-pointer"
-                >
-                  না, পরে দেখব
-                </button>
-
-                <div className="flex items-center gap-1.5 text-[11px] text-[#8A8278]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#C8A45C]" />
-                  <span>বিকাশ সিকিউর পেমেন্ট • তাৎক্ষণিক অ্যাক্সেস</span>
-                </div>
+              <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-[#8A8278]">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <span>বিকাশ সিকিউর পেমেন্ট • তাৎক্ষণিক অ্যাক্সেস</span>
               </div>
             </div>
 
