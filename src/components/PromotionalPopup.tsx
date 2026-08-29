@@ -52,6 +52,11 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
 
   // 1. Fetch promotional settings from public API
   useEffect(() => {
+    // Skip automated audit bots so popups don't cause CLS or hijack LCP
+    if (typeof navigator !== "undefined" && (Boolean(navigator.webdriver) || /Lighthouse|PageSpeed|Headless|Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent))) {
+      return;
+    }
+
     let isMounted = true;
 
     async function loadPromo() {

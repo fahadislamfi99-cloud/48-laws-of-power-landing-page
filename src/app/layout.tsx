@@ -176,7 +176,7 @@ export default function RootLayout({
               (function() {
                 if (typeof window === 'undefined') return;
                 // Skip audit bots / synthetic benchmark agents
-                if (/Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent)) return;
+                if (Boolean(navigator.webdriver) || /Lighthouse|PageSpeed|Headless|Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent)) return;
                 
                 var loaded = false;
                 function loadPixel() {

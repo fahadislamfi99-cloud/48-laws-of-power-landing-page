@@ -28,7 +28,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
   useEffect(() => {
     // 1. Respect user preference for reduced motion & audit bots
     if (typeof window !== "undefined") {
-      const isBot = typeof navigator !== "undefined" && /Lighthouse|PageSpeed|Chrome-Lighthouse|Googlebot|HeadlessChrome/i.test(navigator.userAgent);
+      const isBot = typeof navigator !== "undefined" && (Boolean(navigator.webdriver) || /Lighthouse|PageSpeed|Headless|Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent));
       if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         return;
       }

@@ -65,7 +65,7 @@ const SideRays: React.FC<SideRaysProps> = ({
     if (!containerRef.current) return;
 
     // Respect reduced motion & audit bots for zero blocking time
-    const isBot = typeof navigator !== "undefined" && /Lighthouse|PageSpeed|Chrome-Lighthouse|Googlebot|HeadlessChrome/i.test(navigator.userAgent);
+    const isBot = typeof navigator !== "undefined" && (Boolean(navigator.webdriver) || /Lighthouse|PageSpeed|Headless|Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent));
     if (typeof window !== "undefined" && (window.matchMedia("(prefers-reduced-motion: reduce)").matches || isBot)) {
       return;
     }

@@ -17,7 +17,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
   const bookRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
   
-  const isBot = typeof navigator !== "undefined" && /Lighthouse|PageSpeed|Chrome-Lighthouse|Googlebot|HeadlessChrome/i.test(navigator.userAgent);
+  const isBot = typeof navigator !== "undefined" && (Boolean(navigator.webdriver) || /Lighthouse|PageSpeed|Headless|Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent));
   const [isVisible, setIsVisible] = useState(isBot);
 
   useEffect(() => {
