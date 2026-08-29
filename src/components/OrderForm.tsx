@@ -152,15 +152,18 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
       {/* Product Summary Header */}
       <div className="flex items-center gap-2.5 sm:gap-3.5 pb-3.5 sm:pb-4 border-b border-[#26262A]">
         <div className="relative shrink-0">
-          <img
-            src="/images/book-mockup.png"
-            alt="The 48 Laws of Power"
-            width={64}
-            height={64}
-            loading="lazy"
-            decoding="async"
-            className="h-12 xs:h-14 sm:h-16 w-auto object-contain drop-shadow-md"
-          />
+          <picture>
+            <source type="image/webp" srcSet="/images/book-mockup.webp" />
+            <img
+              src="/images/book-mockup.png"
+              alt="The 48 Laws of Power"
+              width={64}
+              height={64}
+              loading="lazy"
+              decoding="async"
+              className="h-12 xs:h-14 sm:h-16 w-auto object-contain drop-shadow-md"
+            />
+          </picture>
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2">

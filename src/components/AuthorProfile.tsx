@@ -21,15 +21,18 @@ export default function AuthorProfile() {
               <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-br from-[#C8A45C]/25 to-transparent blur-md opacity-50 group-hover:opacity-85 transition-opacity duration-500 pointer-events-none" />
               
               <div className="relative w-44 h-44 xs:w-52 xs:h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-2xl sm:rounded-3xl overflow-hidden border border-[#2A2A2E] bg-[#111114] group-hover:border-[#C8A45C]/45 transition-colors duration-300 shadow-2xl">
-                <img
-                  src="/images/author.jpg"
-                  alt="Robert Greene - Author Portrait"
-                  width={288}
-                  height={288}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                <picture>
+                  <source type="image/webp" srcSet="/images/author.webp" />
+                  <img
+                    src="/images/author.jpg"
+                    alt="Robert Greene - Author Portrait"
+                    width={288}
+                    height={288}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </picture>
               </div>
             </div>
           </div>

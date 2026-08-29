@@ -139,11 +139,18 @@ export default function DigitalProductShowcase({
               ref={parallaxRef}
               className="rounded-3xl overflow-hidden border border-[#26262A] bg-[#111114] max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] w-full group transition-all duration-500 hover:border-[#C8A45C]/40 hover:shadow-[0_0_40px_rgba(200,164,92,0.12)] shadow-xl"
             >
-              <img
-                src="/images/book-open.jpg"
-                alt="The 48 Laws of Power Bengali Edition Reading"
-                className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-103"
-              />
+              <picture>
+                <source type="image/webp" srcSet="/images/book-open.webp" />
+                <img
+                  src="/images/book-open.jpg"
+                  alt="The 48 Laws of Power Bengali Edition Reading"
+                  width={460}
+                  height={345}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-103"
+                />
+              </picture>
               <div className="p-4 bg-[#08080A] text-[#C4BCB0] text-xs flex items-center justify-between border-t border-[#26262A]">
                 <span>সম্পূর্ণ ৫০৯ পৃষ্ঠা</span>
                 <span className="text-[#C8A45C] font-bold">সার্চেবল PDF সংস্করণ</span>

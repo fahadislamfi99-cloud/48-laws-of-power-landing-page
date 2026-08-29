@@ -39,7 +39,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
     discountType: "fixed",
     ctaText: "অফারটি ব্যবহার করুন",
     offerTag: "৳৫০ OFF",
-    imageUrl: "/images/promo-power-strategy.jpg",
+    imageUrl: "/images/promo-power-strategy.webp",
     displayDelaySeconds: 3,
     cooldownHours: 24,
   });
@@ -168,7 +168,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
     return null;
   }
 
-  const fallbackImage = "/images/promo-power-strategy.jpg";
+  const fallbackImage = "/images/promo-power-strategy.webp";
   const displayImage = imageError ? fallbackImage : (promoData.imageUrl || fallbackImage);
 
   return (

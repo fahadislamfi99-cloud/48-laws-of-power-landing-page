@@ -233,16 +233,19 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
                 className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <img
-                  src="/images/book-mockup.png"
-                  alt="The 48 Laws of Power বাংলা ডিজিটাল সংস্করণ"
-                  width={340}
-                  height={450}
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                  className="w-full max-w-[190px] xs:max-w-[220px] sm:max-w-[300px] lg:max-w-[340px] h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)] animate-floatSlow relative z-10"
-                />
+                <picture>
+                  <source type="image/webp" srcSet="/images/book-mockup.webp" />
+                  <img
+                    src="/images/book-mockup.png"
+                    alt="The 48 Laws of Power বাংলা ডিজিটাল সংস্করণ"
+                    width={340}
+                    height={340}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    className="w-full max-w-[190px] xs:max-w-[220px] sm:max-w-[300px] lg:max-w-[340px] h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)] animate-floatSlow relative z-10"
+                  />
+                </picture>
               </div>
 
               {/* 2. Floating Left Stat Badge ("৪৮টি নীতি") */}
