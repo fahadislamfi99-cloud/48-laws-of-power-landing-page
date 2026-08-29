@@ -87,6 +87,8 @@ export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSect
                 <img
                   src={thumbnailSrc}
                   alt="The 48 Laws of Power Law 1 Video Breakdown"
+                  width={800}
+                  height={450}
                   onError={() =>
                     setThumbnailSrc("https://img.youtube.com/vi/4lUF8Kqq7P4/hqdefault.jpg")
                   }

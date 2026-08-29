@@ -236,6 +236,8 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
                 <img
                   src="/images/book-mockup.png"
                   alt="The 48 Laws of Power বাংলা ডিজিটাল সংস্করণ"
+                  width={340}
+                  height={450}
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"

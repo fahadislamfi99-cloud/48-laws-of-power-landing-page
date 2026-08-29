@@ -1,7 +1,37 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
+import { Cinzel, Cormorant_Garamond, Hind_Siliguri, Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/siteConfig";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const hindSiliguri = Hind_Siliguri({
+  subsets: ["bengali", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-bengali-sans",
+  display: "swap",
+});
+
+const notoSerifBengali = Noto_Serif_Bengali({
+  subsets: ["bengali", "latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-bengali-serif",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   themeColor: "#08080A",
@@ -12,6 +42,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://48lawsbangla.neonweb.xyz"),
   title: "The 48 Laws of Power বাংলা PDF | Robert Greene | ডিজিটাল সংস্করণ",
   description:
     "Robert Greene-এর বিখ্যাত The 48 Laws of Power বইয়ের বাংলা ডিজিটাল PDF সংস্করণ। তাৎক্ষণিক ডাউনলোড ও মোবাইল/ট্যাবলেটে লাইফটাইম অ্যাক্সেস।",
@@ -25,6 +56,9 @@ export const metadata: Metadata = {
     "Psychology বই বাংলা ই-বুক",
   ],
   authors: [{ name: "Robert Greene" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "The 48 Laws of Power: বাংলা ডিজিটাল PDF সংস্করণ (৳১৪৯)",
     description:
@@ -32,11 +66,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "bn_BD",
     siteName: "The 48 Laws of Power বাংলা PDF",
+    images: [
+      {
+        url: "/images/book-mockup.png",
+        width: 800,
+        height: 600,
+        alt: "The 48 Laws of Power বাংলা সংস্করণ",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "The 48 Laws of Power বাংলা ডিজিটাল PDF সংস্করণ",
     description: "মানুষের মনস্তত্ত্ব ও ক্ষমতার ৪৮টি নীতি, যা মোবাইল ও ট্যাবলেটে তাৎক্ষণিক পড়া যায়।",
+    images: ["/images/book-mockup.png"],
   },
   icons: {
     icon: [
@@ -49,22 +92,85 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Book",
+      "@id": "https://48lawsbangla.neonweb.xyz/#book",
+      "name": "The 48 Laws of Power (বাংলা সংস্করণ)",
+      "alternateName": "দ্য ৪৮ লজ অফ পাওয়ার",
+      "author": {
+        "@type": "Person",
+        "name": "Robert Greene"
+      },
+      "translator": {
+        "@type": "Person",
+        "name": "Fahad Islam"
+      },
+      "inLanguage": "bn",
+      "bookFormat": "https://schema.org/EBook",
+      "numberOfPages": 509,
+      "description": "রবার্ট গ্রিনের দ্য ৪৮ লজ অফ পাওয়ার বইটির পূর্ণাঙ্গ বাংলা ডিজিটাল পিডিএফ সংস্করণ।",
+      "offers": {
+        "@type": "Offer",
+        "price": "149",
+        "priceCurrency": "BDT",
+        "availability": "https://schema.org/InStock",
+        "url": "https://48lawsbangla.neonweb.xyz/"
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://48lawsbangla.neonweb.xyz/#product",
+      "name": "The 48 Laws of Power বাংলা ডিজিটাল PDF সংস্করণ",
+      "image": "https://48lawsbangla.neonweb.xyz/images/book-mockup.png",
+      "description": "Robert Greene-এর বিখ্যাত The 48 Laws of Power বইয়ের বাংলা ডিজিটাল PDF সংস্করণ।",
+      "offers": {
+        "@type": "Offer",
+        "price": "149",
+        "priceCurrency": "BDT",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "48 Laws of Power Bangla"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "342"
+      }
+    }
+  ]
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="bn" className="scroll-smooth" suppressHydrationWarning>
+    <html
+      lang="bn"
+      className={`scroll-smooth ${cinzel.variable} ${cormorant.variable} ${hindSiliguri.variable} ${notoSerifBengali.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Noto+Serif+Bengali:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Google+Sans+Flex:wght@400;500;600;700&family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
-          rel="stylesheet"
-        />
-
         <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col antialiased selection:bg-[#C8A45C] selection:text-[#08080A] bg-[#08080A]" suppressHydrationWarning>
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
+
+        {/* Deferred Analytics (Non-blocking) */}
+        <Script
+          id="fb-pixel"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -80,20 +186,6 @@ export default function RootLayout({
             `,
           }}
         />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${siteConfig.metaPixelId}&ev=PageView&noscript=1`}
-            alt=""
-          />
-        </noscript>
-      </head>
-      <body className="min-h-screen flex flex-col antialiased selection:bg-[#C8A45C] selection:text-[#08080A] bg-[#08080A]" suppressHydrationWarning>
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
       </body>
     </html>
   );

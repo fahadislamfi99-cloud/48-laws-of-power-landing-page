@@ -24,6 +24,8 @@ export default function AuthorProfile() {
                 <img
                   src="/images/author.jpg"
                   alt="Robert Greene - Author Portrait"
+                  width={288}
+                  height={288}
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
