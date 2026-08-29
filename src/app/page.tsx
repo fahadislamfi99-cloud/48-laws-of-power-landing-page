@@ -23,6 +23,7 @@ import Preloader from "@/components/Preloader";
 import ScrollRevealInit from "@/components/ScrollRevealInit";
 
 export default function Home() {
+  const [isPreloaderDone, setIsPreloaderDone] = useState(false);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [isAllLawsModalOpen, setIsAllLawsModalOpen] = useState(false);
   const [initialCouponCode, setInitialCouponCode] = useState<string | undefined>(undefined);
@@ -34,10 +35,13 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#08080A] text-[#F0EBE0] selection:bg-[#C8A45C] selection:text-[#08080A]">
-      <Preloader />
+      <Preloader onComplete={() => setIsPreloaderDone(true)} />
       <ScrollRevealInit />
       <Navbar onOpenOrderModal={() => handleOpenOrderModal()} />
-      <EditorialHero onOpenOrderModal={() => handleOpenOrderModal()} />
+      <EditorialHero
+        onOpenOrderModal={() => handleOpenOrderModal()}
+        isPreloaderDone={isPreloaderDone}
+      />
       <HumanRecognition />
       <DeepDiveLaw />
       <VideoLessonSection onOpenOrderModal={() => handleOpenOrderModal()} />

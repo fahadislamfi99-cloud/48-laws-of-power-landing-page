@@ -4,7 +4,11 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Crown } from "lucide-react";
 
-export default function Preloader() {
+interface PreloaderProps {
+  onComplete?: () => void;
+}
+
+export default function Preloader({ onComplete }: PreloaderProps) {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -13,6 +17,7 @@ export default function Preloader() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
       setLoading(false);
+      onComplete?.();
       return;
     }
 
@@ -36,6 +41,7 @@ export default function Preloader() {
         setTimeout(() => {
           setLoading(false);
           document.body.style.overflow = "";
+          onComplete?.();
         }, 200);
       }
     };
@@ -46,7 +52,7 @@ export default function Preloader() {
       cancelAnimationFrame(rafId);
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [onComplete]);
 
   return (
     <AnimatePresence>

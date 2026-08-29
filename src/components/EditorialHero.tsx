@@ -7,17 +7,25 @@ import SideRays from "@/components/SideRays";
 
 interface EditorialHeroProps {
   onOpenOrderModal: () => void;
+  isPreloaderDone?: boolean;
 }
 
-export default function EditorialHero({ onOpenOrderModal }: EditorialHeroProps) {
+export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: EditorialHeroProps) {
   const bookRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    if (isPreloaderDone) {
+      // Start hero entrance right as preloader fades away
+      const timer = setTimeout(() => setIsVisible(true), 60);
+      return () => clearTimeout(timer);
+    } else {
+      // Safety fallback in case preloader is disabled or not provided
+      const fallback = setTimeout(() => setIsVisible(true), 1800);
+      return () => clearTimeout(fallback);
+    }
+  }, [isPreloaderDone]);
 
   // 3D tilt on book
   useEffect(() => {
