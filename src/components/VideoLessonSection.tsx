@@ -11,7 +11,7 @@ interface VideoLessonSectionProps {
 export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [thumbnailSrc, setThumbnailSrc] = useState(
-    "https://img.youtube.com/vi/4lUF8Kqq7P4/maxresdefault.jpg"
+    "/images/video-thumbnail.webp"
   );
 
   const takeaways = [
