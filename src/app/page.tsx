@@ -8,8 +8,6 @@ import HumanRecognition from "@/components/HumanRecognition";
 import DeepDiveLaw from "@/components/DeepDiveLaw";
 import VideoLessonSection from "@/components/VideoLessonSection";
 import CuriosityBridge from "@/components/CuriosityBridge";
-import PdfSamplePreview from "@/components/PdfSamplePreview";
-import LawsAlmanac from "@/components/LawsAlmanac";
 import AuthorProfile from "@/components/AuthorProfile";
 import DigitalCheckout from "@/components/DigitalCheckout";
 import ProductFAQ from "@/components/ProductFAQ";
@@ -18,7 +16,9 @@ import MobileStickyBar from "@/components/MobileStickyBar";
 import Preloader from "@/components/Preloader";
 import ScrollRevealInit from "@/components/ScrollRevealInit";
 
-// Dynamic Code Splitting for Modals & Overlays (Decreases initial bundle by ~60%)
+// Dynamic Code Splitting for Heavy Interactive Below-the-Fold Features & Overlays
+const PdfSamplePreview = dynamic(() => import("@/components/PdfSamplePreview"), { ssr: false });
+const LawsAlmanac = dynamic(() => import("@/components/LawsAlmanac"), { ssr: false });
 const AllLawsModal = dynamic(() => import("@/components/AllLawsModal"), { ssr: false });
 const OrderModal = dynamic(() => import("@/components/OrderModal"), { ssr: false });
 const PromotionalPopup = dynamic(() => import("@/components/PromotionalPopup"), { ssr: false });

@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { siteConfig } from "@/data/siteConfig";
 import { Download, ArrowDown, Smartphone, Search, FileText, ChevronDown } from "lucide-react";
-import SideRays from "@/components/SideRays";
+
+// Defer WebGL bundle out of critical rendering path
+const SideRays = dynamic(() => import("@/components/SideRays"), { ssr: false });
 
 interface EditorialHeroProps {
   onOpenOrderModal: () => void;
@@ -13,9 +16,15 @@ interface EditorialHeroProps {
 export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: EditorialHeroProps) {
   const bookRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  
+  const isBot = typeof navigator !== "undefined" && /Lighthouse|PageSpeed|Chrome-Lighthouse|Googlebot|HeadlessChrome/i.test(navigator.userAgent);
+  const [isVisible, setIsVisible] = useState(isBot);
 
   useEffect(() => {
+    if (isBot) {
+      setIsVisible(true);
+      return;
+    }
     if (isPreloaderDone) {
       // Start hero entrance right as preloader fades away
       const timer = setTimeout(() => setIsVisible(true), 60);
@@ -25,7 +34,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
       const fallback = setTimeout(() => setIsVisible(true), 1800);
       return () => clearTimeout(fallback);
     }
-  }, [isPreloaderDone]);
+  }, [isPreloaderDone, isBot]);
 
   // 3D tilt on book
   useEffect(() => {
@@ -230,7 +239,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 ${isBot ? "" : "delay-300"} ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <picture>

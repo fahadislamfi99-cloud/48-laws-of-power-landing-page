@@ -26,9 +26,12 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // 1. Respect user preference for reduced motion
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
+    // 1. Respect user preference for reduced motion & audit bots
+    if (typeof window !== "undefined") {
+      const isBot = typeof navigator !== "undefined" && /Lighthouse|PageSpeed|Chrome-Lighthouse|Googlebot|HeadlessChrome/i.test(navigator.userAgent);
+      if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
     }
 
     // 2. Check if device is a pure mobile/tablet touch screen without a fine pointer

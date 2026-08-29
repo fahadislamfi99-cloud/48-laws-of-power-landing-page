@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { Renderer, Program, Triangle, Mesh } from "ogl";
-import "./SideRays.css";
 
 export interface SideRaysProps {
   speed?: number;
