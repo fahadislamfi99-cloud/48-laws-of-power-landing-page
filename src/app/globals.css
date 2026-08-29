@@ -26,6 +26,26 @@
     text-rendering: optimizeLegibility;
     font-synthesis: none;
     -webkit-text-size-adjust: 100%;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: #2E2E36 #08080A;
+  }
+
+  /* Custom Sleek Dark Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #08080A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #26262E;
+    border-radius: 4px;
+    border: 2px solid #08080A;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C8A45C;
   }
 
   section[id] {

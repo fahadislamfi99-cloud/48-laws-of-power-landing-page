@@ -22,8 +22,17 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       return;
     }
 
-    // Lock body scroll while preloader is active
-    document.body.style.overflow = "hidden";
+    // Stop Lenis smooth scroll while preloader is active without collapsing scrollbar
+    const stopScroll = () => {
+      const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+      if (lenis) lenis.stop();
+    };
+    const resumeScroll = () => {
+      const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+      if (lenis) lenis.start();
+    };
+
+    stopScroll();
 
     const startTime = performance.now();
     const duration = 1200; // 1.2s smooth, snappy luxury loader
@@ -41,7 +50,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       } else {
         setTimeout(() => {
           setLoading(false);
-          document.body.style.overflow = "";
+          resumeScroll();
           onComplete?.();
         }, 200);
       }
@@ -51,7 +60,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
     return () => {
       cancelAnimationFrame(rafId);
-      document.body.style.overflow = "";
+      resumeScroll();
     };
   }, [onComplete]);
 
@@ -67,7 +76,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             filter: "blur(6px)",
             transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
           }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#08080A] text-[#F0EBE0] select-none cursor-wait overflow-hidden pointer-events-auto"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#08080A] text-[#F0EBE0] select-none cursor-wait overflow-hidden pointer-events-auto touch-none overscroll-contain"
         >
           {/* Ambient Glow Orbs */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] bg-[#C8A45C]/[0.08] rounded-full blur-[140px] pointer-events-none" />
