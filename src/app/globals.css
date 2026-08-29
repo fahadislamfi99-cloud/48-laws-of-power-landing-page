@@ -323,117 +323,31 @@
 }
 
 /* ==========================================================================
-   LUXURY SCROLL-TRIGGERED REVEAL SYSTEM (Apple/Stripe-grade decel easing)
+   ScrollReveal.js Compatibility & Performance Optimizations
    ========================================================================== */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: 
-    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+.sr-card,
+.sr-scale,
+.sr-eyebrow,
+.sr-heading,
+.sr-desc,
+.sr-fade-up,
+.sr-left,
+.sr-right {
   will-change: opacity, transform;
 }
 
-.reveal-card {
-  opacity: 0;
-  transform: translateY(32px) scale(0.97);
-  transition: 
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-  will-change: opacity, transform;
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: 
-    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: 
-    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-@media (min-width: 768px) {
-  .reveal-left {
-    transform: translateX(-32px) translateY(12px);
-  }
-  .reveal-right {
-    transform: translateX(32px) translateY(12px);
-  }
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.95) translateY(24px);
-  transition: 
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-line {
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Once revealed, clear transforms to guarantee pixel-sharp native font rasterization & 0 GPU overhead */
-.reveal-visible,
-.reveal-visible .reveal,
-.reveal-visible .reveal-card,
-.reveal-visible .reveal-left,
-.reveal-visible .reveal-right,
-.reveal-visible .reveal-scale,
-[data-revealed="true"],
-[data-revealed="true"] .reveal,
-[data-revealed="true"] .reveal-card,
-[data-revealed="true"] .reveal-left,
-[data-revealed="true"] .reveal-right,
-[data-revealed="true"] .reveal-scale {
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
-  will-change: auto !important;
-}
-
-.reveal-line.reveal-visible,
-.reveal-visible .reveal-line,
-[data-revealed="true"] .reveal-line {
-  transform: scaleX(1) !important;
-}
-
-/* Choreographed Stagger Timings (Noticeable sequential cascade) */
-.reveal-stagger-1 { transition-delay: 90ms; }
-.reveal-stagger-2 { transition-delay: 180ms; }
-.reveal-stagger-3 { transition-delay: 270ms; }
-.reveal-stagger-4 { transition-delay: 360ms; }
-.reveal-stagger-5 { transition-delay: 450ms; }
-.reveal-stagger-6 { transition-delay: 540ms; }
-.reveal-stagger-7 { transition-delay: 630ms; }
-.reveal-stagger-8 { transition-delay: 720ms; }
-
-/* Accessible Reduced Motion */
+/* Accessible Reduced Motion: Instantly display everything with 0 animation */
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal-card,
-  .reveal-left,
-  .reveal-right,
-  .reveal-scale,
-  .reveal-line {
+  .sr-card,
+  .sr-scale,
+  .sr-eyebrow,
+  .sr-heading,
+  .sr-desc,
+  .sr-fade-up,
+  .sr-left,
+  .sr-right {
     opacity: 1 !important;
     transform: none !important;
-    filter: none !important;
     transition: none !important;
   }
 }

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { siteConfig } from "@/data/siteConfig";
 
 interface FAQItem {
@@ -39,40 +38,38 @@ const faqs: FAQItem[] = [
 
 export default function ProductFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
-  const containerRef = useScrollReveal<HTMLElement>();
 
   return (
     <section
       id="faq"
-      ref={containerRef}
       className="py-10 sm:py-14 lg:py-20 bg-[#0A0A0C] border-t border-[#26262A]"
     >
       <div className="max-w-4xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center space-y-2.5 sm:space-y-3 mb-6 sm:mb-10 reveal">
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3">
+        <div className="text-center space-y-2.5 sm:space-y-3 mb-6 sm:mb-10">
+          <div className="sr-eyebrow flex items-center justify-center gap-2.5 sm:gap-3">
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
             <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase">
               <span>FREQUENTLY ASKED QUESTIONS</span>
             </div>
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
           </div>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
+          <h2 className="sr-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             সাধারণ প্রশ্ন ও উত্তর
           </h2>
-          <p className="text-[#B8B0A4] text-xs sm:text-base">
+          <p className="sr-desc text-[#B8B0A4] text-xs sm:text-base">
             ডিজিটাল সংস্করণ ও ডাউনলোড প্রক্রিয়া সম্পর্কে প্রয়োজনীয় তথ্য নিচে জেনে নিন
           </p>
         </div>
 
-        {/* FAQ Accordion List - Single reveal wrapper on parent */}
-        <div className="space-y-2.5 sm:space-y-3 reveal reveal-stagger-1">
+        {/* FAQ Accordion List */}
+        <div className="space-y-2.5 sm:space-y-3">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div
                 key={idx}
-                className={`bg-[#111114] rounded-xl sm:rounded-2xl border transition-all duration-300 ${
+                className={`sr-card bg-[#111114] rounded-xl sm:rounded-2xl border transition-all duration-300 ${
                   isOpen
                     ? "border-[#C8A45C]/40 shadow-[0_4px_25px_rgba(200,164,92,0.06)] bg-[#131317]"
                     : "border-[#26262A] hover:border-[#3A3A3E] hover:bg-[#131316]"

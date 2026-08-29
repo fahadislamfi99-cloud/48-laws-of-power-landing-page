@@ -1,16 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function DeepDiveLaw() {
   const [selectedLaw, setSelectedLaw] = useState<1 | 4>(4);
-  const containerRef = useScrollReveal<HTMLElement>();
 
   return (
     <section
       id="deep-dive"
-      ref={containerRef}
       className="py-14 lg:py-20 bg-[#0C0C0F] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Subtle Gold Background Orb */}
@@ -19,24 +16,24 @@ export default function DeepDiveLaw() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+          <div className="sr-eyebrow flex items-center justify-center gap-2.5 sm:gap-3">
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
             <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase">
               <span>AN INSIGHT FROM THE BOOK</span>
             </div>
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F5F0E6] leading-[1.25]">
+          <h2 className="sr-heading text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F5F0E6] leading-[1.25]">
             একটি নীতি, বাস্তব দৃষ্টিভঙ্গির পরিবর্তন
           </h2>
-          <p className="text-[#C4BCB0] text-base sm:text-lg leading-[1.8]">
+          <p className="sr-desc text-[#C4BCB0] text-base sm:text-lg leading-[1.8]">
             বইটি থেকে একটি নীতি মনোযোগ দিয়ে পড়ুন। এটি বুঝলে আপনি বুঝতে পারবেন বাকি ৪৭টি নীতি কীভাবে আপনার চিন্তার পরিসীমা বদলে দেবে।
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex justify-center gap-3 mb-8 reveal reveal-stagger-1">
+        <div className="sr-fade-up flex justify-center gap-3 mb-8">
           {[
             { id: 4 as const, label: "LAW 04: নীরবতার শক্তি" },
             { id: 1 as const, label: "LAW 01: সুপিরিয়রের অহং" },
@@ -55,7 +52,7 @@ export default function DeepDiveLaw() {
         </div>
 
         {/* Content Card */}
-        <div className="bg-[#111114] rounded-3xl border border-[#26262A] p-6 sm:p-10 lg:p-12 space-y-8 transition-all duration-300 hover:border-[#C8A45C]/30 shadow-2xl">
+        <div className="sr-scale bg-[#111114] rounded-3xl border border-[#26262A] p-6 sm:p-10 lg:p-12 space-y-8 transition-all duration-300 hover:border-[#C8A45C]/30 shadow-2xl">
           {selectedLaw === 4 ? (
             <div key="law-4" className="space-y-8 animate-fadeIn">
               <div className="space-y-2 border-b border-[#26262A] pb-6">

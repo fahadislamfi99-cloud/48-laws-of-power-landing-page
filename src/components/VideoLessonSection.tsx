@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Play, Download, Sparkles, CheckCircle2, ShieldCheck, BookOpen, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface VideoLessonSectionProps {
   onOpenOrderModal: () => void;
@@ -14,7 +13,6 @@ export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSect
   const [thumbnailSrc, setThumbnailSrc] = useState(
     "https://img.youtube.com/vi/4lUF8Kqq7P4/maxresdefault.jpg"
   );
-  const containerRef = useScrollReveal<HTMLElement>();
 
   const takeaways = [
     {
@@ -37,7 +35,6 @@ export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSect
   return (
     <section
       id="video-lesson"
-      ref={containerRef}
       className="py-10 sm:py-14 lg:py-20 bg-[#0A0A0E] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Background ambient gold orb */}
@@ -46,8 +43,8 @@ export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSect
       <div className="max-w-5xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         
         {/* ─── 1. SECTION HEADER ───────────────────────────────── */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-3.5 mb-6 sm:mb-10 reveal">
-          <div className="flex items-center justify-center gap-2 sm:gap-3">
+        <div className="text-center max-w-3xl mx-auto space-y-2.5 sm:space-y-3.5 mb-6 sm:mb-10">
+          <div className="sr-eyebrow flex items-center justify-center gap-2 sm:gap-3">
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
             <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase">
               <Play className="w-2.5 h-2.5 text-[#C8A45C] fill-[#C8A45C] shrink-0" />
@@ -56,18 +53,18 @@ export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSect
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
           </div>
 
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
+          <h2 className="sr-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
             প্রথম Law থেকে কিছু শিখুন: <br className="hidden sm:inline" />
             <span className="text-[#C8A45C]">“সুপিরিয়রের অহং ও ক্ষমতার খেলা”</span>
           </h2>
 
-          <p className="text-[#C4BCB0] text-xs sm:text-base lg:text-lg leading-[1.75] sm:leading-[1.8] max-w-2xl mx-auto">
+          <p className="sr-desc text-[#C4BCB0] text-xs sm:text-base lg:text-lg leading-[1.75] sm:leading-[1.8] max-w-2xl mx-auto">
             বইটি সংগ্রহ করার আগেই এর ব্যবহারিক গভীরতা পরখ করে নিন। রবার্ট গ্রিনের প্রথম এবং সবচেয়ে গুরুত্বপূর্ণ নীতি—<span className="text-[#F0EBE0] font-semibold">‘Never Outshine the Master’</span> এর সারমর্ম এই ভিডিও বিশ্লেষণে সুন্দরভাবে ব্যাখ্যা করা হয়েছে।
           </p>
         </div>
 
         {/* ─── 2. PREMIUM VIDEO PLAYER CONTAINER ────────────────── */}
-        <div className="reveal-scale reveal-stagger-1 relative max-w-4xl mx-auto rounded-2xl sm:rounded-3xl border border-[#2A2A30] bg-[#111115] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] p-2 sm:p-3 hover:border-[#C8A45C]/40 transition-all duration-500 group">
+        <div className="sr-scale relative max-w-4xl mx-auto rounded-2xl sm:rounded-3xl border border-[#2A2A30] bg-[#111115] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] p-2 sm:p-3 hover:border-[#C8A45C]/40 transition-all duration-500 group">
           
           {/* Subtle top rim flare */}
           <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-[#C8A45C]/50 to-transparent pointer-events-none" />
@@ -146,7 +143,7 @@ export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSect
           {takeaways.map((item, idx) => (
             <div
               key={idx}
-              className={`reveal-card reveal-stagger-${idx + 1} p-3.5 sm:p-5 rounded-2xl bg-[#111115] border border-[#26262A] hover:border-[#C8A45C]/35 transition-all duration-300 space-y-1.5 sm:space-y-2`}
+              className="sr-card p-3.5 sm:p-5 rounded-2xl bg-[#111115] border border-[#26262A] hover:border-[#C8A45C]/35 transition-all duration-300 space-y-1.5 sm:space-y-2"
             >
               <div className="flex items-center justify-between text-[10px] sm:text-[11px]">
                 <span className="font-mono font-bold text-[#C8A45C] uppercase tracking-wider bg-[#C8A45C]/10 px-2 py-0.5 rounded border border-[#C8A45C]/20">
@@ -165,7 +162,7 @@ export default function VideoLessonSection({ onOpenOrderModal }: VideoLessonSect
         </div>
 
         {/* ─── 4. SUBTLE EDITORIAL CTA CALLOUT ─────────────────── */}
-        <div className="reveal reveal-stagger-4 mt-6 sm:mt-10 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#141419] via-[#101014] to-[#141419] border border-[#2A2A30] hover:border-[#C8A45C]/35 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 transition-all duration-500 shadow-xl">
+        <div className="sr-fade-up mt-6 sm:mt-10 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#141419] via-[#101014] to-[#141419] border border-[#2A2A30] hover:border-[#C8A45C]/35 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 transition-all duration-500 shadow-xl">
           
           <div className="space-y-1.5 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">

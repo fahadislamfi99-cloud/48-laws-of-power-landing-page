@@ -20,6 +20,7 @@ import PromotionalPopup from "@/components/PromotionalPopup";
 import ExitIntentLessonModal from "@/components/ExitIntentLessonModal";
 import BackToTop from "@/components/BackToTop";
 import Preloader from "@/components/Preloader";
+import ScrollRevealInit from "@/components/ScrollRevealInit";
 
 export default function Home() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -34,6 +35,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#08080A] text-[#F0EBE0] selection:bg-[#C8A45C] selection:text-[#08080A]">
       <Preloader />
+      <ScrollRevealInit />
       <Navbar onOpenOrderModal={() => handleOpenOrderModal()} />
       <EditorialHero onOpenOrderModal={() => handleOpenOrderModal()} />
       <HumanRecognition />

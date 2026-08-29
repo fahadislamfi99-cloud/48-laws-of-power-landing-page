@@ -2,11 +2,8 @@
 
 import React from "react";
 import { Quote } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function HumanRecognition() {
-  const containerRef = useScrollReveal<HTMLElement>();
-
   const experiences = [
     {
       marker: "পরিস্থিতি ০১",
@@ -33,7 +30,6 @@ export default function HumanRecognition() {
   return (
     <section
       id="thesis"
-      ref={containerRef}
       className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Background ambient gold orb */}
@@ -41,14 +37,14 @@ export default function HumanRecognition() {
 
       <div className="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl space-y-2.5 sm:space-y-3 mb-8 sm:mb-10 reveal">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-xs">
+        <div className="max-w-3xl space-y-2.5 sm:space-y-3 mb-8 sm:mb-10">
+          <div className="sr-eyebrow inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-xs">
             <span>HUMAN SOCIAL DYNAMICS</span>
           </div>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
+          <h2 className="sr-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
             আপনি কি কখনো এমন অভিজ্ঞতার মুখোমুখি হয়েছেন?
           </h2>
-          <p className="text-xs sm:text-base lg:text-lg text-[#B8B0A4] leading-relaxed">
+          <p className="sr-desc text-xs sm:text-base lg:text-lg text-[#B8B0A4] leading-relaxed">
             আমরা প্রায়ই ভাবি পৃথিবী নিখুঁত ন্যায়নীতিতে চলে। কিন্তু বাস্তব জীবনে আপনি নিশ্চয়ই এই পরিস্থিতিগুলো ঘটতে দেখেছেন:
           </p>
         </div>
@@ -58,7 +54,7 @@ export default function HumanRecognition() {
           {experiences.map((item, idx) => (
             <div
               key={idx}
-              className={`reveal-card reveal-stagger-${idx + 1} card-luxury rounded-2xl p-4.5 sm:p-7 space-y-2.5 sm:space-y-3 group`}
+              className="sr-card card-luxury rounded-2xl p-4.5 sm:p-7 space-y-2.5 sm:space-y-3 group"
             >
               <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono text-[#C8A45C]">
                 <span className="font-bold uppercase tracking-wider group-hover:text-[#D4AF6E] transition-colors">
@@ -77,7 +73,7 @@ export default function HumanRecognition() {
         </div>
 
         {/* Pull Quote */}
-        <div className="reveal-scale reveal-stagger-5 mt-8 sm:mt-10 p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-[#111114] border border-[#2A2A2E] hover:border-[#C8A45C]/35 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center transition-all duration-500 shadow-xl">
+        <div className="sr-scale mt-8 sm:mt-10 p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-[#111114] border border-[#2A2A2E] hover:border-[#C8A45C]/35 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center transition-all duration-500 shadow-xl">
           <div className="lg:col-span-2 flex justify-start lg:justify-center">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#C8A45C] to-[#8B6914] text-[#08080A] flex items-center justify-center shadow-[0_0_20px_rgba(200,164,92,0.25)] shrink-0">
               <Quote className="w-4 h-4 sm:w-5 sm:h-5" />

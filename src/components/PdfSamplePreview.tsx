@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/data/siteConfig";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { sampleChapters, SampleChapter, SamplePage } from "@/data/sampleChaptersData";
 import {
   Download, ChevronLeft, ChevronRight, BookOpen,
@@ -16,7 +15,6 @@ interface PdfSamplePreviewProps {
 }
 
 export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewProps) {
-  const containerRef = useScrollReveal<HTMLElement>();
 
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
@@ -45,6 +43,18 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         return isNaN(digit) ? ch : bengaliDigits[digit];
       })
       .join("");
+  };
+
+  const getThemeClasses = () => {
+    switch (readerTheme) {
+      case "sepia":
+        return "bg-[#181512] border-[#3D352B] text-[#EFE5D8]";
+      case "dark":
+        return "bg-[#060608] border-[#1E1E24] text-[#D8D2C7]";
+      case "charcoal":
+      default:
+        return "bg-[#0F0F14] border-[#2A2A30] text-[#F3EFE6]";
+    }
   };
 
   // Lock body scroll when fullscreen modal is open
@@ -150,23 +160,9 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
     touchStartXRef.current = null;
   };
 
-  // Theme styling
-  const getThemeClasses = () => {
-    switch (readerTheme) {
-      case "sepia":
-        return "bg-[#181512] border-[#3D352B] text-[#EFE5D8]";
-      case "dark":
-        return "bg-[#060608] border-[#1E1E24] text-[#D8D2C7]";
-      case "charcoal":
-      default:
-        return "bg-[#0F0F14] border-[#2A2A30] text-[#F3EFE6]";
-    }
-  };
-
   return (
     <section
       id="sample-preview"
-      ref={containerRef}
       className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Subtle Warm Background Glow */}
@@ -175,8 +171,8 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ─── 1. SECTION HEADER ───────────────────────────────── */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sr-reveal">
+          <div className="sr-eyebrow flex items-center justify-center gap-2.5 sm:gap-3">
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
             <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase">
               <span>READ A SAMPLE • একটু পড়ে দেখুন</span>
@@ -184,17 +180,17 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
+          <h2 className="sr-heading text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0] leading-[1.25]">
             কেনার আগে বইটির কিছু পৃষ্ঠা পড়ে দেখুন
           </h2>
 
-          <p className="text-[#D1C9BC] text-sm sm:text-base lg:text-lg leading-[1.8]">
+          <p className="sr-desc text-[#D1C9BC] text-sm sm:text-base lg:text-lg leading-[1.8]">
             বইটির অনুবাদ, typography এবং reading experience সম্পর্কে ধারণা নিতে নিচের ৩টি নমুনা অধ্যায় সরাসরি এখানে পড়ে দেখুন।
           </p>
         </div>
 
         {/* ─── 2. SAMPLE TABS (3 REAL CHAPTERS) ────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-8 reveal reveal-stagger-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-8 sr-reveal-stagger">
           {sampleChapters.map((chapter, idx) => {
             const isActive = activeChapterIndex === idx;
             return (
@@ -202,7 +198,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
                 key={chapter.id}
                 type="button"
                 onClick={() => handleSelectChapter(idx)}
-                className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${isActive
+                className={`sr-card p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${isActive
                     ? "bg-[#141419] border-[#C8A45C] shadow-[0_4px_30px_rgba(200,164,92,0.18)] scale-[1.01]"
                     : "bg-[#0D0D10] border-[#26262A] hover:border-[#3A3A3E] hover:bg-[#121216]"
                   }`}
@@ -471,7 +467,7 @@ export default function PdfSamplePreview({ onOpenOrderModal }: PdfSamplePreviewP
         </div>
 
         {/* ─── 4. BOTTOM VALUE / CONVERSION BANNER ─────────────── */}
-        <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#121216] via-[#16161C] to-[#121216] border border-[#2A2A30] flex flex-col md:flex-row items-center justify-between gap-6 reveal reveal-stagger-3 shadow-xl">
+        <div className="sr-fade-up mt-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#121216] via-[#16161C] to-[#121216] border border-[#2A2A30] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="space-y-2 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">
               <span className="text-xs font-bold uppercase text-[#C8A45C] bg-[#C8A45C]/10 px-2.5 py-0.5 rounded-md border border-[#C8A45C]/20">

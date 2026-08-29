@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { Download, ZoomIn, X, Coffee, Sun, Moon } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useParallax } from "@/hooks/useParallax";
 
 interface DigitalProductShowcaseProps {
@@ -16,7 +15,6 @@ export default function DigitalProductShowcase({
   const [activeTab, setActiveTab] = useState<number>(0);
   const [readerTheme, setReaderTheme] = useState<"sepia" | "light" | "dark">("sepia");
   const [isLightbox, setIsLightbox] = useState(false);
-  const containerRef = useScrollReveal<HTMLElement>();
   const parallaxRef = useParallax<HTMLDivElement>(0.12);
 
   const samplePages = [
@@ -94,7 +92,6 @@ export default function DigitalProductShowcase({
   return (
     <section
       id="digital-preview"
-      ref={containerRef}
       className="py-14 lg:py-20 bg-[#0C0C0F] border-t border-[#26262A]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

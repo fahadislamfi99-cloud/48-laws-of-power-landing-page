@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { allLaws } from "@/data/lawsData";
 import { siteConfig } from "@/data/siteConfig";
 import { BookOpen, ChevronDown, ChevronRight, Download } from "lucide-react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface LawsAlmanacProps {
   onOpenAllLawsModal: () => void;
@@ -17,7 +16,6 @@ export default function LawsAlmanac({
 }: LawsAlmanacProps) {
   const [selectedCat, setSelectedCat] = useState<string>("all");
   const [expandedId, setExpandedId] = useState<number | null>(1);
-  const containerRef = useScrollReveal<HTMLElement>();
 
   const categories = [
     { id: "all", label: "সব নীতি" },
@@ -36,31 +34,30 @@ export default function LawsAlmanac({
   return (
     <section
       id="laws-almanac"
-      ref={containerRef}
       className="py-14 lg:py-20 bg-[#08080A] border-t border-[#26262A] relative overflow-hidden"
     >
       {/* Background ambient gold orb */}
       <div className="absolute top-1/4 -right-32 w-[460px] h-[460px] bg-[#C8A45C]/[0.035] rounded-full blur-[140px] pointer-events-none animate-[orbFloat1_15s_ease-in-out_infinite]" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 reveal">
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+          <div className="sr-eyebrow flex items-center justify-center gap-2.5 sm:gap-3">
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
             <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/25 text-[#C8A45C] font-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase">
               <span>THE 48 LAWS ALMANAC</span>
             </div>
             <div className="h-[1.5px] w-6 sm:w-10 bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
+          <h2 className="sr-heading text-3xl sm:text-4xl lg:text-5xl font-bengali-serif font-bold tracking-tight text-[#F0EBE0]">
             ক্ষমতার ৪৮টি অমোঘ সূত্রের সূচিপত্র
           </h2>
-          <p className="text-[#B8B0A4] text-base sm:text-lg">
+          <p className="sr-desc text-[#B8B0A4] text-base sm:text-lg">
             নিচে নির্বাচিত নীতিগুলোর সারসংক্ষেপ দেখুন। পুরো ডিজিটাল বইটিতে রয়েছে প্রতিটি সূত্রের পেছনের বিস্তারিত ঐতিহাসিক প্রেক্ষাপট ও বাস্তব বিশ্লেষণ।
           </p>
         </div>
 
         {/* Filter Bar */}
-        <div className="bg-[#111114] p-2.5 sm:p-4 rounded-2xl border border-[#2A2A2E] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 reveal reveal-stagger-1">
+        <div className="sr-fade-up bg-[#111114] p-2.5 sm:p-4 rounded-2xl border border-[#2A2A2E] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
           <div className="flex gap-1.5 sm:gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
             {categories.map((cat) => (
               <button
@@ -86,7 +83,7 @@ export default function LawsAlmanac({
         </div>
 
         {/* Laws List */}
-        <div className="bg-[#111114] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] divide-y divide-[#2A2A2E] overflow-hidden reveal reveal-stagger-2">
+        <div className="sr-scale bg-[#111114] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] divide-y divide-[#2A2A2E] overflow-hidden">
           {filteredLaws.map((law) => {
             const isExpanded = expandedId === law.id;
             return (
@@ -156,7 +153,7 @@ export default function LawsAlmanac({
         </div>
 
         {/* CTA */}
-        <div className="mt-8 text-center reveal reveal-stagger-3">
+        <div className="sr-fade-up mt-8 text-center">
           <button
             onClick={onOpenAllLawsModal}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full btn-gold text-xs sm:text-sm cursor-pointer hover-lift btn-shimmer group"
