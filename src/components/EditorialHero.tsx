@@ -233,12 +233,12 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
             <div className="relative max-w-[210px] xs:max-w-[240px] sm:max-w-[320px] lg:max-w-[360px] xl:max-w-[400px] w-full">
 
               {/* Radial glow */}
-              <div className={`absolute inset-[-20%] bg-gradient-to-tr from-[#C8A45C]/[0.12] via-[#C8A45C]/[0.04] to-transparent rounded-full blur-[60px] sm:blur-[90px] -z-10 animate-pulseGlow transition-opacity duration-1000 delay-100 ${isVisible ? "opacity-100" : "opacity-0"}`} />
+              <div className={`absolute inset-[-20%] bg-gradient-to-tr from-[#C8A45C]/[0.12] via-[#C8A45C]/[0.04] to-transparent rounded-full blur-[60px] sm:blur-[90px] -z-10 animate-pulseGlow transition-opacity duration-[1200ms] delay-100 ${isVisible ? "opacity-100" : "opacity-0"}`} />
 
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-[1200ms] delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95 pointer-events-none"
                 }`}
                 style={{ transformStyle: "preserve-3d" }}
