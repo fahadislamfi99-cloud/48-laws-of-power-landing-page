@@ -26,9 +26,8 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
       return;
     }
     if (isPreloaderDone) {
-      // Start hero entrance right as preloader fades away
-      const timer = setTimeout(() => setIsVisible(true), 20);
-      return () => clearTimeout(timer);
+      setIsVisible(true);
+      return;
     } else {
       // Safety fallback in case preloader is disabled or not provided
       const fallback = setTimeout(() => setIsVisible(true), 1800);
@@ -155,7 +154,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
           <div className="lg:col-span-7 space-y-3.5 sm:space-y-5 text-left">
             <div className="space-y-2 sm:space-y-3">
               {/* Mono label */}
-              <div className={`flex items-center gap-2.5 sm:gap-3 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              <div className={`flex items-center gap-2.5 sm:gap-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                 <div className="h-[1px] w-6 sm:w-8 bg-gradient-to-r from-[#C8A45C] to-transparent" />
                 <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.18em] sm:tracking-[0.25em] text-[#C8A45C] uppercase">
                   ROBERT GREENE&apos;S MASTERWORK
@@ -165,12 +164,12 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               {/* Title */}
               <h1 className="text-[30px] xs:text-[34px] sm:text-6xl md:text-7xl xl:text-8xl font-display font-bold tracking-tight leading-[1.0] sm:leading-[0.95]">
                 <span className="block overflow-hidden">
-                  <span className={`block transition-all duration-1000 delay-300 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
+                  <span className={`block transition-all duration-1000 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
                     <span className="text-[#F0EBE0]">The 48 Laws</span>
                   </span>
                 </span>
                 <span className="block overflow-hidden mt-0.5 sm:mt-1">
-                  <span className={`block italic font-editorial-serif font-normal transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
+                  <span className={`block italic font-editorial-serif font-normal transition-all duration-1000 delay-250 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
                     <span className="bg-gradient-to-r from-[#C8A45C] via-[#D4AF6E] to-[#8B6914] bg-clip-text text-transparent bg-[length:200%_auto] animate-[goldShimmer_4s_linear_infinite]">
                       of Power
                     </span>
@@ -179,18 +178,18 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               </h1>
 
               {/* Bengali subtitle */}
-              <h2 className={`text-sm sm:text-xl lg:text-2xl font-bengali-serif font-bold text-[#D1C9BC] leading-snug transition-all duration-700 delay-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              <h2 className={`text-sm sm:text-xl lg:text-2xl font-bengali-serif font-bold text-[#D1C9BC] leading-snug transition-all duration-700 delay-[400ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                 {siteConfig.bookSubtitle}
               </h2>
             </div>
 
             {/* Body */}
-            <p className={`text-[#D1C9BC] text-xs sm:text-base lg:text-lg leading-[1.8] sm:leading-[1.85] max-w-xl transition-all duration-700 delay-[800ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <p className={`text-[#D1C9BC] text-xs sm:text-base lg:text-lg leading-[1.8] sm:leading-[1.85] max-w-xl transition-all duration-700 delay-[500ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               সমাজ প্রকাশ্যে ন্যায় ও নিয়মের কথা বলে, কিন্তু বাস্তবে মানুষের সম্পর্ক ও পেশাদার জগৎ পরিচালিত হয় মনস্তত্ত্ব এবং ক্ষমতার এক অদৃশ্য খেলায়। ৩,০০০ বছরের ঐতিহাসিক অভিজ্ঞতা থেকে সংকলিত এই ৪৮টি নীতি আপনাকে শেখাবে কীভাবে অন্যের আসল উদ্দেশ্য বুঝবেন।
             </p>
 
             {/* CTAs */}
-            <div className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5 transition-all duration-700 delay-[900ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <div className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5 transition-all duration-700 delay-[600ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <button
                 ref={ctaRef}
                 onClick={onOpenOrderModal}
@@ -210,7 +209,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
             </div>
 
             {/* Feature pills */}
-            <div className={`pt-3.5 sm:pt-5 border-t border-[#2A2A2E] grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-xs text-[#D1C9BC] font-medium transition-all duration-700 delay-[1000ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <div className={`pt-3.5 sm:pt-5 border-t border-[#2A2A2E] grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-xs text-[#D1C9BC] font-medium transition-all duration-700 delay-[700ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               {[
                 { icon: Smartphone, text: "ফোন, ট্যাবলেট ও পিসিতে পড়ার উপযোগী" },
                 { icon: Search, text: "সার্চেবল টেক্সট ও ক্লিকযোগ্য সূচি" },
@@ -234,12 +233,12 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
             <div className="relative max-w-[210px] xs:max-w-[240px] sm:max-w-[320px] lg:max-w-[360px] xl:max-w-[400px] w-full">
 
               {/* Radial glow */}
-              <div className={`absolute inset-[-20%] bg-gradient-to-tr from-[#C8A45C]/[0.12] via-[#C8A45C]/[0.04] to-transparent rounded-full blur-[60px] sm:blur-[90px] -z-10 animate-pulseGlow transition-opacity duration-1000 delay-300 ${isVisible ? "opacity-100" : "opacity-0"}`} />
+              <div className={`absolute inset-[-20%] bg-gradient-to-tr from-[#C8A45C]/[0.12] via-[#C8A45C]/[0.04] to-transparent rounded-full blur-[60px] sm:blur-[90px] -z-10 animate-pulseGlow transition-opacity duration-1000 delay-100 ${isVisible ? "opacity-100" : "opacity-0"}`} />
 
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95 pointer-events-none"
                 }`}
                 style={{ transformStyle: "preserve-3d" }}
@@ -260,21 +259,21 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               </div>
 
               {/* 2. Floating Left Stat Badge ("৪৮টি নীতি") */}
-              <div className={`absolute left-[3%] xs:left-[5%] sm:left-[6%] lg:left-[6%] xl:left-[8%] top-[24%] sm:top-[22%] z-20 pointer-events-none transition-all duration-700 delay-[650ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 -translate-x-5 scale-90"}`}>
+              <div className={`absolute left-[3%] xs:left-[5%] sm:left-[6%] lg:left-[6%] xl:left-[8%] top-[24%] sm:top-[22%] z-20 pointer-events-none transition-all duration-700 delay-[450ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 -translate-x-5 scale-90"}`}>
                 <div className="px-2 py-1 xs:px-2.5 xs:py-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-[#111114]/95 backdrop-blur-md border border-[#2A2A2E] text-[10px] xs:text-[11px] sm:text-xs font-semibold shadow-xl whitespace-nowrap">
                   <span className="text-[#C8A45C] font-bold">৪৮টি</span> <span className="text-[#D1C9BC]">নীতি</span>
                 </div>
               </div>
 
               {/* 3. Floating Right Stat Badge ("৩,০০০+ বছরের জ্ঞান") */}
-              <div className={`absolute -right-[46px] xs:-right-[40px] sm:-right-8 lg:-right-3.5 xl:-right-3 bottom-[32%] sm:bottom-[30%] z-20 pointer-events-none transition-all duration-700 delay-[850ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-5 scale-90"}`}>
+              <div className={`absolute -right-[46px] xs:-right-[40px] sm:-right-8 lg:-right-3.5 xl:-right-3 bottom-[32%] sm:bottom-[30%] z-20 pointer-events-none transition-all duration-700 delay-[650ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-5 scale-90"}`}>
                 <div className="px-2 py-1 xs:px-2.5 xs:py-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-[#111114]/95 backdrop-blur-md border border-[#2A2A2E] text-[10px] xs:text-[11px] sm:text-xs font-semibold shadow-xl whitespace-nowrap">
                   <span className="text-[#C8A45C] font-bold">৩,০০০+</span> <span className="text-[#D1C9BC]">বছরের জ্ঞান</span>
                 </div>
               </div>
 
               {/* 4. Bottom Specs Badge ("ডিজিটাল PDF • ৫০৯ পৃষ্ঠা • ৬ MB") */}
-              <div className={`mt-2.5 sm:mt-4 flex items-center justify-between text-[11px] sm:text-xs px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-[#111114] border border-[#2A2A2E] transition-all duration-700 delay-[1050ms] hover:border-[#C8A45C]/30 shadow-md ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"}`}>
+              <div className={`mt-2.5 sm:mt-4 flex items-center justify-between text-[11px] sm:text-xs px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-[#111114] border border-[#2A2A2E] transition-all duration-700 delay-[800ms] hover:border-[#C8A45C]/30 shadow-md ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"}`}>
                 <span className="font-semibold text-[#D1C9BC] flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C] animate-pulse" />
                   <span>ডিজিটাল PDF</span>
