@@ -64,15 +64,7 @@ const SideRays: React.FC<SideRaysProps> = ({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // WebGL volumetric rays are strictly for desktop/tablet viewports (>= 768px).
-    // On mobile devices, native CSS ambient glows handle lighting with 0 CPU overhead.
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      return;
-    }
-
-    // Respect reduced motion & audit bots for zero blocking time
-    const isBot = typeof navigator !== "undefined" && (Boolean(navigator.webdriver) || /Lighthouse|PageSpeed|Headless|Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent));
-    if (typeof window !== "undefined" && (window.matchMedia("(prefers-reduced-motion: reduce)").matches || isBot)) {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
@@ -106,13 +98,12 @@ const SideRays: React.FC<SideRaysProps> = ({
 
     const initializeWebGL = async () => {
       if (!containerRef.current || isCancelled) return;
-      if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
       // Defer to idle frame so initial paint & interaction have 100% CPU priority
       if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-        await new Promise((resolve) => (window as any).requestIdleCallback(resolve, { timeout: 350 }));
+        await new Promise((resolve) => (window as any).requestIdleCallback(resolve, { timeout: 200 }));
       } else {
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        await new Promise((resolve) => setTimeout(resolve, 100));
       }
 
       if (!containerRef.current || isCancelled) return;
@@ -246,12 +237,18 @@ void main() {
         uniforms.iResolution.value = [w * renderer.dpr, h * renderer.dpr];
       };
 
+      let lastRenderTime = 0;
       const loop = (t: number) => {
-        if (!rendererRef.current || !uniformsRef.current || !meshRef.current) return;
+        if (!rendererRef.current || !uniformsRef.current || !meshRef.current || isCancelled) return;
+        animationIdRef.current = requestAnimationFrame(loop);
+        
+        // 30 FPS cap for light rays (cuts CPU/GPU overhead by 50% while preserving smooth ambient lighting)
+        if (t - lastRenderTime < 32) return;
+        lastRenderTime = t;
+
         uniforms.iTime.value = t * 0.001;
         try {
           renderer.render({ scene: mesh });
-          animationIdRef.current = requestAnimationFrame(loop);
         } catch (e) {
           return;
         }

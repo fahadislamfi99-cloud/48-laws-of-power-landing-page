@@ -92,11 +92,14 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
 
   return (
     <section className="relative pt-20 sm:pt-28 pb-8 sm:pb-10 md:pt-32 md:pb-16 overflow-hidden">
-      {/* ─── NATURAL WINDOW LIGHT CASCADE (SideRays - Desktop only) ─────────── */}
+      {/* ─── TOP RIGHT NATURAL WINDOW LIGHT CASCADE (SideRays) ─────────── */}
       <div
-        className={`hidden md:block absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${isVisible ? "opacity-85" : "opacity-0"
+        className={`absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${isVisible ? "opacity-90" : "opacity-0"
           }`}
       >
+        {/* Soft golden ambient window ray cone */}
+        <div className="absolute -top-10 -right-10 w-[350px] sm:w-[550px] lg:w-[750px] h-[350px] sm:h-[550px] lg:h-[750px] bg-[radial-gradient(ellipse_at_top_right,rgba(234,179,8,0.22)_0%,rgba(150,200,255,0.08)_35%,transparent_65%)] pointer-events-none blur-[35px] sm:blur-[55px]" />
+        
         <SideRays
           origin="top-right"
           rayColor1="#EAB308"
