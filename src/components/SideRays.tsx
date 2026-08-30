@@ -108,7 +108,7 @@ const SideRays: React.FC<SideRaysProps> = ({
 
       if (!containerRef.current || isCancelled) return;
 
-      const initialDpr = 0.5;
+      const initialDpr = Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1.0, 1.0);
 
       let renderer: Renderer;
       try {
@@ -233,7 +233,7 @@ void main() {
 
       const updateSize = () => {
         if (!containerRef.current || !renderer) return;
-        renderer.dpr = 0.5;
+        renderer.dpr = Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1.0, 1.0);
         const { clientWidth: w, clientHeight: h } = containerRef.current;
         renderer.setSize(w, h);
         uniforms.iResolution.value = [w * renderer.dpr, h * renderer.dpr];
