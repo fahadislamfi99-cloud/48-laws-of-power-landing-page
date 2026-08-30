@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { Download, Menu, X, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
 
 interface NavbarProps {
   onOpenOrderModal: (couponCode?: string) => void;
@@ -171,65 +170,46 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
         </div>
 
         {/* Mobile & Tablet Dropdown Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              key="mobile-nav-panel"
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{
-                duration: 0.15,
-                ease: "easeOut",
-              }}
-              className="lg:hidden bg-[#0D0D10] border-b border-[#26262A] px-4 sm:px-8 py-4 sm:py-6 space-y-3 sm:space-y-4 shadow-2xl overflow-hidden will-change-[transform,opacity]"
-            >
-              <nav className="space-y-0.5 sm:space-y-1 divide-y divide-[#1A1A1E]">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="flex items-center justify-between text-xs sm:text-sm font-semibold text-[#F0EBE0] py-2.5 sm:py-3 hover:text-[#C8A45C] transition-colors cursor-pointer"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8A8278]" />
-                  </a>
-                ))}
-              </nav>
-
-              <div className="pt-2 sm:pt-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenOrderModal();
-                  }}
-                  className="w-full py-3 sm:py-3.5 rounded-xl sm:rounded-2xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer hover-lift min-h-[42px]"
+        {mobileMenuOpen && (
+          <div className="lg:hidden bg-[#0D0D10] border-b border-[#26262A] px-4 sm:px-8 py-4 sm:py-6 space-y-3 sm:space-y-4 shadow-2xl overflow-hidden animate-fadeIn">
+            <nav className="space-y-0.5 sm:space-y-1 divide-y divide-[#1A1A1E]">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="flex items-center justify-between text-xs sm:text-sm font-semibold text-[#F0EBE0] py-2.5 sm:py-3 hover:text-[#C8A45C] transition-colors cursor-pointer"
                 >
-                  <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span>পিডিএফ সংগ্রহ করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  <span>{item.label}</span>
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8A8278]" />
+                </a>
+              ))}
+            </nav>
+
+            <div className="pt-2 sm:pt-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenOrderModal();
+                }}
+                className="w-full py-3 sm:py-3.5 rounded-xl sm:rounded-2xl btn-gold text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer hover-lift min-h-[42px]"
+              >
+                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>পিডিএফ সংগ্রহ করুন ({siteConfig.currencySymbol}{siteConfig.price})</span>
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Mobile Menu Backdrop */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            key="mobile-nav-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="fixed inset-0 bg-black/75 backdrop-blur-md z-40 lg:hidden cursor-pointer will-change-[opacity]"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
-      </AnimatePresence>
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/75 backdrop-blur-md z-40 lg:hidden cursor-pointer animate-fadeIn"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
     </>
   );
 }

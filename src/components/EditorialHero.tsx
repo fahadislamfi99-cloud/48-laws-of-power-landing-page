@@ -40,7 +40,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
   useEffect(() => {
     const el = bookRef.current;
     if (!el) return;
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (typeof window !== "undefined" && (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(pointer: coarse) and (hover: none)").matches)) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
@@ -67,7 +67,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
   useEffect(() => {
     const el = ctaRef.current;
     if (!el) return;
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (typeof window !== "undefined" && (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(pointer: coarse) and (hover: none)").matches)) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();

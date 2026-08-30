@@ -10,7 +10,7 @@ export function useMagneticHover<T extends HTMLElement = HTMLDivElement>(strengt
     if (!el) return;
 
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(pointer: coarse) and (hover: none)").matches) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
