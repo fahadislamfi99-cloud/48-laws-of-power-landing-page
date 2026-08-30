@@ -49,10 +49,10 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         requestAnimationFrame(updateLoader);
       } else {
         setIsExiting(true);
-        onComplete?.();
         setTimeout(() => {
           setLoading(false);
           resumeScroll();
+          onComplete?.();
         }, 350);
       }
     };

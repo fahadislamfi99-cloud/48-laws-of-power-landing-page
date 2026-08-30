@@ -239,8 +239,8 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-95 translate-y-8 scale-95"
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95 pointer-events-none"
                 }`}
                 style={{ transformStyle: "preserve-3d" }}
               >
