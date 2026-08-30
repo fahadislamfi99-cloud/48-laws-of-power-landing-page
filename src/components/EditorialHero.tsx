@@ -92,27 +92,52 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
 
   return (
     <section className="relative pt-20 sm:pt-28 pb-8 sm:pb-10 md:pt-32 md:pb-16 overflow-hidden">
-      {/* ─── TOP RIGHT NATURAL WINDOW LIGHT CASCADE (SideRays) ─────────── */}
+      {/* ─── TOP RIGHT NATURAL WINDOW LIGHT CASCADE ─────────── */}
       <div
         className={`absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${isVisible ? "opacity-90" : "opacity-0"
           }`}
       >
-        {/* Soft golden ambient window ray cone */}
-        <div className="absolute -top-10 -right-10 w-[350px] sm:w-[550px] lg:w-[750px] h-[350px] sm:h-[550px] lg:h-[750px] bg-[radial-gradient(ellipse_at_top_right,rgba(234,179,8,0.22)_0%,rgba(150,200,255,0.08)_35%,transparent_65%)] pointer-events-none blur-[35px] sm:blur-[55px]" />
-        
-        <SideRays
-          origin="top-right"
-          rayColor1="#EAB308"
-          rayColor2="#96c8ff"
-          intensity={1.8}
-          spread={2.0}
-          speed={1.8}
-          saturation={1.3}
-          blend={0.75}
-          falloff={1.6}
-          opacity={0.85}
-          tilt={-4}
+        {/* Soft golden ambient window ray cone (All screen sizes) */}
+        <div className="absolute -top-16 -right-16 w-[360px] sm:w-[600px] lg:w-[800px] h-[360px] sm:h-[600px] lg:h-[800px] bg-[radial-gradient(circle_at_top_right,rgba(234,179,8,0.25)_0%,rgba(200,164,92,0.15)_25%,rgba(150,200,255,0.08)_45%,transparent_70%)] pointer-events-none blur-[40px] sm:blur-[65px]" />
+
+        {/* Volumetric Window Sunlight Streaks (Mobile & Tablet - Pure GPU composite layer, 0ms CPU time) */}
+        <div
+          className="md:hidden absolute -top-12 -right-12 w-[420px] h-[480px] pointer-events-none opacity-80 animate-[pulse_6s_ease-in-out_infinite]"
+          style={{
+            background: `repeating-linear-gradient(
+              -38deg,
+              rgba(234, 179, 8, 0.12) 0px,
+              rgba(234, 179, 8, 0.12) 28px,
+              rgba(150, 200, 255, 0.04) 28px,
+              rgba(150, 200, 255, 0.04) 55px,
+              transparent 55px,
+              transparent 95px,
+              rgba(234, 179, 8, 0.15) 95px,
+              rgba(234, 179, 8, 0.15) 135px,
+              transparent 135px,
+              transparent 180px
+            )`,
+            maskImage: "radial-gradient(ellipse at top right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%)",
+            WebkitMaskImage: "radial-gradient(ellipse at top right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%)",
+          }}
         />
+
+        {/* Desktop WebGL Volumetric Rays (Hardware GPU >= 768px) */}
+        <div className="hidden md:block w-full h-full">
+          <SideRays
+            origin="top-right"
+            rayColor1="#EAB308"
+            rayColor2="#96c8ff"
+            intensity={1.8}
+            spread={2.0}
+            speed={1.8}
+            saturation={1.3}
+            blend={0.75}
+            falloff={1.6}
+            opacity={0.85}
+            tilt={-4}
+          />
+        </div>
       </div>
 
       {/* ─── ANIMATED BACKGROUND ──────────────────────────────── */}
@@ -242,7 +267,9 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-700 delay-150 ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-100 ${
+                  isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-95 translate-y-8 scale-95"
+                }`}
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <picture>

@@ -15,40 +15,51 @@ export default function ScrollRevealInit() {
     if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let srInstance: any = null;
+    let idleId: number | null = null;
+    let timerId: NodeJS.Timeout | null = null;
 
-    // 2. Safe dynamic import of ScrollReveal
-    import("scrollreveal").then((module) => {
-      const ScrollReveal = module.default;
-      const sr = ScrollReveal();
-      srInstance = sr;
+    const initSR = () => {
+      import("scrollreveal").then((module) => {
+        const ScrollReveal = module.default;
+        const sr = ScrollReveal();
+        srInstance = sr;
 
-      const isMobile = window.innerWidth < 768;
+        const isMobile = window.innerWidth < 768;
 
-      const baseConfig = {
-        distance: isMobile ? "14px" : "22px",
-        duration: 750,
-        easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-        origin: "bottom",
-        opacity: 0,
-        scale: 1,
-        reset: false,
-        cleanup: true,
-        viewFactor: 0.12,
-        mobile: true,
-      };
+        const baseConfig = {
+          distance: isMobile ? "14px" : "22px",
+          duration: 750,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+          origin: "bottom",
+          opacity: 0,
+          scale: 1,
+          reset: false,
+          cleanup: true,
+          viewFactor: 0.12,
+          mobile: true,
+        };
 
-      // 3. Editorial Sequence & Staggers
-      sr.reveal(".sr-eyebrow", { ...baseConfig, distance: "10px", duration: 600, delay: 40 });
-      sr.reveal(".sr-heading", { ...baseConfig, distance: "18px", duration: 750, delay: 100 });
-      sr.reveal(".sr-desc", { ...baseConfig, distance: "14px", duration: 700, delay: 160 });
-      sr.reveal(".sr-card", { ...baseConfig, distance: "20px", duration: 750, interval: isMobile ? 65 : 85, delay: 60 });
-      sr.reveal(".sr-left", { ...baseConfig, origin: isMobile ? "bottom" : "left", distance: "20px", duration: 700, interval: isMobile ? 50 : 70, delay: 50 });
-      sr.reveal(".sr-right", { ...baseConfig, origin: isMobile ? "bottom" : "right", distance: "20px", duration: 700, interval: isMobile ? 50 : 70, delay: 50 });
-      sr.reveal(".sr-scale", { ...baseConfig, scale: 0.98, distance: "14px", duration: 800, delay: 80 });
-      sr.reveal(".sr-fade-up", { ...baseConfig, distance: "16px", duration: 750, delay: 60 });
-    });
+        // 3. Editorial Sequence & Staggers
+        sr.reveal(".sr-eyebrow", { ...baseConfig, distance: "10px", duration: 600, delay: 40 });
+        sr.reveal(".sr-heading", { ...baseConfig, distance: "18px", duration: 750, delay: 100 });
+        sr.reveal(".sr-desc", { ...baseConfig, distance: "14px", duration: 700, delay: 160 });
+        sr.reveal(".sr-card", { ...baseConfig, distance: "20px", duration: 750, interval: isMobile ? 65 : 85, delay: 60 });
+        sr.reveal(".sr-left", { ...baseConfig, origin: isMobile ? "bottom" : "left", distance: "20px", duration: 700, interval: isMobile ? 50 : 70, delay: 50 });
+        sr.reveal(".sr-right", { ...baseConfig, origin: isMobile ? "bottom" : "right", distance: "20px", duration: 700, interval: isMobile ? 50 : 70, delay: 50 });
+        sr.reveal(".sr-scale", { ...baseConfig, scale: 0.98, distance: "14px", duration: 800, delay: 80 });
+        sr.reveal(".sr-fade-up", { ...baseConfig, distance: "16px", duration: 750, delay: 60 });
+      });
+    };
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = (window as any).requestIdleCallback(initSR, { timeout: 1200 });
+    } else {
+      timerId = setTimeout(initSR, 400);
+    }
 
     return () => {
+      if (idleId !== null && "cancelIdleCallback" in window) (window as any).cancelIdleCallback(idleId);
+      if (timerId !== null) clearTimeout(timerId);
       if (srInstance && typeof srInstance.destroy === "function") {
         srInstance.destroy();
       }

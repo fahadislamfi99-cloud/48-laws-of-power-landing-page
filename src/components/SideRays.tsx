@@ -64,6 +64,10 @@ const SideRays: React.FC<SideRaysProps> = ({
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // WebGL volumetric rays are for desktop/tablet viewports (>= 768px).
+    // On mobile screens, pure CSS GPU-accelerated volumetric sunlight beams render with 0ms CPU overhead.
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
@@ -98,6 +102,7 @@ const SideRays: React.FC<SideRaysProps> = ({
 
     const initializeWebGL = async () => {
       if (!containerRef.current || isCancelled) return;
+      if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
       // Defer to idle frame so initial paint & interaction have 100% CPU priority
       if (typeof window !== "undefined" && "requestIdleCallback" in window) {
