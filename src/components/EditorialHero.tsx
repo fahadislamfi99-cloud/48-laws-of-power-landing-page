@@ -239,7 +239,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95 pointer-events-none"
                 }`}
                 style={{ transformStyle: "preserve-3d" }}
@@ -260,21 +260,21 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               </div>
 
               {/* 2. Floating Left Stat Badge ("৪৮টি নীতি") */}
-              <div className={`absolute left-[3%] xs:left-[5%] sm:left-[6%] lg:left-[6%] xl:left-[8%] top-[24%] sm:top-[22%] z-20 pointer-events-none transition-all duration-600 delay-[200ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 -translate-x-5 scale-90"}`}>
+              <div className={`absolute left-[3%] xs:left-[5%] sm:left-[6%] lg:left-[6%] xl:left-[8%] top-[24%] sm:top-[22%] z-20 pointer-events-none transition-all duration-700 delay-[650ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 -translate-x-5 scale-90"}`}>
                 <div className="px-2 py-1 xs:px-2.5 xs:py-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-[#111114]/95 backdrop-blur-md border border-[#2A2A2E] text-[10px] xs:text-[11px] sm:text-xs font-semibold shadow-xl whitespace-nowrap">
                   <span className="text-[#C8A45C] font-bold">৪৮টি</span> <span className="text-[#D1C9BC]">নীতি</span>
                 </div>
               </div>
 
               {/* 3. Floating Right Stat Badge ("৩,০০০+ বছরের জ্ঞান") */}
-              <div className={`absolute -right-[46px] xs:-right-[40px] sm:-right-8 lg:-right-3.5 xl:-right-3 bottom-[32%] sm:bottom-[30%] z-20 pointer-events-none transition-all duration-600 delay-[350ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-5 scale-90"}`}>
+              <div className={`absolute -right-[46px] xs:-right-[40px] sm:-right-8 lg:-right-3.5 xl:-right-3 bottom-[32%] sm:bottom-[30%] z-20 pointer-events-none transition-all duration-700 delay-[850ms] ${isVisible ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-5 scale-90"}`}>
                 <div className="px-2 py-1 xs:px-2.5 xs:py-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-[#111114]/95 backdrop-blur-md border border-[#2A2A2E] text-[10px] xs:text-[11px] sm:text-xs font-semibold shadow-xl whitespace-nowrap">
                   <span className="text-[#C8A45C] font-bold">৩,০০০+</span> <span className="text-[#D1C9BC]">বছরের জ্ঞান</span>
                 </div>
               </div>
 
               {/* 4. Bottom Specs Badge ("ডিজিটাল PDF • ৫০৯ পৃষ্ঠা • ৬ MB") */}
-              <div className={`mt-2.5 sm:mt-4 flex items-center justify-between text-[11px] sm:text-xs px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-[#111114] border border-[#2A2A2E] transition-all duration-600 delay-[500ms] hover:border-[#C8A45C]/30 shadow-md ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"}`}>
+              <div className={`mt-2.5 sm:mt-4 flex items-center justify-between text-[11px] sm:text-xs px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-[#111114] border border-[#2A2A2E] transition-all duration-700 delay-[1050ms] hover:border-[#C8A45C]/30 shadow-md ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"}`}>
                 <span className="font-semibold text-[#D1C9BC] flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45C] animate-pulse" />
                   <span>ডিজিটাল PDF</span>
