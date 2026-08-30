@@ -27,7 +27,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
     }
     if (isPreloaderDone) {
       // Start hero entrance right as preloader fades away
-      const timer = setTimeout(() => setIsVisible(true), 60);
+      const timer = setTimeout(() => setIsVisible(true), 20);
       return () => clearTimeout(timer);
     } else {
       // Safety fallback in case preloader is disabled or not provided
@@ -242,7 +242,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-700 delay-150 ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <picture>
