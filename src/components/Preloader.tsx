@@ -35,7 +35,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     stopScroll();
 
     const startTime = performance.now();
-    const duration = 500; // 0.5s crisp, luxury loader
+    const duration = 380; // 0.38s smooth, ultra-responsive luxury loader
 
     const updateLoader = (now: number) => {
       const elapsed = now - startTime;
@@ -53,7 +53,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         setTimeout(() => {
           setLoading(false);
           resumeScroll();
-        }, 500);
+        }, 350);
       }
     };
 
@@ -69,7 +69,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#08080A] text-[#F0EBE0] select-none cursor-wait overflow-hidden pointer-events-auto touch-none overscroll-contain transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#08080A] text-[#F0EBE0] select-none cursor-wait overflow-hidden pointer-events-auto touch-none overscroll-contain transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isExiting ? "opacity-0 -translate-y-4 blur-[6px] pointer-events-none" : "opacity-100 translate-y-0"
       }`}
     >

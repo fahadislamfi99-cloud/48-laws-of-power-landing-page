@@ -108,8 +108,7 @@ const SideRays: React.FC<SideRaysProps> = ({
 
       if (!containerRef.current || isCancelled) return;
 
-      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-      const initialDpr = isMobile ? 0.5 : Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 1.25);
+      const initialDpr = 0.5;
 
       let renderer: Renderer;
       try {
@@ -234,8 +233,7 @@ void main() {
 
       const updateSize = () => {
         if (!containerRef.current || !renderer) return;
-        const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-        renderer.dpr = isMobile ? 0.5 : Math.min(window.devicePixelRatio, 1.25);
+        renderer.dpr = 0.5;
         const { clientWidth: w, clientHeight: h } = containerRef.current;
         renderer.setSize(w, h);
         uniforms.iResolution.value = [w * renderer.dpr, h * renderer.dpr];
