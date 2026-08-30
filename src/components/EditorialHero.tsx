@@ -92,9 +92,9 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
 
   return (
     <section className="relative pt-20 sm:pt-28 pb-8 sm:pb-10 md:pt-32 md:pb-16 overflow-hidden">
-      {/* ─── NATURAL WINDOW LIGHT CASCADE (SideRays) ─────────── */}
+      {/* ─── NATURAL WINDOW LIGHT CASCADE (SideRays - Desktop only) ─────────── */}
       <div
-        className={`absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${isVisible ? "opacity-85" : "opacity-0"
+        className={`hidden md:block absolute inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000 ease-out delay-150 ${isVisible ? "opacity-85" : "opacity-0"
           }`}
       >
         <SideRays
