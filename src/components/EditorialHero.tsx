@@ -130,15 +130,18 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 w-full relative z-10">
 
         {/* Top bar */}
-        <div className={`flex flex-wrap items-center justify-between gap-2 sm:gap-3 pb-3 sm:pb-6 border-b border-[#2A2A2E] text-xs transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
-          <div className="flex items-center gap-2">
+        <div
+          className={`pt-2 sm:pt-4 pb-3 sm:pb-4 border-b border-[#1A1A1E] flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 text-xs transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+            }`}
+        >
+          <div className="flex items-center gap-2 shrink-0">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C8A45C] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C8A45C]" />
             </span>
             <span className="font-semibold text-[#D1C9BC] text-[11px] sm:text-sm">সম্পূর্ণ বাংলা ডিজিটাল সংস্করণ</span>
           </div>
-          <div className="hidden sm:flex items-center gap-4 lg:gap-6 text-[#A8A095] text-xs">
+          <div className="flex items-center gap-2 xs:gap-3 sm:gap-4 lg:gap-6 text-[#A8A095] text-[10px] xs:text-[11px] sm:text-xs shrink-0">
             <span>রবার্ট গ্রিন</span>
             <span className="text-[#2A2A2E]">•</span>
             <span>৫০৯ পৃষ্ঠা</span>
