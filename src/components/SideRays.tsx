@@ -64,10 +64,6 @@ const SideRays: React.FC<SideRaysProps> = ({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // WebGL volumetric rays are for desktop/tablet viewports (>= 768px).
-    // On mobile screens, pure CSS GPU-accelerated volumetric sunlight beams render with 0ms CPU overhead.
-    if (typeof window !== "undefined" && window.innerWidth < 768) return;
-
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
@@ -102,7 +98,6 @@ const SideRays: React.FC<SideRaysProps> = ({
 
     const initializeWebGL = async () => {
       if (!containerRef.current || isCancelled) return;
-      if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
       // Defer to idle frame so initial paint & interaction have 100% CPU priority
       if (typeof window !== "undefined" && "requestIdleCallback" in window) {
@@ -113,10 +108,13 @@ const SideRays: React.FC<SideRaysProps> = ({
 
       if (!containerRef.current || isCancelled) return;
 
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const initialDpr = isMobile ? 0.5 : Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 1.25);
+
       let renderer: Renderer;
       try {
         renderer = new Renderer({
-          dpr: Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 1.25),
+          dpr: initialDpr,
           alpha: true,
         });
       } catch (e) {
@@ -236,7 +234,8 @@ void main() {
 
       const updateSize = () => {
         if (!containerRef.current || !renderer) return;
-        renderer.dpr = Math.min(window.devicePixelRatio, 2);
+        const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+        renderer.dpr = isMobile ? 0.5 : Math.min(window.devicePixelRatio, 1.25);
         const { clientWidth: w, clientHeight: h } = containerRef.current;
         renderer.setSize(w, h);
         uniforms.iResolution.value = [w * renderer.dpr, h * renderer.dpr];
