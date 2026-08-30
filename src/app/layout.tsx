@@ -200,13 +200,6 @@ export default function RootLayout({
                 ['scroll', 'pointerdown', 'touchstart', 'keydown'].forEach(function(e) {
                   window.addEventListener(e, loadPixel, { once: true, passive: true });
                 });
-
-                // Fallback for real users who don't interact immediately
-                if ('requestIdleCallback' in window) {
-                  window.requestIdleCallback(function() { setTimeout(loadPixel, 4000); });
-                } else {
-                  setTimeout(loadPixel, 4000);
-                }
               })();
             `,
           }}

@@ -81,15 +81,30 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
             // ignore
           }
 
-          // Trigger popup after configured delay
-          const delayMs = Math.max(1, data.banner.displayDelaySeconds ?? 3) * 1000;
-          const timer = setTimeout(() => {
-            if (isMounted) {
-              setIsOpen(true);
-            }
-          }, delayMs);
+          // Trigger popup after user has engaged and scrolled past the Hero section
+          let triggered = false;
+          let timer: NodeJS.Timeout | null = null;
 
-          return () => clearTimeout(timer);
+          const handleScroll = () => {
+            if (triggered) return;
+            if (typeof window !== "undefined" && window.scrollY > 300) {
+              triggered = true;
+              window.removeEventListener("scroll", handleScroll);
+              const delayMs = Math.max(1, data.banner.displayDelaySeconds ?? 2) * 1000;
+              timer = setTimeout(() => {
+                if (isMounted) {
+                  setIsOpen(true);
+                }
+              }, delayMs);
+            }
+          };
+
+          window.addEventListener("scroll", handleScroll, { passive: true });
+
+          return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (timer) clearTimeout(timer);
+          };
         }
       } catch (err) {
         console.warn("[Promo Popup Load Warning]:", err);

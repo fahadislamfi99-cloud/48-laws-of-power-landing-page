@@ -239,7 +239,7 @@ export default function EditorialHero({ onOpenOrderModal, isPreloaderDone }: Edi
               {/* 1. Book Entrance */}
               <div
                 ref={bookRef}
-                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-1000 ${isBot ? "" : "delay-300"} ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"}`}
+                className={`relative flex justify-center items-center py-1 sm:py-2 transition-all duration-700 opacity-100 ${isVisible ? "translate-y-0 scale-100" : "translate-y-2 scale-98"}`}
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <picture>

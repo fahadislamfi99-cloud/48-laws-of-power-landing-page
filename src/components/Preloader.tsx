@@ -35,7 +35,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     stopScroll();
 
     const startTime = performance.now();
-    const duration = 1200; // 1.2s smooth, snappy luxury loader
+    const duration = 800; // 0.8s smooth, snappy luxury loader
 
     const updateLoader = (now: number) => {
       const elapsed = now - startTime;
