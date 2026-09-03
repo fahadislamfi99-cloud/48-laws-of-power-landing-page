@@ -71,7 +71,7 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent
-            className="relative w-full max-w-[500px] max-h-[92dvh] overflow-y-auto bg-[#0D0D10] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] shadow-[0_20px_70px_rgba(0,0,0,0.85)] my-auto z-10 will-change-[transform,opacity]"
+            className="relative w-full max-w-[530px] max-h-[92dvh] overflow-y-auto bg-[#0D0D10] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] shadow-[0_20px_70px_rgba(0,0,0,0.85)] my-auto z-10 will-change-[transform,opacity]"
             style={{ scrollbarWidth: "thin", scrollbarColor: "#2A2A2E transparent" }}
           >
             {/* Top gold line */}
