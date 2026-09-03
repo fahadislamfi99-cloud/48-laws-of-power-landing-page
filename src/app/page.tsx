@@ -8,6 +8,7 @@ import HumanRecognition from "@/components/HumanRecognition";
 import DeepDiveLaw from "@/components/DeepDiveLaw";
 import VideoLessonSection from "@/components/VideoLessonSection";
 import CuriosityBridge from "@/components/CuriosityBridge";
+import DualMasterySection from "@/components/DualMasterySection";
 import AuthorProfile from "@/components/AuthorProfile";
 import DigitalCheckout from "@/components/DigitalCheckout";
 import ProductFAQ from "@/components/ProductFAQ";
@@ -21,6 +22,7 @@ const PdfSamplePreview = dynamic(() => import("@/components/PdfSamplePreview"), 
 const LawsAlmanac = dynamic(() => import("@/components/LawsAlmanac"), { ssr: false });
 const AllLawsModal = dynamic(() => import("@/components/AllLawsModal"), { ssr: false });
 const OrderModal = dynamic(() => import("@/components/OrderModal"), { ssr: false });
+const SeductionLessonModal = dynamic(() => import("@/components/SeductionLessonModal"), { ssr: false });
 const PromotionalPopup = dynamic(() => import("@/components/PromotionalPopup"), { ssr: false });
 const ExitIntentLessonModal = dynamic(() => import("@/components/ExitIntentLessonModal"), { ssr: false });
 const BackToTop = dynamic(() => import("@/components/BackToTop"), { ssr: false });
@@ -29,6 +31,7 @@ export default function Home() {
   const [isPreloaderDone, setIsPreloaderDone] = useState(false);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [isAllLawsModalOpen, setIsAllLawsModalOpen] = useState(false);
+  const [isSeductionLessonModalOpen, setIsSeductionLessonModalOpen] = useState(false);
   const [initialCouponCode, setInitialCouponCode] = useState<string | undefined>(undefined);
 
   const handleOpenOrderModal = (coupon?: string) => {
@@ -55,6 +58,10 @@ export default function Home() {
         onOpenOrderModal={() => handleOpenOrderModal()}
       />
       <AuthorProfile />
+      <DualMasterySection
+        onOpenOrderModal={() => handleOpenOrderModal()}
+        onOpenSeductionLessonModal={() => setIsSeductionLessonModalOpen(true)}
+      />
       <DigitalCheckout />
       <ProductFAQ />
       <EditorialFooter />
@@ -71,6 +78,12 @@ export default function Home() {
         isOpen={isOrderModalOpen}
         onClose={() => setIsOrderModalOpen(false)}
         initialCouponCode={initialCouponCode}
+      />
+
+      <SeductionLessonModal
+        isOpen={isSeductionLessonModalOpen}
+        onClose={() => setIsSeductionLessonModalOpen(false)}
+        onOpenOrderModal={() => handleOpenOrderModal()}
       />
 
       <PromotionalPopup

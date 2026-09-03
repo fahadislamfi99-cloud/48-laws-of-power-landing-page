@@ -2,10 +2,13 @@ import { PDFDocument, rgb, degrees, StandardFonts } from "pdf-lib";
 import fs from "fs";
 import path from "path";
 
+export type BookType = "48_laws" | "art_of_seduction";
+
 export interface WatermarkOptions {
   orderNumber: string;
   customerPhone: string;
   customerEmail?: string;
+  bookType?: BookType;
   forceRegenerate?: boolean;
 }
 
@@ -16,10 +19,10 @@ export interface WatermarkResult {
   pageCount: number;
   fileSize: number;
   fromCache: boolean;
+  safeFilename: string;
   error?: string;
 }
 
-const MASTER_PDF_PATH = path.join(process.cwd(), "storage", "master_pdf", "the_48_laws_of_power_bangla.pdf");
 const GENERATED_DIR = process.env.VERCEL || process.env.NODE_ENV === "production"
   ? path.join("/tmp", "generated_pdfs")
   : path.join(process.cwd(), "storage", "generated_pdfs");
@@ -46,14 +49,18 @@ export function sanitizePhone(phone: string): string {
  * Generate or retrieve a personalized watermarked PDF for a verified order
  */
 export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Promise<WatermarkResult> {
-  const { orderNumber, customerPhone, customerEmail, forceRegenerate = false } = options;
+  const { orderNumber, customerPhone, customerEmail, bookType = "48_laws", forceRegenerate = false } = options;
 
   ensureGeneratedDir();
 
   const cleanPhone = sanitizePhone(customerPhone);
   const cleanOrderNum = orderNumber.replace(/[^a-zA-Z0-9_-]/g, "");
-  const cachedFileName = `order_${cleanOrderNum}_${cleanPhone}.pdf`;
+  const cachedFileName = `order_${cleanOrderNum}_${cleanPhone}_${bookType}.pdf`;
   const cachedFilePath = path.join(GENERATED_DIR, cachedFileName);
+
+  const safeFilename = bookType === "art_of_seduction"
+    ? `The-Art-of-Seduction-Bangla-${cleanOrderNum}.pdf`
+    : `The-48-Laws-of-Power-Bangla-${cleanOrderNum}.pdf`;
 
   // 1. Return cached copy if available and not forced to regenerate
   if (!forceRegenerate && fs.existsSync(cachedFilePath)) {
@@ -64,9 +71,10 @@ export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Pr
           success: true,
           filePath: cachedFilePath,
           fileBuffer: existingBuffer,
-          pageCount: 509, // Standard page count
+          pageCount: bookType === "art_of_seduction" ? 480 : 509,
           fileSize: existingBuffer.length,
           fromCache: true,
+          safeFilename,
         };
       }
     } catch (err) {
@@ -75,13 +83,18 @@ export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Pr
   }
 
   // 2. Validate Master PDF existence
-  if (!fs.existsSync(MASTER_PDF_PATH)) {
-    console.error("[Master PDF Not Found]:", MASTER_PDF_PATH);
-    throw new Error("Master PDF file is missing from private storage.");
+  const masterFilename = bookType === "art_of_seduction"
+    ? "bangla_art_of_seduction_v2.pdf"
+    : "the_48_laws_of_power_bangla.pdf";
+  const masterPath = path.join(process.cwd(), "storage", "master_pdf", masterFilename);
+
+  if (!fs.existsSync(masterPath)) {
+    console.error("[Master PDF Not Found]:", masterPath);
+    throw new Error(`Master PDF file for ${bookType} is missing from storage.`);
   }
 
   try {
-    const masterPdfBytes = fs.readFileSync(MASTER_PDF_PATH);
+    const masterPdfBytes = fs.readFileSync(masterPath);
     const pdfDoc = await PDFDocument.load(masterPdfBytes, {
       ignoreEncryption: true,
     });
@@ -93,7 +106,8 @@ export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Pr
     const pageCount = pages.length;
 
     const displayPhone = customerPhone.trim();
-    const watermarkText = `Licensed to: ${displayPhone} | Order #${orderNumber}`;
+    const bookTitleLabel = bookType === "art_of_seduction" ? "The Art of Seduction" : "The 48 Laws of Power";
+    const watermarkText = `Licensed to: ${displayPhone} | Order #${orderNumber} | ${bookTitleLabel}`;
 
     // 3. Apply personalized subtle watermark on every single page
     for (let i = 0; i < pageCount; i++) {
@@ -121,7 +135,6 @@ export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Pr
       });
 
       // Center Diagonal Semi-Transparent Security Watermark
-      // Positioned strategically in middle of page
       const centerFontSize = Math.min(width * 0.055, 30);
       const textWidth = fontBold.widthOfTextAtSize(displayPhone, centerFontSize);
       
@@ -149,6 +162,7 @@ export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Pr
       pageCount,
       fileSize: outputBuffer.length,
       fromCache: false,
+      safeFilename,
     };
   } catch (error: any) {
     console.error("[PDF Watermarking Error]:", error);

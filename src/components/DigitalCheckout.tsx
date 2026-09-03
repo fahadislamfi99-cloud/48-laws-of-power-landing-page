@@ -39,7 +39,7 @@ export default function DigitalCheckout() {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
               <span className="text-xs sm:text-sm font-bold text-[#F0EBE0]">
-                {Math.round(((siteConfig.originalPrice - siteConfig.price) / siteConfig.originalPrice) * 100)}% বিশেষ অফার সক্রিয়
+                ২-বুক মাস্টার বান্ডেল ও বিশেষ অফার সক্রিয়
               </span>
             </div>
             <CountdownTimer variant="compact-pill" label="বাকি আছে" />

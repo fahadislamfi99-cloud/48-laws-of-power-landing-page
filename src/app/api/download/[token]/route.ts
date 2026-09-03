@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCollection, Order } from "@/lib/mongodb";
-import { getOrGenerateWatermarkedPdf } from "@/lib/watermarkPdf";
+import { getOrGenerateWatermarkedPdf, BookType } from "@/lib/watermarkPdf";
 import { validateDownloadToken } from "@/lib/validation";
 import { checkRateLimit, RATE_LIMIT_CONFIGS, getClientIp } from "@/lib/rateLimit";
 
@@ -48,6 +48,21 @@ export async function GET(
       return new NextResponse("Access denied: Payment verification is pending or incomplete.", { status: 403 });
     }
 
+    // Determine authorized Book Type
+    const requestedBook = req.nextUrl.searchParams.get("book");
+    const isBundle = order.packageType === "bundle" || order.productTitle?.includes("বান্ডেল") || order.amount >= 180;
+    const isSeductionOnly = order.packageType === "art_of_seduction" || order.productTitle?.includes("Seduction");
+
+    let targetBookType: BookType = "48_laws";
+
+    if (isBundle) {
+      targetBookType = requestedBook === "art_of_seduction" ? "art_of_seduction" : "48_laws";
+    } else if (isSeductionOnly) {
+      targetBookType = "art_of_seduction";
+    } else {
+      targetBookType = "48_laws";
+    }
+
     const customerPhone = order.customerPhone || order.payerPhone || "01700000000";
 
     // 4. Retrieve or dynamically generate the personalized watermarked PDF
@@ -55,6 +70,7 @@ export async function GET(
       orderNumber: order.orderNumber,
       customerPhone,
       customerEmail: order.targetEmail,
+      bookType: targetBookType,
     });
 
     // 5. Update Download Audit Stats in Database
@@ -70,14 +86,10 @@ export async function GET(
       }
     );
 
-    // 6. Safe Header Filename Sanitization
-    const safeOrderNum = order.orderNumber.replace(/[^a-zA-Z0-9_-]/g, "");
-    const safeFilename = `The-48-Laws-of-Power-Bangla-${safeOrderNum}.pdf`;
-
     return new NextResponse(new Uint8Array(watermarkResult.fileBuffer), {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="${safeFilename}"`,
+        "Content-Disposition": `attachment; filename="${watermarkResult.safeFilename}"`,
         "Content-Length": String(watermarkResult.fileSize),
         "Cache-Control": "private, no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",

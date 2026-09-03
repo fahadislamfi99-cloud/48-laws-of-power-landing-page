@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { code } = body;
+    const { code, amount: clientAmount } = body;
 
     if (!code || typeof code !== "string") {
       return NextResponse.json({ success: false, message: "Coupon code is required" }, { status: 400 });
@@ -40,10 +40,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: "এই কুপনের ব্যবহারের সীমা শেষ" }, { status: 400 });
     }
 
-    // Determine current base price securely from server product database
+    // Determine base price
     const productsCol = await getCollection<Product>("products");
     const product = await productsCol.findOne({ isActive: true });
-    const baseAmount = product ? Math.max(1, Number(product.price)) : siteConfig.price;
+    const baseAmount = clientAmount && typeof clientAmount === "number" && clientAmount > 0
+      ? clientAmount
+      : (product ? Math.max(1, Number(product.price)) : siteConfig.price);
 
     let discount = 0;
     if (coupon.discountType === "percentage") {

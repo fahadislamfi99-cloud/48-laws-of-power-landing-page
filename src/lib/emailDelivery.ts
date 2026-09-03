@@ -9,6 +9,7 @@ export interface EmailOrderDetails {
   trxId: string;
   amount: number;
   downloadToken: string;
+  packageType?: "bundle" | "48_laws" | "art_of_seduction";
   watermarkedPdfBuffer?: Buffer;
 }
 
@@ -50,13 +51,18 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
     trxId,
     amount,
     downloadToken,
+    packageType = "bundle",
     watermarkedPdfBuffer,
   } = details;
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-  const secureDownloadUrl = `${baseUrl}/api/download/${downloadToken}`;
+  const downloadUrl48Laws = `${baseUrl}/api/download/${downloadToken}?book=48_laws`;
+  const downloadUrlSeduction = `${baseUrl}/api/download/${downloadToken}?book=art_of_seduction`;
 
-  const fromAddress = `"The 48 Laws of Power (বাংলা)" <${process.env.GMAIL_USER || "fahadislam.fir@gmail.com"}>`;
+  const isBundle = packageType === "bundle" || amount >= 180;
+  const isSeductionOnly = packageType === "art_of_seduction";
+
+  const fromAddress = `"The 48 Laws of Power & Seduction" <${process.env.GMAIL_USER || "fahadislam.fir@gmail.com"}>`;
 
   const htmlContent = `
 <!DOCTYPE html>
@@ -64,7 +70,7 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>আপনার কপি প্রস্তুত - The 48 Laws of Power</title>
+  <title>আপনার বইয়ের কপি প্রস্তুত</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #08080A; color: #F0EBE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #08080A; padding: 30px 15px;">
@@ -75,7 +81,7 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
           
           <!-- Gold Accent Bar -->
           <tr>
-            <td height="4" style="background: linear-gradient(90deg, #C8A45C, #E6CA85, #C8A45C);"></td>
+            <td height="4" style="background: linear-gradient(90deg, #C8A45C, #E11D48, #C8A45C);"></td>
           </tr>
 
           <!-- Header -->
@@ -85,10 +91,10 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
                 অফিসিয়াল ডিজিটাল সংস্করণ • লাইফটাইম অ্যাক্সেস
               </span>
               <h1 style="margin: 0 0 10px 0; font-size: 24px; font-weight: 800; color: #F0EBE0; line-height: 1.3;">
-                অভিনন্দন! আপনার বইটি প্রস্তুত 🎉
+                অভিনন্দন! আপনার অর্ডার সফল হয়েছে 🎉
               </h1>
               <p style="margin: 0; font-size: 14px; color: #B8B0A4; line-height: 1.6;">
-                প্রিয় <strong>${customerName || "গ্রাহক"}</strong>, &ldquo;The 48 Laws of Power&rdquo; (বাংলা অনুবাদ) সংগ্রহের জন্য ধন্যবাদ। আপনার ফোন নম্বর (<span style="color: #C8A45C; font-weight: bold;">${customerPhone}</span>) দিয়ে পার্সোনালাইজড কপি তৈরি করা হয়েছে।
+                প্রিয় <strong>${customerName || "গ্রাহক"}</strong>, আপনার ফোন নম্বর (<span style="color: #C8A45C; font-weight: bold;">${customerPhone}</span>) দিয়ে ডিজিটাল কপি তৈরি করা হয়েছে।
               </p>
             </td>
           </tr>
@@ -102,11 +108,34 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
                     <p style="margin: 0 0 16px 0; font-size: 13px; color: #D1C9BC;">
                       নিচের বাটনে ক্লিক করে সরাসরি যেকোনো ডিভাইসে সম্পূর্ণ PDF ডাউনলোড করুন:
                     </p>
-                    <a href="${secureDownloadUrl}" target="_blank" style="display: inline-block; background-color: #C8A45C; color: #08080A; text-decoration: none; font-size: 15px; font-weight: 800; padding: 14px 32px; border-radius: 12px; box-shadow: 0 4px 20px rgba(200,164,92,0.3);">
-                      📥 সম্পূর্ণ PDF ডাউনলোড করুন (৳${amount})
+
+                    ${
+                      isBundle
+                        ? `
+                    <div style="margin-bottom: 12px;">
+                      <a href="${downloadUrl48Laws}" target="_blank" style="display: block; background-color: #C8A45C; color: #08080A; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 10px; margin-bottom: 10px;">
+                        📘 The 48 Laws of Power (৫০৯ পৃষ্ঠা)
+                      </a>
+                      <a href="${downloadUrlSeduction}" target="_blank" style="display: block; background-color: #E11D48; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 10px;">
+                        📕 The Art of Seduction (৪৮০ পৃষ্ঠা)
+                      </a>
+                    </div>
+                    `
+                        : isSeductionOnly
+                        ? `
+                    <a href="${downloadUrlSeduction}" target="_blank" style="display: inline-block; background-color: #E11D48; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 800; padding: 14px 32px; border-radius: 12px;">
+                      📥 The Art of Seduction PDF ডাউনলোড (৳${amount})
                     </a>
+                    `
+                        : `
+                    <a href="${downloadUrl48Laws}" target="_blank" style="display: inline-block; background-color: #C8A45C; color: #08080A; text-decoration: none; font-size: 15px; font-weight: 800; padding: 14px 32px; border-radius: 12px;">
+                      📥 The 48 Laws of Power PDF ডাউনলোড (৳${amount})
+                    </a>
+                    `
+                    }
+
                     <p style="margin: 14px 0 0 0; font-size: 11px; color: #8A8278;">
-                      (এই ইমেইলের সাথেও সরাসরি PDF ফাইলটি সংযুক্ত করা আছে)
+                      (এই লিংকটি আপনার লাইফটাইম অ্যাক্সেসের জন্য সংরক্ষিত থাকবে)
                     </p>
                   </td>
                 </tr>
@@ -118,6 +147,12 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
           <tr>
             <td style="padding: 0 35px 25px 35px;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #0A0A0D; border: 1px solid #222226; border-radius: 16px; padding: 18px 20px; font-size: 13px;">
+                <tr>
+                  <td style="color: #8A8278; padding: 6px 0; border-bottom: 1px solid #1C1C20;">অর্ডার প্যাকেজ</td>
+                  <td align="right" style="color: #C8A45C; font-weight: bold; padding: 6px 0; border-bottom: 1px solid #1C1C20;">
+                    ${isBundle ? "২-বুক মাস্টার বান্ডেল (48 Laws + Art of Seduction)" : isSeductionOnly ? "The Art of Seduction" : "The 48 Laws of Power"}
+                  </td>
+                </tr>
                 <tr>
                   <td style="color: #8A8278; padding: 6px 0; border-bottom: 1px solid #1C1C20;">অর্ডার নম্বর</td>
                   <td align="right" style="color: #C8A45C; font-weight: bold; font-family: monospace; padding: 6px 0; border-bottom: 1px solid #1C1C20;">${orderNumber}</td>
@@ -170,23 +205,11 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
   try {
     const transporter = createTransporter();
 
-    const attachments: any[] = [];
-
-    // Attach PDF directly if buffer provided (standard email attachment)
-    if (watermarkedPdfBuffer && watermarkedPdfBuffer.length > 0) {
-      attachments.push({
-        filename: "The-48-Laws-of-Power-Bangla.pdf",
-        content: watermarkedPdfBuffer,
-        contentType: "application/pdf",
-      });
-    }
-
     const mailOptions = {
       from: fromAddress,
       to: customerEmail,
-      subject: `আপনার কপি প্রস্তুত ⚡ The 48 Laws of Power (বাংলা অনুবাদ PDF) - #${orderNumber}`,
+      subject: `আপনার কপি প্রস্তুত ⚡ ${isBundle ? "২-বুক মাস্টার বান্ডেল" : "ডিজিটাল বই PDF"} - #${orderNumber}`,
       html: htmlContent,
-      attachments,
     };
 
     const info = await transporter.sendMail(mailOptions);

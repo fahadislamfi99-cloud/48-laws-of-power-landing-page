@@ -4,15 +4,23 @@ import React, { useState, useEffect } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import { trackInitiateCheckout } from "@/lib/pixel";
 import {
-  ShieldCheck, Mail, Zap, Loader2, Sparkles, Tag, ArrowRight, CheckCircle2, AlertCircle,
+  ShieldCheck, Mail, Zap, Loader2, Sparkles, Tag, ArrowRight, CheckCircle2, AlertCircle, BookOpen, Flame
 } from "lucide-react";
+
+export type PackageType = "bundle" | "48_laws" | "art_of_seduction";
 
 interface OrderFormProps {
   onSuccess?: () => void;
   initialCouponCode?: string;
+  defaultPackage?: PackageType;
 }
 
-export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormProps) {
+export default function OrderForm({
+  onSuccess,
+  initialCouponCode,
+  defaultPackage = "bundle",
+}: OrderFormProps) {
+  const [packageType, setPackageType] = useState<PackageType>(defaultPackage);
   const [gmail, setGmail] = useState("");
   const [couponCode, setCouponCode] = useState(initialCouponCode || "");
   const [discountAmount, setDiscountAmount] = useState(0);
@@ -28,8 +36,9 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const originalPrice = siteConfig.price || 149;
-  const currentPrice = Math.max(1, originalPrice - discountAmount);
+  const originalPackagePrice = packageType === "bundle" ? 199 : 149;
+  const originalFullPrice = packageType === "bundle" ? 298 : 149;
+  const currentPrice = Math.max(1, originalPackagePrice - discountAmount);
 
   // Fetch active promotional offer for checkout suggestion
   useEffect(() => {
@@ -67,7 +76,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   const applyCoupon = async (rawCode?: string) => {
     const codeToApply = (rawCode !== undefined ? rawCode : couponCode).trim().toUpperCase();
     if (!codeToApply) return;
-    if (validatingCoupon) return; // Prevent duplicate concurrent requests
+    if (validatingCoupon) return;
 
     setValidatingCoupon(true);
     setCouponMessage(null);
@@ -76,7 +85,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
       const res = await fetch("/api/public/coupon/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: codeToApply, amount: originalPrice }),
+        body: JSON.stringify({ code: codeToApply, amount: originalPackagePrice }),
       });
 
       const data = await res.json();
@@ -130,6 +139,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
         body: JSON.stringify({
           email: gmail.trim(),
           couponCode: appliedCoupon || undefined,
+          packageType,
         }),
       });
 
@@ -147,52 +157,101 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
   };
 
   return (
-    <form onSubmit={handlePayment} className="space-y-4 sm:space-y-5">
+    <form onSubmit={handlePayment} className="space-y-4 sm:space-y-5 text-left">
       
-      {/* Product Summary Header */}
-      <div className="flex items-center gap-2.5 sm:gap-3.5 pb-3.5 sm:pb-4 border-b border-[#26262A]">
-        <div className="relative shrink-0">
-          <picture>
-            <source type="image/webp" srcSet="/images/book-mockup.webp" />
-            <img
-              src="/images/book-mockup.png"
-              alt="The 48 Laws of Power"
-              width={64}
-              height={64}
-              loading="lazy"
-              decoding="async"
-              className="h-12 xs:h-14 sm:h-16 w-auto object-contain drop-shadow-md"
-            />
-          </picture>
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="text-[10px] sm:text-[11px] uppercase font-bold text-[#C8A45C] bg-[#C8A45C]/10 px-2 py-0.5 rounded-md border border-[#C8A45C]/20">
-              ডিজিটাল PDF
-            </span>
-            <span className="text-[11px] sm:text-xs text-emerald-400 font-bold">
-              ইনস্ট্যান্ট অ্যাক্সেস
-            </span>
+      {/* ─── 1-Click Package Selector (Decoy Pricing Engine) ─── */}
+      <div className="space-y-2">
+        <label className="block text-xs font-bold text-[#F0EBE0] flex items-center justify-between">
+          <span>প্যাকেজ নির্বাচন করুন:</span>
+          <span className="text-[10px] sm:text-xs text-[#C8A45C] font-semibold">লাইফটাইম ডিজিটাল সংস্করণ</span>
+        </label>
+
+        {/* Option 1: Master Bundle (Pre-selected) */}
+        <div
+          onClick={() => setPackageType("bundle")}
+          className={`relative p-3 sm:p-3.5 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 ${
+            packageType === "bundle"
+              ? "bg-[#181216] border-[#C8A45C] shadow-[0_0_20px_rgba(200,164,92,0.2)]"
+              : "bg-[#101014] border-[#222228] hover:border-[#33333E] opacity-80"
+          }`}
+        >
+          {/* Popular Tag */}
+          <div className="absolute -top-2.5 right-3 px-2 py-0.5 rounded-full bg-gradient-to-r from-[#C8A45C] to-[#E11D48] text-[#08080A] text-[9px] font-bold tracking-wider uppercase shadow">
+            🌟 সেরা পছন্দ • ৮৭% পাঠক নিয়েছেন
           </div>
-          <h3 className="text-xs xs:text-sm sm:text-lg font-bengali-serif font-bold text-[#F0EBE0] leading-tight mt-1 sm:mt-1.5 truncate">
-            The 48 Laws of Power (বাংলা সংস্করণ)
-          </h3>
-          <div className="flex items-center gap-1.5 sm:gap-2.5 mt-1 sm:mt-1.5 flex-wrap">
-            <span className="text-lg sm:text-xl font-display font-bold text-[#C8A45C]">
-              {siteConfig.currencySymbol}{currentPrice}
-            </span>
-            <span className="text-[11px] sm:text-xs text-[#A8A095] line-through">
-              {siteConfig.currencySymbol}{siteConfig.originalPrice}
-            </span>
-            {discountAmount > 0 ? (
-              <span className="text-[10px] sm:text-xs text-emerald-400 font-bold">
-                (৳{discountAmount} কুপন ছাড়)
-              </span>
-            ) : (
-              <span className="text-[10px] sm:text-xs text-[#C8A45C] font-semibold">
-                ({Math.round(((siteConfig.originalPrice - currentPrice) / siteConfig.originalPrice) * 100)}% ছাড়)
-              </span>
-            )}
+
+          <div className="flex items-center gap-2.5">
+            <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
+              packageType === "bundle" ? "border-[#C8A45C] bg-[#C8A45C]" : "border-[#444]"
+            }`}>
+              {packageType === "bundle" && <div className="w-1.5 h-1.5 rounded-full bg-[#08080A]" />}
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-bold text-[#F0EBE0] font-bengali-serif flex items-center gap-1.5 flex-wrap">
+                <span>২-বুক মাস্টার বান্ডেল</span>
+                <span className="text-[10px] text-[#C8A45C] font-mono font-normal">(48 Laws + Art of Seduction)</span>
+              </h4>
+              <p className="text-[10px] sm:text-xs text-[#A8A095]">৯৮৯ পৃষ্ঠা • দুটি বই একসাথে সম্পূর্ণ বাংলা</p>
+            </div>
+          </div>
+
+          <div className="text-right shrink-0">
+            <div className="text-sm sm:text-base font-bold text-[#C8A45C] font-display">৳199</div>
+            <div className="text-[10px] text-[#A8A095] line-through">৳298</div>
+          </div>
+        </div>
+
+        {/* Option 2: 48 Laws of Power (Single) */}
+        <div
+          onClick={() => setPackageType("48_laws")}
+          className={`p-2.5 sm:p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
+            packageType === "48_laws"
+              ? "bg-[#141418] border-[#C8A45C]/80 shadow-sm"
+              : "bg-[#0E0E12] border-[#1C1C22] hover:border-[#2A2A34] opacity-70"
+          }`}
+        >
+          <div className="flex items-center gap-2.5">
+            <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center shrink-0 ${
+              packageType === "48_laws" ? "border-[#C8A45C] bg-[#C8A45C]" : "border-[#444]"
+            }`}>
+              {packageType === "48_laws" && <div className="w-1.5 h-1.5 rounded-full bg-[#08080A]" />}
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-[#F0EBE0] font-bengali-serif">
+                The 48 Laws of Power (একক বই)
+              </h4>
+              <p className="text-[10px] text-[#A8A095]">৫০৯ পৃষ্ঠা সম্পূর্ণ বাংলা সংস্করণ</p>
+            </div>
+          </div>
+          <div className="text-right shrink-0">
+            <div className="text-xs sm:text-sm font-bold text-[#F0EBE0] font-display">৳149</div>
+          </div>
+        </div>
+
+        {/* Option 3: The Art of Seduction (Single) */}
+        <div
+          onClick={() => setPackageType("art_of_seduction")}
+          className={`p-2.5 sm:p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
+            packageType === "art_of_seduction"
+              ? "bg-[#181115] border-[#E11D48]/80 shadow-sm"
+              : "bg-[#0E0E12] border-[#1C1C22] hover:border-[#2A2A34] opacity-70"
+          }`}
+        >
+          <div className="flex items-center gap-2.5">
+            <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center shrink-0 ${
+              packageType === "art_of_seduction" ? "border-[#E11D48] bg-[#E11D48]" : "border-[#444]"
+            }`}>
+              {packageType === "art_of_seduction" && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-[#F0EBE0] font-bengali-serif">
+                The Art of Seduction (একক বই)
+              </h4>
+              <p className="text-[10px] text-[#A8A095]">৪৮০ পৃষ্ঠা সম্পূর্ণ বাংলা সংস্করণ</p>
+            </div>
+          </div>
+          <div className="text-right shrink-0">
+            <div className="text-xs sm:text-sm font-bold text-[#F0EBE0] font-display">৳149</div>
           </div>
         </div>
       </div>
@@ -219,7 +278,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
             placeholder="example@gmail.com"
             value={gmail}
             onChange={(e) => setGmail(e.target.value)}
-            className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-2.5 sm:py-3.5 input-dark text-xs sm:text-sm placeholder:text-[#8A8278] text-[#F0EBE0]"
+            className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-2.5 sm:py-3 input-dark text-xs sm:text-sm placeholder:text-[#8A8278] text-[#F0EBE0]"
           />
         </div>
         <p className="text-[11px] sm:text-xs text-[#A8A095] pl-0.5">
@@ -284,14 +343,14 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
               autoCapitalize="characters"
               autoComplete="off"
               spellCheck="false"
-              className="w-full pl-9 sm:pl-10 pr-3 py-2 sm:py-2.5 bg-[#09090C] border border-[#26262A] rounded-xl text-xs font-mono uppercase text-[#F0EBE0] outline-none focus:border-[#C8A45C] placeholder:text-[#666] disabled:opacity-60 transition-colors"
+              className="w-full pl-9 sm:pl-10 pr-3 py-2 bg-[#09090C] border border-[#26262A] rounded-xl text-xs font-mono uppercase text-[#F0EBE0] outline-none focus:border-[#C8A45C] placeholder:text-[#666] disabled:opacity-60 transition-colors"
             />
           </div>
           <button
             type="button"
             onClick={() => applyCoupon()}
             disabled={validatingCoupon || !couponCode.trim()}
-            className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#1A1A1F] hover:bg-[#25252D] text-xs font-bold text-[#C8A45C] border border-[#33333A] cursor-pointer disabled:opacity-50 transition-all flex items-center justify-center gap-1.5 shrink-0 min-w-[68px] sm:min-w-[76px]"
+            className="px-3 sm:px-4 py-2 rounded-xl bg-[#1A1A1F] hover:bg-[#25252D] text-xs font-bold text-[#C8A45C] border border-[#33333A] cursor-pointer disabled:opacity-50 transition-all flex items-center justify-center gap-1.5 shrink-0 min-w-[68px]"
           >
             {validatingCoupon ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin text-[#C8A45C]" />
@@ -316,13 +375,13 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
       </div>
 
       {/* Gateway Notice Box */}
-      <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#0F0F14] border border-[#E2136E]/40 space-y-1 sm:space-y-2 text-xs">
-        <div className="flex items-center gap-1.5 sm:gap-2 text-[#F0EBE0] font-bold text-xs sm:text-sm">
+      <div className="p-3 rounded-xl bg-[#0F0F14] border border-[#E2136E]/40 space-y-1 text-xs">
+        <div className="flex items-center gap-1.5 text-[#F0EBE0] font-bold text-xs">
           <span className="w-2 h-2 rounded-full bg-[#E2136E]" />
-          <span>বিকাশ অফিশিয়াল অটো পেমেন্ট</span>
+          <span>বিকাশ সিকিউর অটো পেমেন্ট</span>
         </div>
-        <p className="text-[11px] sm:text-xs text-[#D1C9BC] leading-relaxed">
-          নিচের বাটনে ক্লিক করলে বিকাশ সিকিউর পেমেন্ট পেজে নিয়ে যাওয়া হবে। পেমেন্ট সম্পন্ন হওয়ামাত্র স্বয়ংক্রিয়ভাবে ডাউনলোড পেজ খুলবে।
+        <p className="text-[11px] text-[#D1C9BC] leading-relaxed">
+          নিচের বাটনে ক্লিক করলে বিকাশ সিকিউর পেমেন্ট পেজে নিয়ে যাওয়া হবে। পেমেন্ট সম্পন্ন হওয়ামাত্র ডাউনলোড পেজ খুলবে।
         </p>
       </div>
 
@@ -330,7 +389,7 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-[#E2136E] hover:bg-[#C90E5F] text-white text-sm sm:text-base font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 hover-lift shadow-[0_0_25px_rgba(226,19,110,0.3)] transition-all group"
+        className="w-full py-3.5 rounded-xl bg-[#E2136E] hover:bg-[#C90E5F] text-white text-sm sm:text-base font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 hover-lift shadow-[0_0_25px_rgba(226,19,110,0.3)] transition-all group"
       >
         {isSubmitting ? (
           <>
@@ -347,14 +406,14 @@ export default function OrderForm({ onSuccess, initialCouponCode }: OrderFormPro
       </button>
 
       {/* Trust Badges */}
-      <div className="flex items-center justify-center gap-3 sm:gap-5 text-[11px] sm:text-xs text-[#A8A095] pt-0.5 sm:pt-1">
-        <div className="flex items-center gap-1 sm:gap-1.5">
-          <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#C8A45C]" />
+      <div className="flex items-center justify-center gap-3 sm:gap-5 text-[11px] text-[#A8A095] pt-0.5">
+        <div className="flex items-center gap-1">
+          <Zap className="w-3 h-3 text-[#C8A45C]" />
           <span>তাৎক্ষণিক ডাউনলোড</span>
         </div>
-        <div className="w-[1px] h-2.5 sm:h-3 bg-[#26262A]" />
-        <div className="flex items-center gap-1 sm:gap-1.5">
-          <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400" />
+        <div className="w-[1px] h-2.5 bg-[#26262A]" />
+        <div className="flex items-center gap-1">
+          <ShieldCheck className="w-3 h-3 text-emerald-400" />
           <span>১০০% নিরাপদ ডেলিভারি</span>
         </div>
       </div>

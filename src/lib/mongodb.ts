@@ -76,6 +76,7 @@ export interface Customer extends Document {
 
 export interface Order extends Document {
   orderNumber: string;
+  packageType?: "bundle" | "48_laws" | "art_of_seduction";
   productId?: string;
   productTitle: string;
   amount: number;

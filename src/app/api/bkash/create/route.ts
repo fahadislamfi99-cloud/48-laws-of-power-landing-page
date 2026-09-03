@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { email, phone, couponCode } = body;
+    const { email, phone, couponCode, packageType } = body;
 
     // 2. Strict Input Validation
     const emailValidation = validateEmail(email);
@@ -48,12 +48,14 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 3. Enforce Server-Side Price (Never trust client-sent amounts)
-    const productsCol = await getCollection<Product>("products");
-    const product = await productsCol.findOne({ isActive: true });
-
-    let amount = product ? Math.max(1, Number(product.price)) : siteConfig.price;
-    const productTitle = product ? product.title : "The 48 Laws of Power (বাংলা অনুবাদ)";
+    // 3. Enforce Server-Side Price based on Package Selection
+    const selectedPkg = packageType === "48_laws" || packageType === "art_of_seduction" ? packageType : "bundle";
+    let amount = selectedPkg === "bundle" ? 199 : 149;
+    const productTitle = selectedPkg === "bundle"
+      ? "The 48 Laws of Power + The Art of Seduction (২-বুক মাস্টার বান্ডেল)"
+      : selectedPkg === "art_of_seduction"
+      ? "The Art of Seduction (বাংলা সংস্করণ)"
+      : "The 48 Laws of Power (বাংলা সংস্করণ)";
 
     // 4. Server-Side Coupon Validation
     if (couponCode && typeof couponCode === "string") {
@@ -113,6 +115,7 @@ export async function POST(req: NextRequest) {
     const ordersCol = await getCollection<Order>("orders");
     await ordersCol.insertOne({
       orderNumber,
+      packageType: selectedPkg,
       productTitle,
       amount,
       paymentMethod: "bkash_gateway",
