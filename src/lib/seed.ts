@@ -117,19 +117,19 @@ export async function ensureDatabaseSeeded() {
         badgeText: "🔥 স্পেশাল মাস্টার বান্ডেল অফার",
         title: "দুটি পাওয়ার মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯",
         subtitle: "The 48 Laws of Power + The Art of Seduction",
-        description: "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳৯৯ নিশ্চিত ছাড়)!",
+        description: "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳১০০ নিশ্চিত ছাড়)!",
         couponCode: "",
-        discountAmount: 99,
+        discountAmount: 100,
         discountType: "fixed",
         ctaText: "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
-        offerTag: "৳৯৯ OFF",
+        offerTag: "৳১০০ OFF",
         imageUrl: "/images/promo-power-strategy.webp",
-        displayDelaySeconds: 3,
+        displayDelaySeconds: 5,
         cooldownHours: 24,
         updatedAt: new Date(),
       });
       console.log("[DB Seed] Created default combo promotional banner");
-    } else if (existingPromo.couponCode === "POWER50" || (existingPromo.title && existingPromo.title.includes("৳৫০"))) {
+    } else if (existingPromo.couponCode === "POWER50" || (existingPromo.title && existingPromo.title.includes("৳৫০")) || existingPromo.discountAmount === 99) {
       await promoCol.updateOne(
         { _id: existingPromo._id },
         {
@@ -138,14 +138,14 @@ export async function ensureDatabaseSeeded() {
             badgeText: "🔥 স্পেশাল মাস্টার বান্ডেল অফার",
             title: "দুটি পাওয়ার মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯",
             subtitle: "The 48 Laws of Power + The Art of Seduction",
-            description: "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳৯৯ নিশ্চিত ছাড়)!",
+            description: "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳১০০ নিশ্চিত ছাড়)!",
             couponCode: "",
-            discountAmount: 99,
+            discountAmount: 100,
             discountType: "fixed",
             ctaText: "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
-            offerTag: "৳৯৯ OFF",
+            offerTag: "৳১০০ OFF",
             imageUrl: "/images/promo-power-strategy.webp",
-            displayDelaySeconds: 3,
+            displayDelaySeconds: 5,
             cooldownHours: 24,
             updatedAt: new Date(),
           },

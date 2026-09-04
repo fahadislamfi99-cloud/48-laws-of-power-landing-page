@@ -175,7 +175,7 @@ export default function DualMasterySection({
           </h3>
 
           <p className="text-xs sm:text-sm text-[#A8A095] font-bengali-serif max-w-xl mx-auto mb-6">
-            আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। কিন্তু আজকের স্পেশাল বান্ডেলে আপনি পাচ্ছেন <strong className="text-[#F0EBE0]">৳৯৯ নিশ্চিত ছাড়</strong>!
+            আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। কিন্তু আজকের স্পেশাল বান্ডেলে আপনি পাচ্ছেন <strong className="text-[#F0EBE0]">৳১০০ নিশ্চিত ছাড়</strong>!
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-6 mb-6">

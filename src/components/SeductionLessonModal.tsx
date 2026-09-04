@@ -247,7 +247,7 @@ export default function SeductionLessonModal({
                 <span className="text-xs text-[#C8A45C] font-bold">৬৫০ পৃষ্ঠা সম্পূর্ণ বাংলা ইবুক</span>
               </div>
               <h5 className="text-sm sm:text-base font-bold text-[#F0EBE0] mt-1 font-bengali-serif">
-                দুটি মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯ (Save ৳৯৯)
+                দুটি মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯ (Save ৳১০০)
               </h5>
               <p className="text-xs text-[#A8A095] mt-0.5">
                 The 48 Laws of Power + The Art of Seduction লাইফটাইম অ্যাক্সেস

@@ -211,7 +211,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                   </span>
 
                   <span className="px-2.5 py-0.5 rounded-full bg-[#C8A45C] text-[#08080A] text-[10px] sm:text-[11px] font-extrabold tracking-wide shadow-md">
-                    ৳৯৯ ছাড়
+                    ৳১০০ ছাড়
                   </span>
                 </div>
 
@@ -284,7 +284,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                       </div>
                     </div>
                     <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-xs">
-                      Save ৳৯৯
+                      Save ৳১০০
                     </span>
                   </div>
                 </div>
