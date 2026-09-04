@@ -215,30 +215,39 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                   </span>
                 </div>
 
-                {/* Dual 3D Books Stage */}
-                <div className="relative my-4 sm:my-6 md:my-auto w-full max-w-[240px] xs:max-w-[260px] h-[150px] xs:h-[180px] sm:h-[200px] flex items-center justify-center">
-                  {/* Book 1: The 48 Laws of Power (Angled Left) */}
-                  <div className="absolute left-3 sm:left-4 z-10 -rotate-8 transition-transform duration-500 hover:-rotate-12 hover:scale-105">
-                    <img
-                      src="/images/book-mockup.webp"
-                      alt="The 48 Laws of Power"
-                      width={130}
-                      height={180}
-                      className="w-[100px] xs:w-[115px] sm:w-[130px] h-auto object-contain drop-shadow-[0_12px_25px_rgba(0,0,0,0.9)]"
-                      loading="lazy"
-                    />
-                  </div>
+                {/* Dual 3D Books Stage: Perfectly centered and proportioned across all screen sizes */}
+                <div className="relative my-3.5 sm:my-5 md:my-auto w-full h-[165px] xs:h-[185px] sm:h-[205px] md:h-[220px] flex items-center justify-center pointer-events-none select-none">
+                  
+                  {/* Ambient spotlight under the books */}
+                  <div className="absolute w-[200px] h-[60px] bg-[#C8A45C]/15 rounded-full blur-2xl bottom-1 left-1/2 -translate-x-1/2 pointer-events-none" />
 
-                  {/* Book 2: The Art of Seduction (Angled Right) */}
-                  <div className="absolute right-3 sm:right-4 z-20 rotate-6 transition-transform duration-500 hover:rotate-10 hover:scale-105">
-                    <img
-                      src="/images/the-art-of-seduction-book-mockup.png"
-                      alt="The Art of Seduction"
-                      width={130}
-                      height={180}
-                      className="w-[100px] xs:w-[115px] sm:w-[130px] h-auto object-contain drop-shadow-[0_14px_30px_rgba(0,0,0,0.95)]"
-                      loading="lazy"
-                    />
+                  {/* Combined Centered 3D Pair Container */}
+                  <div className="relative w-[210px] xs:w-[230px] sm:w-[250px] md:w-[245px] h-full flex items-center justify-center pointer-events-auto">
+                    
+                    {/* Book 1: The 48 Laws of Power (Angled Left, Layer 1) */}
+                    <div className="absolute left-1/2 -translate-x-[92%] xs:-translate-x-[90%] sm:-translate-x-[88%] z-10 -rotate-[7deg] transition-all duration-300 hover:-rotate-[10deg] hover:scale-105 hover:z-30 origin-bottom-right cursor-pointer">
+                      <img
+                        src="/images/book-mockup.webp"
+                        alt="The 48 Laws of Power"
+                        width={140}
+                        height={200}
+                        className="w-[110px] xs:w-[124px] sm:w-[138px] md:w-[134px] h-auto object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.9)]"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Book 2: The Art of Seduction (Angled Right, Layer 2) */}
+                    <div className="absolute left-1/2 -translate-x-[12%] xs:-translate-x-[14%] sm:-translate-x-[16%] z-20 rotate-[6deg] transition-all duration-300 hover:rotate-[9deg] hover:scale-105 hover:z-30 origin-bottom-left cursor-pointer">
+                      <img
+                        src="/images/the-art-of-seduction-book-mockup.png"
+                        alt="The Art of Seduction"
+                        width={140}
+                        height={200}
+                        className="w-[110px] xs:w-[124px] sm:w-[138px] md:w-[134px] h-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.95)]"
+                        loading="lazy"
+                      />
+                    </div>
+
                   </div>
                 </div>
 
