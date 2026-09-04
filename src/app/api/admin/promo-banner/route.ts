@@ -86,7 +86,7 @@ export async function PUT(req: NextRequest) {
       ctaText: sanitizeString(ctaText, 50) || "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
       offerTag: sanitizeString(offerTag, 30) || (cleanDiscountType === "fixed" ? `৳${cleanDiscountAmount || 99} OFF` : `${cleanDiscountAmount}% OFF`),
       imageUrl: sanitizeString(imageUrl, 300) || "/images/promo-power-strategy.webp",
-      displayDelaySeconds: Math.max(0, Math.min(60, Number(displayDelaySeconds) ?? 3)),
+      displayDelaySeconds: Math.max(0, Math.min(60, Number(displayDelaySeconds) ?? 5)),
       cooldownHours: Math.max(1, Math.min(720, Number(cooldownHours) ?? 24)),
       updatedAt: new Date(),
     };

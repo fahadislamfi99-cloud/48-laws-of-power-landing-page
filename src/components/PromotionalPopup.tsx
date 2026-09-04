@@ -77,21 +77,12 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
             }
           };
 
-          const delayMs = Math.max(1, data.banner.displayDelaySeconds ?? 3) * 1000;
+          // Trigger banner exactly after 5 seconds
+          const delayMs = (data.banner.displayDelaySeconds && data.banner.displayDelaySeconds >= 5) 
+            ? data.banner.displayDelaySeconds * 1000 
+            : 5000;
 
-          // Auto-trigger on timer (default 3-4 seconds)
-          timer = setTimeout(showBanner, Math.max(delayMs, 3500));
-
-          // Or trigger immediately if user scrolls past 150px
-          const handleScroll = () => {
-            if (triggered) return;
-            if (typeof window !== "undefined" && window.scrollY > 150) {
-              window.removeEventListener("scroll", handleScroll);
-              showBanner();
-            }
-          };
-
-          window.addEventListener("scroll", handleScroll, { passive: true });
+          timer = setTimeout(showBanner, delayMs);
         }
       } catch (err) {
         console.warn("[Promo Popup Load Warning]:", err);
@@ -155,14 +146,14 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-x-hidden overflow-y-auto">
-          {/* Backdrop: Gradual Darken + Subtle Background Blur */}
+          {/* Backdrop: Translucent Frosted Glass Overlay with Subtle Blur */}
           <motion.div
             key="promo-backdrop"
             initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-black/80 cursor-pointer will-change-[backdrop-filter,opacity]"
+            className="fixed inset-0 bg-black/50 backdrop-blur-md cursor-pointer will-change-[backdrop-filter,opacity]"
             onClick={handleDismiss}
           />
 
@@ -172,7 +163,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[620px] h-[340px] sm:h-[620px] bg-gradient-to-br from-[#C8A45C]/12 via-[#E11D48]/10 to-transparent rounded-full blur-[140px] pointer-events-none"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[620px] h-[340px] sm:h-[620px] bg-gradient-to-br from-[#C8A45C]/15 via-[#E11D48]/10 to-transparent rounded-full blur-[140px] pointer-events-none"
           />
 
           {/* Main Luxury Popup Shell */}

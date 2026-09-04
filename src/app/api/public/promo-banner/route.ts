@@ -52,7 +52,7 @@ export async function GET() {
         ctaText: banner.ctaText || "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
         offerTag: banner.offerTag || "৳৯৯ OFF",
         imageUrl: banner.imageUrl || "/images/promo-power-strategy.webp",
-        displayDelaySeconds: banner.displayDelaySeconds ?? 3,
+        displayDelaySeconds: banner.displayDelaySeconds ?? 5,
         cooldownHours: banner.cooldownHours ?? 24,
       },
     });
