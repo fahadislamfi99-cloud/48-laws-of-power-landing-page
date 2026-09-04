@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   DollarSign,
   TrendingUp,
@@ -22,10 +22,13 @@ import {
   Layers,
   ChevronDown,
   ChevronUp,
+  CheckCircle2,
 } from "lucide-react";
 import ToastNotification, { ToastState } from "@/components/admin/ToastNotification";
 
 type DateRange = "all" | "thismonth" | "last30days" | "last7days" | "today";
+
+const STORAGE_KEY = "48laws_admin_profit_loss_v1";
 
 interface CalculationsData {
   adSpendUSD: number;
@@ -58,16 +61,20 @@ export default function ProfitLossPage() {
   const [range, setRange] = useState<DateRange>("all");
   const [loading, setLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [lastSavedTime, setLastSavedTime] = useState<string | null>(null);
   const [toast, setToast] = useState<ToastState | null>(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
-  // Form / Local State
+  // Form State (initialized from persistent cache where available)
   const [adSpendUSDInput, setAdSpendUSDInput] = useState<string>("0");
   const [taxRatePercentInput, setTaxRatePercentInput] = useState<number>(15);
   const [exchangeRateInput, setExchangeRateInput] = useState<number>(130);
   const [gatewayFeePercentInput, setGatewayFeePercentInput] = useState<number>(1.5);
   const [otherCostsBDTInput, setOtherCostsBDTInput] = useState<string>("0");
   const [notesInput, setNotesInput] = useState<string>("");
+
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isInitialMount = useRef(true);
 
   // Backend response storage
   const [serverData, setServerData] = useState<{
@@ -80,6 +87,25 @@ export default function ProfitLossPage() {
     setTimeout(() => setToast(null), 3500);
   };
 
+  // 1. On mount: Load cached settings from localStorage for instant display
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem(STORAGE_KEY);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed.adSpendUSD !== undefined) setAdSpendUSDInput(String(parsed.adSpendUSD));
+        if (parsed.taxRatePercent !== undefined) setTaxRatePercentInput(Number(parsed.taxRatePercent));
+        if (parsed.exchangeRate !== undefined) setExchangeRateInput(Number(parsed.exchangeRate));
+        if (parsed.gatewayFeePercent !== undefined) setGatewayFeePercentInput(Number(parsed.gatewayFeePercent));
+        if (parsed.otherCostsBDT !== undefined) setOtherCostsBDTInput(String(parsed.otherCostsBDT));
+        if (parsed.notes !== undefined) setNotesInput(parsed.notes);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  // 2. Fetch live data from server
   const fetchData = async (currentRange = range) => {
     setLoading(true);
     try {
@@ -88,12 +114,28 @@ export default function ProfitLossPage() {
       if (res.ok && data.success) {
         setServerData(data.data);
         if (data.data.settings) {
-          setAdSpendUSDInput(String(data.data.settings.adSpendUSD ?? 0));
-          setTaxRatePercentInput(Number(data.data.settings.taxRatePercent ?? 15));
-          setExchangeRateInput(Number(data.data.settings.exchangeRate ?? 130));
-          setGatewayFeePercentInput(Number(data.data.settings.gatewayFeePercent ?? 1.5));
-          setOtherCostsBDTInput(String(data.data.settings.otherCostsBDT ?? 0));
-          setNotesInput(data.data.settings.notes || "");
+          const s = data.data.settings;
+          setAdSpendUSDInput(String(s.adSpendUSD ?? 0));
+          setTaxRatePercentInput(Number(s.taxRatePercent ?? 15));
+          setExchangeRateInput(Number(s.exchangeRate ?? 130));
+          setGatewayFeePercentInput(Number(s.gatewayFeePercent ?? 1.5));
+          setOtherCostsBDTInput(String(s.otherCostsBDT ?? 0));
+          setNotesInput(s.notes || "");
+          setLastSavedTime(new Date(s.updatedAt || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+
+          // Save to localStorage as well
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+              adSpendUSD: s.adSpendUSD,
+              taxRatePercent: s.taxRatePercent,
+              exchangeRate: s.exchangeRate,
+              gatewayFeePercent: s.gatewayFeePercent,
+              otherCostsBDT: s.otherCostsBDT,
+              notes: s.notes,
+            }));
+          } catch {
+            // ignore
+          }
         }
       } else {
         showToast(data.message || "Failed to load profit and loss data", "error");
@@ -109,7 +151,84 @@ export default function ProfitLossPage() {
     fetchData(range);
   }, [range]);
 
-  // Real-time responsive calculation based on current user inputs
+  // 3. Persistent Auto-Save: Debounce save to database and localStorage whenever user enters or changes values
+  const saveToBackend = async (payload: {
+    adSpendUSD: number;
+    taxRatePercent: number;
+    exchangeRate: number;
+    gatewayFeePercent: number;
+    otherCostsBDT: number;
+    notes: string;
+  }, showFeedback = false) => {
+    setIsSaving(true);
+    try {
+      // Save to localStorage immediately
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      } catch {
+        // ignore
+      }
+
+      const res = await fetch("/api/admin/profit-loss", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setLastSavedTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+        if (showFeedback) {
+          showToast("Profit & loss settings saved to database!");
+        }
+      } else if (showFeedback) {
+        showToast(data.message || "Failed to save settings", "error");
+      }
+    } catch {
+      if (showFeedback) {
+        showToast("Network error while saving settings", "error");
+      }
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  // Trigger debounced auto-save on input change
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    debounceTimerRef.current = setTimeout(() => {
+      saveToBackend({
+        adSpendUSD: Number(adSpendUSDInput) || 0,
+        taxRatePercent: Number(taxRatePercentInput) || 15,
+        exchangeRate: Number(exchangeRateInput) || 130,
+        gatewayFeePercent: Number(gatewayFeePercentInput) || 1.5,
+        otherCostsBDT: Number(otherCostsBDTInput) || 0,
+        notes: notesInput,
+      }, false);
+    }, 600);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [
+    adSpendUSDInput,
+    taxRatePercentInput,
+    exchangeRateInput,
+    gatewayFeePercentInput,
+    otherCostsBDTInput,
+    notesInput,
+  ]);
+
+  // Real-time responsive calculation based on current user inputs and actual DB orders
   const liveCalculations = useMemo(() => {
     const rawSalesCount = serverData?.calculations.totalSalesCount || 0;
     const rawRevenueBDT = serverData?.calculations.totalRevenueBDT || 0;
@@ -180,33 +299,16 @@ export default function ProfitLossPage() {
     otherCostsBDTInput,
   ]);
 
-  const handleSaveSettings = async (e?: React.FormEvent) => {
+  const handleManualSave = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    setIsSaving(true);
-    try {
-      const res = await fetch("/api/admin/profit-loss", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          adSpendUSD: Number(adSpendUSDInput) || 0,
-          taxRatePercent: Number(taxRatePercentInput) || 15,
-          exchangeRate: Number(exchangeRateInput) || 130,
-          gatewayFeePercent: Number(gatewayFeePercentInput) || 1.5,
-          otherCostsBDT: Number(otherCostsBDTInput) || 0,
-          notes: notesInput,
-        }),
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        showToast("Profit & loss settings saved successfully!");
-      } else {
-        showToast(data.message || "Failed to save settings", "error");
-      }
-    } catch {
-      showToast("Network error while saving settings", "error");
-    } finally {
-      setIsSaving(false);
-    }
+    saveToBackend({
+      adSpendUSD: Number(adSpendUSDInput) || 0,
+      taxRatePercent: Number(taxRatePercentInput) || 15,
+      exchangeRate: Number(exchangeRateInput) || 130,
+      gatewayFeePercent: Number(gatewayFeePercentInput) || 1.5,
+      otherCostsBDT: Number(otherCostsBDTInput) || 0,
+      notes: notesInput,
+    }, true);
   };
 
   const isProfit = liveCalculations.netProfitBDT >= 0;
@@ -267,7 +369,7 @@ export default function ProfitLossPage() {
 
           <button
             type="button"
-            onClick={() => handleSaveSettings()}
+            onClick={() => handleManualSave()}
             disabled={isSaving}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold cursor-pointer transition-colors shadow-xs disabled:opacity-50"
           >
@@ -292,6 +394,12 @@ export default function ProfitLossPage() {
                   Core Ad Cost Engine
                 </span>
                 <span className="text-xs text-slate-400 font-mono">1 USD = ৳{liveCalculations.exchangeRate} BDT</span>
+                {lastSavedTime && (
+                  <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-mono bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                    <CheckCircle2 className="w-3 h-3" />
+                    <span>Saved {lastSavedTime}</span>
+                  </span>
+                )}
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-slate-100 mt-1">
                 Facebook Ads Input & Conversion Formula
@@ -368,7 +476,7 @@ export default function ProfitLossPage() {
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">
                   15% Tax Amount
                 </span>
@@ -380,7 +488,7 @@ export default function ProfitLossPage() {
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/40">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/40">
                 <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block">
                   Total Ad Cost
                 </span>
