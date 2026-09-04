@@ -43,7 +43,7 @@ export default function DigitalCheckout() {
                 ২-বুক মাস্টার বান্ডেল ও বিশেষ অফার সক্রিয়
               </span>
             </div>
-            <CountdownTimer variant="compact-pill" label="বাকি আছে" />
+            <CountdownTimer variant="compact-pill" label="Ends in" lang="en" />
           </div>
 
           <OrderForm />
