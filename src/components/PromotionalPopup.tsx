@@ -25,7 +25,7 @@ interface PromotionalPopupProps {
   onClaimOffer: (couponCode?: string) => void;
 }
 
-const STORAGE_KEY = "laws48_promo_dismissed_session_v2";
+const STORAGE_KEY = "laws48_combo_promo_v1";
 
 export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps) {
   const [promoData, setPromoData] = useState<PromoBannerData | null>(null);
@@ -44,6 +44,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
     }
 
     let isMounted = true;
+    let timer: NodeJS.Timeout | null = null;
 
     async function loadPromo() {
       try {
@@ -67,30 +68,30 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
             // ignore
           }
 
-          // Trigger popup after user has engaged and scrolled past the Hero section
           let triggered = false;
-          let timer: NodeJS.Timeout | null = null;
+          const showBanner = () => {
+            if (triggered) return;
+            triggered = true;
+            if (isMounted) {
+              setIsOpen(true);
+            }
+          };
 
+          const delayMs = Math.max(1, data.banner.displayDelaySeconds ?? 3) * 1000;
+
+          // Auto-trigger on timer (default 3-4 seconds)
+          timer = setTimeout(showBanner, Math.max(delayMs, 3500));
+
+          // Or trigger immediately if user scrolls past 150px
           const handleScroll = () => {
             if (triggered) return;
-            if (typeof window !== "undefined" && window.scrollY > 280) {
-              triggered = true;
+            if (typeof window !== "undefined" && window.scrollY > 150) {
               window.removeEventListener("scroll", handleScroll);
-              const delayMs = Math.max(1, data.banner.displayDelaySeconds ?? 3) * 1000;
-              timer = setTimeout(() => {
-                if (isMounted) {
-                  setIsOpen(true);
-                }
-              }, delayMs);
+              showBanner();
             }
           };
 
           window.addEventListener("scroll", handleScroll, { passive: true });
-
-          return () => {
-            window.removeEventListener("scroll", handleScroll);
-            if (timer) clearTimeout(timer);
-          };
         }
       } catch (err) {
         console.warn("[Promo Popup Load Warning]:", err);
@@ -101,6 +102,7 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
 
     return () => {
       isMounted = false;
+      if (timer) clearTimeout(timer);
     };
   }, []);
 

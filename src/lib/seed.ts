@@ -108,10 +108,10 @@ export async function ensureDatabaseSeeded() {
       console.log("[DB Seed] Created default POWER50 coupon (৳50 OFF)");
     }
 
-    // Seed Promotional Banner
+    // Seed or update Promotional Banner to combo offer
     const promoCol = await getCollection("promo_banners");
-    const promoCount = await promoCol.countDocuments();
-    if (promoCount === 0) {
+    const existingPromo = await promoCol.findOne({});
+    if (!existingPromo) {
       await promoCol.insertOne({
         isEnabled: true,
         badgeText: "🔥 স্পেশাল মাস্টার বান্ডেল অফার",
@@ -129,6 +129,29 @@ export async function ensureDatabaseSeeded() {
         updatedAt: new Date(),
       });
       console.log("[DB Seed] Created default combo promotional banner");
+    } else if (existingPromo.couponCode === "POWER50" || (existingPromo.title && existingPromo.title.includes("৳৫০"))) {
+      await promoCol.updateOne(
+        { _id: existingPromo._id },
+        {
+          $set: {
+            isEnabled: true,
+            badgeText: "🔥 স্পেশাল মাস্টার বান্ডেল অফার",
+            title: "দুটি পাওয়ার মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯",
+            subtitle: "The 48 Laws of Power + The Art of Seduction",
+            description: "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳৯৯ নিশ্চিত ছাড়)!",
+            couponCode: "",
+            discountAmount: 99,
+            discountType: "fixed",
+            ctaText: "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
+            offerTag: "৳৯৯ OFF",
+            imageUrl: "/images/promo-power-strategy.webp",
+            displayDelaySeconds: 3,
+            cooldownHours: 24,
+            updatedAt: new Date(),
+          },
+        }
+      );
+      console.log("[DB Seed] Migrated old coupon banner to 2-book combo banner");
     }
   } catch (error) {
     console.error("[DB Seed Error]:", error);
