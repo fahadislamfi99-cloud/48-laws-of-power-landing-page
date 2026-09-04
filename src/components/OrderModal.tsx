@@ -74,21 +74,36 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
             className="relative w-full max-w-[530px] max-h-[92dvh] overflow-y-auto bg-[#0D0D10] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] shadow-[0_20px_70px_rgba(0,0,0,0.85)] my-auto z-10 will-change-[transform,opacity]"
             style={{ scrollbarWidth: "thin", scrollbarColor: "#2A2A2E transparent" }}
           >
-            {/* Top gold line */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-80" />
+            {/* Top gold accent line */}
+            <div className="sticky top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-90 z-40" />
 
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={onClose}
-              className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-full bg-[#1A1A1E]/90 hover:bg-[#2A2A2E] text-[#D1C9BC] hover:text-[#F0EBE0] transition-all duration-300 z-20 cursor-pointer backdrop-blur-sm group"
-              aria-label="Close checkout modal"
-            >
-              <X className="w-4 h-4 transition-transform duration-300 ease-out group-hover:rotate-90" />
-            </button>
+            {/* Modal Header Bar: Fixed/Sticky at top, preventing any overlap with content */}
+            <div className="sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 bg-[#0D0D10]/95 backdrop-blur-md border-b border-[#222228]">
+              <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-sm sm:text-base font-bold text-[#F0EBE0] font-bengali-serif leading-none truncate">
+                    ডিজিটাল চেকআউট
+                  </h3>
+                  <p className="text-[10px] sm:text-[11px] text-[#A8A095] mt-1 font-sans leading-none truncate">
+                    লাইফটাইম এক্সেস ও তাৎক্ষণিক ডাউনলোড
+                  </p>
+                </div>
+              </div>
 
-            {/* Content */}
-            <div className="p-3.5 sm:p-6 pt-4 sm:pt-5">
+              {/* Safe, Dedicated Close Button */}
+              <button
+                type="button"
+                onClick={onClose}
+                className="p-1.5 sm:p-2 rounded-xl bg-[#18181D] hover:bg-[#25252D] text-[#A8A095] hover:text-[#F0EBE0] border border-[#2A2A32] hover:border-[#3E3E48] transition-all duration-200 cursor-pointer shrink-0 ml-3 group"
+                aria-label="Close checkout modal"
+              >
+                <X className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+              </button>
+            </div>
+
+            {/* Content Area with Balanced Spacing */}
+            <div className="p-4 sm:p-6 pt-3.5 sm:pt-4">
               <OrderForm onSuccess={() => {}} initialCouponCode={initialCouponCode} />
             </div>
           </motion.div>
