@@ -67,6 +67,12 @@ export default function AdminLayout({
         subtitle: "Monitor bKash auto payments, manual orders, and download tokens",
       };
     }
+    if (pathname.startsWith("/admin/profit-loss")) {
+      return {
+        title: "Profit & Loss Analytics",
+        subtitle: "Track Facebook Ads ROI, 15% tax, ৳130 conversion, and net margins",
+      };
+    }
     if (pathname.startsWith("/admin/customers")) {
       return {
         title: "Customer CRM",

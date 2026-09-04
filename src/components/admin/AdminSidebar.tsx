@@ -14,6 +14,7 @@ import {
   Settings,
   Globe,
   Sparkles,
+  TrendingUp,
   LogOut,
   X,
 } from "lucide-react";
@@ -38,6 +39,7 @@ export default function AdminSidebar({
   const navItems = [
     { name: "Overview", href: "/admin", icon: LayoutDashboard },
     { name: "Orders & Sales", href: "/admin/orders", icon: CreditCard },
+    { name: "Profit & Loss", href: "/admin/profit-loss", icon: TrendingUp },
     { name: "Customer CRM", href: "/admin/customers", icon: Users },
     { name: "Digital PDF & Book", href: "/admin/product", icon: BookOpen },
     { name: "bKash Gateway Logs", href: "/admin/payments", icon: Receipt },

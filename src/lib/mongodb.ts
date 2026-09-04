@@ -167,6 +167,17 @@ export interface PromotionalBanner extends Document {
   updatedAt: Date;
 }
 
+export interface ProfitLossSettings extends Document {
+  adSpendUSD: number;
+  taxRatePercent: number; // default 15
+  exchangeRate: number; // default 130
+  otherCostsBDT: number; // optional custom operational costs in BDT
+  gatewayFeePercent: number; // default 1.5%
+  dateRange?: string;
+  notes?: string;
+  updatedAt: Date;
+}
+
 export interface AdminLog extends Document {
   adminId: string;
   adminName: string;
