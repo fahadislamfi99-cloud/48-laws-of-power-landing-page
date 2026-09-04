@@ -215,17 +215,17 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                   </span>
                 </div>
 
-                {/* Dual 3D Books Stage: Unified Overlapping Composition (Matching Payment Modal) */}
-                <div className="relative my-3 sm:my-4 md:my-auto w-full h-[175px] xs:h-[195px] sm:h-[215px] md:h-[270px] lg:h-[295px] flex items-center justify-center pointer-events-none select-none">
+                {/* Dual 3D Books Stage: Perfectly Centered Overlapping Flex Pair */}
+                <div className="relative my-3.5 sm:my-4 md:my-auto w-full h-[175px] xs:h-[195px] sm:h-[215px] md:h-[270px] lg:h-[295px] flex items-center justify-center pointer-events-none select-none">
                   
                   {/* Ambient spotlight under the books */}
-                  <div className="absolute w-[220px] md:w-[280px] h-[70px] md:h-[90px] bg-[#C8A45C]/18 rounded-full blur-2xl bottom-1 left-1/2 -translate-x-1/2 pointer-events-none" />
+                  <div className="absolute w-[240px] md:w-[300px] h-[70px] md:h-[90px] bg-[#C8A45C]/18 rounded-full blur-2xl bottom-1 left-1/2 -translate-x-1/2 pointer-events-none" />
 
-                  {/* Combined Centered 3D Pair Container */}
-                  <div className="relative w-[220px] xs:w-[245px] sm:w-[265px] md:w-[280px] lg:w-[305px] h-full flex items-center justify-center pointer-events-auto">
+                  {/* Flex Centered 3D Pair - Perfectly Balanced Geometric Center */}
+                  <div className="relative flex items-center justify-center pointer-events-auto">
                     
-                    {/* Book 1: The 48 Laws of Power (Left / Back Layer - matching payment modal) */}
-                    <div className="absolute left-1/2 -translate-x-[62%] xs:-translate-x-[60%] md:-translate-x-[58%] z-10 -rotate-[4deg] transition-all duration-300 hover:-rotate-[7deg] hover:scale-105 hover:z-30 origin-bottom-right cursor-pointer">
+                    {/* Book 1: The 48 Laws of Power (Left / Back Layer) */}
+                    <div className="relative z-10 -rotate-[4deg] transition-all duration-300 hover:-rotate-[7deg] hover:scale-105 hover:z-30 origin-bottom-right cursor-pointer shrink-0">
                       <img
                         src="/images/book-mockup.webp"
                         alt="The 48 Laws of Power"
@@ -236,8 +236,8 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                       />
                     </div>
 
-                    {/* Book 2: The Art of Seduction (Right / Front Layer Overlapping - matching payment modal) */}
-                    <div className="absolute left-1/2 -translate-x-[2%] xs:translate-x-[0%] md:translate-x-[3%] z-20 rotate-[3deg] transition-all duration-300 hover:rotate-[6deg] hover:scale-105 hover:z-30 origin-bottom-left cursor-pointer">
+                    {/* Book 2: The Art of Seduction (Right / Front Layer Overlapping with negative margin) */}
+                    <div className="relative z-20 rotate-[3deg] -ml-8 xs:-ml-9 sm:-ml-10 md:-ml-12 lg:-ml-14 transition-all duration-300 hover:rotate-[6deg] hover:scale-105 hover:z-30 origin-bottom-left cursor-pointer shrink-0">
                       <img
                         src="/images/the-art-of-seduction-book-mockup.png"
                         alt="The Art of Seduction"
