@@ -17,10 +17,19 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
   useEffect(() => {
     if (!isOpen) return;
 
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    const originalOverflow = document.body.style.overflow;
-    const originalPaddingRight = document.body.style.paddingRight;
+    // 1. Pause Lenis smooth scroll engine explicitly
+    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+    if (lenis) {
+      lenis.stop();
+    }
 
+    // 2. Lock both html and body to completely prevent background scroll
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalBodyPaddingRight = document.body.style.paddingRight;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     if (scrollbarWidth > 0) {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -32,16 +41,24 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
     window.addEventListener("keydown", handleKey);
 
     return () => {
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+      document.body.style.paddingRight = originalBodyPaddingRight;
       window.removeEventListener("keydown", handleKey);
+      if (lenis) {
+        lenis.start();
+      }
     };
   }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 md:p-6 overflow-x-hidden overflow-y-auto">
+        <div
+          data-lenis-prevent
+          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 md:p-6 overflow-hidden"
+          style={{ overscrollBehavior: "contain" }}
+        >
           {/* Backdrop: Gradual Darken + Subtle Background Blur */}
           <motion.div
             key="order-modal-backdrop"
@@ -71,14 +88,14 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent
-            className="relative w-full max-w-[530px] max-h-[92dvh] overflow-y-auto bg-[#0D0D10] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] shadow-[0_20px_70px_rgba(0,0,0,0.85)] my-auto z-10 will-change-[transform,opacity]"
-            style={{ scrollbarWidth: "thin", scrollbarColor: "#2A2A2E transparent" }}
+            className="relative w-full max-w-[530px] max-h-[90dvh] flex flex-col bg-[#0D0D10] rounded-2xl sm:rounded-3xl border border-[#2A2A2E] shadow-[0_20px_70px_rgba(0,0,0,0.85)] my-auto z-10 overflow-hidden will-change-[transform,opacity]"
+            style={{ overscrollBehavior: "contain" }}
           >
             {/* Top gold accent line */}
-            <div className="sticky top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-90 z-40" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-90 z-30 pointer-events-none" />
 
-            {/* Modal Header Bar: Fixed/Sticky at top, preventing any overlap with content */}
-            <div className="sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-[#0D0D10]/95 backdrop-blur-md border-b border-[#222228]">
+            {/* Modal Header Bar: Fixed at top of modal */}
+            <div className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-[#0D0D10] border-b border-[#222228] z-20">
               <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <div className="min-w-0 py-0.5">
@@ -102,8 +119,16 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
               </button>
             </div>
 
-            {/* Content Area with Balanced Spacing */}
-            <div className="p-4 sm:p-6 pt-3.5 sm:pt-4">
+            {/* Independent Scrollable Content Area */}
+            <div
+              data-lenis-prevent
+              className="flex-1 overflow-y-auto p-4 sm:p-6 pt-3.5 sm:pt-4"
+              style={{
+                overscrollBehavior: "contain",
+                scrollbarWidth: "thin",
+                scrollbarColor: "#2E2E36 transparent",
+              }}
+            >
               <OrderForm onSuccess={() => {}} initialCouponCode={initialCouponCode} />
             </div>
           </motion.div>
