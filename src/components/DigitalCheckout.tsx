@@ -4,6 +4,7 @@ import React from "react";
 import OrderForm from "@/components/OrderForm";
 import CountdownTimer from "@/components/CountdownTimer";
 import { siteConfig } from "@/data/siteConfig";
+import { ShieldCheck } from "lucide-react";
 
 export default function DigitalCheckout() {
   return (
@@ -37,7 +38,7 @@ export default function DigitalCheckout() {
           {/* Limited-Time Offer Status Bar */}
           <div className="pb-4 sm:pb-5 border-b border-[#26262A] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
               <span className="text-xs sm:text-sm font-bold text-[#F0EBE0]">
                 ২-বুক মাস্টার বান্ডেল ও বিশেষ অফার সক্রিয়
               </span>

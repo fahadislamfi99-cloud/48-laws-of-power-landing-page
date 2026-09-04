@@ -444,8 +444,13 @@ export default function OrderForm({
 
       {/* Gateway Notice Box */}
       <div className="p-2.5 sm:p-3 rounded-xl bg-[#0F0F14] border border-[#E2136E]/30 space-y-1 text-xs">
-        <div className="flex items-center gap-1.5 text-[#F0EBE0] font-bold text-xs leading-relaxed">
-          <span className="w-2 h-2 rounded-full bg-[#E2136E]" />
+        <div className="flex items-center gap-2 text-[#F0EBE0] font-bold text-xs leading-relaxed">
+          <img
+            src="/images/bkash-com-brandmark.svg"
+            alt="bKash"
+            className="h-3.5 sm:h-4 w-auto object-contain shrink-0"
+            loading="lazy"
+          />
           <span>বিকাশ সিকিউর অটো পেমেন্ট</span>
         </div>
         <p className="text-[10px] sm:text-[11px] text-[#A8A095] leading-relaxed">

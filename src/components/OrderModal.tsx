@@ -1,8 +1,6 @@
-"use client";
-
 import React, { useEffect, useRef } from "react";
 import OrderForm from "./OrderForm";
-import { X } from "lucide-react";
+import { X, Lock } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface OrderModalProps {
@@ -97,7 +95,9 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
             {/* Modal Header Bar: Fixed at top of modal */}
             <div className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-[#0D0D10] border-b border-[#222228] z-20">
               <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#C8A45C]/10 border border-[#C8A45C]/20 flex items-center justify-center shrink-0">
+                  <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C8A45C]" />
+                </div>
                 <div className="min-w-0 py-0.5">
                   <h3 className="text-sm sm:text-base font-bold text-[#F0EBE0] font-bengali-serif leading-normal tracking-wide">
                     ডিজিটাল চেকআউট
