@@ -91,14 +91,14 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
                 </div>
               </div>
 
-              {/* Safe, Dedicated Close Button */}
+              {/* Safe, Dedicated Close Button with Smooth Rotate-90 Hover Animation */}
               <button
                 type="button"
                 onClick={onClose}
-                className="p-1.5 sm:p-2 rounded-xl bg-[#18181D] hover:bg-[#25252D] text-[#A8A095] hover:text-[#F0EBE0] border border-[#2A2A32] hover:border-[#3E3E48] transition-all duration-200 cursor-pointer shrink-0 ml-3 group"
+                className="p-1.5 sm:p-2 rounded-full bg-[#1A1A1E]/90 hover:bg-[#2A2A2E] text-[#D1C9BC] hover:text-[#F0EBE0] transition-all duration-300 cursor-pointer shrink-0 ml-3 backdrop-blur-sm group"
                 aria-label="Close checkout modal"
               >
-                <X className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+                <X className="w-4 h-4 transition-transform duration-300 ease-out group-hover:rotate-90" />
               </button>
             </div>
 
