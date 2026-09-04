@@ -355,8 +355,8 @@ export default function ProfitLossPage() {
             </div>
 
             {/* Calculated Breakdown Display Cards */}
-            <div className="md:col-span-6 grid grid-cols-3 gap-3">
-              <div className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+            <div className="md:col-span-6 grid grid-cols-1 xs:grid-cols-3 gap-2.5 sm:gap-3">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                   Base Ad Spend
                 </span>
