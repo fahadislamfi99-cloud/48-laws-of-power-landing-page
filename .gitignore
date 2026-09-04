@@ -42,7 +42,10 @@ next-env.d.ts
 
 # private storage
 /storage/generated_pdfs/
-/storage/master_pdf/
+!/storage/master_pdf/
+!/storage/master_pdf/*.pdf
 *.pdf
 !public/Demo/*.pdf
+!storage/master_pdf/*.pdf
+
 
