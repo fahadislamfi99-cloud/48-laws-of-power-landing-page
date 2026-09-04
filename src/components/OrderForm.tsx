@@ -446,9 +446,9 @@ export default function OrderForm({
       <div className="p-2.5 sm:p-3 rounded-xl bg-[#0F0F14] border border-[#E2136E]/30 space-y-1 text-xs">
         <div className="flex items-center gap-2 text-[#F0EBE0] font-bold text-xs leading-relaxed">
           <img
-            src="/images/bkash-com-brandmark.svg"
+            src="/images/bkash-bird.svg"
             alt="bKash"
-            className="h-3.5 sm:h-4 w-auto object-contain shrink-0"
+            className="w-4 h-4 object-contain shrink-0"
             loading="lazy"
           />
           <span>বিকাশ সিকিউর অটো পেমেন্ট</span>
@@ -472,9 +472,9 @@ export default function OrderForm({
         ) : (
           <>
             <img
-              src="/images/bkash-svgrepo-com.svg"
+              src="/images/bkash-bird.svg"
               alt="bKash"
-              className="w-5 h-5 sm:w-5.5 sm:h-5.5 object-contain shrink-0"
+              className="w-5 h-5 sm:w-5.5 sm:h-5.5 brightness-0 invert object-contain shrink-0"
               loading="eager"
             />
             <span>বিকাশ দিয়ে কিনুন (৳{currentPrice})</span>
