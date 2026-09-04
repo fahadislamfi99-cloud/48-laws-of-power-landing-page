@@ -457,7 +457,7 @@ export default function OrderForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-[#E2136E] hover:bg-[#C90E5F] text-white text-sm sm:text-base font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 hover-lift shadow-[0_4px_25px_rgba(226,19,110,0.35)] transition-all group leading-normal"
+        className="w-full py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-[#E2136E] hover:bg-[#C90E5F] text-white text-sm sm:text-base font-bold flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-60 hover-lift shadow-[0_4px_25px_rgba(226,19,110,0.35)] transition-all group leading-normal"
       >
         {isSubmitting ? (
           <>
@@ -466,7 +466,12 @@ export default function OrderForm({
           </>
         ) : (
           <>
-            <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
+            <img
+              src="/images/bkash-svgrepo-com.svg"
+              alt="bKash"
+              className="w-5 h-5 sm:w-5.5 sm:h-5.5 object-contain shrink-0"
+              loading="eager"
+            />
             <span>বিকাশ দিয়ে কিনুন (৳{currentPrice})</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </>
