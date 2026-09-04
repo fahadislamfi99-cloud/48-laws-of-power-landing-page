@@ -16,17 +16,17 @@ export async function GET() {
     if (!banner) {
       banner = {
         isEnabled: true,
-        badgeText: "বিশেষ অফার 🎁",
-        title: "আজই পাচ্ছেন ৳৫০ ছাড়",
-        subtitle: "The 48 Laws of Power (বাংলা অনুবাদ)",
-        description: "৩,০০০ বছরের মানব মনস্তত্ত্ব ও ক্ষমতার রণকৌশল শিখুন বিশেষ ডিসকাউন্টে। সীমিত সময়ের জন্য অফারটি সক্রিয় রয়েছে।",
-        couponCode: "POWER50",
-        discountAmount: 50,
+        badgeText: "🔥 স্পেশাল মাস্টার বান্ডেল অফার",
+        title: "দুটি পাওয়ার মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯",
+        subtitle: "The 48 Laws of Power + The Art of Seduction",
+        description: "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳৯৯ নিশ্চিত ছাড়)!",
+        couponCode: "",
+        discountAmount: 99,
         discountType: "fixed",
-        ctaText: "অফারটি ব্যবহার করুন",
-        offerTag: "৳৫০ OFF",
-        imageUrl: "/images/promo-power-strategy.jpg",
-        displayDelaySeconds: 4,
+        ctaText: "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
+        offerTag: "৳৯৯ OFF",
+        imageUrl: "/images/promo-power-strategy.webp",
+        displayDelaySeconds: 3,
         cooldownHours: 24,
         updatedAt: new Date(),
       } as any;
@@ -70,29 +70,23 @@ export async function PUT(req: NextRequest) {
     } = body;
 
     const cleanCouponCode = sanitizeString(couponCode, 25).toUpperCase().replace(/\s+/g, "");
-    if (!cleanCouponCode) {
-      return NextResponse.json(
-        { success: false, message: "Valid coupon code is required." },
-        { status: 400 }
-      );
-    }
 
-    const cleanDiscountAmount = Math.max(1, Math.min(10000, Number(discountAmount) || 50));
+    const cleanDiscountAmount = Math.max(0, Math.min(10000, Number(discountAmount) || 0));
     const cleanDiscountType = discountType === "percentage" ? "percentage" : "fixed";
 
     const updateDoc: Partial<PromotionalBanner> = {
       isEnabled: Boolean(isEnabled),
-      badgeText: sanitizeString(badgeText, 50) || "বিশেষ অফার 🎁",
-      title: sanitizeString(title, 100) || "আজই পাচ্ছেন ৳৫০ ছাড়",
-      subtitle: sanitizeString(subtitle, 100) || "The 48 Laws of Power (বাংলা অনুবাদ)",
-      description: sanitizeString(description, 300) || "৩,০০০ বছরের মানব মনস্তত্ত্ব ও ক্ষমতার রণকৌশল শিখুন বিশেষ ডিসকাউন্টে।",
+      badgeText: sanitizeString(badgeText, 50) || "🔥 স্পেশাল মাস্টার বান্ডেল অফার",
+      title: sanitizeString(title, 100) || "দুটি পাওয়ার মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯",
+      subtitle: sanitizeString(subtitle, 100) || "The 48 Laws of Power + The Art of Seduction",
+      description: sanitizeString(description, 300) || "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳৯৯ নিশ্চিত ছাড়)!",
       couponCode: cleanCouponCode,
       discountAmount: cleanDiscountAmount,
       discountType: cleanDiscountType,
-      ctaText: sanitizeString(ctaText, 50) || "অফারটি ব্যবহার করুন",
-      offerTag: sanitizeString(offerTag, 30) || (cleanDiscountType === "fixed" ? `৳${cleanDiscountAmount} OFF` : `${cleanDiscountAmount}% OFF`),
-      imageUrl: sanitizeString(imageUrl, 300) || "/images/promo-power-strategy.jpg",
-      displayDelaySeconds: Math.max(0, Math.min(60, Number(displayDelaySeconds) ?? 4)),
+      ctaText: sanitizeString(ctaText, 50) || "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
+      offerTag: sanitizeString(offerTag, 30) || (cleanDiscountType === "fixed" ? `৳${cleanDiscountAmount || 99} OFF` : `${cleanDiscountAmount}% OFF`),
+      imageUrl: sanitizeString(imageUrl, 300) || "/images/promo-power-strategy.webp",
+      displayDelaySeconds: Math.max(0, Math.min(60, Number(displayDelaySeconds) ?? 3)),
       cooldownHours: Math.max(1, Math.min(720, Number(cooldownHours) ?? 24)),
       updatedAt: new Date(),
     };
@@ -100,24 +94,26 @@ export async function PUT(req: NextRequest) {
     const promoCol = await getCollection<PromotionalBanner>("promo_banners");
     await promoCol.updateOne({}, { $set: updateDoc }, { upsert: true });
 
-    // Automatic Coupon Sync: Ensure the coupon exists and is updated in the coupons collection
-    const couponsCol = await getCollection<Coupon>("coupons");
-    await couponsCol.updateOne(
-      { code: cleanCouponCode },
-      {
-        $set: {
-          code: cleanCouponCode,
-          discountType: cleanDiscountType,
-          discountValue: cleanDiscountAmount,
-          isActive: Boolean(isEnabled),
+    // Optional Coupon Sync: If coupon code is provided, sync the coupon
+    if (cleanCouponCode) {
+      const couponsCol = await getCollection<Coupon>("coupons");
+      await couponsCol.updateOne(
+        { code: cleanCouponCode },
+        {
+          $set: {
+            code: cleanCouponCode,
+            discountType: cleanDiscountType,
+            discountValue: cleanDiscountAmount,
+            isActive: Boolean(isEnabled),
+          },
+          $setOnInsert: {
+            usedCount: 0,
+            createdAt: new Date(),
+          },
         },
-        $setOnInsert: {
-          usedCount: 0,
-          createdAt: new Date(),
-        },
-      },
-      { upsert: true }
-    );
+        { upsert: true }
+      );
+    }
 
     // Audit Log
     const logsCol = await getCollection<AdminLog>("admin_logs");

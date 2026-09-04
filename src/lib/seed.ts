@@ -114,21 +114,21 @@ export async function ensureDatabaseSeeded() {
     if (promoCount === 0) {
       await promoCol.insertOne({
         isEnabled: true,
-        badgeText: "বিশেষ অফার 🎁",
-        title: "আজই পাচ্ছেন ৳৫০ ছাড়",
-        subtitle: "The 48 Laws of Power (বাংলা অনুবাদ)",
-        description: "৩,০০০ বছরের মানব মনস্তত্ত্ব ও ক্ষমতার রণকৌশল শিখুন বিশেষ ডিসকাউন্টে। সীমিত সময়ের জন্য অফারটি সক্রিয় রয়েছে।",
-        couponCode: "POWER50",
-        discountAmount: 50,
+        badgeText: "🔥 স্পেশাল মাস্টার বান্ডেল অফার",
+        title: "দুটি পাওয়ার মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯",
+        subtitle: "The 48 Laws of Power + The Art of Seduction",
+        description: "আলাদা কিনলে ৳১৪৯ + ৳১৪৯ = ৳২৯৮। আজকের স্পেশাল কম্বো বান্ডেলে ১,১৫৯+ পৃষ্ঠার দুটি সম্পূর্ণ বই পাচ্ছেন মাত্র ৳১৯৯-এ (৳৯৯ নিশ্চিত ছাড়)!",
+        couponCode: "",
+        discountAmount: 99,
         discountType: "fixed",
-        ctaText: "অফারটি ব্যবহার করুন",
-        offerTag: "৳৫০ OFF",
-        imageUrl: "/images/promo-power-strategy.jpg",
-        displayDelaySeconds: 4,
+        ctaText: "২-বুক মাস্টার বান্ডেল কিনুন (৳১৯৯)",
+        offerTag: "৳৯৯ OFF",
+        imageUrl: "/images/promo-power-strategy.webp",
+        displayDelaySeconds: 3,
         cooldownHours: 24,
         updatedAt: new Date(),
       });
-      console.log("[DB Seed] Created default promotional banner");
+      console.log("[DB Seed] Created default combo promotional banner");
     }
   } catch (error) {
     console.error("[DB Seed Error]:", error);
