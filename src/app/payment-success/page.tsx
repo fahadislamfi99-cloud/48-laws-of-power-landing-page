@@ -164,7 +164,7 @@ function PaymentSuccessContent() {
               {isBundle
                 ? "The 48 Laws of Power + The Art of Seduction (২-বুক মাস্টার বান্ডেল)"
                 : isSeductionOnly
-                ? "The Art of Seduction (বাংলা সংস্করণ) - ৪৮০ পৃষ্ঠা"
+                ? "The Art of Seduction (বাংলা সংস্করণ) - ৬৫০ পৃষ্ঠা"
                 : "The 48 Laws of Power (বাংলা সংস্করণ) - ৫০৯ পৃষ্ঠা"}
             </p>
           </div>
@@ -218,7 +218,7 @@ function PaymentSuccessContent() {
                     <Sparkles className="w-4 h-4 text-[#E11D48]" />
                     <div>
                       <span className="block text-xs font-bold text-[#F0EBE0]">📕 The Art of Seduction</span>
-                      <span className="text-[10px] text-[#A8A095]">৪৮০ পৃষ্ঠা সম্পূর্ণ বাংলা সংস্করণ</span>
+                      <span className="text-[10px] text-[#A8A095]">৬৫০ পৃষ্ঠা সম্পূর্ণ বাংলা সংস্করণ</span>
                     </div>
                   </div>
                   <span className="px-3 py-1.5 rounded-lg bg-[#E11D48] text-white text-xs font-bold flex items-center gap-1.5">

@@ -169,7 +169,7 @@ export const BUNDLE_DETAILS = {
       id: "art_of_seduction",
       titleBn: "The Art of Seduction (বাংলা সংস্করণ)",
       titleEn: "The Art of Seduction",
-      pages: 480,
+      pages: 650,
       size: "12 MB",
       mockupImg: "/images/the-art-of-seduction-book-mockup.png",
       webpImg: "/images/the-art-of-seduction-book-mockup.png",

@@ -244,7 +244,7 @@ export default function SeductionLessonModal({
                 <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E11D48] text-white uppercase tracking-wider">
                   স্পেশাল কম্বো অফার
                 </span>
-                <span className="text-xs text-[#C8A45C] font-bold">৪৮০ পৃষ্ঠা সম্পূর্ণ বাংলা ইবুক</span>
+                <span className="text-xs text-[#C8A45C] font-bold">৬৫০ পৃষ্ঠা সম্পূর্ণ বাংলা ইবুক</span>
               </div>
               <h5 className="text-sm sm:text-base font-bold text-[#F0EBE0] mt-1 font-bengali-serif">
                 দুটি মাস্টারক্লাস বই একসাথে মাত্র ৳১৯৯ (Save ৳৯৯)

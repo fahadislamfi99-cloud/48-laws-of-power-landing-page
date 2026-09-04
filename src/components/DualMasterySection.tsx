@@ -87,7 +87,7 @@ export default function DualMasterySection({
                     loading="lazy"
                   />
                   <div className="mt-2.5 pb-1">
-                    <span className="text-[10px] font-mono text-[#E11D48] uppercase block font-bold">৪৮০ পৃষ্ঠা • ১২ MB</span>
+                    <span className="text-[10px] font-mono text-[#E11D48] uppercase block font-bold">৬৫০ পৃষ্ঠা • ১২ MB</span>
                     <h3 className="text-xs sm:text-sm font-bold text-[#F0EBE0] line-clamp-1 font-bengali-serif">The Art of Seduction</h3>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function DualMasterySection({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-6 mb-6">
             <div className="flex items-center gap-2 text-xs sm:text-sm text-[#D1C9BC]">
               <CheckCircle2 className="w-4 h-4 text-[#C8A45C]" />
-              <span>৯৮৯+ পৃষ্ঠা সম্পূর্ণ বাংলা ডিজিটাল ইবুক</span>
+              <span>১,১৫৯+ পৃষ্ঠা সম্পূর্ণ বাংলা ডিজিটাল ইবুক</span>
             </div>
             <div className="flex items-center gap-2 text-xs sm:text-sm text-[#D1C9BC]">
               <CheckCircle2 className="w-4 h-4 text-[#C8A45C]" />

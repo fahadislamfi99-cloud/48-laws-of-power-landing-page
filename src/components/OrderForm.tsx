@@ -216,7 +216,7 @@ export default function OrderForm({
                   <span className="text-[10px] text-[#C8A45C] font-mono hidden xs:inline">(কম্বো প্যাক)</span>
                 </h4>
                 <p className="text-[10px] sm:text-xs text-[#A8A095] mt-0.5 leading-normal">
-                  48 Laws + Art of Seduction (৯৮৯ পৃষ্ঠা)
+                  48 Laws + Art of Seduction (১,১৫৯ পৃষ্ঠা)
                 </p>
               </div>
             </div>
@@ -306,7 +306,7 @@ export default function OrderForm({
                   The Art of Seduction (একক বই)
                 </h4>
                 <p className="text-[10px] sm:text-xs text-[#A8A095] mt-0.5 leading-normal">
-                  ৪৮০ পৃষ্ঠা সম্পূর্ণ বাংলা সংস্করণ
+                  ৬৫০ পৃষ্ঠা সম্পূর্ণ বাংলা সংস্করণ
                 </p>
               </div>
             </div>

@@ -117,7 +117,7 @@ export async function sendPersonalizedBookEmail(details: EmailOrderDetails): Pro
                         📘 The 48 Laws of Power (৫০৯ পৃষ্ঠা)
                       </a>
                       <a href="${downloadUrlSeduction}" target="_blank" style="display: block; background-color: #E11D48; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 10px;">
-                        📕 The Art of Seduction (৪৮০ পৃষ্ঠা)
+                        📕 The Art of Seduction (৬৫০ পৃষ্ঠা)
                       </a>
                     </div>
                     `

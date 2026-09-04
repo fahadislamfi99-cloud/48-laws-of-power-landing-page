@@ -71,7 +71,7 @@ export async function getOrGenerateWatermarkedPdf(options: WatermarkOptions): Pr
           success: true,
           filePath: cachedFilePath,
           fileBuffer: existingBuffer,
-          pageCount: bookType === "art_of_seduction" ? 480 : 509,
+          pageCount: bookType === "art_of_seduction" ? 650 : 509,
           fileSize: existingBuffer.length,
           fromCache: true,
           safeFilename,
