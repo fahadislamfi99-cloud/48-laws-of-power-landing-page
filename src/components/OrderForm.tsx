@@ -219,7 +219,7 @@ export default function OrderForm({
             <div className="text-right shrink-0 pl-1.5 py-0.5">
               <div className="text-sm sm:text-lg font-bold text-[#C8A45C] font-display leading-tight">৳199</div>
               <div className="text-[10px] sm:text-xs text-[#A8A095] line-through leading-tight mt-0.5">৳298</div>
-              <span className="text-[9px] text-emerald-400 font-bold block mt-0.5 leading-tight">Save ৳99</span>
+              <span className="text-[9px] text-emerald-400 font-bold block mt-0.5 leading-tight">Save ৳100</span>
             </div>
           </div>
 

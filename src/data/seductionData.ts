@@ -152,7 +152,7 @@ export const BUNDLE_DETAILS = {
   singlePrice: 149,
   bundlePrice: 199,
   combinedOriginalPrice: 298,
-  savingsAmount: 99,
+  savingsAmount: 100,
   books: [
     {
       id: "48_laws",
