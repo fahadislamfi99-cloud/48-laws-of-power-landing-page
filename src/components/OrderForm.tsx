@@ -27,11 +27,7 @@ export default function OrderForm({
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [validatingCoupon, setValidatingCoupon] = useState(false);
   const [couponMessage, setCouponMessage] = useState<{ text: string; error?: boolean } | null>(null);
-  const [activeOffer, setActiveOffer] = useState<{ couponCode: string; discountAmount: number; offerTag?: string } | null>({
-    couponCode: "POWER50",
-    discountAmount: 50,
-    offerTag: "৳৫০ OFF",
-  });
+  const [activeOffer, setActiveOffer] = useState<{ couponCode: string; discountAmount: number; offerTag?: string } | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,19 +42,17 @@ export default function OrderForm({
       try {
         const res = await fetch("/api/public/promo-banner");
         const data = await res.json();
-        if (data.success && data.banner) {
-          if (data.banner.isEnabled && data.banner.couponCode) {
-            setActiveOffer({
-              couponCode: data.banner.couponCode,
-              discountAmount: data.banner.discountAmount || 50,
-              offerTag: data.banner.offerTag || "৳৫০ OFF",
-            });
-          } else {
-            setActiveOffer(null);
-          }
+        if (data?.success && data?.banner?.isEnabled && data?.banner?.couponCode) {
+          setActiveOffer({
+            couponCode: data.banner.couponCode,
+            discountAmount: data.banner.discountAmount || 50,
+            offerTag: data.banner.offerTag || "৳৫০ OFF",
+          });
+        } else {
+          setActiveOffer(null);
         }
       } catch {
-        // keep fallback default
+        setActiveOffer(null);
       }
     }
     fetchOffer();

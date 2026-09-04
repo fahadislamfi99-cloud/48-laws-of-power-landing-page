@@ -28,21 +28,7 @@ interface PromotionalPopupProps {
 const STORAGE_KEY = "laws48_promo_dismissed_session_v1";
 
 export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps) {
-  const [promoData, setPromoData] = useState<PromoBannerData | null>({
-    isEnabled: true,
-    badgeText: "বিশেষ অফার 🎁",
-    title: "আজই পাচ্ছেন ৳৫০ ছাড়",
-    subtitle: "The 48 Laws of Power (বাংলা অনুবাদ)",
-    description: "৩,০০০ বছরের মানব মনস্তত্ত্ব ও ক্ষমতার রণকৌশল শিখুন বিশেষ ডিসকাউন্টে। সম্পূর্ণ ৫০৯ পৃষ্ঠার বাংলা ডিজিটাল বইতে তাৎক্ষণিক অ্যাক্সেস পান।",
-    couponCode: "POWER50",
-    discountAmount: 50,
-    discountType: "fixed",
-    ctaText: "অফারটি ব্যবহার করুন",
-    offerTag: "৳৫০ OFF",
-    imageUrl: "/images/promo-power-strategy.webp",
-    displayDelaySeconds: 3,
-    cooldownHours: 24,
-  });
+  const [promoData, setPromoData] = useState<PromoBannerData | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);

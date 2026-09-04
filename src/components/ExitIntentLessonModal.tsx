@@ -33,24 +33,19 @@ export default function ExitIntentLessonModal({ onClaimOffer }: ExitIntentLesson
       try {
         const res = await fetch("/api/public/promo-banner");
         const data = await res.json();
-        if (data.success && data.banner && data.banner.isEnabled) {
+        if (data?.success && data?.banner?.isEnabled && data?.banner?.couponCode) {
           setPromoOffer({
             isEnabled: true,
-            couponCode: data.banner.couponCode || "POWER50",
+            couponCode: data.banner.couponCode,
             discountAmount: data.banner.discountAmount || 50,
             offerTag: data.banner.offerTag || "৳৫০ OFF",
             ctaText: data.banner.ctaText || "অফারটি ব্যবহার করুন",
           });
+        } else {
+          setPromoOffer(null);
         }
       } catch {
-        // Fallback default
-        setPromoOffer({
-          isEnabled: true,
-          couponCode: "POWER50",
-          discountAmount: 50,
-          offerTag: "৳৫০ OFF",
-          ctaText: "অফারটি ব্যবহার করুন",
-        });
+        setPromoOffer(null);
       }
     }
     loadOffer();
