@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCollection, Coupon } from "@/lib/mongodb";
+import { getCollection, Coupon, PromotionalBanner } from "@/lib/mongodb";
 import { getAdminSession } from "@/lib/auth";
 import { ObjectId } from "mongodb";
 
@@ -20,6 +20,11 @@ export async function PUT(
     const couponsCol = await getCollection<Coupon>("coupons");
     const query = ObjectId.isValid(id) ? { _id: new ObjectId(id) } : { code: id };
 
+    const existingCoupon = await couponsCol.findOne(query);
+    if (!existingCoupon) {
+      return NextResponse.json({ success: false, message: "Coupon not found" }, { status: 404 });
+    }
+
     const updates: Partial<Coupon> = {};
     if (isActive !== undefined) updates.isActive = Boolean(isActive);
     if (discountValue !== undefined) updates.discountValue = Number(discountValue);
@@ -27,10 +32,15 @@ export async function PUT(
     if (maxUses !== undefined) updates.maxUses = Number(maxUses);
     if (expiresAt !== undefined) updates.expiresAt = expiresAt ? new Date(expiresAt) : undefined;
 
-    const result = await couponsCol.updateOne(query, { $set: updates });
+    await couponsCol.updateOne(query, { $set: updates });
 
-    if (result.matchedCount === 0) {
-      return NextResponse.json({ success: false, message: "Coupon not found" }, { status: 404 });
+    // Sync Promo Banner if this coupon is used as promo banner coupon
+    if (isActive === false && existingCoupon.code) {
+      const promoCol = await getCollection<PromotionalBanner>("promo_banners");
+      await promoCol.updateMany(
+        { couponCode: existingCoupon.code },
+        { $set: { isEnabled: false } }
+      );
     }
 
     return NextResponse.json({ success: true, message: "Coupon updated successfully" });
@@ -57,10 +67,20 @@ export async function DELETE(
     const couponsCol = await getCollection<Coupon>("coupons");
     const query = ObjectId.isValid(id) ? { _id: new ObjectId(id) } : { code: id };
 
-    const result = await couponsCol.deleteOne(query);
-
-    if (result.deletedCount === 0) {
+    const existingCoupon = await couponsCol.findOne(query);
+    if (!existingCoupon) {
       return NextResponse.json({ success: false, message: "Coupon not found" }, { status: 404 });
+    }
+
+    await couponsCol.deleteOne(query);
+
+    // Sync Promo Banner: disable if deleted
+    if (existingCoupon.code) {
+      const promoCol = await getCollection<PromotionalBanner>("promo_banners");
+      await promoCol.updateMany(
+        { couponCode: existingCoupon.code },
+        { $set: { isEnabled: false } }
+      );
     }
 
     return NextResponse.json({ success: true, message: "Coupon deleted successfully" });
