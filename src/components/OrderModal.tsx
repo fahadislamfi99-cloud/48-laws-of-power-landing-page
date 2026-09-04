@@ -78,14 +78,14 @@ export default function OrderModal({ isOpen, onClose, initialCouponCode }: Order
             <div className="sticky top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A45C] to-transparent opacity-90 z-40" />
 
             {/* Modal Header Bar: Fixed/Sticky at top, preventing any overlap with content */}
-            <div className="sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 bg-[#0D0D10]/95 backdrop-blur-md border-b border-[#222228]">
-              <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+            <div className="sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-[#0D0D10]/95 backdrop-blur-md border-b border-[#222228]">
+              <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                <div className="min-w-0">
-                  <h3 className="text-sm sm:text-base font-bold text-[#F0EBE0] font-bengali-serif leading-none truncate">
+                <div className="min-w-0 py-0.5">
+                  <h3 className="text-sm sm:text-base font-bold text-[#F0EBE0] font-bengali-serif leading-normal tracking-wide">
                     ডিজিটাল চেকআউট
                   </h3>
-                  <p className="text-[10px] sm:text-[11px] text-[#A8A095] mt-1 font-sans leading-none truncate">
+                  <p className="text-[10px] sm:text-[11px] text-[#A8A095] leading-normal font-sans mt-0.5">
                     লাইফটাইম এক্সেস ও তাৎক্ষণিক ডাউনলোড
                   </p>
                 </div>
