@@ -203,8 +203,8 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                 {/* Background ambient lighting orb */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#C8A45C]/15 via-transparent to-[#E11D48]/15 pointer-events-none" />
 
-                {/* Top Badge on Artwork */}
-                <div className="relative z-10 w-full flex items-center justify-between gap-2">
+                {/* Top Badges on Artwork (Cleanly aligned left with safe right margin for mobile close button) */}
+                <div className="relative z-10 w-full flex items-center justify-start gap-2 pr-10 md:pr-0 flex-wrap">
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#E11D48]/20 border border-[#E11D48]/40 text-[#E11D48] text-[10px] font-bold tracking-wider uppercase font-sans">
                     <Flame className="w-3 h-3 text-[#E11D48]" />
                     <span>স্পেশাল ডিল</span>
