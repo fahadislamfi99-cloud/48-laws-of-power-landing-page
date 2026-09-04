@@ -215,35 +215,35 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                   </span>
                 </div>
 
-                {/* Dual 3D Books Stage: Perfectly centered and proportioned across all screen sizes */}
-                <div className="relative my-3.5 sm:my-5 md:my-auto w-full h-[165px] xs:h-[185px] sm:h-[205px] md:h-[220px] flex items-center justify-center pointer-events-none select-none">
+                {/* Dual 3D Books Stage: Unified Overlapping Composition (Matching Payment Modal) */}
+                <div className="relative my-3 sm:my-4 md:my-auto w-full h-[175px] xs:h-[195px] sm:h-[215px] md:h-[270px] lg:h-[295px] flex items-center justify-center pointer-events-none select-none">
                   
                   {/* Ambient spotlight under the books */}
-                  <div className="absolute w-[200px] h-[60px] bg-[#C8A45C]/15 rounded-full blur-2xl bottom-1 left-1/2 -translate-x-1/2 pointer-events-none" />
+                  <div className="absolute w-[220px] md:w-[280px] h-[70px] md:h-[90px] bg-[#C8A45C]/18 rounded-full blur-2xl bottom-1 left-1/2 -translate-x-1/2 pointer-events-none" />
 
                   {/* Combined Centered 3D Pair Container */}
-                  <div className="relative w-[210px] xs:w-[230px] sm:w-[250px] md:w-[245px] h-full flex items-center justify-center pointer-events-auto">
+                  <div className="relative w-[220px] xs:w-[245px] sm:w-[265px] md:w-[280px] lg:w-[305px] h-full flex items-center justify-center pointer-events-auto">
                     
-                    {/* Book 1: The 48 Laws of Power (Angled Left, Layer 1) */}
-                    <div className="absolute left-1/2 -translate-x-[92%] xs:-translate-x-[90%] sm:-translate-x-[88%] z-10 -rotate-[7deg] transition-all duration-300 hover:-rotate-[10deg] hover:scale-105 hover:z-30 origin-bottom-right cursor-pointer">
+                    {/* Book 1: The 48 Laws of Power (Left / Back Layer - matching payment modal) */}
+                    <div className="absolute left-1/2 -translate-x-[62%] xs:-translate-x-[60%] md:-translate-x-[58%] z-10 -rotate-[4deg] transition-all duration-300 hover:-rotate-[7deg] hover:scale-105 hover:z-30 origin-bottom-right cursor-pointer">
                       <img
                         src="/images/book-mockup.webp"
                         alt="The 48 Laws of Power"
-                        width={140}
-                        height={200}
-                        className="w-[110px] xs:w-[124px] sm:w-[138px] md:w-[134px] h-auto object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.9)]"
+                        width={180}
+                        height={250}
+                        className="w-[115px] xs:w-[130px] sm:w-[145px] md:w-[160px] lg:w-[178px] h-auto object-contain drop-shadow-[0_12px_26px_rgba(0,0,0,0.85)]"
                         loading="lazy"
                       />
                     </div>
 
-                    {/* Book 2: The Art of Seduction (Angled Right, Layer 2) */}
-                    <div className="absolute left-1/2 -translate-x-[12%] xs:-translate-x-[14%] sm:-translate-x-[16%] z-20 rotate-[6deg] transition-all duration-300 hover:rotate-[9deg] hover:scale-105 hover:z-30 origin-bottom-left cursor-pointer">
+                    {/* Book 2: The Art of Seduction (Right / Front Layer Overlapping - matching payment modal) */}
+                    <div className="absolute left-1/2 -translate-x-[2%] xs:translate-x-[0%] md:translate-x-[3%] z-20 rotate-[3deg] transition-all duration-300 hover:rotate-[6deg] hover:scale-105 hover:z-30 origin-bottom-left cursor-pointer">
                       <img
                         src="/images/the-art-of-seduction-book-mockup.png"
                         alt="The Art of Seduction"
-                        width={140}
-                        height={200}
-                        className="w-[110px] xs:w-[124px] sm:w-[138px] md:w-[134px] h-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.95)]"
+                        width={180}
+                        height={250}
+                        className="w-[115px] xs:w-[130px] sm:w-[145px] md:w-[160px] lg:w-[178px] h-auto object-contain drop-shadow-[-6px_14px_30px_rgba(0,0,0,0.92)]"
                         loading="lazy"
                       />
                     </div>
