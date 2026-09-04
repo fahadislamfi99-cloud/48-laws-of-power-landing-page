@@ -26,6 +26,7 @@ const SeductionLessonModal = dynamic(() => import("@/components/SeductionLessonM
 const PromotionalPopup = dynamic(() => import("@/components/PromotionalPopup"), { ssr: false });
 const ExitIntentLessonModal = dynamic(() => import("@/components/ExitIntentLessonModal"), { ssr: false });
 const BackToTop = dynamic(() => import("@/components/BackToTop"), { ssr: false });
+const LiveOrderToast = dynamic(() => import("@/components/LiveOrderToast"), { ssr: false });
 
 export default function Home() {
   const [isPreloaderDone, setIsPreloaderDone] = useState(false);
@@ -92,6 +93,10 @@ export default function Home() {
 
       <ExitIntentLessonModal
         onClaimOffer={(couponCode) => handleOpenOrderModal(couponCode)}
+      />
+
+      <LiveOrderToast
+        onOpenOrderModal={() => handleOpenOrderModal()}
       />
     </main>
   );
