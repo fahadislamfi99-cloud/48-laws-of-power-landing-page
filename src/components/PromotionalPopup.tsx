@@ -215,35 +215,35 @@ export default function PromotionalPopup({ onClaimOffer }: PromotionalPopupProps
                   </span>
                 </div>
 
-                {/* Dual 3D Books Stage: Perfectly Centered Overlapping Flex Pair */}
-                <div className="relative my-3.5 sm:my-4 md:my-auto w-full h-[175px] xs:h-[195px] sm:h-[215px] md:h-[270px] lg:h-[295px] flex items-center justify-center pointer-events-none select-none">
+                {/* Dual 3D Books Stage: Equalized Height and Tight Cohesive Combo Composition */}
+                <div className="relative my-3 sm:my-4 md:my-auto w-full h-[180px] xs:h-[200px] sm:h-[220px] md:h-[275px] lg:h-[300px] flex items-center justify-center pointer-events-none select-none">
                   
                   {/* Ambient spotlight under the books */}
-                  <div className="absolute w-[240px] md:w-[300px] h-[70px] md:h-[90px] bg-[#C8A45C]/18 rounded-full blur-2xl bottom-1 left-1/2 -translate-x-1/2 pointer-events-none" />
+                  <div className="absolute w-[240px] md:w-[320px] h-[70px] md:h-[90px] bg-[#C8A45C]/18 rounded-full blur-2xl bottom-1 left-1/2 -translate-x-1/2 pointer-events-none" />
 
-                  {/* Flex Centered 3D Pair - Perfectly Balanced Geometric Center */}
+                  {/* Flex Centered 3D Pair - Unified Single Bundle Unit */}
                   <div className="relative flex items-center justify-center pointer-events-auto">
                     
-                    {/* Book 1: The 48 Laws of Power (Left / Back Layer) */}
-                    <div className="relative z-10 -rotate-[4deg] transition-all duration-300 hover:-rotate-[7deg] hover:scale-105 hover:z-30 origin-bottom-right cursor-pointer shrink-0">
+                    {/* Book 1: The 48 Laws of Power (Left / Back Layer - matched 1:1 in visual height) */}
+                    <div className="relative z-10 -rotate-[3.5deg] transition-all duration-300 hover:-rotate-[6deg] hover:scale-105 hover:z-30 origin-bottom-right cursor-pointer shrink-0">
                       <img
                         src="/images/book-mockup.webp"
                         alt="The 48 Laws of Power"
-                        width={180}
-                        height={250}
-                        className="w-[115px] xs:w-[130px] sm:w-[145px] md:w-[160px] lg:w-[178px] h-auto object-contain drop-shadow-[0_12px_26px_rgba(0,0,0,0.85)]"
+                        width={200}
+                        height={270}
+                        className="h-[148px] xs:h-[168px] sm:h-[188px] md:h-[225px] lg:h-[248px] w-auto object-contain scale-[1.08] drop-shadow-[0_12px_26px_rgba(0,0,0,0.85)]"
                         loading="lazy"
                       />
                     </div>
 
-                    {/* Book 2: The Art of Seduction (Right / Front Layer Overlapping with negative margin) */}
-                    <div className="relative z-20 rotate-[3deg] -ml-8 xs:-ml-9 sm:-ml-10 md:-ml-12 lg:-ml-14 transition-all duration-300 hover:rotate-[6deg] hover:scale-105 hover:z-30 origin-bottom-left cursor-pointer shrink-0">
+                    {/* Book 2: The Art of Seduction (Right / Front Layer - tightly overlapping left book) */}
+                    <div className="relative z-20 rotate-[2.5deg] -ml-13 xs:-ml-15 sm:-ml-17 md:-ml-22 lg:-ml-26 transition-all duration-300 hover:rotate-[5deg] hover:scale-105 hover:z-30 origin-bottom-left cursor-pointer shrink-0">
                       <img
                         src="/images/the-art-of-seduction-book-mockup.png"
                         alt="The Art of Seduction"
-                        width={180}
-                        height={250}
-                        className="w-[115px] xs:w-[130px] sm:w-[145px] md:w-[160px] lg:w-[178px] h-auto object-contain drop-shadow-[-6px_14px_30px_rgba(0,0,0,0.92)]"
+                        width={200}
+                        height={270}
+                        className="h-[148px] xs:h-[168px] sm:h-[188px] md:h-[225px] lg:h-[248px] w-auto object-contain drop-shadow-[-8px_16px_32px_rgba(0,0,0,0.92)]"
                         loading="lazy"
                       />
                     </div>
